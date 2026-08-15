@@ -337,7 +337,7 @@
         <div class="shell">
           <div class="section-intro centre-intro reveal">
             <div class="section-label"><span>03</span> LOKOMOTO CENTAR</div>
-            <h2>Stručnost koja vas ne zadržava u terapiji. <em>Vraća vas životu.</em></h2>
+            <h2>Stručnost koja vas ne zadržava u terapiji. <em><span class="word-vraca">Vra<span class="letter-c-caron">ć</span>a</span> vas životu.</em></h2>
             <p>
               Tim fizioterapeuta, saradnja sa lekarima specijalistima i prostor
               u kome terapija prirodno prelazi u pokret.
@@ -415,16 +415,105 @@
 
       <section class="contact" id="kontakt">
         <div class="contact-inner shell">
-          <div class="contact-copy reveal">
-            <div class="section-label section-label-light"><span>05</span> PRVI KORAK</div>
-            <h2>Vratimo vaš život <em>u pokret.</em></h2>
-            <p>
-              Javite nam šta vas ograničava. Usmerićemo vas ka odgovarajućem
-              pregledu i sledećem koraku.
-            </p>
-            <a class="button button-accent" href="tel:+381114095924">
-              Pozovite 011 / 40 95 924 <span aria-hidden="true">↗</span>
-            </a>
+          <div class="contact-form-panel reveal">
+            <div class="contact-form-heading">
+              <div class="section-label section-label-light"><span>05</span> PRVI KORAK</div>
+              <div class="contact-response"><i aria-hidden="true"></i> ODGOVARAMO U TOKU RADNOG DANA</div>
+            </div>
+
+            <div class="contact-form-intro">
+              <h2>Pošaljite <em>upit.</em></h2>
+              <p>Ostavite osnovne podatke, a naš tim će vas usmeriti ka odgovarajućem pregledu.</p>
+            </div>
+
+            <form
+              class="contact-form"
+              action="mailto:lokomoto.centar@gmail.com"
+              method="post"
+              enctype="text/plain"
+              data-contact-form
+              novalidate
+            >
+              <div class="contact-form-grid">
+                <label class="form-field" for="contact-name">
+                  <span>IME I PREZIME <b aria-hidden="true">*</b></span>
+                  <input
+                    id="contact-name"
+                    name="name"
+                    type="text"
+                    autocomplete="name"
+                    placeholder="Vaše ime i prezime"
+                    required
+                  />
+                </label>
+
+                <label class="form-field" for="contact-phone">
+                  <span>TELEFON <b aria-hidden="true">*</b></span>
+                  <input
+                    id="contact-phone"
+                    name="phone"
+                    type="tel"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    placeholder="06x / xxx–xxxx"
+                    required
+                  />
+                </label>
+
+                <label class="form-field" for="contact-email">
+                  <span>E-MAIL <small>OPCIONO</small></span>
+                  <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="ime@primer.rs"
+                  />
+                </label>
+
+                <label class="form-field form-field-select" for="contact-service">
+                  <span>VRSTA PREGLEDA</span>
+                  <select id="contact-service" name="service">
+                    <option value="Nisam siguran/na — preporučite mi">Nisam siguran/na — preporučite mi</option>
+                    <option value="Fizijatrijski pregled">Fizijatrijski pregled</option>
+                    <option value="Fizikalna terapija">Fizikalna terapija</option>
+                    <option value="Sportska rehabilitacija">Sportska rehabilitacija</option>
+                    <option value="Kineziterapija">Kineziterapija</option>
+                    <option value="Drugo">Drugo</option>
+                  </select>
+                </label>
+
+                <label class="form-field form-field-wide" for="contact-message">
+                  <span>ŠTA VAS TRENUTNO OGRANIČAVA? <small>OPCIONO</small></span>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="4"
+                    maxlength="1200"
+                    placeholder="Ukratko opišite razlog javljanja..."
+                  ></textarea>
+                </label>
+              </div>
+
+              <label class="contact-consent" for="contact-consent">
+                <input id="contact-consent" name="consent" type="checkbox" required />
+                <span aria-hidden="true"></span>
+                <small>Saglasan/na sam da me Lokomoto kontaktira u vezi sa ovim upitom.</small>
+              </label>
+
+              <div class="contact-form-actions">
+                <button class="contact-submit" type="submit">
+                  Pošaljite upit <span aria-hidden="true">↗</span>
+                </button>
+                <a class="contact-phone" href="tel:+381114095924">
+                  <small>RADIJE RAZGOVARATE?</small>
+                  <strong>011 / 40 95 924</strong>
+                </a>
+              </div>
+
+              <p class="contact-form-note">Klikom na dugme otvara se pripremljena poruka u vašoj e-mail aplikaciji.</p>
+              <p class="contact-form-status" data-contact-form-status role="status" aria-live="polite"></p>
+            </form>
           </div>
 
           <div class="contact-side">
