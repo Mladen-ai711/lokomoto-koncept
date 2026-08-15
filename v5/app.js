@@ -144,4 +144,43 @@
   document.querySelectorAll("[data-year]").forEach((item) => {
     item.textContent = new Date().getFullYear();
   });
+
+  const contactForm = document.querySelector("[data-contact-form]");
+  const contactFormStatus = document.querySelector("[data-contact-form-status]");
+
+  contactForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      if (contactFormStatus) {
+        contactFormStatus.textContent = "Molimo popunite obavezna polja.";
+      }
+      return;
+    }
+
+    const formData = new FormData(contactForm);
+    const name = String(formData.get("name") || "").trim();
+    const phone = String(formData.get("phone") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const service = String(formData.get("service") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+    const subject = `Upit sa Lokomoto sajta — ${name}`;
+    const body = [
+      `Ime i prezime: ${name}`,
+      `Telefon: ${phone}`,
+      `E-mail: ${email || "Nije naveden"}`,
+      `Vrsta pregleda: ${service}`,
+      "",
+      "Razlog javljanja:",
+      message || "Nije naveden",
+    ].join("\n");
+    const mailto = `mailto:lokomoto.centar@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    if (contactFormStatus) {
+      contactFormStatus.textContent = "Otvaramo pripremljenu poruku u vašoj e-mail aplikaciji...";
+    }
+
+    window.location.href = mailto;
+  });
 })();
