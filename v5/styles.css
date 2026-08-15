@@ -1360,70 +1360,99 @@ button {
 }
 
 .education {
-  display: grid;
-  min-height: 48rem;
-  color: var(--ink);
-  background: var(--lime);
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  position: relative;
+  display: block;
+  min-height: clamp(32rem, 40vw, 38rem);
+  overflow: hidden;
+  color: var(--white);
+  background: var(--ink);
+  isolation: isolate;
 }
 
 .education-copy {
+  position: relative;
+  z-index: 3;
   display: flex;
-  padding: var(--section-space) var(--gutter);
-  border-radius: var(--radius);
+  width: 100%;
+  min-height: inherit;
+  margin-inline: auto;
+  padding: clamp(4.5rem, 7vw, 7rem) var(--gutter);
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
 }
 
 .education-copy .section-label {
-  color: rgba(31, 41, 39, 0.62);
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .education-copy .section-label span {
-  color: var(--ink);
+  color: var(--lime);
 }
 
 .education h2 {
-  max-width: 45rem;
-  margin-top: 2.2rem;
+  max-width: 49rem;
+  margin-top: 1.6rem;
+  color: var(--white);
 }
 
 .education h2 em {
-  color: var(--teal-deep);
+  color: var(--lime);
 }
 
 .education-copy p {
   max-width: 36rem;
-  margin: 2rem 0 2.3rem;
-  color: rgba(31, 41, 39, 0.7);
+  margin: 1.5rem 0 2rem;
+  color: rgba(255, 255, 255, 0.72);
   font-size: clamp(1rem, 1.35vw, 1.2rem);
   line-height: 1.65;
 }
 
+.education .button-dark {
+  min-width: 14.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  border-radius: 999px;
+  color: var(--white);
+  background: transparent;
+}
+
+.education .button-dark:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
 .education-media {
-  position: relative;
-  min-height: 48rem;
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  min-height: 0;
   margin: 0;
   overflow: hidden;
-  border-radius: var(--radius);
+  border-radius: 0;
   background: var(--ink-2);
-  clip-path: polygon(9% 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: none;
 }
 
 .education-media::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(31, 41, 39, 0.8), transparent 48%);
+  background:
+    linear-gradient(90deg, rgba(31, 41, 39, 0.94) 0%, rgba(31, 41, 39, 0.82) 34%, rgba(31, 41, 39, 0.44) 61%, rgba(31, 41, 39, 0.18) 100%),
+    linear-gradient(0deg, rgba(31, 41, 39, 0.48) 0%, transparent 46%),
+    rgba(96, 61, 37, 0.09);
   content: "";
 }
 
 .education-media img {
   width: 100%;
   height: 100%;
-  min-height: inherit;
+  min-height: 0;
   object-fit: cover;
-  object-position: center 38%;
+  object-position: 56% 37%;
+  filter: saturate(0.82) contrast(1.04) sepia(0.07) brightness(0.9);
+  transform: scale(1.18);
+  transition: transform 1600ms var(--ease);
 }
 
 .education-media figcaption {
@@ -1431,10 +1460,12 @@ button {
   z-index: 2;
   right: clamp(1.5rem, 4vw, 4rem);
   bottom: clamp(1.5rem, 4vw, 4rem);
-  left: clamp(3rem, 7vw, 7rem);
+  left: auto;
   display: grid;
+  justify-items: end;
   gap: 0.6rem;
   color: var(--white);
+  text-align: right;
 }
 
 .education-media figcaption span {
@@ -1445,7 +1476,7 @@ button {
 }
 
 .education-media figcaption strong {
-  font-size: clamp(2.2rem, 4vw, 4.5rem);
+  font-size: clamp(1.45rem, 2.4vw, 2.6rem);
   font-weight: 560;
   letter-spacing: -0.06em;
 }
@@ -1456,22 +1487,6 @@ button {
   overflow: hidden;
   color: var(--white);
   background: var(--ink);
-}
-
-.contact-bg {
-  position: absolute;
-  inset: 0;
-  background: url("assets/images/manifesto.webp") center / cover no-repeat;
-  filter: saturate(0.75) contrast(1.06);
-  transform: scale(1.02);
-}
-
-.contact-wash {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(31, 41, 39, 0.96) 0%, rgba(31, 41, 39, 0.78) 48%, rgba(31, 41, 39, 0.42) 100%),
-    linear-gradient(0deg, rgba(31, 41, 39, 0.72), transparent 60%);
 }
 
 .contact-inner {
@@ -1621,6 +1636,14 @@ button {
   clip-path: inset(0 0 0 0);
 }
 
+.motion-ready .education-media.reveal-clip img {
+  transform: scale(1.22);
+}
+
+.motion-ready .education-media.reveal-clip.is-visible img {
+  transform: scale(1.18);
+}
+
 @media (max-width: 1240px) {
   .hero-media {
     width: 60%;
@@ -1759,16 +1782,12 @@ button {
     margin-inline: auto;
   }
 
-  .education {
-    grid-template-columns: 1fr;
-  }
-
   .education-copy {
-    min-height: 40rem;
+    min-height: inherit;
   }
 
   .education-media {
-    min-height: 40rem;
+    min-height: 0;
     clip-path: none;
   }
 
@@ -1981,16 +2000,28 @@ button {
   }
 
   .education-copy {
-    min-height: auto;
-    padding: var(--section-space) var(--gutter);
+    min-height: inherit;
+    padding: 5rem var(--gutter) 5.5rem;
   }
 
   .education-media {
-    min-height: 34rem;
+    min-height: 0;
+  }
+
+  .education-media img {
+    object-position: 57% 36%;
+    transform: scale(1.18);
+  }
+
+  .education-media::after {
+    background:
+      linear-gradient(90deg, rgba(31, 41, 39, 0.9) 0%, rgba(31, 41, 39, 0.68) 68%, rgba(31, 41, 39, 0.42) 100%),
+      linear-gradient(0deg, rgba(31, 41, 39, 0.74) 0%, rgba(31, 41, 39, 0.12) 64%),
+      rgba(96, 61, 37, 0.08);
   }
 
   .education-media figcaption {
-    left: 1.5rem;
+    display: none;
   }
 
   .contact,
@@ -2000,14 +2031,6 @@ button {
 
   .contact-copy h2 {
     font-size: clamp(3.7rem, 15vw, 6.5rem);
-  }
-
-  .contact-bg {
-    background-position: 63% center;
-  }
-
-  .contact-wash {
-    background: rgba(31, 41, 39, 0.83);
   }
 
   .footer-main {
@@ -2043,8 +2066,7 @@ button {
   }
 
   .approach-visual,
-  .centre-photo,
-  .education-media {
+  .centre-photo {
     min-height: 29rem;
   }
 
@@ -2575,5 +2597,115 @@ button {
   .hero-title {
     letter-spacing: -0.02em;
     line-height: 1.08;
+  }
+}
+
+/* --------------------------------------------------------------
+   V5 — distinct closing CTA after the cinematic education band
+   -------------------------------------------------------------- */
+
+.contact {
+  min-height: 0;
+  overflow: hidden;
+  color: var(--ink);
+  background: var(--paper-light);
+  border-top: 1px solid var(--line);
+}
+
+.contact-inner {
+  min-height: 0;
+  padding-top: clamp(5.5rem, 8vw, 8rem);
+  padding-bottom: clamp(5.5rem, 8vw, 8rem);
+  grid-template-columns: minmax(0, 1.15fr) minmax(22rem, 0.55fr);
+  align-items: start;
+  gap: clamp(3rem, 7vw, 8rem);
+}
+
+.contact-copy .section-label-light {
+  color: var(--muted);
+}
+
+.contact-copy .section-label-light span {
+  color: var(--teal-deep);
+}
+
+.contact-copy h2 {
+  max-width: 56rem;
+  margin-top: 1.6rem;
+  color: var(--ink);
+  font-size: clamp(3.75rem, 6.6vw, 7.25rem);
+}
+
+.contact-copy h2 em {
+  color: var(--teal-deep);
+}
+
+.contact-copy p {
+  max-width: 34rem;
+  margin: 1.6rem 0 2rem;
+  color: var(--muted);
+}
+
+.contact-copy .button-accent:hover {
+  color: var(--ink);
+  background: rgba(201, 242, 95, 0.78);
+}
+
+.contact-details {
+  position: relative;
+  overflow: hidden;
+  padding: 0 clamp(1.5rem, 3vw, 2.5rem);
+  border: 0;
+  border-radius: var(--radius);
+  color: var(--white);
+  background: var(--ink);
+}
+
+.contact-details::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 0.35rem;
+  background: var(--lime);
+  content: "";
+}
+
+.contact-details > div {
+  padding-block: clamp(1.75rem, 3vw, 2.4rem);
+}
+
+.contact-details span {
+  color: var(--lime);
+}
+
+.contact-details div > a:last-child {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+@media (max-width: 1040px) {
+  .contact,
+  .contact-inner {
+    min-height: 0;
+  }
+
+  .contact-inner {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .contact-details {
+    width: min(100%, 40rem);
+  }
+}
+
+@media (max-width: 720px) {
+  .contact-inner {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .contact-copy h2 {
+    font-size: clamp(3.15rem, 14vw, 5.1rem);
   }
 }
