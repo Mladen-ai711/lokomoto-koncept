@@ -2483,3 +2483,97 @@ button {
     max-width: 19rem;
   }
 }
+
+/* --------------------------------------------------------------
+   V5 — calmer typography and hover treatment for a 40+ audience
+   -------------------------------------------------------------- */
+
+:root {
+  /* 80% transparent white = 20% visible white. */
+  --white-hover-20: rgba(255, 255, 255, 0.2);
+}
+
+.hero-title {
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.section-intro h2,
+.services-heading h2,
+.education h2,
+.contact h2 {
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.approach-visual figcaption strong,
+.approach-step h3,
+.service-preview figcaption strong,
+.trust-card h3,
+.education-media figcaption strong {
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.service-copy strong {
+  letter-spacing: -0.015em;
+  line-height: 1.16;
+}
+
+.contact-copy h2 {
+  line-height: 1.02;
+}
+
+.mobile-nav > a {
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+.header-cta:hover,
+.hero-actions .button:hover,
+.video-toggle:hover,
+.mobile-nav .mobile-nav-cta:hover {
+  color: var(--white);
+  background: var(--white-hover-20);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.button:hover,
+.header-cta:hover span,
+.button:hover span {
+  transform: none;
+}
+
+.approach-visual:hover img {
+  transform: scale(1.01);
+}
+
+.approach-step:hover {
+  transform: translateX(0.12rem);
+}
+
+.service-item:hover:not(.is-active) {
+  padding-right: 0.35rem;
+  padding-left: 0.35rem;
+}
+
+.service-item:hover .service-arrow {
+  opacity: 0.72;
+  transform: translate(-0.08rem, 0.08rem);
+}
+
+.service-item.is-active .service-arrow {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.text-link:hover::after {
+  transform: scaleX(0.65);
+}
+
+@media (max-width: 720px) {
+  .hero-title {
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+  }
+}
