@@ -854,6 +854,15 @@ button {
   font-weight: 480;
 }
 
+.word-vraca {
+  white-space: nowrap;
+}
+
+.word-vraca .letter-c-caron {
+  display: inline-block;
+  margin-left: 0.045em;
+}
+
 .section-intro > p,
 .services-heading > p {
   margin: 0.35rem 0 0;
@@ -2601,54 +2610,387 @@ button {
 }
 
 /* --------------------------------------------------------------
-   V5 — distinct closing CTA after the cinematic education band
+   V5 — premium contact form and location composition
    -------------------------------------------------------------- */
 
 .contact {
+  position: relative;
   min-height: 0;
   overflow: hidden;
   color: var(--ink);
-  background: var(--paper-light);
+  background:
+    radial-gradient(circle at 92% 8%, rgba(201, 242, 95, 0.12), transparent 25rem),
+    radial-gradient(circle at 4% 92%, rgba(7, 139, 125, 0.06), transparent 29rem),
+    var(--paper-light);
   border-top: 1px solid var(--line);
 }
 
+.contact::before {
+  position: absolute;
+  top: clamp(2.5rem, 5vw, 5rem);
+  left: max(var(--gutter), calc((100vw - var(--shell)) / 2 + var(--gutter)));
+  color: rgba(31, 41, 39, 0.025);
+  content: "05";
+  font-size: clamp(13rem, 25vw, 26rem);
+  font-weight: 700;
+  letter-spacing: -0.1em;
+  line-height: 0.75;
+  pointer-events: none;
+  user-select: none;
+}
+
 .contact-inner {
+  position: relative;
+  z-index: 1;
   min-height: 0;
   padding-top: clamp(5.5rem, 8vw, 8rem);
   padding-bottom: clamp(5.5rem, 8vw, 8rem);
-  grid-template-columns: minmax(0, 1.15fr) minmax(22rem, 0.55fr);
+  grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.48fr);
+  align-items: start;
+  gap: clamp(2.75rem, 5.2vw, 5.5rem);
+}
+
+.contact-form-panel {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.6rem, 3.4vw, 3.5rem);
+  border: 1px solid rgba(31, 41, 39, 0.13);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow:
+    0 1.7rem 4rem rgba(31, 41, 39, 0.08),
+    inset 0 1px rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.contact-form-panel::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 0.35rem;
+  background: linear-gradient(90deg, var(--teal-deep), var(--lime) 72%, transparent);
+  content: "";
+}
+
+.contact-form-heading {
+  display: flex;
   align-items: center;
-  gap: clamp(3rem, 7vw, 8rem);
+  justify-content: space-between;
+  gap: 1.5rem;
 }
 
-.contact-copy .section-label-light {
+.contact-form-panel .section-label-light {
   color: var(--muted);
 }
 
-.contact-copy .section-label-light span {
+.contact-form-panel .section-label-light span {
   color: var(--teal-deep);
 }
 
-.contact-copy h2 {
-  max-width: 56rem;
-  margin-top: 1.6rem;
-  color: var(--ink);
-  font-size: clamp(3.75rem, 6.6vw, 7.25rem);
-}
-
-.contact-copy h2 em {
-  color: var(--teal-deep);
-}
-
-.contact-copy p {
-  max-width: 34rem;
-  margin: 1.6rem 0 2rem;
+.contact-response {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   color: var(--muted);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  line-height: 1.35;
 }
 
-.contact-copy .button-accent:hover {
+.contact-response i {
+  width: 0.45rem;
+  height: 0.45rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 0 0.24rem rgba(201, 242, 95, 0.18);
+}
+
+.contact-form-intro {
+  display: grid;
+  margin-top: clamp(1.6rem, 2.4vw, 2.35rem);
+  grid-template-columns: minmax(0, 0.85fr) minmax(15rem, 0.75fr);
+  align-items: end;
+  gap: 2rem;
+}
+
+.contact-form-intro h2 {
+  margin: 0;
   color: var(--ink);
-  background: rgba(201, 242, 95, 0.78);
+  font-size: clamp(2.75rem, 4.4vw, 4.7rem);
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+.contact-form-intro h2 em {
+  color: var(--teal-deep);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.contact-form-intro p {
+  max-width: 24rem;
+  margin: 0 0 0.35rem;
+  color: var(--muted);
+  font-size: 0.91rem;
+  line-height: 1.65;
+}
+
+.contact-form {
+  margin-top: clamp(2rem, 3vw, 3rem);
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.15rem 1rem;
+}
+
+.form-field {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  gap: 0.52rem;
+}
+
+.form-field > span {
+  display: flex;
+  min-height: 1rem;
+  align-items: center;
+  gap: 0.5rem;
+  color: #55635e;
+  font-size: 0.61rem;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  line-height: 1.35;
+}
+
+.form-field > span b {
+  color: var(--teal-deep);
+  font-size: 0.75rem;
+}
+
+.form-field > span small {
+  color: rgba(85, 99, 94, 0.62);
+  font-size: 0.52rem;
+  letter-spacing: 0.08em;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  border: 1px solid rgba(31, 41, 39, 0.17);
+  border-radius: calc(var(--radius) - 1px);
+  outline: 0;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.form-field input,
+.form-field select {
+  min-height: 3.55rem;
+  padding: 0 1rem;
+}
+
+.form-field textarea {
+  min-height: 7.5rem;
+  padding: 0.9rem 1rem;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(76, 91, 85, 0.56);
+}
+
+.form-field input:hover,
+.form-field select:hover,
+.form-field textarea:hover {
+  border-color: rgba(31, 41, 39, 0.32);
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--teal-deep);
+  background: var(--white);
+  box-shadow:
+    0 0 0 3px rgba(7, 139, 125, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.form-field select {
+  padding-right: 2.7rem;
+  appearance: none;
+  cursor: pointer;
+}
+
+.form-field-select::after {
+  position: absolute;
+  right: 1.05rem;
+  bottom: 1.45rem;
+  width: 0.48rem;
+  height: 0.48rem;
+  border-right: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  content: "";
+  pointer-events: none;
+  transform: rotate(45deg);
+}
+
+.form-field-wide {
+  grid-column: 1 / -1;
+}
+
+.contact-consent {
+  display: grid;
+  margin-top: 1.05rem;
+  grid-template-columns: 1.15rem 1fr;
+  align-items: start;
+  gap: 0.7rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.contact-consent input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.contact-consent > span {
+  position: relative;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.05rem;
+  border: 1px solid rgba(31, 41, 39, 0.32);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.8);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.contact-consent input:checked + span {
+  border-color: var(--ink);
+  background: var(--ink);
+}
+
+.contact-consent input:checked + span::after {
+  position: absolute;
+  top: 0.18rem;
+  left: 0.37rem;
+  width: 0.26rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--lime);
+  border-bottom: 2px solid var(--lime);
+  content: "";
+  transform: rotate(45deg);
+}
+
+.contact-consent input:focus-visible + span {
+  outline: 3px solid var(--lime);
+  outline-offset: 3px;
+}
+
+.contact-consent small {
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.contact-form-actions {
+  display: flex;
+  margin-top: 1.5rem;
+  align-items: stretch;
+  gap: 1.25rem;
+}
+
+.contact-submit {
+  display: inline-flex;
+  min-width: min(100%, 15.5rem);
+  min-height: 3.75rem;
+  padding: 0 1.35rem;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  color: var(--white);
+  background: var(--ink);
+  font-size: 0.77rem;
+  font-weight: 750;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  transition:
+    color 190ms ease,
+    background-color 190ms ease,
+    border-color 190ms ease;
+}
+
+.contact-submit span {
+  color: var(--lime);
+  font-size: 1rem;
+}
+
+.contact-submit:hover {
+  border-color: var(--teal-deep);
+  color: var(--white);
+  background: var(--teal-deep);
+}
+
+.contact-phone {
+  display: grid;
+  padding: 0.35rem 0;
+  align-content: center;
+  gap: 0.2rem;
+}
+
+.contact-phone small {
+  color: var(--muted);
+  font-size: 0.55rem;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+}
+
+.contact-phone strong {
+  width: max-content;
+  border-bottom: 1px solid rgba(31, 41, 39, 0.28);
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 650;
+  transition: border-color 180ms ease;
+}
+
+.contact-phone:hover strong {
+  border-color: var(--teal-deep);
+}
+
+.contact-form-note,
+.contact-form-status {
+  margin: 0.8rem 0 0;
+  color: rgba(85, 99, 94, 0.72);
+  font-size: 0.62rem;
+  line-height: 1.5;
+}
+
+.contact-form-status {
+  min-height: 0.95rem;
+  margin-top: 0.25rem;
+  color: var(--teal-deep);
+  font-weight: 650;
 }
 
 .contact-side {
@@ -2695,7 +3037,7 @@ button {
 
 .contact-map {
   position: relative;
-  height: clamp(14.5rem, 16vw, 16rem);
+  height: clamp(16rem, 20vw, 18.5rem);
   overflow: hidden;
   border: 1px solid rgba(31, 41, 39, 0.13);
   border-radius: var(--radius);
@@ -2767,7 +3109,8 @@ button {
   }
 
   .contact-side {
-    width: min(100%, 40rem);
+    width: min(100%, 48rem);
+    margin-inline: auto;
   }
 
   .contact-map {
@@ -2777,12 +3120,56 @@ button {
 
 @media (max-width: 720px) {
   .contact-inner {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
   }
 
-  .contact-copy h2 {
-    font-size: clamp(3.15rem, 14vw, 5.1rem);
+  .contact::before {
+    display: none;
+  }
+
+  .contact-form-panel {
+    padding: 1.45rem 1.2rem 1.6rem;
+  }
+
+  .contact-form-heading,
+  .contact-form-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .contact-response {
+    font-size: 0.54rem;
+  }
+
+  .contact-form-intro {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .contact-form-intro h2 {
+    font-size: clamp(2.65rem, 13vw, 4rem);
+  }
+
+  .contact-form-intro p {
+    max-width: 31rem;
+  }
+
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-field-wide {
+    grid-column: auto;
+  }
+
+  .form-field input,
+  .form-field select {
+    min-height: 3.75rem;
+  }
+
+  .contact-submit {
+    width: 100%;
   }
 
   .contact-side {
