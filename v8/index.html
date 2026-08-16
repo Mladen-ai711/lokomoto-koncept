@@ -9,7 +9,7 @@
       name="description"
       content="Dizajnerski koncept glavnog sajta Lokomoto centra — fizikalna medicina, dijagnostika i rehabilitacija u Beogradu."
     />
-    <link rel="preload" href="assets/images/hero-poster-v2.jpg" as="image" />
+    <link rel="preload" href="assets/images/hero-poster-v3.jpg" as="image" />
     <link rel="stylesheet" href="styles.css?v=8.1" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <title>Lokomoto centar — Hero koncept V8</title>
@@ -68,11 +68,22 @@
             loop
             playsinline
             preload="metadata"
-            poster="assets/images/hero-poster-v2.jpg"
+            poster="assets/images/hero-poster-v3.jpg"
             data-hero-video
           >
-            <source src="assets/media/hero-loop-v2.mp4" type="video/mp4" />
+            <source src="assets/media/hero-loop-v3.webm" type="video/webm" />
+            <source src="assets/media/hero-loop-v3.mp4" type="video/mp4" />
           </video>
+          <script>
+            if (window.matchMedia('(max-width: 720px)').matches) {
+              var v = document.querySelector('[data-hero-video]');
+              v.poster = 'assets/images/hero-poster-v3-mobile.jpg';
+              v.innerHTML =
+                '<source src="assets/media/hero-loop-v3-mobile.webm" type="video/webm">' +
+                '<source src="assets/media/hero-loop-v3-mobile.mp4" type="video/mp4">';
+              v.load();
+            }
+          </script>
           <div class="hero-media-wash"></div>
         </div>
 
@@ -564,7 +575,7 @@
       </div>
       <div class="footer-bottom shell">
         <span>© <span data-year></span> Lokomoto centar</span>
-        <span>Homepage koncept V7 · radni copy</span>
+        <span>Homepage koncept V8 · radni copy</span>
       </div>
     </footer>
 
