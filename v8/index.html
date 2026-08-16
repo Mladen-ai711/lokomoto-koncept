@@ -9,8 +9,8 @@
       name="description"
       content="Dizajnerski koncept glavnog sajta Lokomoto centra — fizikalna medicina, dijagnostika i rehabilitacija u Beogradu."
     />
-    <link rel="preload" href="assets/images/hero-poster-v3.jpg" as="image" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="preload" href="assets/images/hero-poster-v2.jpg" as="image" />
+    <link rel="stylesheet" href="styles.css?v=8.1" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <title>Lokomoto centar — Hero koncept V8</title>
   </head>
@@ -62,28 +62,17 @@
     <main id="main-content">
       <section class="hero" id="top">
         <div class="hero-media" aria-hidden="true">
-         <video
-  autoplay
-  muted
-  loop
-  playsinline
-  preload="metadata"
-  poster="assets/images/hero-poster-v3.jpg"
-  data-hero-video
->
-  <source src="assets/media/hero-loop-v3.webm" type="video/webm" />
-  <source src="assets/media/hero-loop-v3.mp4" type="video/mp4" />
-</video>
-          <script>
-            if (window.matchMedia('(max-width: 720px)').matches) {
-              var v = document.querySelector('[data-hero-video]');
-              v.poster = 'assets/images/hero-poster-v3-mobile.jpg';
-              v.innerHTML =
-                '<source src="assets/media/hero-loop-v3-mobile.webm" type="video/webm">' +
-                '<source src="assets/media/hero-loop-v3-mobile.mp4" type="video/mp4">';
-              v.load();
-            }
-          </script>
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="assets/images/hero-poster-v2.jpg"
+            data-hero-video
+          >
+            <source src="assets/media/hero-loop-v2.mp4" type="video/mp4" />
+          </video>
           <div class="hero-media-wash"></div>
         </div>
 
@@ -155,7 +144,6 @@
               <img
                 src="assets/images/assessment.webp"
                 alt="Terapeut tokom individualne procene pacijenta"
-                loading="lazy"
                 decoding="async"
               />
               <figcaption>
@@ -360,7 +348,6 @@
               <img
                 src="assets/images/space.webp"
                 alt="Savremeno opremljen prostor Lokomoto centra u Beogradu"
-                loading="lazy"
                 decoding="async"
               />
               <figcaption>Tabanovačka 27b · Autokomanda · Beograd</figcaption>
@@ -414,7 +401,6 @@
           <img
             src="assets/images/manifesto.webp"
             alt="Stručni rad terapeuta sa pacijentom u Lokomoto centru"
-            loading="lazy"
             decoding="async"
           />
           <figcaption>
@@ -578,10 +564,10 @@
       </div>
       <div class="footer-bottom shell">
         <span>© <span data-year></span> Lokomoto centar</span>
-        <span>Homepage koncept V8 · radni copy</span>
+        <span>Homepage koncept V7 · radni copy</span>
       </div>
     </footer>
 
-    <script src="app.js" defer></script>
+    <script src="app.js?v=8.1" defer></script>
   </body>
 </html>

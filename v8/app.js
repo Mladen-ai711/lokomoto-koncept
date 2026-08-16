@@ -1,5 +1,6 @@
 (() => {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const compactInteraction = window.matchMedia("(max-width: 820px), (pointer: coarse)");
   const header = document.querySelector("[data-header]");
   const menuToggle = document.querySelector("[data-menu-toggle]");
   const mobileNav = document.querySelector("[data-mobile-nav]");
@@ -119,7 +120,7 @@
 
   const revealItems = [...document.querySelectorAll(".reveal")];
 
-  if (!reducedMotion.matches && "IntersectionObserver" in window) {
+  if (!reducedMotion.matches && !compactInteraction.matches && "IntersectionObserver" in window) {
     document.documentElement.classList.add("motion-ready");
 
     const revealObserver = new IntersectionObserver(
