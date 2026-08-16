@@ -10,8 +10,9 @@ videom, uslužne navigacije, animacija i mobilnog ponašanja. V8 zadržava
 centriranu Hero kompoziciju, video preko cijelog ekrana, transparentan Header,
 topliji tretman videa i outline CTA dugmad iz V5, ali kompletnu tipografiju
 prikazuje fontom Instrument Sans. U odnosu na V7 koristi novi, mirniji Hero
-video Lokomoto prostora i terapijskog rada, u WebM i MP4 formatima, uz novu
-početnu fotografiju izdvojenu iz istog snimka.
+video Lokomoto prostora i terapijskog rada. V8 je naknadno osvježena
+kvalitetnijim MP4 izvozom i odgovarajućim posterom, oba pod V2 nazivima kako
+browser ne bi prikazao prethodno keširane datoteke.
 
 ## Važne napomene
 
