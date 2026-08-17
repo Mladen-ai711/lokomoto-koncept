@@ -3231,3 +3231,83 @@ button {
 .education-media img {
   filter: brightness(0.92) contrast(0.98) saturate(0.82) sepia(0.06);
 }
+
+/* --------------------------------------------------------------
+   V8 — compact contact form on the desktop layout only
+   Mobile and tablet layouts keep their existing touch-friendly scale.
+   -------------------------------------------------------------- */
+
+@media (min-width: 1041px) {
+  .contact-inner {
+    grid-template-columns: minmax(0, 42rem) minmax(22rem, 24.5rem);
+    justify-content: space-between;
+  }
+
+  .contact-form-panel {
+    padding: clamp(2rem, 2.7vw, 2.4rem);
+  }
+
+  .contact-form-intro {
+    margin-top: 1.4rem;
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, 0.72fr);
+    gap: 1.35rem;
+  }
+
+  .contact-form-intro h2 {
+    font-size: clamp(2.75rem, 3.6vw, 3.65rem);
+  }
+
+  .contact-form-intro p {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .contact-form {
+    margin-top: 1.5rem;
+  }
+
+  .contact-form-grid {
+    gap: 0.8rem;
+  }
+
+  .form-field {
+    gap: 0.4rem;
+  }
+
+  .form-field input,
+  .form-field select {
+    min-height: 3.1rem;
+  }
+
+  .form-field textarea {
+    height: 5.8rem;
+    min-height: 5.8rem;
+    padding-block: 0.75rem;
+  }
+
+  .form-field-select::after {
+    bottom: 1.25rem;
+  }
+
+  .contact-consent {
+    margin-top: 0.8rem;
+  }
+
+  .contact-form-actions {
+    margin-top: 1.1rem;
+  }
+
+  .contact-submit {
+    min-width: min(100%, 14.5rem);
+    min-height: 3.35rem;
+  }
+
+  .contact-form-note,
+  .contact-form-status {
+    margin-top: 0.55rem;
+  }
+
+  .contact-form-status {
+    margin-top: 0.15rem;
+  }
+}
