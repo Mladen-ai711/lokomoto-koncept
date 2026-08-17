@@ -3213,3 +3213,21 @@ button {
     letter-spacing: 0.07em;
   }
 }
+
+/* --------------------------------------------------------------
+   V8 — calm tonal balance for photography below the hero
+   The hero video and both hero posters are intentionally excluded.
+   -------------------------------------------------------------- */
+
+.approach-visual img,
+.service-preview img {
+  filter: brightness(0.93) contrast(1.02) saturate(0.9) sepia(0.025);
+}
+
+.centre-photo img {
+  filter: brightness(0.95) contrast(1.01) saturate(0.92) sepia(0.02);
+}
+
+.education-media img {
+  filter: brightness(0.92) contrast(0.98) saturate(0.82) sepia(0.06);
+}
