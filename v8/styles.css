@@ -3486,3 +3486,8 @@ button {
 .hero-actions .button[href="#kontakt"]:focus-visible {
   border-color: var(--lime);
 }
+
+/* ── Sekcija "Usluge": pozadina posvetljena ───────────────────── */
+.services {
+  background: #25312f;
+}
