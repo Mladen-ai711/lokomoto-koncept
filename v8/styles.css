@@ -3479,7 +3479,7 @@ button {
 
 /* ── Hero: primarno dugme "Zakažite pregled" u lime obrubu ─────── */
 .hero-actions .button[href="#kontakt"] {
-  border: 3px solid var(--lime);
+  border: 2px solid var(--lime);
 }
 
 .hero-actions .button[href="#kontakt"]:hover,
