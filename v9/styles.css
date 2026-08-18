@@ -3497,6 +3497,8 @@ button {
    Slika je zakačena za ekran; sekcija je otvor koji putuje preko nje.
    ═══════════════════════════════════════════════════════════════ */
 .education-media {
+  /* transform bilo koje vrste poništava fiksnu pozadinu — mora ostati none */
+  transform: none !important;
   background-image: url("../v8/assets/images/manifesto.webp");
   background-repeat: no-repeat;
   background-position: 56% center;
