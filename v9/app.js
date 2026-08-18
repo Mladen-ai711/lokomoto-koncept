@@ -138,6 +138,23 @@
       item.style.setProperty("--delay", `${Math.min((index % 4) * 55, 165)}ms`);
       revealObserver.observe(item);
     });
+
+    // Sigurnosna mreza: sve sto je na ekranu mora biti vidljivo,
+    // bez obzira da li je posmatrac (IntersectionObserver) reagovao.
+    const revealFailsafe = () => {
+      revealItems.forEach((item) => {
+        if (item.classList.contains("is-visible")) return;
+        const box = item.getBoundingClientRect();
+        if (box.top < window.innerHeight && box.bottom > 0) {
+          item.classList.add("is-visible");
+        }
+      });
+    };
+    window.addEventListener("scroll", revealFailsafe, { passive: true });
+    window.addEventListener("resize", revealFailsafe);
+    window.addEventListener("load", revealFailsafe);
+    document.addEventListener("visibilitychange", revealFailsafe);
+    window.setTimeout(revealFailsafe, 1200);
   } else {
     revealItems.forEach((item) => item.classList.add("is-visible"));
   }
