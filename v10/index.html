@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="sr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1f2927" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="Dizajnerski koncept glavnog sajta Lokomoto centra — fizikalna medicina, dijagnostika i rehabilitacija u Beogradu."
+    />
+    <link rel="preload" href="../v8/assets/images/hero-poster-v4.jpg" as="image" />
+    <link rel="stylesheet" href="styles.css?v=8.2" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <title>Lokomoto centar — Hero koncept V10</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Preskoči na sadržaj</a>
+
+    <header class="site-header" data-header>
+      <div class="header-inner">
+        <a class="brand" href="#top" aria-label="Lokomoto centar — početak">
+          <img class="brand-logo" src="logo-lockup-horiz.png" alt="" aria-hidden="true" />
+          <span class="brand-copy">
+            <strong>LOKOMOTO</strong>
+            <small>CENTAR</small>
+          </span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Glavna navigacija">
+          <a href="#usluge">Usluge</a>
+          <a href="#pristup">Naš pristup</a>
+          <a href="#centar">O centru</a>
+          <a href="#edukacije">Edukacije</a>
+        </nav>
+
+        <a class="header-cta" href="#kontakt">
+          Zakažite pregled
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Otvori meni"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          data-menu-toggle
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+
+      <nav class="mobile-nav" id="mobile-menu" aria-label="Mobilna navigacija" data-mobile-nav>
+        <a href="#usluge"><span>01</span> Usluge</a>
+        <a href="#pristup"><span>02</span> Naš pristup</a>
+        <a href="#centar"><span>03</span> O centru</a>
+        <a href="#edukacije"><span>04</span> Edukacije</a>
+        <a class="mobile-nav-cta" href="#kontakt">Zakažite pregled <span>↗</span></a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="top">
+        <div class="hero-media" aria-hidden="true">
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            poster="../v8/assets/images/hero-poster-v4.jpg"
+            data-hero-video
+          >
+            <source src="../v8/assets/media/hero-loop-v4.mp4" type="video/mp4" />
+          </video>
+          <script>
+            if (window.matchMedia('(max-width: 720px)').matches) {
+              var v = document.querySelector('[data-hero-video]');
+              v.poster = '../v8/assets/images/hero-poster-v4-mobile.jpg';
+              v.innerHTML =
+                '<source src="../v8/assets/media/hero-loop-v4-mobile.mp4" type="video/mp4">';
+              v.load();
+            }
+          </script>
+          <div class="hero-media-wash"></div>
+        </div>
+
+        <div class="hero-content shell">
+          <div class="hero-kicker reveal">
+            Fizikalna medicina · rehabilitacija · Beograd
+          </div>
+
+          <h1 class="hero-title reveal">
+            <span class="title-soft">Od bola do sigurnog</span>
+            <span>pokreta.</span>
+          </h1>
+
+          <div class="hero-support reveal">
+            <p>
+              Dijagnostika, terapija i individualno vođena rehabilitacija —
+              na jednom mestu.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-outline" href="#kontakt">
+                Zakažite pregled
+              </a>
+              <a class="button button-outline" href="#usluge">
+                Pogledajte usluge
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <button class="video-toggle" type="button" aria-label="Pauziraj video" aria-pressed="false" data-video-toggle>
+          <span class="video-toggle-icon" aria-hidden="true">Ⅱ</span>
+          <span class="video-toggle-label">Pauza</span>
+        </button>
+
+      </section>
+
+      <div class="outcome-rail" aria-label="Ciljevi rehabilitacije">
+        <div class="outcome-track">
+          <div class="outcome-group">
+            <span>Smanjenje bola</span><i></i>
+            <span>Veći obim pokreta</span><i></i>
+            <span>Siguran oporavak</span><i></i>
+            <span>Povratak aktivnosti</span><i></i>
+            <span>Prevencija povreda</span><i></i>
+          </div>
+          <div class="outcome-group" aria-hidden="true">
+            <span>Smanjenje bola</span><i></i>
+            <span>Veći obim pokreta</span><i></i>
+            <span>Siguran oporavak</span><i></i>
+            <span>Povratak aktivnosti</span><i></i>
+            <span>Prevencija povreda</span><i></i>
+          </div>
+        </div>
+      </div>
+
+      <section class="section approach" id="pristup">
+        <div class="shell">
+          <div class="section-intro reveal">
+            <div class="section-label"><span>01</span> NAŠ PRISTUP</div>
+            <h2>Ne tretiramo samo mesto bola. <em>Tražimo put nazad.</em></h2>
+            <p>
+              Svaki oporavak počinje razumevanjem problema, a završava se kada
+              se sa sigurnošću vratite životu, poslu ili treningu.
+            </p>
+          </div>
+
+          <div class="approach-layout">
+            <figure class="approach-visual reveal reveal-clip">
+              <img
+                src="../v8/assets/images/assessment.webp"
+                alt="Terapeut tokom individualne procene pacijenta"
+                decoding="async"
+              />
+              <figcaption>
+                <span>INDIVIDUALNI PRISTUP</span>
+                <strong>Jedan problem.<br />Plan prilagođen vama.</strong>
+              </figcaption>
+              <div class="visual-index" aria-hidden="true">01—03</div>
+            </figure>
+
+            <div class="approach-steps" aria-label="Tri faze Lokomoto pristupa">
+              <div class="step-line" aria-hidden="true"><span></span></div>
+
+              <article class="approach-step reveal is-current">
+                <span class="step-number">01</span>
+                <div>
+                  <small>RAZUMEMO</small>
+                  <h3>Procena</h3>
+                  <p>
+                    Razgovor, klinički pregled i testiranje daju jasniju sliku
+                    uzroka problema i trenutnog kapaciteta.
+                  </p>
+                </div>
+              </article>
+
+              <article class="approach-step reveal">
+                <span class="step-number">02</span>
+                <div>
+                  <small>USMERAVAMO</small>
+                  <h3>Terapija</h3>
+                  <p>
+                    Biramo metode i intenzitet rada prema nalazu, cilju i
+                    reakciji vašeg tela — ne prema generičkom receptu.
+                  </p>
+                </div>
+              </article>
+
+              <article class="approach-step reveal">
+                <span class="step-number">03</span>
+                <div>
+                  <small>VRAĆAMO</small>
+                  <h3>Funkcija</h3>
+                  <p>
+                    Oporavak povezujemo sa pokretom, snagom i sigurnim povratkom
+                    obavezama ili sportu.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section services" id="usluge">
+        <div class="shell">
+          <div class="services-heading reveal">
+            <div class="section-label section-label-light"><span>02</span> USLUGE</div>
+            <h2>Sve što je potrebno za promišljen oporavak. <em>Na jednom mestu.</em></h2>
+            <p>Od prvog pregleda do povratka punoj funkciji.</p>
+          </div>
+
+          <div class="service-browser">
+            <div class="service-list" role="tablist" aria-label="Lokomoto usluge">
+              <button
+                class="service-item is-active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                data-service
+                data-image="../v8/assets/images/assessment.webp"
+                data-alt="Klinička procena pacijenta u Lokomoto centru"
+                data-preview-label="PRECIZAN POČETAK"
+              >
+                <span class="service-number">01</span>
+                <span class="service-copy">
+                  <strong>Dijagnostika</strong>
+                  <small>Pregled, procena i jasnije usmeravanje daljeg rada.</small>
+                </span>
+                <span class="service-arrow" aria-hidden="true">↗</span>
+              </button>
+
+              <button
+                class="service-item"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-service
+                data-image="../v8/assets/images/clinical-work.webp"
+                data-alt="Fizikalna terapija u Lokomoto centru"
+                data-preview-label="CILJANA PODRŠKA OPORAVKU"
+              >
+                <span class="service-number">02</span>
+                <span class="service-copy">
+                  <strong>Fizikalna terapija</strong>
+                  <small>Savremene procedure usmerene na bol i regeneraciju.</small>
+                </span>
+                <span class="service-arrow" aria-hidden="true">↗</span>
+              </button>
+
+              <button
+                class="service-item"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-service
+                data-image="../v8/assets/images/guided-training.webp"
+                data-alt="Individualno vođene vežbe sa terapeutom"
+                data-preview-label="POKRET KAO DEO TERAPIJE"
+              >
+                <span class="service-number">03</span>
+                <span class="service-copy">
+                  <strong>Kineziterapija</strong>
+                  <small>Individualno vođene vežbe za vraćanje funkcije.</small>
+                </span>
+                <span class="service-arrow" aria-hidden="true">↗</span>
+              </button>
+
+              <button
+                class="service-item"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-service
+                data-image="../v8/assets/images/system-detail.webp"
+                data-alt="Manualni rad terapeuta sa pacijentom"
+                data-preview-label="RUKE KOJE ZNAJU ZAŠTO"
+              >
+                <span class="service-number">04</span>
+                <span class="service-copy">
+                  <strong>Manualna terapija</strong>
+                  <small>Ciljane tehnike u skladu sa pregledom i planom.</small>
+                </span>
+                <span class="service-arrow" aria-hidden="true">↗</span>
+              </button>
+
+              <button
+                class="service-item"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-service
+                data-image="../v8/assets/images/manifesto.webp"
+                data-alt="Terapeut pomaže pacijentu tokom rehabilitacije"
+                data-preview-label="KORAK PO KORAK"
+              >
+                <span class="service-number">05</span>
+                <span class="service-copy">
+                  <strong>Postoperativna rehabilitacija</strong>
+                  <small>Kontrolisan povratak pokretu nakon operativnog zahvata.</small>
+                </span>
+                <span class="service-arrow" aria-hidden="true">↗</span>
+              </button>
+
+              <button
+                class="service-item"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                data-service
+                data-image="../v8/assets/images/space.webp"
+                data-alt="Prostor Lokomoto centra za funkcionalni trening"
+                data-preview-label="SNAGA ZA STVARNI ŽIVOT"
+              >
+                <span class="service-number">06</span>
+                <span class="service-copy">
+                  <strong>Medicinski trening</strong>
+                  <small>Stručno vođen trening prilagođen vašem kapacitetu.</small>
+                </span>
+                <span class="service-arrow" aria-hidden="true">↗</span>
+              </button>
+            </div>
+
+            <figure class="service-preview reveal reveal-clip">
+              <img
+                src="../v8/assets/images/assessment.webp"
+                alt="Klinička procena pacijenta u Lokomoto centru"
+                data-service-image
+              />
+              <div class="service-preview-wash"></div>
+              <figcaption>
+                <span data-service-label>PRECIZAN POČETAK</span>
+                <strong data-service-title>Dijagnostika</strong>
+              </figcaption>
+              <div class="preview-corner" aria-hidden="true">LOKOMOTO / CARE</div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section centre" id="centar">
+        <div class="shell">
+          <div class="section-intro centre-intro reveal">
+            <div class="section-label"><span>03</span> LOKOMOTO CENTAR</div>
+            <h2>Stručnost koja vas ne zadržava u terapiji. <em><span class="word-vraca">Vra<span class="letter-c-caron">ć</span>a</span> vas životu.</em></h2>
+            <p>
+              Tim fizioterapeuta, saradnja sa lekarima specijalistima i prostor
+              u kome terapija prirodno prelazi u pokret.
+            </p>
+          </div>
+
+          <div class="centre-layout">
+            <figure class="centre-photo reveal reveal-clip">
+              <img
+                src="../v8/assets/images/space.webp"
+                alt="Savremeno opremljen prostor Lokomoto centra u Beogradu"
+                decoding="async"
+              />
+              <figcaption>Tabanovačka 27b · Autokomanda · Beograd</figcaption>
+            </figure>
+
+            <div class="trust-grid">
+              <article class="trust-card reveal">
+                <span>2016.</span>
+                <h3>Kontinuitet iskustva</h3>
+                <p>Specijalizovana ambulanta fizikalne medicine i rehabilitacije.</p>
+              </article>
+              <article class="trust-card reveal">
+                <span>01</span>
+                <h3>Individualni plan</h3>
+                <p>Pristup usmeren na vaše stanje, cilj i svakodnevne obaveze.</p>
+              </article>
+              <article class="trust-card reveal">
+                <span>360°</span>
+                <h3>Povezan proces</h3>
+                <p>Dijagnostika, terapija, vežbe i povratak opterećenju.</p>
+              </article>
+              <article class="trust-card trust-card-accent reveal">
+                <span>→</span>
+                <h3>Pokret je zdravlje.</h3>
+                <p>Ne završavamo kada bol utihne. Cilj je sigurnija funkcija.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="education" id="edukacije">
+        <div class="education-copy reveal">
+          <div class="section-label"><span>04</span> EDUKACIJE</div>
+          <h2>Znanje koje se <em>prenosi dalje.</em></h2>
+          <p>
+            Lokomoto iskustvo iz svakodnevnog kliničkog rada pretvara u
+            praktične edukacije za fizioterapeute, trenere i fizijatre.
+          </p>
+          <a
+            class="button button-dark"
+            href="https://mladen-ai711.github.io/lokomoto-edukacija/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Pogledajte edukacije <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <figure class="education-media" role="img"
+          aria-label="Stručni rad terapeuta sa pacijentom u Lokomoto centru">
+          <figcaption>
+            <span>LOKOMOTO SYSTEM</span>
+            <strong>Metod, ne recept.</strong>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="contact" id="kontakt">
+        <div class="contact-inner shell">
+          <div class="contact-form-panel reveal">
+            <div class="contact-form-heading">
+              <div class="section-label section-label-light"><span>05</span> PRVI KORAK</div>
+              <div class="contact-response"><i aria-hidden="true"></i> ODGOVARAMO U TOKU RADNOG DANA</div>
+            </div>
+
+            <div class="contact-form-intro">
+              <h2>Pošaljite <em>upit.</em></h2>
+              <p>Ostavite osnovne podatke, a naš tim će vas usmeriti ka odgovarajućem pregledu.</p>
+            </div>
+
+            <form
+              class="contact-form"
+              action="mailto:lokomoto.centar@gmail.com"
+              method="post"
+              enctype="text/plain"
+              data-contact-form
+              novalidate
+            >
+              <div class="contact-form-grid">
+                <label class="form-field" for="contact-name">
+                  <span>IME I PREZIME <b aria-hidden="true">*</b></span>
+                  <input
+                    id="contact-name"
+                    name="name"
+                    type="text"
+                    autocomplete="name"
+                    placeholder="Vaše ime i prezime"
+                    required
+                  />
+                </label>
+
+                <label class="form-field" for="contact-phone">
+                  <span>TELEFON <b aria-hidden="true">*</b></span>
+                  <input
+                    id="contact-phone"
+                    name="phone"
+                    type="tel"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    placeholder="06x / xxx–xxxx"
+                    required
+                  />
+                </label>
+
+                <label class="form-field" for="contact-email">
+                  <span>E-MAIL <small>OPCIONO</small></span>
+                  <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="ime@primer.rs"
+                  />
+                </label>
+
+                <label class="form-field form-field-select" for="contact-service">
+                  <span>VRSTA PREGLEDA</span>
+                  <select id="contact-service" name="service">
+                    <option value="Nisam siguran/na — preporučite mi">Nisam siguran/na — preporučite mi</option>
+                    <option value="Fizijatrijski pregled">Fizijatrijski pregled</option>
+                    <option value="Fizikalna terapija">Fizikalna terapija</option>
+                    <option value="Sportska rehabilitacija">Sportska rehabilitacija</option>
+                    <option value="Kineziterapija">Kineziterapija</option>
+                    <option value="Drugo">Drugo</option>
+                  </select>
+                </label>
+
+                <label class="form-field form-field-wide" for="contact-message">
+                  <span>ŠTA VAS TRENUTNO OGRANIČAVA? <small>OPCIONO</small></span>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    rows="4"
+                    maxlength="1200"
+                    placeholder="Ukratko opišite razlog javljanja..."
+                  ></textarea>
+                </label>
+              </div>
+
+              <label class="contact-consent" for="contact-consent">
+                <input id="contact-consent" name="consent" type="checkbox" required />
+                <span aria-hidden="true"></span>
+                <small>Saglasan/na sam da me Lokomoto kontaktira u vezi sa ovim upitom.</small>
+              </label>
+
+              <div class="contact-form-actions">
+                <button class="contact-submit" type="submit">
+                  Pošaljite upit <span aria-hidden="true">↗</span>
+                </button>
+                <a class="contact-phone" href="tel:+381114095924">
+                  <small>RADIJE RAZGOVARATE?</small>
+                  <strong>011 / 40 95 924</strong>
+                </a>
+              </div>
+
+              <p class="contact-form-note">Klikom na dugme otvara se pripremljena poruka u vašoj e-mail aplikaciji.</p>
+              <p class="contact-form-status" data-contact-form-status role="status" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <div class="contact-side">
+            <div class="contact-details reveal">
+              <div>
+                <span>ADRESA</span>
+                <strong>Tabanovačka 27b<br />Autokomanda, Beograd</strong>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Tabanova%C4%8Dka+27b+Beograd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Otvori mapu ↗</a>
+              </div>
+              <div>
+                <span>E-MAIL</span>
+                <a href="mailto:lokomoto.centar@gmail.com">lokomoto.centar@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-map reveal">
+              <iframe
+                src="https://www.google.com/maps?q=Tabanova%C4%8Dka+27b%2C+Autokomanda%2C+Beograd&amp;output=embed"
+                title="Lokomoto centar — Tabanovačka 27b, Beograd"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+              ></iframe>
+              <div class="contact-map-badge" aria-hidden="true">
+                <i></i>
+                <span>LOKOMOTO CENTAR · AUTOKOMANDA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-main shell">
+        <a class="brand footer-brand" href="#top" aria-label="Lokomoto centar — vrh stranice">
+          <img class="brand-logo" src="logo-lockup-horiz.png" alt="" aria-hidden="true" />
+          <span class="brand-copy"><strong>LOKOMOTO</strong><small>CENTAR</small></span>
+        </a>
+        <div class="footer-links">
+          <a href="#pristup">Naš pristup</a>
+          <a href="#usluge">Usluge</a>
+          <a href="#centar">O centru</a>
+          <a href="#edukacije">Edukacije</a>
+        </div>
+        <a class="footer-top" href="#top">NA VRH <span aria-hidden="true">↑</span></a>
+      </div>
+      <div class="footer-bottom shell">
+        <span>© <span data-year></span> Lokomoto centar</span>
+        <span>Homepage koncept V10 · radni copy</span>
+      </div>
+    </footer>
+
+    <script src="app.js?v=8.2" defer></script>
+  </body>
+</html>
