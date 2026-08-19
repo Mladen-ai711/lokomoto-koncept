@@ -1,4 +1,20 @@
 (() => {
+  // Osvezavanje stranice ne sme da vrati posetioca na mesto gde je stao —
+  // hero i naslov moraju da se vide od pocetka. Sidra (#usluge) i dalje rade.
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  const goToTop = () => {
+    if (!window.location.hash) window.scrollTo(0, 0);
+  };
+
+  goToTop();
+  window.addEventListener("load", goToTop);
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) goToTop();
+  });
+
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const compactInteraction = window.matchMedia("(max-width: 820px), (pointer: coarse)");
   const header = document.querySelector("[data-header]");
