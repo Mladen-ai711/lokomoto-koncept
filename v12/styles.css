@@ -3922,3 +3922,56 @@ button {
     transition: none;
   }
 }
+
+/* --- Tim: blok koji popunjava drugi red (kolone 3–4) --- */
+.team-note {
+  display: grid;
+  align-content: start;
+  padding: clamp(2.4rem, 3.8vw, 3.4rem) clamp(1.8rem, 3vw, 2.6rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(150deg, rgba(19, 201, 179, 0.07), transparent 60%),
+    var(--paper);
+  gap: 0.7rem;
+  grid-column: span 2;
+}
+
+.team-note-label {
+  color: var(--teal-deep);
+  font-size: 0.6rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+}
+
+.team-note-lead {
+  max-width: 20ch;
+  margin: 0;
+  font-size: clamp(1.35rem, 2.1vw, 1.95rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
+}
+
+.team-note-lead em {
+  color: var(--teal-deep);
+  font-style: italic;
+}
+
+.team-note-sub {
+  max-width: 46ch;
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.87rem;
+  line-height: 1.6;
+}
+
+.team-note-sub + .team-note-sub {
+  margin-top: 0.9rem;
+}
+
+@media (max-width: 560px) {
+  .team-note {
+    padding: 1.6rem 1.4rem;
+  }
+}
