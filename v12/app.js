@@ -127,10 +127,36 @@
     window.setTimeout(updatePreview, 180);
   };
 
+  // Klik na tegobu pomera stranicu ispod nepomicnog kursora. Browser to prijavi
+  // kao "mis je usao u novi element" i lista bi preskocila na pogresnu uslugu.
+  // Zato pamtimo gde je kursor bio u trenutku klika i ignorisemo hover sve dok se
+  // mis stvarno ne pomeri sa te tacke.
+  let hoverLocked = false;
+  let lockX = 0;
+  let lockY = 0;
+
+  const pointerMovedSinceLock = (event) =>
+    Math.abs(event.clientX - lockX) > 3 || Math.abs(event.clientY - lockY) > 3;
+
+  window.addEventListener(
+    "pointermove",
+    (event) => {
+      if (hoverLocked && pointerMovedSinceLock(event)) hoverLocked = false;
+    },
+    { passive: true },
+  );
+
   serviceItems.forEach((item) => {
-    item.addEventListener("click", () => activateService(item));
+    item.addEventListener("click", () => {
+      hoverLocked = false;
+      activateService(item);
+    });
     item.addEventListener("focus", () => activateService(item));
-    item.addEventListener("pointerenter", () => {
+    item.addEventListener("pointerenter", (event) => {
+      if (hoverLocked) {
+        if (!pointerMovedSinceLock(event)) return;
+        hoverLocked = false;
+      }
       if (window.matchMedia("(hover: hover)").matches) activateService(item);
     });
   });
@@ -138,11 +164,14 @@
   const complaintButtons = [...document.querySelectorAll("[data-complaint-target]")];
 
   complaintButtons.forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (event) => {
       const index = Number(button.dataset.complaintTarget) - 1;
       const target = serviceItems[index];
       if (!target) return;
 
+      hoverLocked = true;
+      lockX = event.clientX;
+      lockY = event.clientY;
       activateService(target);
 
       const anchorEl = document.querySelector(".service-browser") || target;
