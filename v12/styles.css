@@ -876,7 +876,9 @@ button {
 
 .word-vraca .letter-c-caron {
   display: inline-block;
-  margin-left: 0.045em;
+  /* Sitna rezerva da se kvacica ne priblizi slovu "a" na manjim naslovima.
+     Sa Instrument Sans nije potreban veci razmak. */
+  margin-left: 0.012em;
 }
 
 .section-intro > p,
