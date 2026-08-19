@@ -3690,3 +3690,235 @@ button {
     transition: none;
   }
 }
+
+/* ============================================================
+   TRAKA POVERENJA (ispod heroja)
+   ============================================================ */
+
+.proof-bar {
+  position: relative;
+  z-index: 6;
+  padding-block: clamp(2rem, 3.4vw, 3.1rem);
+  color: var(--white);
+  background: var(--ink-2);
+}
+
+.proof-grid {
+  display: grid;
+  margin: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+}
+
+.proof-item {
+  position: relative;
+  padding-left: clamp(1.1rem, 2vw, 1.9rem);
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.proof-item:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.proof-item dt {
+  display: flex;
+  align-items: baseline;
+  color: var(--white);
+  font-size: clamp(2rem, 3.4vw, 3.35rem);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.proof-plus,
+.proof-unit,
+.proof-sep {
+  color: var(--teal);
+}
+
+.proof-unit {
+  margin-left: 0.12em;
+  font-size: 0.52em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.proof-sep {
+  padding-inline: 0.06em;
+}
+
+.proof-item dd {
+  max-width: 12rem;
+  margin: 0.7rem 0 0;
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.07em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .proof-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.8rem 1.4rem;
+  }
+
+  .proof-item:nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .proof-item dd {
+    max-width: none;
+    font-size: 0.66rem;
+  }
+}
+
+/* ============================================================
+   TIM (u sekciji 03)
+   ============================================================ */
+
+.team {
+  margin-top: clamp(4.5rem, 8vw, 7.5rem);
+  padding-top: clamp(3rem, 5vw, 4.5rem);
+  border-top: 1px solid var(--line);
+}
+
+.team-intro {
+  display: grid;
+  align-items: end;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(1.2rem, 4vw, 4rem);
+}
+
+.team-intro h3 {
+  max-width: 22ch;
+  margin: 0;
+  font-size: clamp(1.9rem, 3.4vw, 3.1rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1.02;
+}
+
+.team-intro h3 em {
+  color: var(--teal-deep);
+  font-style: italic;
+}
+
+.team-intro > p {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.team-grid {
+  display: grid;
+  margin: clamp(2.5rem, 4vw, 3.6rem) 0 0;
+  padding: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.8rem);
+  list-style: none;
+}
+
+.team-card {
+  display: grid;
+  align-content: start;
+  gap: 1.1rem;
+}
+
+.team-photo {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  aspect-ratio: 4 / 5;
+  background: var(--paper-dark);
+}
+
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  transition: transform 700ms var(--ease);
+}
+
+.team-card:hover .team-photo img {
+  transform: scale(1.04);
+}
+
+.team-photo-mono {
+  display: grid;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(150deg, rgba(19, 201, 179, 0.09), transparent 62%),
+    var(--paper);
+  place-items: center;
+}
+
+.team-photo-mono span {
+  color: var(--teal-deep);
+  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+  font-weight: 620;
+  letter-spacing: 0.02em;
+  opacity: 0.5;
+}
+
+.team-copy {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.team-copy strong {
+  font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.team-copy small {
+  color: var(--teal-deep);
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.team-copy p {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 1080px) {
+  .team-intro {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.6rem 1.2rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .team-photo {
+    aspect-ratio: 1 / 1;
+  }
+
+  .team-copy p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-photo img {
+    transition: none;
+  }
+}
