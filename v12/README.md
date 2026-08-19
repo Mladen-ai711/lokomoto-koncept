@@ -26,6 +26,10 @@ Tamna traka između heroja i lime trake sa ciljevima. Četiri podatka:
 - Šest kartica: Novak Ilić sa pravom fotografijom + pet sa monogramom
 - Raspored 4 + 2; drugi red popunjava blok „Prosečno 8 godina kliničkog iskustva po terapeutu"
 
+### 5. Česta pitanja (novo, blok bez broja pre sekcije 05)
+Deset pitanja u harmonici — otvara se jedno po jedno. Pokriva i prvi pregled,
+pa zasebna sekcija „Kako izgleda prvi pregled" više nije potrebna.
+
 ## Zavisnosti
 Ovaj folder NE sadrži slike, video ni fontove — koristi postojeće iz `../v8/assets/`
 i logo/favicon iz `../v11/`. Ništa drugo ne treba uploadovati.
@@ -47,6 +51,13 @@ i logo/favicon iz `../v11/`. Ništa drugo ne treba uploadovati.
 **Tegobe** — spisak i povezivanje sa uslugama su moja pretpostavka.
 Klijent treba da potvrdi: da li su to zaista najčešći razlozi dolaska, i da li
 svaka tegoba vodi na pravu uslugu (npr. „Ukočen vrat i glavobolje" → Manualna terapija).
+
+**FAQ** — tri odgovora imaju rupe koje samo klijent može da popuni:
+- „Koliko košta?" → `[XXX]` na dva mesta
+- „Radite li preko RFZO?" → ceo odgovor je placeholder
+- „Gde ste i ima li parkinga?" → deo o parkingu
+Ostalih sedam odgovora su moja pretpostavka — proveriti brojeve (45 min, 4–6
+dolazaka, otkazivanje 24h) pre objave.
 
 **Usluge** — trajanja su pretpostavka:
 45 min (dijagnostika), 30–40 (fizikalna), 45–60 (kinezi), 30 (manualna), 60 (medicinski trening).
