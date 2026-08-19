@@ -13,11 +13,15 @@ i blok TIM unutar sekcije 03.
 - Meki CTA ispod liste: „Ne znate koja vam usluga treba? Ne morate da znate." → #kontakt
 - Osveženi opisi svih 6 usluga
 
-### 2. Traka brojeva (novo, odmah ispod heroja)
+### 2. Sa čime nam dolaze (novo, u sekciji 02 iznad liste usluga)
+Dvanaest tegoba pacijentovim jezikom, kao čipovi. Klik na čip otvara
+odgovarajuću uslugu u listi ispod, skroluje do nje i nakratko je istakne.
+
+### 3. Traka brojeva (novo, odmah ispod heroja)
 Tamna traka između heroja i lime trake sa ciljevima. Četiri podatka:
 4.000+ tretmana godišnje · 6 fizioterapeuta · 1:1 terapeut po pacijentu · 48h do prvog termina
 
-### 3. Tim (novo, na dnu sekcije 03)
+### 4. Tim (novo, na dnu sekcije 03)
 - Naslov: „Iza svakog plana stoji **neko ko ga vodi.**"
 - Šest kartica: Novak Ilić sa pravom fotografijom + pet sa monogramom
 - Raspored 4 + 2; drugi red popunjava blok „Prosečno 8 godina kliničkog iskustva po terapeutu"
@@ -39,6 +43,10 @@ i logo/favicon iz `../v11/`. Ništa drugo ne treba uploadovati.
 - Uloge (fizijatar / fizioterapeut / kineziterapeut) su pretpostavka
 - Novak Ilić: proveriti tačnu titulu i opis specijalnosti
 - „Prosečno 8 godina kliničkog iskustva" je izmišljen podatak
+
+**Tegobe** — spisak i povezivanje sa uslugama su moja pretpostavka.
+Klijent treba da potvrdi: da li su to zaista najčešći razlozi dolaska, i da li
+svaka tegoba vodi na pravu uslugu (npr. „Ukočen vrat i glavobolje" → Manualna terapija).
 
 **Usluge** — trajanja su pretpostavka:
 45 min (dijagnostika), 30–40 (fizikalna), 45–60 (kinezi), 30 (manualna), 60 (medicinski trening).

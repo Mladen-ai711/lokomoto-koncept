@@ -135,6 +135,29 @@
     });
   });
 
+  const complaintButtons = [...document.querySelectorAll("[data-complaint-target]")];
+
+  complaintButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const index = Number(button.dataset.complaintTarget) - 1;
+      const target = serviceItems[index];
+      if (!target) return;
+
+      activateService(target);
+
+      const anchorEl = document.querySelector(".service-browser") || target;
+      anchorEl.scrollIntoView({
+        behavior: reducedMotion.matches ? "auto" : "smooth",
+        block: "start",
+      });
+
+      target.classList.remove("is-flash");
+      void target.offsetWidth;
+      target.classList.add("is-flash");
+      window.setTimeout(() => target.classList.remove("is-flash"), 1200);
+    });
+  });
+
   const revealItems = [...document.querySelectorAll(".reveal")];
 
   if (!reducedMotion.matches && !compactInteraction.matches && "IntersectionObserver" in window) {
