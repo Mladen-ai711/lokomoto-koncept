@@ -777,6 +777,7 @@ button {
   display: flex;
   width: max-content;
   animation: outcome-scroll 31s linear infinite;
+  will-change: transform;
 }
 
 .outcome-group {
@@ -803,7 +804,14 @@ button {
 
 @keyframes outcome-scroll {
   to {
-    transform: translateX(-50%);
+    /* pomeraj za tacno jednu od sest kopija — beskonacna petlja bez rupe */
+    transform: translateX(-16.6667%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .outcome-track {
+    animation: none;
   }
 }
 
