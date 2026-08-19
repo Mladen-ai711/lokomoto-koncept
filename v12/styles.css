@@ -1641,6 +1641,13 @@ button {
   transition: clip-path 1100ms var(--ease) var(--delay, 0ms);
 }
 
+/* Naslov u heroju se smiruje dvostruko sporije od ostatka sajta. */
+.motion-ready .hero-title.reveal {
+  transition:
+    opacity 1600ms var(--ease) var(--delay, 0ms),
+    transform 1900ms var(--ease) var(--delay, 0ms);
+}
+
 .motion-ready .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
