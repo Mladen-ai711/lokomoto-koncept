@@ -16,6 +16,27 @@
   });
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  // Klik na stavku menija ne ostavlja #sidro u adresi. Bez ovoga bi svako
+  // sledece osvezavanje vracalo posetioca na tu sekciju umesto na vrh.
+  // Deljeni linkovi sa #sidrom i dalje rade normalno pri otvaranju.
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link) return;
+
+    const id = link.getAttribute("href").slice(1);
+    event.preventDefault();
+    if (!id) return;
+
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    target.scrollIntoView({
+      behavior: reducedMotion.matches ? "auto" : "smooth",
+      block: "start",
+    });
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+  });
   const compactInteraction = window.matchMedia("(max-width: 820px), (pointer: coarse)");
   const header = document.querySelector("[data-header]");
   const menuToggle = document.querySelector("[data-menu-toggle]");
