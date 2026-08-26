@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=1.2`, `app.js?v=1.0`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=1.3`, `app.js?v=1.0`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -41,6 +41,25 @@ Po odluci iz modela sadržaja 1.2, odeljak 4b:
 - **Tekst prvog čipa**: „Bol u donjem delu leđa" → **„Bol u krstima"** (odobreni izuzetak).
 - **Meni „Usluge"** vodi na `/usluge/`, ne na sidro `#usluge`.
 - **Futer** — šest usluga ima prave adrese.
+
+### Sekcija 04: „Edukacije" → „Oprema" (26.08.2026, zahtev klijenta)
+
+Klijent više ne drži edukacije. Sekcija nije obrisana nego prenamenjena — to je
+jedini tamni predah između Tima i Pitanja, i poslednji argument pre kontakta.
+
+- Oznaka `04 OPREMA`, naslov „Uređaji koje nema *svaka ambulanta.*", tekst nabraja
+  INDIBA / Triton DTS / NeuFit pa odmah relativizuje („nijedan ne bira sam šta tretira").
+- Dugme „Kako to izgleda u praksi" → `usluge/fizikalna-terapija/` (interni link,
+  umesto spoljnog na `lokomoto-edukacija`, koji je uklonjen).
+- Potpis na fotografiji ostaje „Metod, ne recept."; oznaka iznad njega
+  „LOKOMOTO SYSTEM" → **„LOKOMOTO CENTAR"** („System" je bio brend edukacija).
+- Sidro `#edukacije` → `#oprema` u meniju (desktop i mobilni) i futeru, na svih 8 stranica.
+- Beleška u sekciji Tim više ne pominje edukacije:
+  „Isti tim radi i pregled i terapiju — nalaz ne prelazi iz ruke u ruku."
+
+CSS klasa ostaje `.education` — ona živi u `v12/styles.css`, koji je zamrznut.
+Preimenuje se kad naslovna pređe na Eleventy. Reč „edukacij" posle izmene ne
+postoji nigde u v13, provereno pretragom.
 
 Iz `app.js` je obrisano, ne prepravljeno:
 
