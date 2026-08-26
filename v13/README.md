@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=1.6`, `app.js?v=1.0`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=1.9`, `app.js?v=1.0`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -99,6 +99,44 @@ stranicama usluga. To su navigacione oznake — treba da se skeniraju, a
 
 **Slug je i dalje `kineziterapija`.** Adresa se ne menja; da se menjala, trebalo
 bi i preusmerenje, a stranica još nije objavljena pod tim imenom.
+
+### Prvi krug klijentovih ispravki (26.08.2026)
+
+Nikola je poslao 17 primedbi preko WhatsAppa. Urađeno je 10 koje ne traže ničiju
+odluku; spisak svih 17 sa statusom je u dokumentu projekta
+`claude/9-ispravke-klijent-1.md`.
+
+| Šta | Gde |
+|---|---|
+| Razmak slika→ime na kartici tima bio je 0 px | `.team-copy` dobio `padding-top` |
+| Mrvice uklonjene | svih 7 stranica pod `/usluge/` |
+| Hero usluge poravnat na vrh (bio `align-items: end`) | `.service-hero-grid` |
+| Potpis „Metod, ne recept." uklonjen | sekcija Oprema |
+| Novi naslov: „Najmodernija terapija, dostupna u Beogradu." | sekcija Oprema |
+| „Tražimo put nazad" → „Želimo da rešimo problem zauvek" | Naš pristup |
+| Tri tvrdnje podebljane u dugom tekstu | „Šta je ovo", fizikalna terapija |
+| „Za koga je" izašlo iz bočne kartice u svoju sekciju | nova `.for-whom-section` |
+| Cene i Pitanja: skinuta oznaka, kitnjast naslov i pasus | ostao samo naslov |
+
+Pravilo je zatim primenjeno na **svih šest sekcija** stranice usluge, ne samo
+na te dve: Kako izgleda, Sedam procedura, Tegobe, Za koga je, Cena, Česta pitanja.
+Sve nose miran naslov bez oznake i bez pasusa objašnjenja. Izuzeci su dva:
+
+- **Poziv na kraju** zadržava izjavu („Opišite tegobu u jednoj rečenici…") — tu
+  naslov jeste sadržaj, ne uvod u spisak. Pala je samo oznaka SLEDEĆI KORAK.
+- **„Šta je ovo"** zadržava bočnu oznaku, jer je to jedina sekcija bez naslova i
+  oznaka joj služi kao naslov. Bočna oznaka je drugi postupak od one koju je
+  klijent zamerio — ta je stajala naslagana iznad naslova.
+
+Usput uklonjeno: ispod naslova sekcije Tegobe stajalo je **„Spisak nije ručno
+pisan — sastavlja ga sajt iz fajlova tegoba."** To je beleška za mene, a bila je
+vidljiva posetiocima.
+
+**Naslovi tih sekcija su namerno manji** od `.section-intro h2` iz v12. Taj stepen
+nosi izjavu („Bez skrivenih stavki. Cena je cena."), a klijent je tražio oznaku
+(„Cena fizikalne terapije"). Kad se u `.section-intro` ostavi samo naslov, on
+padne u prvi stubac mreže od 0.38fr i prelomi se u četiri reda — zato te dve
+sekcije više nisu mreža.
 
 ## Provereno pre isporuke
 

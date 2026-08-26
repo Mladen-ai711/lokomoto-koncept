@@ -103,7 +103,9 @@
   display: grid;
   margin-top: clamp(2.2rem, 4vw, 3.4rem);
   grid-template-columns: minmax(0, 1.05fr) minmax(20rem, 0.72fr);
-  align-items: end;
+  /* Bilo `end`: leva kolona je visila uz dno fotografije. Bez mrvica
+     iznad, gornja ivica je referenca — tekst kreće od vrha. */
+  align-items: start;
   gap: clamp(2.5rem, 5vw, 5rem);
 }
 
@@ -232,7 +234,7 @@
 
 .service-intro-grid {
   display: grid;
-  grid-template-columns: 0.38fr 1.25fr 0.62fr;
+  grid-template-columns: 0.38fr minmax(0, 1.25fr);
   align-items: start;
   gap: clamp(2rem, 5vw, 5.5rem);
 }
@@ -1030,4 +1032,115 @@ h1 .name-alt {
   letter-spacing: -0.01em;
   line-height: 1.15;
   opacity: 0.5;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   11. „Za koga je" — svoja sekcija (bila bočna kartica uz „Šta je ovo")
+   ══════════════════════════════════════════════════════════════ */
+
+/* Klijent: uz onoliki tekst pored sebe, ni jedno ni drugo se ne pročita.
+   Zato izlazi iz pasusa i dobija punu širinu. */
+/* Miran naslov sekcije — jedan pojam, bez oznake i bez pasusa objašnjenja.
+   Klijent: „samo neka bude naslov i dole pitanja". Manji je od
+   `.section-intro h2` iz v12, jer taj stepen nosi izjavu, ne oznaku. */
+.for-whom-section h2,
+.service-steps .section-intro h2,
+.service-methods .section-intro h2,
+.service-complaints .section-intro h2,
+.service-prices .section-intro h2,
+.service-faq .section-intro h2 {
+  max-width: 26ch;
+  margin: 0;
+  font-size: clamp(1.9rem, 3.4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+/* `.section-intro` je u v12 mreža od tri stupca: oznaka, naslov, pasus.
+   Kad ostane samo naslov, on padne u prvi stubac od 0.38fr i stisne se
+   u četiri reda — zato ovde prestaje da bude mreža. */
+.service-steps .section-intro,
+.service-methods .section-intro,
+.service-complaints .section-intro,
+.service-prices .section-intro,
+.service-faq .section-intro {
+  display: block;
+}
+.for-whom-lead {
+  max-width: 40rem;
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.5;
+}
+.for-whom-grid {
+  display: grid;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  padding: 0;
+  gap: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  list-style: none;
+}
+.for-whom-grid li {
+  position: relative;
+  padding: 1.15rem 1.6rem 0 0;
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.for-whom-grid li::before {
+  display: block;
+  width: 6px;
+  height: 6px;
+  margin-bottom: 0.85rem;
+  border-radius: 50%;
+  background: var(--teal-deep);
+  content: "";
+}
+
+/* ══════════════════════════════════════════════════════════════
+   12. Pitanja na stranici usluge — naslov pa pitanja, bez bočnog stupca
+   ══════════════════════════════════════════════════════════════ */
+
+/* Levi stubac je držao pasus koji je klijent skinuo; bez njega bi
+   spisak pitanja ostao stisnut u desnu polovinu. */
+.service-faq .faq-layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (max-width: 900px) {
+  .for-whom-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .for-whom-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   13. Kartica člana tima — razmak ispod fotografije
+   ══════════════════════════════════════════════════════════════ */
+
+/* Bilo je 0 px: ime je stajalo zalepljeno za donju ivicu slike, dok je
+   ispod opisa bio pun razmak. Karticu je to vuklo naviše. */
+.team-copy {
+  padding-top: clamp(0.8rem, 1.1vw, 1.05rem);
+}
+
+/* Ako se u miran naslov ikad vrati `em`, ne sme da skoči u drugu boju —
+   taj kontrast pripada izjavama iz v12, ne oznaci sekcije. */
+.for-whom-section h2 em,
+.service-steps .section-intro h2 em,
+.service-methods .section-intro h2 em,
+.service-complaints .section-intro h2 em,
+.service-prices .section-intro h2 em,
+.service-faq .section-intro h2 em {
+  color: inherit;
+  font-style: italic;
+  font-weight: inherit;
 }
