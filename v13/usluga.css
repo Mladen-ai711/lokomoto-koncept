@@ -1336,3 +1336,139 @@ h1 .name-alt {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   16. Prelaz mišem: telo odgovori na natpis
+   ══════════════════════════════════════════════════════════════ */
+
+/* Natpis i njegova tačka nisu susedi u HTML-u — tačke moraju biti unutar
+   `.body-map-stage` da bi im referentni okvir bila fotografija, a natpisi
+   su van nje. Vezuje ih `:has()` preko zajedničkog pretka, sa `data-spot`
+   kao sponom. Bez JavaScripta i bez ijednog dodatnog kilobajta.
+
+   Ovo je namerno zamena za ideju sa animiranim čovekom: isti osećaj da
+   stranica odgovara, bez rizika da AI video izvrne anatomiju na sajtu
+   fizikalne medicine. */
+.bm-dot {
+  transition:
+    opacity 220ms var(--ease),
+    transform 220ms var(--ease),
+    box-shadow 220ms var(--ease);
+}
+.body-map-lines polyline {
+  transition:
+    opacity 220ms var(--ease),
+    stroke-width 220ms var(--ease);
+}
+
+/* Sve ostalo se povuče kad je jedan natpis aktivan. */
+.body-map:has(.bm:is(:hover, :focus-visible)) .bm-dot {
+  opacity: 0.28;
+}
+.body-map:has(.bm:is(:hover, :focus-visible)) .body-map-lines polyline {
+  opacity: 0.2;
+}
+.body-map:has(.bm:is(:hover, :focus-visible)) .bm:not(:hover):not(:focus-visible) {
+  opacity: 0.55;
+}
+
+.body-map:has(.bm[data-spot="1"]:is(:hover, :focus-visible)) .bm-dot[data-spot="1"] {
+  opacity: 1;
+  box-shadow:
+    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
+    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
+  transform: translate(-50%, -50%) scale(1.55);
+}
+.body-map:has(.bm[data-spot="1"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="1"] {
+  opacity: 1;
+  stroke-width: 1.7px;
+}
+.body-map:has(.bm[data-spot="2"]:is(:hover, :focus-visible)) .bm-dot[data-spot="2"] {
+  opacity: 1;
+  box-shadow:
+    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
+    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
+  transform: translate(-50%, -50%) scale(1.55);
+}
+.body-map:has(.bm[data-spot="2"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="2"] {
+  opacity: 1;
+  stroke-width: 1.7px;
+}
+.body-map:has(.bm[data-spot="3"]:is(:hover, :focus-visible)) .bm-dot[data-spot="3"] {
+  opacity: 1;
+  box-shadow:
+    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
+    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
+  transform: translate(-50%, -50%) scale(1.55);
+}
+.body-map:has(.bm[data-spot="3"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="3"] {
+  opacity: 1;
+  stroke-width: 1.7px;
+}
+.body-map:has(.bm[data-spot="4"]:is(:hover, :focus-visible)) .bm-dot[data-spot="4"] {
+  opacity: 1;
+  box-shadow:
+    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
+    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
+  transform: translate(-50%, -50%) scale(1.55);
+}
+.body-map:has(.bm[data-spot="4"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="4"] {
+  opacity: 1;
+  stroke-width: 1.7px;
+}
+.body-map:has(.bm[data-spot="5"]:is(:hover, :focus-visible)) .bm-dot[data-spot="5"] {
+  opacity: 1;
+  box-shadow:
+    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
+    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
+  transform: translate(-50%, -50%) scale(1.55);
+}
+.body-map:has(.bm[data-spot="5"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="5"] {
+  opacity: 1;
+  stroke-width: 1.7px;
+}
+.body-map:has(.bm[data-spot="6"]:is(:hover, :focus-visible)) .bm-dot[data-spot="6"] {
+  opacity: 1;
+  box-shadow:
+    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
+    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
+  transform: translate(-50%, -50%) scale(1.55);
+}
+.body-map:has(.bm[data-spot="6"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="6"] {
+  opacity: 1;
+  stroke-width: 1.7px;
+}
+.body-map:has(.bm[data-spot="7"]:is(:hover, :focus-visible)) .bm-dot[data-spot="7"] {
+  opacity: 1;
+  box-shadow:
+    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
+    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
+  transform: translate(-50%, -50%) scale(1.55);
+}
+.body-map:has(.bm[data-spot="7"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="7"] {
+  opacity: 1;
+  stroke-width: 1.7px;
+}
+.body-map:has(.bm[data-spot="8"]:is(:hover, :focus-visible)) .bm-dot[data-spot="8"] {
+  opacity: 1;
+  box-shadow:
+    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
+    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
+  transform: translate(-50%, -50%) scale(1.55);
+}
+.body-map:has(.bm[data-spot="8"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="8"] {
+  opacity: 1;
+  stroke-width: 1.7px;
+}
+
+/* Bez `:has()` ništa se ne kvari — tačke samo ostaju mirne. */
+
+@media (prefers-reduced-motion: reduce) {
+  .bm-dot,
+  .body-map-lines polyline {
+    transition: none;
+  }
+  .body-map:has(.bm[data-spot]:is(:hover, :focus-visible)) .bm-dot[data-spot] {
+    transform: translate(-50%, -50%);
+  }
+}

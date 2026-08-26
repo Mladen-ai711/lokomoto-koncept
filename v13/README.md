@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=2.2`, `app.js?v=1.0`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=2.3`, `app.js?v=1.0`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -230,6 +230,32 @@ ispod 1000 px.
 
 Sitna ispravka usput: čip je pisao „ishijas", predložak „išijas". Uzeto je
 **išijas**.
+
+### Prelaz mišem preko mape tela
+
+Razmatrana je varijanta sa **animiranim čovekom** (Higgsfield, osam klipova,
+svaki jedan bolan pokret na hover). **Odbačena**, i to iz razloga koje treba
+zapamtiti pre nego što se ideja vrati:
+
+1. Statična figura čita se kao **šema**; čim se pomeri, postaje **osoba** — i
+   posetilac pita ko je. Odgovor je „niko, generisan je", tri sekcije iznad tima
+   sa pravim licima.
+2. AI video iz statične slike redovno izvrne anatomiju. Na sajtu fizikalne
+   medicine to je prvo što struka vidi, i to osam puta.
+3. Prvi kadar mora da bude identičan fotografiji, inače prelaz „skoči".
+4. Osam klipova je 1,5–3 MB naspram sadašnjih **20 kB** za celu sekciju.
+5. Nema hovera na telefonu, a telefon je verovatno većina saobraćaja.
+
+**Umesto toga, čist CSS.** Na prelaz mišem ili fokus tastaturom: tačka naraste
+1,55× i zasija, njena linija se pojača, sve ostale tačke, linije i natpisi se
+priguše. Nula kilobajta, nula JavaScripta.
+
+Natpis i tačka nisu susedi u HTML-u — tačke moraju biti unutar
+`.body-map-stage` (referentni okvir im je fotografija), natpisi su van njega.
+Vezuje ih **`:has()`** preko zajedničkog pretka, sa `data-spot` kao sponom.
+Isprekidana linija išijasa deli oznaku sa natpisom „Utrnuće u nozi", pa se pali
+zajedno sa njim. Uz `prefers-reduced-motion` uvećanje i prelaz otpadaju, a
+isticanje ostaje. Bez podrške za `:has()` ništa se ne kvari — tačke samo miruju.
 
 ## Provereno pre isporuke
 
