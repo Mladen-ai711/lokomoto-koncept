@@ -1144,3 +1144,35 @@ h1 .name-alt {
   font-style: italic;
   font-weight: inherit;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   14. Sekcija 03 — tri tvrdnje o prostoru umesto četiri kartice
+   ══════════════════════════════════════════════════════════════ */
+
+/* Klijent: „Ovo su 4 nepovezane info, a u istoj su sekciji."
+   Uzrok: mreža je pozajmila oblik trake sa brojkama (oznaka + naslov), a
+   u oznakama su stajali godina, broj koji ništa ne broji, metafora i
+   strelica. Oko to pročita kao podatke pa ne nađe podatke. Oznake su
+   uklonjene iz HTML-a; brojke već ima `.proof-bar` na vrhu strane.
+
+   Tri kartice u jednoj koloni uz fotografiju, umesto 2×2. */
+#centar .trust-grid {
+  grid-template-columns: minmax(0, 1fr);
+  /* Tri reda jednake visine da kolona isprati fotografiju do dna;
+     inače kartice stanu na dve trećine i desno ostane rupa. */
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+#centar .trust-card {
+  display: flex;
+  min-height: 0;
+  padding: clamp(1.4rem, 2.4vw, 2rem);
+  border-right: 0;
+  flex-direction: column;
+  justify-content: center;
+}
+#centar .trust-card:first-child {
+  border-top: 1px solid var(--line);
+}
+#centar .trust-card h3 {
+  margin-top: 0;
+}

@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=1.9`, `app.js?v=1.0`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=2.0`, `app.js?v=1.0`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -161,6 +161,38 @@ a ostane tamo gde nešto znači.
 **Nije dirano:** `<title>`, `meta description`, `aria-label` (crtica je tamo
 razdvajač imena, standardna), i „REHAB paket — N terapija" u cenovniku, gde
 razdvaja naziv od specifikacije.
+
+### Sekcija 03 — četiri kartice u tri (tačka 15)
+
+Klijent: „Ovo su 4 nepovezane info, a u istoj su sekciji."
+
+**Uzrok nije bio tekst nego forma.** Mreža je pozajmila izgled trake sa
+brojkama (oznaka + naslov + red teksta), a u oznakama su stajali **godina**
+(2016.), **broj koji ništa ne broji** (01), **metafora** (360°) i **strelica**
+(→). Oko to pročita kao podatke, pa ne nađe podatke. Uz to su dve kartice
+ponavljale sekciju „Naš pristup" („Povezan proces", „Individualni plan"), a
+prave brojke ionako već stoje u `.proof-bar` na vrhu strane.
+
+**Šta je urađeno:** oznake su uklonjene, kartica je tri umesto četiri, i sve
+tri govore o **prostoru** — jedinoj temi koju ova sekcija ima svoju, a nijedna
+druga je ne pokriva:
+
+1. **Ista adresa od 2016.** — Tabanovačka 27b na Autokomandi.
+2. **Iz kabineta u salu.** — pregled, aparaturna terapija i vežbe iza istih vrata.
+3. **Ne staje kad bol prestane.** — cilj je povratak opterećenju. *(lime)*
+
+Ništa od toga nije nova tvrdnja: adresa i godina stoje u uputstvima projekta,
+a sala za vežbe je već na fotografiji uz koju kartice stoje.
+
+Prva verzija je glasila „Sve u istom prostoru" i „Prostor je deo plana", pa se
+reč **prostor** ponavljala tri puta u istoj sekciji — dvaput u karticama i
+jednom u uvodu („prostor u kome terapija prirodno prelazi u pokret"). Posle
+prepravke stoji jednom, u uvodu. Tri kartice sada idu kao niz: **gde smo →
+šta je unutra → čemu vodi**, umesto tri činjenice o istoj stvari.
+
+**Raspored:** jedna kolona, tri reda jednake visine (`grid-template-rows:
+repeat(3, 1fr)`), da desna kolona isprati fotografiju do dna. Sa `align-content:
+start` kartice su stale na dve trećine i desno je ostajala rupa.
 
 ## Provereno pre isporuke
 
