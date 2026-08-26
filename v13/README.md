@@ -51,7 +51,11 @@ jedini tamni predah između Tima i Pitanja, i poslednji argument pre kontakta.
   INDIBA / Triton DTS / NeuFit pa odmah relativizuje („nijedan ne bira sam šta tretira").
 - Dugme „Kako to izgleda u praksi" → `usluge/fizikalna-terapija/` (interni link,
   umesto spoljnog na `lokomoto-edukacija`, koji je uklonjen).
-- Potpis na fotografiji ostaje „Metod, ne recept."; oznaka iznad njega
+- Potpis na fotografiji je **„Odluku donosi čovek."** (od 26.08. — klijent je
+  izbacio raniji „Metod, ne recept.", a potpis je vraćen jer bez njega desna
+  trećina fotografije ostaje prazna). Nosi drugi deo argumenta sekcije: naslov
+  kaže šta imamo, potpis šta time upravlja. Namerno nije „Nalaz, pa aparat" —
+  pasus pored završava tim istim rečima. Oznaka iznad njega
   „LOKOMOTO SYSTEM" → **„LOKOMOTO CENTAR"** („System" je bio brend edukacija).
 - **Fotografija**: `v8/assets/images/oprema.webp` (1774×887, 80 kB) — terapijska sala
   sa Triton DTS stolom, INDIBA aparatom i NeuFit-om, prava fotografija iz centra.
@@ -111,7 +115,7 @@ odluku; spisak svih 17 sa statusom je u dokumentu projekta
 | Razmak slika→ime na kartici tima bio je 0 px | `.team-copy` dobio `padding-top` |
 | Mrvice uklonjene | svih 7 stranica pod `/usluge/` |
 | Hero usluge poravnat na vrh (bio `align-items: end`) | `.service-hero-grid` |
-| Potpis „Metod, ne recept." uklonjen | sekcija Oprema |
+| Potpis „Metod, ne recept." zamenjen sa **„Odluku donosi čovek."** | sekcija Oprema |
 | Novi naslov: „Najmodernija terapija, dostupna u Beogradu." | sekcija Oprema |
 | „Tražimo put nazad" → „Želimo da rešimo problem zauvek" | Naš pristup |
 | Tri tvrdnje podebljane u dugom tekstu | „Šta je ovo", fizikalna terapija |
@@ -137,6 +141,26 @@ nosi izjavu („Bez skrivenih stavki. Cena je cena."), a klijent je tražio ozna
 („Cena fizikalne terapije"). Kad se u `.section-intro` ostavi samo naslov, on
 padne u prvi stubac mreže od 0.38fr i prelomi se u četiri reda — zato te dve
 sekcije više nisu mreža.
+
+### Crtice (26.08.2026, tačka 12 sa klijentovog spiska)
+
+U vidljivom tekstu bilo je **97 em crtica**. Podeljene su na dve stvari:
+
+- **28 je bio raspon** — „Pon — Pet", „08:00 — 20:00", „01—03". Za raspon ide
+  **en crtica bez razmaka**, ne em: sada `Pon–Pet`, `08:00–20:00`, `01–03`.
+  Nije stvar ukusa nego pravopisa, pa je urađeno bez čekanja odluke.
+- **69 je bila proza.** Od toga je **48 zamenjeno** zapetom, dvotačkom ili
+  tačkom — svuda gde je crtica radila posao koji zapeta radi jednako dobro.
+
+**Ostalo je 17 u vidljivom tekstu**, i one nose obrt: „Ne birate vi terapiju —
+biramo je zajedno", „Znanje ne stoji na diplomi — proverava se na svakom
+pacijentu", „menjamo pristup — ne produžavamo isto". Tu crtica pravi pauzu pa
+okret; zapeta bi je ubila. Odluka (opcija B) je da crtica prestane da bude tik,
+a ostane tamo gde nešto znači.
+
+**Nije dirano:** `<title>`, `meta description`, `aria-label` (crtica je tamo
+razdvajač imena, standardna), i „REHAB paket — N terapija" u cenovniku, gde
+razdvaja naziv od specifikacije.
 
 ## Provereno pre isporuke
 
