@@ -120,6 +120,7 @@ Na stranici fizikalne terapije žuto označeno, oznaka „ZA POTVRDU":
 | Šta | Stanje |
 |---|---|
 | „Prvi pomak posle 3–4 dolaska" | izmišljeno kao primer, mora potvrditi struka |
+| FAQ „Koliko košta?" na naslovnoj | rečenica stoji bez brojeva, oznaka „CENE ZA POTVRDU" |
 | RFZO: da / ne / delimično | nema odgovora |
 | Cene | prepisane sa `lokomoto.rs/cenovnik-2/`, traže potvrdu |
 
