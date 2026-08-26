@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=1.4`, `app.js?v=1.0`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=1.5`, `app.js?v=1.0`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -53,13 +53,21 @@ jedini tamni predah između Tima i Pitanja, i poslednji argument pre kontakta.
   umesto spoljnog na `lokomoto-edukacija`, koji je uklonjen).
 - Potpis na fotografiji ostaje „Metod, ne recept."; oznaka iznad njega
   „LOKOMOTO SYSTEM" → **„LOKOMOTO CENTAR"** („System" je bio brend edukacija).
-- **Fotografija**: `v8/assets/images/oprema.webp` (2020×778, 76 kB) — terapijska sala
-  sa Triton DTS stolom i INDIBA aparatom, prava fotografija iz centra. Zamenila je
-  `manifesto.webp`, koji je sekcija nasleđivala iz v12. Zamena je u `usluga.css`,
-  `v12/styles.css` nije diran. Uz nju je promenjen i `aria-label` figure.
-- **`background-attachment` je `scroll`, ne `fixed`.** Slika je panoramska, pa se uz
-  `fixed` kadar računa prema visini prozora i sto se preseca na pola. Parallax je
-  namerno žrtvovan; na telefonu je kadar pomeren na `68% center`, na aparate.
+- **Fotografija**: `v8/assets/images/oprema.webp` (1774×887, 80 kB) — terapijska sala
+  sa Triton DTS stolom, INDIBA aparatom i NeuFit-om, prava fotografija iz centra.
+  Zamenila je `manifesto.webp`, koji je sekcija nasleđivala iz v12. Zamena je u
+  `usluga.css`, `v12/styles.css` nije diran. Promenjen je i `aria-label` figure.
+- **Paralaksa (`background-attachment: fixed`) je ostala**, kako je v12 postavlja.
+  Prva verzija fotografije bila je 2,6:1 i uz `fixed` se secao NeuFit — na
+  laptopu se videlo 62 % slike. Druga verzija je proširena po vertikali na
+  **2:1**, i na uobičajenim prozorima se vidi 80–89 %, sa sva tri aparata u kadru.
+  Ako se fotografija ikad opet menja, taj odnos je uslov — približno 16:9 ili širi
+  od toga najviše do 2:1.
+- **Ime fajla nosi `?v=2` u CSS-u.** Prva verzija slike je već bila objavljena pod
+  istim imenom, a slike se ne verzionišu kroz `index.html`. Kad se slika menja,
+  podigni taj broj, inače posetiocima ostaje keširana stara.
+- Na telefonu v12 gasi paralaksu; kadar je pomeren sa `56% 37%` na `68% center`,
+  jer prvi na ovoj fotografiji pokaže plakare umesto aparata.
 - Sidro `#edukacije` → `#oprema` u meniju (desktop i mobilni) i futeru, na svih 8 stranica.
 - Beleška u sekciji Tim više ne pominje edukacije:
   „Isti tim radi i pregled i terapiju — nalaz ne prelazi iz ruke u ruku."

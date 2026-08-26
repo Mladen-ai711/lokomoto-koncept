@@ -987,19 +987,18 @@
    ══════════════════════════════════════════════════════════════ */
 
 /* `v12/styles.css` je zamrznut i tamo ova sekcija i dalje povlači
-   `manifesto.webp`. Menja se samo slika i kadriranje, gradijent ostaje. */
-/* Fotografija je panoramska (2020×778). Uz `background-attachment: fixed`
-   kadar se računa prema visini prozora, pa se sto i NeuFit presecaju na pola —
-   zato ovde `scroll`: slika se uklapa u sekciju i vidi se cela prostorija.
-   Parallax gubimo namerno; `.expectation` na stranici usluge radi isto. */
+   `manifesto.webp`. Ovde se menja samo slika — paralaksa (`fixed`),
+   kadar (`56% center`) i gradijent ostaju kako ih v12 postavlja.
+
+   `?v=2` je zbog keša: prva verzija fotografije je već bila objavljena
+   pod istim imenom. Kad se slika opet menja, podigni broj. */
 #oprema .education-media {
-  background-image: url("../v8/assets/images/oprema.webp");
-  background-attachment: scroll;
-  background-position: center center;
+  background-image: url("../v8/assets/images/oprema.webp?v=2");
 }
 
-/* Na telefonu u kadar staje oko četvrtine širine — pomeramo je na aparate,
-   da to ne bude prazan zid. */
+/* Na telefonu v12 gasi paralaksu i u kadar staje oko trećine širine.
+   v12 tu cilja `56% 37%`, što na ovoj fotografiji pokaže plakare —
+   pomeramo na aparate. */
 @media (max-width: 900px) {
   #oprema .education-media {
     background-position: 68% center;
