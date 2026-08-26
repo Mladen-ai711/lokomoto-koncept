@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=1.3`, `app.js?v=1.0`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=1.4`, `app.js?v=1.0`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -53,6 +53,13 @@ jedini tamni predah između Tima i Pitanja, i poslednji argument pre kontakta.
   umesto spoljnog na `lokomoto-edukacija`, koji je uklonjen).
 - Potpis na fotografiji ostaje „Metod, ne recept."; oznaka iznad njega
   „LOKOMOTO SYSTEM" → **„LOKOMOTO CENTAR"** („System" je bio brend edukacija).
+- **Fotografija**: `v8/assets/images/oprema.webp` (2020×778, 76 kB) — terapijska sala
+  sa Triton DTS stolom i INDIBA aparatom, prava fotografija iz centra. Zamenila je
+  `manifesto.webp`, koji je sekcija nasleđivala iz v12. Zamena je u `usluga.css`,
+  `v12/styles.css` nije diran. Uz nju je promenjen i `aria-label` figure.
+- **`background-attachment` je `scroll`, ne `fixed`.** Slika je panoramska, pa se uz
+  `fixed` kadar računa prema visini prozora i sto se preseca na pola. Parallax je
+  namerno žrtvovan; na telefonu je kadar pomeren na `68% center`, na aparate.
 - Sidro `#edukacije` → `#oprema` u meniju (desktop i mobilni) i futeru, na svih 8 stranica.
 - Beleška u sekciji Tim više ne pominje edukacije:
   „Isti tim radi i pregled i terapiju — nalaz ne prelazi iz ruke u ruku."
@@ -118,7 +125,7 @@ cenovniku. Jedno od ta dva je pogrešno.
 ## Fotografije
 
 Stranica koristi tri postojeće (`clinical-work`, `assessment`, `manifesto`), sve tri
-prave i snimljene u centru. Sajt faze 1 ima **25 mesta za fotografiju**, a postoji ih
+prave i snimljene u centru. Sekcija „Oprema" na naslovnoj koristi četvrtu, `oprema.webp`. Sajt faze 1 ima **25 mesta za fotografiju**, a postoji ih
 6 — brief za snimanje je u zasebnom dokumentu projekta.
 
 U `usluga.css` je pripremljena klasa `.method-photo`: kartica procedure prima
