@@ -11,7 +11,7 @@
     />
     <link rel="preload" href="../v8/assets/images/hero-poster-v4.jpg" as="image" />
     <link rel="stylesheet" href="../v12/styles.css?v=13.0" />
-    <link rel="stylesheet" href="usluga.css?v=2.0" />
+    <link rel="stylesheet" href="usluga.css?v=2.2" />
     <link rel="icon" href="../v11/favicon.svg" type="image/svg+xml" />
     <title>Lokomoto centar — fizikalna medicina i rehabilitacija, Beograd</title>
   </head>
@@ -279,55 +279,67 @@
                 kreće u vašem slučaju.
               </p>
             </div>
-            <ul class="complaint-list">
-              <li>
-                <a class="complaint" href="usluge/fizikalna-terapija/">
-                  <span>Bol u krstima</span>
-                  <i aria-hidden="true">↗</i>
-                </a>
-              </li>
-              <li>
-                <a class="complaint" href="usluge/manualna-terapija/">
-                  <span>Ukočen vrat i glavobolje</span>
-                  <i aria-hidden="true">↗</i>
-                </a>
-              </li>
-              <li>
-                <a class="complaint" href="usluge/manualna-terapija/">
-                  <span>Bol u ramenu, ne mogu da dignem ruku</span>
-                  <i aria-hidden="true">↗</i>
-                </a>
-              </li>
-              <li>
-                <a class="complaint" href="usluge/fizikalna-terapija/">
-                  <span>Utrnuće u nozi, ishijas</span>
-                  <i aria-hidden="true">↗</i>
-                </a>
-              </li>
-              <li>
-                <a class="complaint" href="usluge/kineziterapija/">
-                  <span>Bol u kolenu pri hodu i čučnju</span>
-                  <i aria-hidden="true">↗</i>
-                </a>
-              </li>
-              <li>
-                <a class="complaint" href="usluge/postoperativna-rehabilitacija/">
-                  <span>Posle operacije kolena ili ramena</span>
-                  <i aria-hidden="true">↗</i>
-                </a>
-              </li>
-              <li>
-                <a class="complaint" href="usluge/kineziterapija/">
-                  <span>Uganuće gležnja koje se ponavlja</span>
-                  <i aria-hidden="true">↗</i>
-                </a>
-              </li>
-              <li>
-                <a class="complaint" href="usluge/manualna-terapija/">
-                  <span>Teniski ili golferski lakat</span>
-                  <i aria-hidden="true">↗</i>
-                </a>
-              </li>
+            <figure class="body-map">
+              <div class="body-map-stage">
+                <img
+                  src="../v8/assets/images/telo.webp"
+                  alt="Shema tela sa označenim mestima najčešćih tegoba"
+                  decoding="async"
+                  loading="lazy"
+                />
+                <svg class="body-map-lines" viewBox="0 0 100 100"
+                     preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <polyline points="25.0,16.9 44.0,16.9 52.7,18.5" />
+              <polyline points="25.0,35.9 44.0,35.9 53.5,41.1" />
+              <polyline points="25.0,54.8 44.0,54.8 54.9,49.4" />
+              <polyline points="25.0,78.8 38.0,78.8 46.1,89.2" />
+              <polyline points="70.5,16.9 64.0,16.9 56.3,23.9" />
+              <polyline points="70.5,35.9 64.0,35.9 59.0,38.1" />
+              <polyline points="70.5,60.5 60.0,60.5 46.1,69.9" />
+              <polyline points="70.5,78.8 63.0,78.8 54.5,70.1" />
+              <!-- put išijasa: od kuka niz nogu do kolena -->
+              <polyline class="bm-path" points="54.9,49.4 54.5,70.1" />
+                </svg>
+
+                <span class="bm-dot" style="--x: 52.7%; --y: 18.5%" aria-hidden="true"></span>
+                <span class="bm-dot" style="--x: 53.5%; --y: 41.1%" aria-hidden="true"></span>
+                <span class="bm-dot" style="--x: 54.9%; --y: 49.4%" aria-hidden="true"></span>
+                <span class="bm-dot" style="--x: 46.1%; --y: 89.2%" aria-hidden="true"></span>
+                <span class="bm-dot" style="--x: 56.3%; --y: 23.9%" aria-hidden="true"></span>
+                <span class="bm-dot" style="--x: 59.0%; --y: 38.1%" aria-hidden="true"></span>
+                <span class="bm-dot" style="--x: 46.1%; --y: 69.9%" aria-hidden="true"></span>
+                <span class="bm-dot" style="--x: 54.5%; --y: 70.1%" aria-hidden="true"></span>
+              </div>
+
+            <a class="bm bm-l" style="--y: 16.9%" href="usluge/manualna-terapija/">
+              <span>Ukočen vrat i glavobolje</span>
+            </a>
+            <a class="bm bm-l" style="--y: 35.9%" href="usluge/fizikalna-terapija/">
+              <span>Bol u krstima</span>
+            </a>
+            <a class="bm bm-l" style="--y: 54.8%" href="usluge/fizikalna-terapija/">
+              <span>Utrnuće u nozi, išijas</span>
+            </a>
+            <a class="bm bm-l" style="--y: 78.8%" href="usluge/kineziterapija/">
+              <span>Uganuće gležnja koje se ponavlja</span>
+            </a>
+            <a class="bm bm-r" style="--y: 16.9%" href="usluge/manualna-terapija/">
+              <span>Bol u ramenu, ne mogu da dignem ruku</span>
+            </a>
+            <a class="bm bm-r" style="--y: 35.9%" href="usluge/manualna-terapija/">
+              <span>Teniski ili golferski lakat</span>
+            </a>
+            <a class="bm bm-r" style="--y: 60.5%" href="usluge/kineziterapija/">
+              <span>Bol u kolenu pri hodu i čučnju</span>
+            </a>
+            <a class="bm bm-r" style="--y: 78.8%" href="usluge/postoperativna-rehabilitacija/">
+              <span>Posle operacije kolena ili ramena</span>
+            </a>
+            </figure>
+
+            <div class="complaints-rest">
+              <span class="complaints-rest-label">Nije uvek jedna tačka</span>
+              <ul class="complaint-list is-rest">
               <li>
                 <a class="complaint" href="usluge/kineziterapija/">
                   <span>Sportska povreda usred sezone</span>
@@ -352,7 +364,8 @@
                   <i aria-hidden="true">↗</i>
                 </a>
               </li>
-            </ul>
+              </ul>
+            </div>
           </div>
 
           <div class="service-browser">

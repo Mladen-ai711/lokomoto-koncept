@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=2.0`, `app.js?v=1.0`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=2.2`, `app.js?v=1.0`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -193,6 +193,43 @@ prepravke stoji jednom, u uvodu. Tri kartice sada idu kao niz: **gde smo →
 **Raspored:** jedna kolona, tri reda jednake visine (`grid-template-rows:
 repeat(3, 1fr)`), da desna kolona isprati fotografiju do dna. Sa `align-content:
 start` kartice su stale na dve trećine i desno je ostajala rupa.
+
+### Mapa tela umesto mreže tegoba (tačka 13)
+
+Klijent: „Bilo bi preeeekul da ovde zapravo bude čovek i na njemu obeleženi
+problemi. Ovako je tabela, tako bi vizuelno bilo lakše."
+
+Dobio sam tri fotografije. Uzeta je **čista** (`lokomoto-covjek-bez-oznaka.png`
+→ `v8/assets/images/telo.webp`, 1774×887, **20 kB**). Verzije sa nacrtanim
+tačkama i natpisima **nisu korišćene kao slika** — one su služile kao predložak.
+
+**Zašto ne slika sa upisanim tekstom:** natpisi bi bili neklikabilni, nečitljivi
+na telefonu, nevidljivi pretraživaču i čitaču ekrana, a svaka izmena teksta
+tražila bi novi eksport. Ovako su tačke, linije i natpisi HTML i CSS:
+
+- 8 natpisa su pravi `<a>` linkovi na iste usluge na koje su vodili čipovi
+- 8 tačaka i 8 linija pozicionirano u **procentima fotografije**, pa sve raste
+  sa njom; linije su jedan `<svg>` sa `viewBox="0 0 100 100"` i
+  `preserveAspectRatio="none"`, tako da su koordinate isti procenti
+- `vector-effect: non-scaling-stroke` drži debljinu linije istom na svakoj širini
+
+**Ispod 1000 px** natpisi izlaze iz apsolutnog položaja i postaju običan spisak
+ispod fotografije, linije se gase, tačke se smanjuju. Tačke su unutar
+`.body-map-stage` baš zato — da im referentni okvir ostane fotografija, a ne
+cela figura koja na telefonu naraste.
+
+**Mreža je imala 12 tegoba, na telu ih staje 8.** Preostale četiri nemaju mesto
+na telu (sportska povreda, sedenje za kompjuterom, povratak treningu, „ne znam
+odakle bol dolazi") i stoje kao red ispod, pod oznakom „Nije uvek jedna tačka".
+Nijedna usluga nije izgubila ulaz.
+
+Iz predloška je preneta i **isprekidana linija od kuka do kolena** — put išijasa.
+Nije veza natpisa sa tačkom nego oznaka da bol putuje niz nogu, pa je tiša od
+ostalih linija (`stroke-dasharray`, manja vidljivost). Kao i ostale, gasi se
+ispod 1000 px.
+
+Sitna ispravka usput: čip je pisao „ishijas", predložak „išijas". Uzeto je
+**išijas**.
 
 ## Provereno pre isporuke
 

@@ -1176,3 +1176,163 @@ h1 .name-alt {
 #centar .trust-card h3 {
   margin-top: 0;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   15. Mapa tela — tegobe na čoveku umesto u tabeli
+   ══════════════════════════════════════════════════════════════ */
+
+/* Klijent je tražio čoveka sa obeleženim problemima umesto mreže od 12.
+   Fotografija je čista (`telo.webp`), a tačke, linije i natpisi su HTML —
+   pa su natpisi pravi linkovi, prevodivi, i čitljivi čitaču ekrana.
+   Sve pozicije su u procentima fotografije, tako da rastu sa njom. */
+.body-map {
+  position: relative;
+  margin: 0;
+}
+.body-map-stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  aspect-ratio: 1774 / 887;
+}
+.body-map-stage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Linije: `viewBox` 0–100 i `preserveAspectRatio: none` znače da su
+   koordinate isti procenti kao kod tačaka. Debljina poteza se ne
+   razvlači zahvaljujući `vector-effect`. */
+.body-map-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: var(--teal);
+  stroke-width: 1px;
+  opacity: 0.65;
+  vector-effect: non-scaling-stroke;
+}
+.body-map-lines polyline {
+  vector-effect: non-scaling-stroke;
+}
+
+/* Isprekidana linija od kuka do kolena — put išijasa. Nije veza natpisa
+   sa tačkom nego oznaka da bol putuje niz nogu, pa je tiša od ostalih. */
+.body-map-lines .bm-path {
+  stroke-dasharray: 3 4;
+  opacity: 0.55;
+}
+
+.bm-dot {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow:
+    0 0 0 0.34rem rgba(19, 201, 179, 0.22),
+    0 0 1.1rem rgba(19, 201, 179, 0.55);
+  transform: translate(-50%, -50%);
+}
+
+.bm {
+  position: absolute;
+  top: var(--y);
+  display: block;
+  padding: 0.72rem 0.95rem;
+  border: 1px solid var(--line-light);
+  border-radius: 0.65rem;
+  background: rgba(20, 28, 26, 0.62);
+  color: var(--white);
+  font-size: 0.92rem;
+  line-height: 1.35;
+  transform: translateY(-50%);
+  transition: border-color 200ms var(--ease), background 200ms var(--ease);
+}
+.bm::before {
+  display: inline-block;
+  width: 0.75rem;
+  margin-right: 0.55rem;
+  border-top: 2px solid var(--lime);
+  content: "";
+  vertical-align: middle;
+}
+.bm:hover,
+.bm:focus-visible {
+  border-color: var(--teal);
+  background: rgba(20, 28, 26, 0.9);
+}
+.bm-l {
+  left: 3.5%;
+  width: 21.5%;
+}
+.bm-r {
+  right: 3.5%;
+  width: 26%;
+}
+
+/* Četiri tegobe bez mesta na telu (sport, sedenje, povratak treningu,
+   „ne znam odakle") ostaju kao red ispod — inače bi ispale iz ponude. */
+.complaints-rest {
+  margin-top: clamp(1.6rem, 3vw, 2.4rem);
+}
+.complaints-rest-label {
+  display: block;
+  margin-bottom: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.6rem;
+  font-weight: 850;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.complaint-list.is-rest {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Ispod 1000 px natpisi ne mogu da stanu pored fotografije: izlaze iz
+   apsolutnog položaja i postaju običan spisak ispod nje. Tačke ostaju
+   na fotografiji jer su unutar `.body-map-stage`. */
+@media (max-width: 1000px) {
+  .body-map-lines {
+    display: none;
+  }
+  /* Fotografija je tu mala (2:1 preko cele širine ekrana), pa tačke u
+     punoj veličini progutaju figuru. Spisak ispod nosi funkciju. */
+  .bm-dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    box-shadow:
+      0 0 0 0.2rem rgba(19, 201, 179, 0.22),
+      0 0 0.6rem rgba(19, 201, 179, 0.5);
+  }
+  .body-map {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .body-map-stage {
+    margin-bottom: 0.6rem;
+  }
+  .bm {
+    position: static;
+    width: auto;
+    transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .complaint-list.is-rest {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .complaint-list.is-rest {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
