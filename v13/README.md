@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=1.5`, `app.js?v=1.0`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=1.6`, `app.js?v=1.0`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -82,6 +82,23 @@ Iz `app.js` je obrisano, ne prepravljeno:
 - zaključavanje hovera (postojalo je samo zbog tog skrolovanja),
 - svetlucanje izabrane usluge,
 - `aria-selected` (stavke više nisu tabovi nego linkovi).
+
+### Kineziterapija nosi i drugo ime (26.08.2026)
+
+Puno ime je sada **„Kineziterapija / Rehabilitacioni trening"**. Drugo ime je
+klasa `.name-alt` — ista boja, manja težina, `opacity: .58`, pa naslov i dalje
+čita kao jedan pojam a ne kao dve usluge. U `h1` je posebno pravilo: ide u svoj
+red na `0.42em`, jer bi u punoj veličini naslova prelomilo u dva reda.
+
+Gde stoji puno ime: panel usluga na naslovnoj, lista `/usluge/`, `h1` i `<title>`
+stranice, padajuća lista u kontakt formi, `meta description` liste usluga.
+
+Gde je namerno ostalo kratko: futer (sve stranice), mrvice, unakrsni linkovi među
+stranicama usluga. To su navigacione oznake — treba da se skeniraju, a
+„Postoperativna rehabilitacija" već lomi kolonu futera u dva reda.
+
+**Slug je i dalje `kineziterapija`.** Adresa se ne menja; da se menjala, trebalo
+bi i preusmerenje, a stranica još nije objavljena pod tim imenom.
 
 ## Provereno pre isporuke
 

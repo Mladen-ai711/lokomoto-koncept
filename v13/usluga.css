@@ -1004,3 +1004,30 @@
     background-position: 68% center;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   10. Drugo ime usluge („Kineziterapija / Rehabilitacioni trening")
+   ══════════════════════════════════════════════════════════════ */
+
+/* Drugo ime je tiše od prvog: naslov i dalje čita kao jedan pojam,
+   a ne kao dve ravnopravne usluge. Nasleđuje sve od roditelja osim
+   težine i jačine, pa radi i u `h1` i u `strong` u panelu. */
+.name-alt {
+  display: inline-block;
+  color: inherit;
+  font-weight: 400;
+  opacity: 0.58;
+  letter-spacing: 0;
+}
+
+/* U `h1` je osnovni stepen prevelik: „Rehabilitacioni trening" u toj
+   veličini prelomi se u dva reda i pojede naslov. Ide u svoj red,
+   upola manje — kao podnaslov, ne kao drugi naslov. */
+h1 .name-alt {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.42em;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  opacity: 0.5;
+}
