@@ -296,18 +296,31 @@ Klijent je dao folder `E:\Lokomoto` sa **104 fotografije** iz profesionalnog
 snimanja. Među njima **25 portreta u crnoj polo majici** — ista sala, isto
 svetlo, po tri-četiri kadra po osobi.
 
-**Na tim portretima je 9 različitih ljudi, a kartica ima 6.** Novak je
+**Na tim portretima je 8 ljudi, a kartica ima 6.** Novak je
 prepoznat (isti čovek kao na postojećem `novak-ilic.webp`), ostalih 8 su
 nepoznati. Pošto Nikolin odgovor ko je ko čeka Novaka, a to bi trajalo,
 Mladen je odlučio da **fotografije uđu bez imena**.
 
-**Kako je izabrano 5 od 8.** Jedini kriterijum koji nije nasumičan: **poza**.
-Sedam ljudi je snimljeno sa prekrštenim rukama, dvoje sa rukama na bokovima.
-Uzeto je pet iz veće grupe, tako da svih šest kartica ima isti stav i isti
-kadar. Van izbora su ostali:
+**Prva verzija je imala grešku:** kao dve osobe bile su uzete `L-119` i `L-131`,
+a to je **ista žena**. Ona je na šest kadrova (`L-118`–`L-120` i `L-130`–`L-132`);
+na dva se vidi proteza, na ostalima ne, pa je promakla. Mladen je uhvatio.
 
-- `L-116`, `L-117` i `L-121`, `L-122` — dva čoveka, ruke na bokovima
-- `L-136`, `L-137` — kovrdžavi, prekrštene ruke (sedmi iz grupe)
+**Kriterijum posle ispravke: samo nedvosmisleno različiti ljudi.** Šest kartica
+sada nosi šest lica koja se ne mogu pomešati:
+
+| Kartica | Izvor | Ko |
+|---|---|---|
+| Novak Ilić | *(postojeći `novak-ilic.webp`)* | brada, prekrštene ruke |
+| Fizijatar | `L-119` | jedina žena u setu |
+| Postoperativna | `L-128` | mlađi, bez brade |
+| Kineziterapeut | `L-137` | kovrdžava kosa |
+| Leđa i vrat | `L-134` | brkovi i kozja bradica |
+| Aparati | `L-139` | riđa brada |
+
+Van izbora su ostali kadrovi `L-116`/`L-117` i `L-121`/`L-122` (ruke na bokovima).
+Njih namerno nisam koristio: ta dva-tri bradata čoveka se na fotografijama
+teško razlikuju međusobno i od Novaka, pa je rizik da se neko ponovi previše
+velik. Kad Novak kaže ko je ko, to prestaje da bude problem.
 
 **Ubačeno** (`v8/assets/images/`, 4:5, 900×1125, ~55 kB po slici):
 
@@ -316,7 +329,7 @@ kadar. Van izbora su ostali:
 | `novak-ilic.webp` | *(postojeći)* | Novak Ilić — fizioterapeut |
 | `tim-01.webp` | `L-119` | Fizijatar |
 | `tim-02.webp` | `L-128` | Fizioterapeut — postoperativna |
-| `tim-03.webp` | `L-131` | Kineziterapeut |
+| `tim-03.webp` | `L-137` | Kineziterapeut |
 | `tim-04.webp` | `L-134` | Fizioterapeut — leđa i vrat |
 | `tim-05.webp` | `L-139` | Fizioterapeut — aparati |
 
