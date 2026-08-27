@@ -47,7 +47,8 @@ Po odluci iz modela sadržaja 1.2, odeljak 4b:
 Klijent više ne drži edukacije. Sekcija nije obrisana nego prenamenjena — to je
 jedini tamni predah između Tima i Pitanja, i poslednji argument pre kontakta.
 
-- Oznaka `04 OPREMA`, naslov „Uređaji koje nema *svaka ambulanta.*", tekst nabraja
+- Oznaka `04 OPREMA`, naslov „Uređaji koje nema *svaka ambulanta.*" (kasnije
+  zamenjen sa „Najmodernija terapija, dostupna u Beogradu."), tekst nabraja
   INDIBA / Triton DTS / NeuFit pa odmah relativizuje („nijedan ne bira sam šta tretira").
 - Dugme „Kako to izgleda u praksi" → `usluge/fizikalna-terapija/` (interni link,
   umesto spoljnog na `lokomoto-edukacija`, koji je uklonjen).
@@ -273,6 +274,21 @@ Vezuje ih **`:has()`** preko zajedničkog pretka, sa `data-spot` kao sponom.
 Isprekidana linija išijasa deli oznaku sa natpisom „Utrnuće u nozi", pa se pali
 zajedno sa njim. Uz `prefers-reduced-motion` uvećanje i prelaz otpadaju, a
 isticanje ostaje. Bez podrške za `:has()` ništa se ne kvari — tačke samo miruju.
+
+### Ambulanta → ordinacija (tačka 11)
+
+Klijent: „i mi smo ordinacija, ne ambulanta". Potvrđeno preko Mladena.
+
+Zamenjeno na **8 mesta**, sve isti red u futeru:
+„Specijalizovana **ordinacija** fizikalne medicine i rehabilitacije."
+Reč „ambulanta" posle toga ne postoji nigde u v13, provereno pretragom.
+
+Ostala pojavljivanja reči „ordinacija" na sajtu (FAQ „Iz ordinacije izlazite sa
+nalazom", `alt` tekst fotografije) sada su usklađena sa futerom — ranije su bila
+u neskladu.
+
+**Uputstva projekta i dalje opisuju Lokomoto kao „specijalizovanu ambulantu".**
+Treba ih ispraviti, inače će sledeća sesija vratiti staru reč.
 
 ## Provereno pre isporuke
 
