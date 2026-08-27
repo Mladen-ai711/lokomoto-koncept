@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=2.3`, `app.js?v=1.0`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=2.4`, `app.js?v=1.0`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -214,7 +214,11 @@ tražila bi novi eksport. Ovako su tačke, linije i natpisi HTML i CSS:
 - `vector-effect: non-scaling-stroke` drži debljinu linije istom na svakoj širini
 
 **Ispod 1000 px** natpisi izlaze iz apsolutnog položaja i postaju običan spisak
-ispod fotografije, linije se gase, tačke se smanjuju. Tačke su unutar
+ispod fotografije, linije se gase, tačke se smanjuju.
+
+Oznaka „NIJE UVEK JEDNA TAČKA" je u `var(--teal)`, ista boja kao oznaka same
+sekcije („SA ČIME NAM NAJČEŠĆE DOLAZE") — iste su vrste pa treba da izgledaju
+kao par. Tačke su unutar
 `.body-map-stage` baš zato — da im referentni okvir ostane fotografija, a ne
 cela figura koja na telefonu naraste.
 
@@ -247,8 +251,21 @@ zapamtiti pre nego što se ideja vrati:
 5. Nema hovera na telefonu, a telefon je verovatno većina saobraćaja.
 
 **Umesto toga, čist CSS.** Na prelaz mišem ili fokus tastaturom: tačka naraste
-1,55× i zasija, njena linija se pojača, sve ostale tačke, linije i natpisi se
-priguše. Nula kilobajta, nula JavaScripta.
+1,28× i zasija, njena linija se pojača, ostale tačke i linije se povuku.
+Nula kilobajta, nula JavaScripta.
+
+**Umirivanje (klijent: „sve titra kao u video igrici").** Prva verzija je
+uvećavala 1,55×, gasila sve ostalo na 0,28 i gasila i **natpise**, uz prelaz od
+220 ms bez zadrške — pa je svaki pokret miša preko osam kutija palio i gasio
+celu sliku. Tri izmene:
+
+1. **Zadrška od 120 ms** pre nego što se bilo šta upali. Kad mišem samo pređeš
+   preko svih osam, ne upali se ništa; pali se tek kad se zadržiš. Provereno
+   skriptom: pri prelazu od 60 ms po natpisu, najveće uvećanje tačke ostaje 1,000.
+2. **Natpisi se više ne gase.** Osam kutija sa tekstom koje se prigušuju dok
+   prelaziš preko njih bilo je glavni izvor treperenja.
+3. **Manji skok i mekši sjaj**: 1,55× → 1,28×, prigušenje 0,28 → 0,55, prelaz
+   220 ms → 420 ms.
 
 Natpis i tačka nisu susedi u HTML-u — tačke moraju biti unutar
 `.body-map-stage` (referentni okvir im je fotografija), natpisi su van njega.

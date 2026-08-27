@@ -1253,7 +1253,9 @@ h1 .name-alt {
   font-size: 0.92rem;
   line-height: 1.35;
   transform: translateY(-50%);
-  transition: border-color 200ms var(--ease), background 200ms var(--ease);
+  transition:
+    border-color 320ms var(--ease) 120ms,
+    background 320ms var(--ease) 120ms;
 }
 .bm::before {
   display: inline-block;
@@ -1265,8 +1267,8 @@ h1 .name-alt {
 }
 .bm:hover,
 .bm:focus-visible {
-  border-color: var(--teal);
-  background: rgba(20, 28, 26, 0.9);
+  border-color: rgba(19, 201, 179, 0.7);
+  background: rgba(20, 28, 26, 0.78);
 }
 .bm-l {
   left: 3.5%;
@@ -1285,7 +1287,9 @@ h1 .name-alt {
 .complaints-rest-label {
   display: block;
   margin-bottom: 0.9rem;
-  color: rgba(255, 255, 255, 0.55);
+  /* Ista boja kao `.complaints-label` („SA ČIME NAM NAJČEŠĆE DOLAZE") —
+     iste su vrste, pa treba da izgledaju kao par. */
+  color: var(--teal);
   font-size: 0.6rem;
   font-weight: 850;
   letter-spacing: 0.15em;
@@ -1349,116 +1353,139 @@ h1 .name-alt {
    Ovo je namerno zamena za ideju sa animiranim čovekom: isti osećaj da
    stranica odgovara, bez rizika da AI video izvrne anatomiju na sajtu
    fizikalne medicine. */
+/* Prelaz je dug i sa zadrškom od 120 ms: kad mišem samo pređeš preko svih
+   osam natpisa, ništa ne stigne da se upali. Pali se tek kad se zadržiš.
+   Bez toga cela slika treperi na svaki pokret miša. */
 .bm-dot {
   transition:
-    opacity 220ms var(--ease),
-    transform 220ms var(--ease),
-    box-shadow 220ms var(--ease);
+    opacity 420ms var(--ease),
+    transform 420ms var(--ease),
+    box-shadow 420ms var(--ease);
+  transition-delay: 0s;
 }
 .body-map-lines polyline {
   transition:
-    opacity 220ms var(--ease),
-    stroke-width 220ms var(--ease);
+    opacity 420ms var(--ease),
+    stroke-width 420ms var(--ease);
+  transition-delay: 0s;
 }
 
 /* Sve ostalo se povuče kad je jedan natpis aktivan. */
+/* Ostale tačke se samo povuku, ne gase. Natpisi se ne diraju — kad se
+   osam kutija sa tekstom gasi i pali dok prelaziš preko njih, to je ono
+   što je delovalo kao video igrica. */
 .body-map:has(.bm:is(:hover, :focus-visible)) .bm-dot {
-  opacity: 0.28;
+  opacity: 0.55;
+  transition-delay: 120ms;
 }
 .body-map:has(.bm:is(:hover, :focus-visible)) .body-map-lines polyline {
-  opacity: 0.2;
-}
-.body-map:has(.bm:is(:hover, :focus-visible)) .bm:not(:hover):not(:focus-visible) {
-  opacity: 0.55;
+  opacity: 0.42;
+  transition-delay: 120ms;
 }
 
 .body-map:has(.bm[data-spot="1"]:is(:hover, :focus-visible)) .bm-dot[data-spot="1"] {
   opacity: 1;
   box-shadow:
-    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
-    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
-  transform: translate(-50%, -50%) scale(1.55);
+    0 0 0 0.44rem rgba(19, 201, 179, 0.18),
+    0 0 1.9rem 0.35rem rgba(19, 201, 179, 0.38);
+  transform: translate(-50%, -50%) scale(1.28);
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="1"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="1"] {
   opacity: 1;
-  stroke-width: 1.7px;
+  stroke-width: 1.4px;
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="2"]:is(:hover, :focus-visible)) .bm-dot[data-spot="2"] {
   opacity: 1;
   box-shadow:
-    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
-    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
-  transform: translate(-50%, -50%) scale(1.55);
+    0 0 0 0.44rem rgba(19, 201, 179, 0.18),
+    0 0 1.9rem 0.35rem rgba(19, 201, 179, 0.38);
+  transform: translate(-50%, -50%) scale(1.28);
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="2"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="2"] {
   opacity: 1;
-  stroke-width: 1.7px;
+  stroke-width: 1.4px;
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="3"]:is(:hover, :focus-visible)) .bm-dot[data-spot="3"] {
   opacity: 1;
   box-shadow:
-    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
-    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
-  transform: translate(-50%, -50%) scale(1.55);
+    0 0 0 0.44rem rgba(19, 201, 179, 0.18),
+    0 0 1.9rem 0.35rem rgba(19, 201, 179, 0.38);
+  transform: translate(-50%, -50%) scale(1.28);
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="3"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="3"] {
   opacity: 1;
-  stroke-width: 1.7px;
+  stroke-width: 1.4px;
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="4"]:is(:hover, :focus-visible)) .bm-dot[data-spot="4"] {
   opacity: 1;
   box-shadow:
-    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
-    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
-  transform: translate(-50%, -50%) scale(1.55);
+    0 0 0 0.44rem rgba(19, 201, 179, 0.18),
+    0 0 1.9rem 0.35rem rgba(19, 201, 179, 0.38);
+  transform: translate(-50%, -50%) scale(1.28);
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="4"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="4"] {
   opacity: 1;
-  stroke-width: 1.7px;
+  stroke-width: 1.4px;
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="5"]:is(:hover, :focus-visible)) .bm-dot[data-spot="5"] {
   opacity: 1;
   box-shadow:
-    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
-    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
-  transform: translate(-50%, -50%) scale(1.55);
+    0 0 0 0.44rem rgba(19, 201, 179, 0.18),
+    0 0 1.9rem 0.35rem rgba(19, 201, 179, 0.38);
+  transform: translate(-50%, -50%) scale(1.28);
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="5"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="5"] {
   opacity: 1;
-  stroke-width: 1.7px;
+  stroke-width: 1.4px;
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="6"]:is(:hover, :focus-visible)) .bm-dot[data-spot="6"] {
   opacity: 1;
   box-shadow:
-    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
-    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
-  transform: translate(-50%, -50%) scale(1.55);
+    0 0 0 0.44rem rgba(19, 201, 179, 0.18),
+    0 0 1.9rem 0.35rem rgba(19, 201, 179, 0.38);
+  transform: translate(-50%, -50%) scale(1.28);
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="6"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="6"] {
   opacity: 1;
-  stroke-width: 1.7px;
+  stroke-width: 1.4px;
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="7"]:is(:hover, :focus-visible)) .bm-dot[data-spot="7"] {
   opacity: 1;
   box-shadow:
-    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
-    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
-  transform: translate(-50%, -50%) scale(1.55);
+    0 0 0 0.44rem rgba(19, 201, 179, 0.18),
+    0 0 1.9rem 0.35rem rgba(19, 201, 179, 0.38);
+  transform: translate(-50%, -50%) scale(1.28);
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="7"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="7"] {
   opacity: 1;
-  stroke-width: 1.7px;
+  stroke-width: 1.4px;
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="8"]:is(:hover, :focus-visible)) .bm-dot[data-spot="8"] {
   opacity: 1;
   box-shadow:
-    0 0 0 0.55rem rgba(19, 201, 179, 0.26),
-    0 0 2.8rem 0.6rem rgba(19, 201, 179, 0.5);
-  transform: translate(-50%, -50%) scale(1.55);
+    0 0 0 0.44rem rgba(19, 201, 179, 0.18),
+    0 0 1.9rem 0.35rem rgba(19, 201, 179, 0.38);
+  transform: translate(-50%, -50%) scale(1.28);
+  transition-delay: 120ms;
 }
 .body-map:has(.bm[data-spot="8"]:is(:hover, :focus-visible)) .body-map-lines [data-spot="8"] {
   opacity: 1;
-  stroke-width: 1.7px;
+  stroke-width: 1.4px;
+  transition-delay: 120ms;
 }
 
 /* Bez `:has()` ništa se ne kvari — tačke samo ostaju mirne. */
