@@ -1522,3 +1522,36 @@ h1 .name-alt {
   border-color: rgba(255, 255, 255, 0.28);
   color: rgba(255, 255, 255, 0.6);
 }
+
+/* ══════════════════════════════════════════════════════════════
+   18. Tri sitna teksta koja klijent nije mogao da pročita
+   ══════════════════════════════════════════════════════════════ */
+
+/* Nikola je tri puta rekao „premalo je". Podignuta su tačno ona tri mesta
+   koja je pokazao, ne sve sitne oznake — razlika u veličini je ono što drži
+   hijerarhiju, pa kad sve postane srednje, ništa se ne ističe.
+
+   Merene vrednosti pre izmene: nadnaslov 10,6 px, „Radije razgovarate?"
+   8,8 px, mikrotekst ispod dugmeta 9,9 px uz slab kontrast. Ispod 11 px
+   prosečan posetilac ne čita, nego preskače. */
+
+/* 1 — nadnaslov u hero-u: prva reč na strani, a bila je najsitnija. */
+.hero-kicker {
+  font-size: clamp(0.78rem, 0.9vw, 0.86rem);
+  letter-spacing: 0.12em;
+}
+
+/* 2 — „Radije razgovarate?" iznad broja telefona. Ovo je bilo 8,8 px:
+   najmanji tekst na sajtu, a stoji uz jedini alternativni način javljanja. */
+.contact-phone small {
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
+}
+
+/* 3 — mikrotekst ispod dugmeta. Objašnjava zašto se otvara e-mail program,
+   pa mora da se pročita; uz veličinu je pojačan i kontrast. */
+.contact-form-note {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}

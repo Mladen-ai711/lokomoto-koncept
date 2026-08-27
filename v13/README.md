@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=2.5`, `app.js?v=1.0`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=2.6`, `app.js?v=1.0`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -355,6 +355,27 @@ pravilo po kom stoji i zabrana izmišljenih brojeva.
 
 Za elektroterapiju je prvo bio uzet `L-75` (elektrode na grudima), pa zamenjen
 `L-77` — kadar sa rukama terapeuta pokazuje radnju, a ne golo telo.
+
+### Sitni tekstovi (tačka 16)
+
+Klijent je tri puta rekao „premalo je". Izmereno pre izmene:
+
+| Tekst | Bilo | Sada |
+|---|---|---|
+| Nadnaslov u hero-u | 10,6 px | **13,0 px** |
+| „Radije razgovarate?" iznad telefona | **8,8 px** | **11,5 px** |
+| Mikrotekst ispod dugmeta forme | 9,9 px, slab kontrast | **12,5 px**, `var(--muted)` |
+
+„Radije razgovarate?" je bio **najsitniji tekst na celom sajtu**, a stoji uz
+jedini alternativni način javljanja — ko ne želi da piše, tu treba da nađe
+telefon. Mikrotekstu je uz veličinu pojačan i kontrast, jer objašnjava zašto
+se otvara e-mail program; ako se ne pročita, poseta izgleda kao pokvarena forma.
+
+**Podignuta su samo ta tri mesta, ne sve sitne oznake.** Razlika u veličini je
+ono što drži hijerarhiju — kad sve postane srednje, ništa se ne ističe. Ako
+klijent i dalje smatra da je sitno, sledeći korak nije dizanje svega nego
+provera na njegovom ekranu: moguće je da gleda na velikom monitoru sa
+podešenim skaliranjem.
 
 ## Provereno pre isporuke
 
