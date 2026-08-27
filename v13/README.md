@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=2.4`, `app.js?v=1.0`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=2.5`, `app.js?v=1.0`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -290,6 +290,72 @@ u neskladu.
 **Uputstva projekta i dalje opisuju Lokomoto kao „specijalizovanu ambulantu".**
 Treba ih ispraviti, inače će sledeća sesija vratiti staru reč.
 
+### Fotografije tima (27.08.2026)
+
+Klijent je dao folder `E:\Lokomoto` sa **104 fotografije** iz profesionalnog
+snimanja. Među njima **25 portreta u crnoj polo majici** — ista sala, isto
+svetlo, po tri-četiri kadra po osobi.
+
+**Na tim portretima je 9 različitih ljudi, a kartica ima 6.** Novak je
+prepoznat (isti čovek kao na postojećem `novak-ilic.webp`), ostalih 8 su
+nepoznati. Pošto Nikolin odgovor ko je ko čeka Novaka, a to bi trajalo,
+Mladen je odlučio da **fotografije uđu bez imena**.
+
+**Kako je izabrano 5 od 8.** Jedini kriterijum koji nije nasumičan: **poza**.
+Sedam ljudi je snimljeno sa prekrštenim rukama, dvoje sa rukama na bokovima.
+Uzeto je pet iz veće grupe, tako da svih šest kartica ima isti stav i isti
+kadar. Van izbora su ostali:
+
+- `L-116`, `L-117` i `L-121`, `L-122` — dva čoveka, ruke na bokovima
+- `L-136`, `L-137` — kovrdžavi, prekrštene ruke (sedmi iz grupe)
+
+**Ubačeno** (`v8/assets/images/`, 4:5, 900×1125, ~55 kB po slici):
+
+| Fajl | Izvor | Kartica |
+|---|---|---|
+| `novak-ilic.webp` | *(postojeći)* | Novak Ilić — fizioterapeut |
+| `tim-01.webp` | `L-119` | Fizijatar |
+| `tim-02.webp` | `L-128` | Fizioterapeut — postoperativna |
+| `tim-03.webp` | `L-131` | Kineziterapeut |
+| `tim-04.webp` | `L-134` | Fizioterapeut — leđa i vrat |
+| `tim-05.webp` | `L-139` | Fizioterapeut — aparati |
+
+**Raspored lica po ulogama je čista pretpostavka.** Zato su i **ime i uloga**
+označeni kao placeholder, a u belešci sekcije Tim stoji žuto istaknuto:
+*„Fotografije su prave. Imena i uloge čekaju potvrdu klijenta — raspored lica
+po ulogama je pretpostavka."* Zamena je jedna linija po kartici.
+
+Kontakt-listovi svih 104 fotografije i pregled portreta su u
+`E:\Lokomoto\_pregled\` — za slanje Novaku, da odgovori sa „L-124 je taj i taj".
+
+### Fotografije procedura (tačka 14)
+
+Iz istog snimanja (`E:\Lokomoto`). Kartice u sekciji „Sedam procedura" primaju
+`<figure class="method-photo">` kao prvi element — klasa je bila pripremljena
+još u v13 1.1, sada je konačno iskorišćena.
+
+| Procedura | Fajl | Izvor | Zašto baš ta |
+|---|---|---|---|
+| INDIBA | `metoda-indiba.webp` | `L-7` | na ekranu piše **INDIBA** |
+| Triton DTS | `metoda-triton.webp` | `L-69` | na kućištu piše **TRITON** |
+| NeuFit (NEUBIE) | `metoda-neufit.webp` | `L-19` | logo **neubie / neufit** |
+| Elektroterapija | `metoda-elektro.webp` | `L-77` | terapeut postavlja elektrode |
+
+Sve 16:10, 880×550, 20–35 kB.
+
+**Tri kartice ostaju bez fotografije: magnetoterapija, krioterapija i limfna
+drenaža.** U snimanju nema kadra na kome se ta oprema prepoznaje. Umesto da se
+stavi „slična" fotografija, kartica nosi **označeno prazno mesto** iste visine
+(`.method-photo-prazna`, isprekidan okvir + značka „FOTOGRAFIJA NEDOSTAJE").
+Red ostaje ravan, a klijent tačno vidi šta fali.
+
+**Ovo je namerno i ne treba ga „popraviti" prvom slikom koja liči.** Pogrešno
+označen aparat na sajtu fizikalne medicine nije dekoracija nego tvrdnja — isto
+pravilo po kom stoji i zabrana izmišljenih brojeva.
+
+Za elektroterapiju je prvo bio uzet `L-75` (elektrode na grudima), pa zamenjen
+`L-77` — kadar sa rukama terapeuta pokazuje radnju, a ne golo telo.
+
 ## Provereno pre isporuke
 
 Puštena skripta kroz browser:
@@ -310,6 +376,8 @@ Na stranici fizikalne terapije žuto označeno, oznaka „ZA POTVRDU":
 | Šta | Stanje |
 |---|---|
 | „Prvi pomak posle 3–4 dolaska" | izmišljeno kao primer, mora potvrditi struka |
+| Imena i uloge tima | **fotografije su prave**, imena i raspored po ulogama nisu |
+| Foto: magnetoterapija, krioterapija, limfna drenaža | nema kadra u snimanju, kartica nosi označeno prazno mesto |
 | FAQ „Koliko košta?" na naslovnoj | rečenica stoji bez brojeva, oznaka „CENE ZA POTVRDU" |
 | RFZO: da / ne / delimično | nema odgovora |
 | Cene | prepisane sa `lokomoto.rs/cenovnik-2/`, traže potvrdu |

@@ -1499,3 +1499,26 @@ h1 .name-alt {
     transform: translate(-50%, -50%);
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   17. Kartica procedure — prazno mesto za fotografiju
+   ══════════════════════════════════════════════════════════════ */
+
+/* Od sedam procedura, četiri imaju fotografiju na kojoj se aparat
+   sa sigurnošću prepoznaje (na tri se čita i marka). Za magnetoterapiju,
+   krioterapiju i limfnu drenažu u snimanju nema kadra — pa stoji označeno
+   prazno mesto, iste visine kao fotografija. Time red ostaje ravan, a
+   klijent vidi šta tačno fali. Ne stavljati „sličnu" fotografiju: pogrešno
+   označen aparat na sajtu fizikalne medicine je tvrdnja, ne dekoracija. */
+.method-photo-prazna {
+  display: grid;
+  aspect-ratio: 16 / 10;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.03);
+  place-items: center;
+}
+.method-photo-prazna .ph-note {
+  margin: 0;
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.6);
+}
