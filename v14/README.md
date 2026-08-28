@@ -1,30 +1,73 @@
-# v13 — naslovna sa pravim linkovima + šablon stranice usluge
+# v14 — Lokomoto boje
 
-> **ZAMRZNUTO 28. 8. 2026.** Ovo je stanje koje je Nikola video i po kom je dao
-> drugu rundu ispravki: koncept sa tirkiznom bojom, 12 od 15 stavki urađeno.
-> Ostaje na svojoj adresi kao referenca i kao povratna tačka.
->
-> **Dalji rad ide u `v14/`** — ista stranica u Lokomoto plavoj (stavka 1).
-> Ako se plava ne primi, `v13/` je i dalje tu, živa i nepromenjena.
->
-> Sve ispod opisuje kako je v13 nastala i zašto je šta odlučeno. Važi i za v14,
-> koja je njena kopija — v14 ima svoj README samo za ono što se razlikuje.
+Doslovna kopija `v13/` od 28. 8. 2026, sa jednom razlikom: **tirkiz je zamenjen
+plavom iz Lokomoto logoa** (Nikolina stavka 1, druga runda).
 
+`v13/` je zamrznuta i ostaje na svojoj adresi. Ako se plava ne primi, ništa nije
+izgubljeno — dve adrese žive paralelno i mogu da se pokažu jedna do druge.
 
-Demo klik-toka: sa naslovne se sada **stvarno otvaraju** stranice usluga.
-`v12/` nije diran — v13 čita `v12/styles.css`, ostalo je svoje.
+**Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v14/`
 
-**Lokalno otvaranje:** pokreni server u korenu repoa, ne otvaraj dvoklikom.
-Adrese su čiste (`usluge/fizikalna-terapija/`), a `file://` ne ume da servira
-`index.html` iz foldera — pokazao bi spisak fajlova.
+---
 
+## Boje — izmereno, ne procenjeno
+
+Bojazan je bila da brend plava „nikako ne ide" uz postojeću paletu. Izmereno iz
+`v8/assets/images/logo-color.png`, po tonu:
+
+| Udeo piksela | Ton | Prosečna boja | Šta je |
+|---|---|---|---|
+| **85%** | 180–220° | `#2c9ecb` i `#1f7db6` | plava |
+| **14%** | 80–100° | `#95d15e` | žuto-zelena |
+
+**Logo je plav i žuto-zelen.** Nikolina `#057eb6` (ton 199°) je tamnija plava iz
+tog istog logoa.
+
+A paleta v12 je već imala `--blue: #279cd1` — **ton 198,7°, ista porodica**.
+Tirkiz `--teal` je na 172,7°, dakle **26° od brend plave**: susedi u cijan
+porodici, ne sudar. `--lime` `#c9f25f` je na 76,7° — **ista porodica kao zelena
+iz logoa**, samo svetlija.
+
+Drugim rečima: paleta je bila bliža brendu nego što je izgledalo. Pomerena je za
+26°, nije menjana.
+
+## Šta je tačno promenjeno
+
+Jedan blok na vrhu `usluga.css`, sekcija 0:
+
+```css
+:root {
+  --teal: #2c9ecb;       /* svetlija plava iz logoa — tačke i naglasci na tamnom */
+  --teal-deep: #057eb6;  /* Nikolina brend plava — tekst na svetlom */
+  --blue: #2c9ecb;
+}
 ```
-cd C:\Users\Mladen\source\repos\lokomoto-koncept
-py -m http.server 8000
-```
 
-Zatim: `http://localhost:8000/v13/`
-Na GitHub Pages posle pusha sve radi bez servera.
+**Dve vrednosti, jer ih i logo ima dve.** Jedna boja ne može da nosi i tačku na
+tamnoj fotografiji i tekst na papiru.
+
+**Kontrast je proveren, ne pogoršava se.** Na `--paper` (#f1f0e9):
+stari `--teal-deep` #078b7d = **3,68:1**, novi #057eb6 = **3,94:1**.
+
+**`--lime` nije diran.** Zelena iz logoa (#95d15e) je ista porodica kao postojeći
+#c9f25f, samo tamnija — a lime mora da ostane svetao da bi se video na `--ink`
+pozadini. Ako Nikola traži doslovnu zelenu iz logoa, menja se jednim redom u
+sekciji 0.
+
+**Ništa drugo nije dirano.** Nema izmena u HTML-u, rasporedu, tekstu ni skripti.
+Razlika prema v13 je taj jedan blok i oznake verzije.
+
+## Oznake verzije
+
+v14 kreće od `?v=14.0` za `usluga.css`, `app.js` i `stranica.js` — namerno daleko
+od v13 brojeva, da keš jedne verzije ne servira drugu.
+
+## Provereno
+
+7 stranica na 1440 px: `--teal` i `--teal-deep` čitaju nove vrednosti na svakoj,
+bez horizontalnog preliva, bez JS grešaka, **90 lokalnih linkova, nijedan mrtav**.
+
+---
 
 ## Fajlovi
 
