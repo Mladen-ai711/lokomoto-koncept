@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=2.6`, `app.js?v=1.0`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=2.7`, `app.js?v=1.1`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -390,6 +390,99 @@ klijent i dalje smatra da je sitno, sledeći korak nije dizanje svega nego
 provera na njegovom ekranu: moguće je da gleda na velikom monitoru sa
 podešenim skaliranjem.
 
+## Druga runda klijentovih ispravki — grupa A (28.08.2026)
+
+Pet stavki sa Nikoline liste koje se rade bez pitanja. Cela lista i podela na
+grupe je u `claude/11-ispravke-klijent-2.md`; grupe B, C i D ovde nisu dirane.
+
+### 2 — dugme „Pauza" izbačeno iz heroja
+
+Uklonjeno `<button class="video-toggle">` iz `index.html` i ceo `setVideoState`
+iz `app.js`. Video ostaje `autoplay muted loop playsinline`.
+
+**Guard za `prefers-reduced-motion` ostaje** i sada je jedini način da se video
+zaustavi: ko je u sistemu tražio manje animacije, dobija zaustavljen video. To
+je pristupačnost, ne opcija u interfejsu, pa nema šta da se prikaže na ekranu.
+Pravila `.video-toggle` u `v12/styles.css` ostaju (v12 je zamrznut) — samo više
+nemaju na šta da se primene.
+
+### 4 — „Naš pristup": telo teksta podignuto
+
+Isti uzrok kao tačka 16 prve runde: v12 za ove elemente ne postavlja
+`font-size`, pa padaju na nasleđenih 16 px. U sekciji čiji naslov koraka ide na
+43 px, 16 px izgleda kao fusnota.
+
+| Tekst | Bilo | Sada |
+|---|---|---|
+| Uvodni pasus sekcije | 18,0 px | **19,6 px** |
+| Pasus koraka (Procena / Terapija / Funkcija) | 16,0 px | **18,7 px** |
+| RAZUMEMO / USMERAVAMO / VRAĆAMO | 9,1 px | **11,5 px** |
+| Oznaka na fotografiji („INDIVIDUALNI PRISTUP") | 9,4 px | **11,5 px** |
+
+Mereno na 1440 px. **`.section-label` nije diran** — zajednički je za ceo sajt,
+pa bi izmena u jednoj sekciji razbila hijerarhiju. Ako Nikola i dalje kaže da je
+sitno, sledeće na redu je `.section-label` globalno, ne još jedan lokalni izuzetak.
+
+### 9 — „Rehabilitacioni trening" ravnopravan sa „Kineziterapijom"
+
+`.name-alt` više ne stišava drugo ime: `font-weight: inherit`, `opacity: 1`. U
+`h1` je iz svog reda vraćeno u isti red kao nastavak naslova. Ostaje samo kosa
+crta kao razdelnik.
+
+> **Ne slažem se i ostavljam zapisano.** Dva imena iste težine čitaju se kao dve
+> usluge — u panelu na naslovnoj i u futeru sad izgleda kao da usluga ima sedam
+> umesto šest, a na stranici usluge naslov ide u tri reda na 95 px. Klijentov
+> poziv; vraćanje je brisanje sekcije 20 u `usluga.css`.
+
+### 12 — INDIBA, NeuFit i dekompresija imenovani u sekciji Oprema
+
+Imena su do sada stajala unutar pasusa, kao nabrajanje. Sada su tri stavke u redu
+(jedan stubac ispod 780 px), svaka sa jednom rečenicom. Pasus iznad je skraćen da
+se imena ne ponavljaju dvaput u istoj sekciji.
+
+**Opis je sveden na to ŠTA je uređaj, ne za šta se koristi.** Marke se čitaju sa
+samih fotografija iz snimanja, pa kategorija uređaja nije tvrdnja. Indikacija
+jeste medicinska tvrdnja — stoji značka `TEKST ZA POTVRDU` dok ne prođe kroz
+nekoga iz struke.
+
+### 15 — kriva slika ordinacije u herou
+
+Hero je Ken Burns montaža četiri fotografije. Nikola je rekao „jedna slika
+ordinacije je ukrivo" — izmereno je koji je to kadar, umesto pogađanja:
+
+| Kadar | Nagib vertikala | Ocena |
+|---|---|---|
+| 1 — terapijska soba sa aparatom | 0,0° | prav, kosе linije su perspektiva |
+| 4 — sala za vežbe, širok kadar | **−2,5°** | **kamera nakrivljena** |
+
+Zamenjen je **kadar 4**. Novi izvor: **`L-17` (čekaonica)** iz snimanja od
+27.08. Prav je, svetao i otvoren — poslednji kadar u petlji treba tako da se
+završi — i nema opreme ni motivacionih citata sa zida, koji celu montažu vuku
+ka jeziku teretane umesto nege.
+
+*Ako Nikola želi da poslednji kadar ostane sala, alternativa je `L-21` (ista
+prostorija, druga strana, prava vertikala). Zamena je oko 20 minuta.*
+
+Tehnički: prvih 12,2 s postojećeg videa je zadržano nepromenjeno, pa je na
+11,6 s ubačen prelaz od 0,6 s u novi kadar (4,6 s, sporo povlačenje unazad,
+`z 1,10 → 1,00`, sub-pikselski render bez `zoompan`). Gradacija starog videa
+(`saturation 0.82`, `contrast 0.96`) primenjena je i na novi kadar, a svetlina
+izjednačena gamom — mereno, ne na oko:
+
+| | Desktop | Mobilni |
+|---|---|---|
+| Kadar 1 (početak petlje) | 129,7 | 140,8 |
+| Novi kadar 4 (kraj petlje) | **142,2** | **140,3** |
+
+Novi fajlovi, **stari `v4` nisu brisani**:
+
+- `v8/assets/media/hero-loop-v5.mp4` — 1600×900, 16,2 s, 2,1 MB
+- `v8/assets/media/hero-loop-v5-mobile.mp4` — 900×1600, 16,2 s, 1,9 MB
+- `v8/assets/images/hero-poster-v5.jpg` i `hero-poster-v5-mobile.jpg`
+
+Nova imena umesto `?v=` jer se menja sadržaj videa, a ne stila — tako stara
+verzija ostaje dostupna za poređenje.
+
 ## Provereno pre isporuke
 
 Puštena skripta kroz browser:
@@ -403,6 +496,18 @@ Puštena skripta kroz browser:
 
 Jedini 404 u testu je hero video, koji u testno okruženje nije prenet — u repou postoji.
 
+### Druga runda, grupa A (28.08.2026)
+
+Renderovano na **1440 i 390 px**, svih 8 stranica:
+
+- bez JS grešaka, bez 404, bez horizontalnog preliva ni na jednoj stranici
+- sve stranice čitaju `usluga.css?v=2.7`; naslovna `app.js?v=1.1`
+- hero traži `hero-loop-v5.mp4` / `hero-poster-v5.jpg`, na 390 px mobilne verzije
+- dugmeta „Pauza" nema u DOM-u
+- `.name-alt` mereno: 25,92 px / 570 — identično roditeljskom `<strong>`
+- sekcija Oprema: tri stupca na 1440, jedan stubac na 390
+- novi kadar u herou pregledan kao slika na 12,5 s i 16,1 s, u obe verzije
+
 ## PLACEHOLDER — čeka klijenta
 
 Na stranici fizikalne terapije žuto označeno, oznaka „ZA POTVRDU":
@@ -413,6 +518,7 @@ Na stranici fizikalne terapije žuto označeno, oznaka „ZA POTVRDU":
 | Imena i uloge tima | **fotografije su prave**, imena i raspored po ulogama nisu |
 | Foto: magnetoterapija, krioterapija, limfna drenaža | nema kadra u snimanju, kartica nosi označeno prazno mesto |
 | FAQ „Koliko košta?" na naslovnoj | rečenica stoji bez brojeva, oznaka „CENE ZA POTVRDU" |
+| Opisi tri uređaja u sekciji Oprema | kategorija uređaja je proverljiva; indikacija čeka struku, značka „TEKST ZA POTVRDU" |
 | RFZO: da / ne / delimično | nema odgovora |
 | Cene | prepisane sa `lokomoto.rs/cenovnik-2/`, traže potvrdu |
 

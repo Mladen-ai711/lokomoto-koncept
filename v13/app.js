@@ -42,9 +42,6 @@
   const menuToggle = document.querySelector("[data-menu-toggle]");
   const mobileNav = document.querySelector("[data-mobile-nav]");
   const video = document.querySelector("[data-hero-video]");
-  const videoToggle = document.querySelector("[data-video-toggle]");
-  const videoIcon = videoToggle?.querySelector(".video-toggle-icon");
-  const videoLabel = videoToggle?.querySelector(".video-toggle-label");
 
   const updateHeader = () => {
     header?.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -77,35 +74,20 @@
   window.addEventListener("scroll", updateHeader, { passive: true });
   updateHeader();
 
-  const setVideoState = (playing) => {
-    if (!video || !videoToggle || !videoIcon || !videoLabel) return;
+  // Dugme za pauzu je sklonjeno (klijentova primedba, druga runda). Video
+  // ide sam, bez zvuka, u petlji. Posetiocima koji su u sistemu tražili
+  // manje animacije i dalje ga zaustavljamo — to je pristupačnost, ne opcija.
+  if (video) {
+    const holdVideo = (stop) => {
+      if (stop) {
+        video.pause();
+      } else {
+        video.play()?.catch(() => {});
+      }
+    };
 
-    if (playing) {
-      const playPromise = video.play();
-      playPromise?.catch(() => setVideoState(false));
-      videoToggle.setAttribute("aria-label", "Pauziraj video");
-      videoToggle.setAttribute("aria-pressed", "false");
-      videoIcon.textContent = "Ⅱ";
-      videoLabel.textContent = "Pauza";
-    } else {
-      video.pause();
-      videoToggle.setAttribute("aria-label", "Pokreni video");
-      videoToggle.setAttribute("aria-pressed", "true");
-      videoIcon.textContent = "▶";
-      videoLabel.textContent = "Pokreni";
-    }
-  };
-
-  if (video && videoToggle) {
-    if (reducedMotion.matches) setVideoState(false);
-
-    videoToggle.addEventListener("click", () => {
-      setVideoState(video.paused);
-    });
-
-    reducedMotion.addEventListener?.("change", (event) => {
-      if (event.matches) setVideoState(false);
-    });
+    if (reducedMotion.matches) holdVideo(true);
+    reducedMotion.addEventListener?.("change", (event) => holdVideo(event.matches));
   }
 
   const serviceItems = [...document.querySelectorAll("[data-service]")];

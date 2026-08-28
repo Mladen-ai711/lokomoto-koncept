@@ -9,9 +9,9 @@
       name="description"
       content="Dizajnerski koncept glavnog sajta Lokomoto centra — fizikalna medicina, dijagnostika i rehabilitacija u Beogradu."
     />
-    <link rel="preload" href="../v8/assets/images/hero-poster-v4.jpg" as="image" />
+    <link rel="preload" href="../v8/assets/images/hero-poster-v5.jpg" as="image" />
     <link rel="stylesheet" href="../v12/styles.css?v=13.0" />
-    <link rel="stylesheet" href="usluga.css?v=2.6" />
+    <link rel="stylesheet" href="usluga.css?v=2.7" />
     <link rel="icon" href="../v11/favicon.svg" type="image/svg+xml" />
     <title>Lokomoto centar — fizikalna medicina i rehabilitacija, Beograd</title>
   </head>
@@ -71,17 +71,17 @@
             loop
             playsinline
             preload="auto"
-            poster="../v8/assets/images/hero-poster-v4.jpg"
+            poster="../v8/assets/images/hero-poster-v5.jpg"
             data-hero-video
           >
-            <source src="../v8/assets/media/hero-loop-v4.mp4" type="video/mp4" />
+            <source src="../v8/assets/media/hero-loop-v5.mp4" type="video/mp4" />
           </video>
           <script>
             if (window.matchMedia('(max-width: 720px)').matches) {
               var v = document.querySelector('[data-hero-video]');
-              v.poster = '../v8/assets/images/hero-poster-v4-mobile.jpg';
+              v.poster = '../v8/assets/images/hero-poster-v5-mobile.jpg';
               v.innerHTML =
-                '<source src="../v8/assets/media/hero-loop-v4-mobile.mp4" type="video/mp4">';
+                '<source src="../v8/assets/media/hero-loop-v5-mobile.mp4" type="video/mp4">';
               v.load();
             }
           </script>
@@ -113,11 +113,6 @@
             </div>
           </div>
         </div>
-
-        <button class="video-toggle" type="button" aria-label="Pauziraj video" aria-pressed="false" data-video-toggle>
-          <span class="video-toggle-icon" aria-hidden="true">Ⅱ</span>
-          <span class="video-toggle-label">Pauza</span>
-        </button>
 
       </section>
 
@@ -687,9 +682,30 @@
           <div class="section-label"><span>04</span> OPREMA</div>
           <h2>Najmodernija terapija, <em>dostupna u Beogradu.</em></h2>
           <p>
-            INDIBA, Triton DTS za dekompresiju, NeuFit. Skraćuju put do pokreta —
-            ali nijedan ne bira sam šta tretira. To radi nalaz, pa tek onda aparat.
+            Aparat skraćuje put do pokreta — ali nijedan ne bira sam šta tretira.
+            To radi nalaz, pa tek onda aparat.
           </p>
+
+          <ul class="oprema-uredjaji">
+            <li>
+              <strong>INDIBA</strong>
+              <span>Radiofrekventna (tecar) terapija.</span>
+            </li>
+            <li>
+              <strong>NeuFit <span class="uredjaj-alt">(NEUBIE)</span></strong>
+              <span>Elektrostimulacija direktnom strujom, uz vođenu vežbu.</span>
+            </li>
+            <li>
+              <strong>Triton DTS</strong>
+              <span>Sto za mehaničku dekompresiju kičme.</span>
+            </li>
+          </ul>
+
+          <p class="oprema-uredjaji-note">
+            Opisi kažu samo šta je uređaj. Za koje tegobe se koristi dopisuje
+            struka. <span class="ph-note">TEKST ZA POTVRDU</span>
+          </p>
+
           <a class="button button-dark" href="usluge/fizikalna-terapija/">
             Kako to izgleda u praksi <span aria-hidden="true">↗</span>
           </a>
@@ -1036,6 +1052,6 @@
       <div class="footer-note shell">v13 · naslovna sa pravim linkovima ka stranicama usluga</div>
     </footer>
 
-    <script src="app.js?v=1.0" defer></script>
+    <script src="app.js?v=1.1" defer></script>
   </body>
 </html>
