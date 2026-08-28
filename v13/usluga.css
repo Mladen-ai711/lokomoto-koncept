@@ -2003,3 +2003,117 @@ h1 .name-alt {
   border-bottom-color: rgba(255, 255, 255, 0.75);
   color: var(--white);
 }
+
+/* ══════════════════════════════════════════════════════════════
+   26. Cenovnik na naslovnoj (Nikola, stavka 11)
+   ══════════════════════════════════════════════════════════════ */
+
+/* Cene nisu izmišljene — prepisane su sa klijentovog sopstvenog sajta
+   (`lokomoto.rs/cenovnik-2/`), pa imaju izvor. Ono što nedostaje je potvrda
+   da su aktuelne, i to stoji kao značka ispod spiska.
+
+   Sekcija ide između Opreme i Pitanja: posetilac prvo vidi šta se radi, ko
+   to radi i čime, pa tek onda koliko košta — a odmah posle toga su pitanja
+   i kontakt. Cena pre toga prekida priču, cena posle pitanja stiže prekasno.
+
+   Klase `.price-list` i `.price-row` su već postojale za stranicu usluge
+   (sekcija 7); ovde se samo grupišu i razmak se steže, jer 25 stavki u
+   jednoj koloni jeste zid. */
+
+.pricing {
+  background: var(--paper-light);
+}
+
+/* Namerno `columns`, ne `grid`. Grupe su vrlo nejednake — 3, 9, 8 i 5 stavki
+   — pa ih mreža poravnava po redovima i ispod „Dijagnostike" ostaje prazan
+   stubac visok šest redova. `columns` ih pakuje po visini: 3+9 levo, 8+5
+   desno, obe kolone oko 12 redova. */
+.pricing-groups {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  columns: 2;
+  column-gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.price-group {
+  margin-bottom: clamp(2.2rem, 4vw, 3.2rem);
+  break-inside: avoid;
+  /* stariji Safari */
+  -webkit-column-break-inside: avoid;
+}
+
+.price-group:last-child {
+  margin-bottom: 0;
+}
+
+.price-group h3 {
+  margin: 0;
+  font-size: clamp(1.3rem, 1.9vw, 1.7rem);
+  font-weight: 620;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.price-group-sub {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+
+/* U grupi razmak iznad spiska mora da bude mali — `.price-list` je pravljen
+   da stoji sam ispod naslova sekcije, sa razmakom do 4rem. */
+.pricing .price-list {
+  margin-top: 1.1rem;
+}
+
+.pricing .price-row {
+  padding: 1rem 0;
+}
+
+.pricing .price-row dt {
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+}
+
+.pricing .price-row dd {
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+}
+
+.pricing-notes {
+  display: grid;
+  margin-top: clamp(2.2rem, 4vw, 3.2rem);
+  padding-top: clamp(1.6rem, 3vw, 2.2rem);
+  border-top: 1px solid var(--line);
+  gap: 0.7rem;
+}
+
+.pricing-notes p {
+  max-width: 64ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.87rem;
+  line-height: 1.65;
+}
+
+.pricing-cta {
+  margin-top: 0.6rem !important;
+}
+
+.pricing-cta a {
+  color: var(--teal-deep);
+  font-weight: 650;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(7, 139, 125, 0.35);
+  transition: border-color 220ms ease;
+}
+
+.pricing-cta a:hover,
+.pricing-cta a:focus-visible {
+  border-bottom-color: var(--teal-deep);
+}
+
+@media (max-width: 900px) {
+  .pricing-groups {
+    columns: 1;
+  }
+}

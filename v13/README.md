@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostale 4>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=3.1`, `app.js?v=1.2`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=3.2`, `app.js?v=1.2`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -724,6 +724,74 @@ ili u meni kao zasebna stavka. I ako broj usluga poraste (st. 10), panel od pet
 redova na naslovnoj prestaje da bude ceo spisak — tada `#usluge` postaje pregled,
 a `/usluge/` pun spisak, što je i dalje ista podela.
 
+## Druga runda — stavka 11: cenovnik (28.08.2026)
+
+Nikola: *„cenovnik dodati na naslovnu i u navigaciju."*
+
+Ranije je ovde stajala primedba da prazna tabela sa `ph` oznakama izgleda gore
+nego da cenovnika nema. **Ta primedba više ne važi** — cenovnik postoji na
+klijentovom sopstvenom sajtu, `lokomoto.rs/cenovnik-2/`, sa svih 25 stavki u
+četiri grupe. Cene dakle **imaju izvor**; ono što nedostaje je potvrda da su
+aktuelne, a to je značka, ne prazno mesto.
+
+### Šta je preneto
+
+Svih 25 stavki, doslovno, u četiri grupe kako stoje na izvoru:
+
+| Grupa | Stavki |
+|---|---|
+| Dijagnostika | 3 |
+| Fizikalna terapija (INDIBA, Medestec, NeuFit, dekompresija, kineziterapija, krioterapija) | 9 |
+| Rehab trening / Kineziterapija | 8 |
+| Oporavak i masaža | 5 |
+
+**„Ušteda" uz pakete je izračunata, ne prepisana** — razlika između zbira
+pojedinačnih termina i cene paketa. Sve provereno: 10×5.000 − 45.000 = 5.000;
+12×7.000 − 72.000 = 12.000; 16×3.500 − 45.000 = 11.000; i tako za svih jedanaest
+paketa. To nije izmišljen broj nego račun iz dva klijentova broja, i isti postupak
+je već bio na stranici fizikalne terapije.
+
+### Gde je sekcija
+
+**Između Opreme i Pitanja**, kao `05 CENOVNIK`. Posetilac prvo vidi šta se radi,
+ko to radi i čime, pa tek onda koliko košta — a odmah posle toga su pitanja i
+kontakt. Cena ranije prekida priču, cena posle pitanja stiže prekasno.
+
+U navigaciji je „Cenovnik" između „Oprema" i „Pitanja", na **svih 7 stranica**;
+mobilni meni ide 01–06. Odgovor na pitanje „Koliko košta?" u česta pitanja sada
+vodi na `#cenovnik`.
+
+### Zašto `columns`, a ne `grid`
+
+Grupe su vrlo nejednake — 3, 9, 8 i 5 stavki. Mreža od dva stupca ih poravnava
+po redovima, pa ispod „Dijagnostike" ostaje **prazan stubac visok šest redova**
+(mereno: sekcija 2341 px). `columns: 2` ih pakuje po visini — 3+9 levo, 8+5 desno,
+obe kolone oko 12 redova — i sekcija pada na **1962 px**. Grupe nose
+`break-inside: avoid` da se spisak ne prelomi na pola.
+
+### Šta cenovnik otvara
+
+Na izvoru stoje usluge kojih **na sajtu nema**:
+
+- **Osteopatija** (uz manualnu terapiju)
+- **Funkcionalna analiza tela** (uz dijagnostiku)
+- **Oporavak, masaža 30/45/60 min, limfna drenaža** — cela četvrta grupa
+
+Ovo je deo odgovora na stavku 10 („fale neke usluge sa starog sajta"), ali nije
+odluka koju treba doneti bez Nikole: cenovnik kaže da se te usluge naplaćuju,
+ne i da li ih on želi kao zasebne stranice ili kao stavke u okviru postojećih.
+
+### Označeno kao placeholder
+
+| Šta | Oznaka |
+|---|---|
+| Cene u celini | „Prepisane sa lokomoto.rs/cenovnik-2/ 28. 8. 2026. Treba potvrditi da su aktuelne." + `CENE ZA POTVRDU` |
+| RFZO | „Da li se nešto od ovoga radi preko RFZO-a — nema odgovora." + `ZA POTVRDU` |
+
+Provereno na **1440 i 390 px**: 25 redova, 4 grupe, dva stupca gore i jedan
+ispod 900 px, bez preliva i bez JS grešaka. **180 lokalnih linkova na 7 stranica,
+nijedan mrtav** (bilo ih je 168). Stavke 5, 6 i 14 nepromenjene.
+
 ## Provereno pre isporuke
 
 Puštena skripta kroz browser:
@@ -761,7 +829,7 @@ Na stranici fizikalne terapije žuto označeno, oznaka „ZA POTVRDU":
 | FAQ „Koliko košta?" na naslovnoj | rečenica stoji bez brojeva, oznaka „CENE ZA POTVRDU" |
 | Opisi tri uređaja u sekciji Oprema | kategorija uređaja je proverljiva; indikacija čeka struku, značka „TEKST ZA POTVRDU" |
 | RFZO: da / ne / delimično | nema odgovora |
-| Cene | prepisane sa `lokomoto.rs/cenovnik-2/`, traže potvrdu |
+| Cene | ceo cenovnik (25 stavki) prepisan sa `lokomoto.rs/cenovnik-2/` 28.08.2026, traži potvrdu da je aktuelan |
 
 Opisi procedura nisu placeholder, ali su medicinski sadržaj — **mora ih pročitati
 neko iz struke pre objave**.
