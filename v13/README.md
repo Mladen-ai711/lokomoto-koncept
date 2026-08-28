@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostale 4>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=3.0`, `app.js?v=1.2`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=3.1`, `app.js?v=1.2`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -672,6 +672,57 @@ repou su i spremne ako se tim ikada vrati na stranicu. `novak-ilic.webp` i
 
 Provereno na **1440, 980, 520 i 390 px**: dve kartice, bez preliva, bez JS
 grešaka; 158 lokalnih linkova na 7 stranica, nijedan mrtav.
+
+## Druga runda — stavka 14: „Usluge" u meniju vodi na mapu tela (28.08.2026)
+
+Nikola: *„usluge u navigaciji neka vode na čovečuljka."* Mladenova odluka:
+**i jedno i drugo** — po tegobi i po usluzi.
+
+Ispalo je da za to nije potrebna nova stranica ni nova navigacija. **Sekcija
+`#usluge` na naslovnoj već drži oba ulaza**: mapu tela (gde te boli) i panel
+usluga (šta radimo). „Usluge" u meniju sada vodi tamo.
+
+| Gde | Bilo | Sada |
+|---|---|---|
+| Meni naslovne (desktop i mobilni) | `usluge/` | `#usluge` |
+| Meni svih 6 podstranica | `../` | `../../index.html#usluge` |
+| Futer, kolona „Sajt" | `usluge/` | `#usluge` |
+
+### Zašto spisak `/usluge/` nije ostao bez ulaza
+
+Meni je bio **jedini vidljivi ulaz** u spisak sa naslovne. Da je samo
+preusmeren, stranica koja nosi buduće usluge (st. 10) i cenovnik (st. 11) bila
+bi dostupna jedino sa stranica pojedinačnih usluga — što je krug, ne ulaz.
+
+Dva nova ulaza:
+
+1. **„Sve usluge na jednom spisku ↗"** ispod panela usluga, u `.service-nudge` —
+   tačno tamo gde onaj ko je pregledao pet redova traži „ima li još".
+   Namerno **tiši od lajm dugmeta iznad** („Opišite tegobu u jednoj rečenici"),
+   koje ostaje glavni poziv: nova klasa `.service-nudge-all` samo prigušuje boju
+   i liniju, ostalo nasleđuje.
+2. **„Sve usluge"** kao prva stavka futerske kolone Usluge, na svih 7 stranica.
+   Na samom spisku nosi `aria-current="page"`.
+
+### Šta je provereno
+
+| Slučaj | 1440 px | 390 px |
+|---|---|---|
+| Meni „Usluge" sa naslovne → sekcija, mapa u kadru | ✓ | ✓ |
+| Adresa ostaje bez `#` posle klika (pravilo iz v13) | ✓ | ✓ |
+| Meni „Usluge" sa stranice usluge → `index.html#usluge`, na sekciji | ✓ | ✓ |
+| „Sve usluge na jednom spisku" → `/v13/usluge/` | ✓ | ✓ |
+| Stavke 5 i 6 nepromenjene | ✓ | ✓ |
+
+**168 lokalnih linkova na 7 stranica, nijedan mrtav** (bilo ih je 158 — deset
+novih su ulazi u spisak).
+
+### Šta ovo ne rešava
+
+Ostaje otvoreno gde ide **cenovnik** (st. 11) kad stigne: na spisak `/usluge/`
+ili u meni kao zasebna stavka. I ako broj usluga poraste (st. 10), panel od pet
+redova na naslovnoj prestaje da bude ceo spisak — tada `#usluge` postaje pregled,
+a `/usluge/` pun spisak, što je i dalje ista podela.
 
 ## Provereno pre isporuke
 

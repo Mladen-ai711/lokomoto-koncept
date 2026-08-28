@@ -1976,3 +1976,30 @@ h1 .name-alt {
     max-width: 11rem;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   25. Navigacija: „Usluge" vodi na mapu tela (Nikola, stavka 14)
+   ══════════════════════════════════════════════════════════════ */
+
+/* Nikola: „usluge u navigaciji neka vode na čovečuljka." Mladenova odluka:
+   i jedno i drugo.
+
+   Sekcija `#usluge` na naslovnoj već drži oba ulaza — mapu tela (po tegobi)
+   i panel usluga (po usluzi). Zato „Usluge" u meniju sada vodi tamo, na
+   svih 7 stranica. Spisak `/usluge/` time gubi svoj jedini vidljivi ulaz sa
+   naslovne, pa je dobio dva nova: ovaj link ispod panela i „Sve usluge" kao
+   prvu stavku u futerskoj koloni Usluge.
+
+   Bez toga bi stranica koja nosi buduće usluge i cenovnik ostala bez ulaza —
+   dostupna samo sa stranica pojedinačnih usluga. */
+
+.service-nudge-all {
+  border-bottom-color: rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.service-nudge-all:hover,
+.service-nudge-all:focus-visible {
+  border-bottom-color: rgba(255, 255, 255, 0.75);
+  color: var(--white);
+}

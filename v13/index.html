@@ -11,7 +11,7 @@
     />
     <link rel="preload" href="../v8/assets/images/hero-poster-v5.jpg" as="image" />
     <link rel="stylesheet" href="../v12/styles.css?v=13.0" />
-    <link rel="stylesheet" href="usluga.css?v=3.0" />
+    <link rel="stylesheet" href="usluga.css?v=3.1" />
     <link rel="icon" href="../v11/favicon.svg" type="image/svg+xml" />
     <title>Lokomoto centar — fizikalna medicina i rehabilitacija, Beograd</title>
   </head>
@@ -29,7 +29,7 @@
         </a>
 
         <nav class="desktop-nav" aria-label="Glavna navigacija">
-          <a href="usluge/">Usluge</a>
+          <a href="#usluge">Usluge</a>
           <a href="#pristup">Naš pristup</a>
           <a href="#centar">O centru</a>
           <a href="#oprema">Oprema</a>
@@ -53,7 +53,7 @@
       </div>
 
       <nav class="mobile-nav" id="mobile-menu" aria-label="Mobilna navigacija" data-mobile-nav>
-        <a href="usluge/"><span>01</span> Usluge</a>
+        <a href="#usluge"><span>01</span> Usluge</a>
         <a href="#pristup"><span>02</span> Naš pristup</a>
         <a href="#centar"><span>03</span> O centru</a>
         <a href="#oprema"><span>04</span> Oprema</a>
@@ -459,6 +459,10 @@
               <p>Ne znate koja vam usluga treba? <span>Ne morate da znate.</span></p>
               <a class="service-nudge-link" href="#kontakt">
                 Opišite tegobu u jednoj rečenici
+                <span aria-hidden="true">↗</span>
+              </a>
+              <a class="service-nudge-link service-nudge-all" href="usluge/">
+                Sve usluge na jednom spisku
                 <span aria-hidden="true">↗</span>
               </a>
             </div>
@@ -946,7 +950,7 @@
         <nav class="footer-col" aria-label="Sekcije sajta">
           <h2>Sajt</h2>
           <a href="#pristup">Naš pristup</a>
-          <a href="usluge/">Usluge</a>
+          <a href="#usluge">Usluge</a>
           <a href="#centar">O centru</a>
           <a href="#oprema">Oprema</a>
           <a href="#pitanja">Česta pitanja</a>
@@ -954,6 +958,7 @@
 
         <nav class="footer-col" aria-label="Usluge">
           <h2>Usluge</h2>
+          <a href="usluge/">Sve usluge</a>
           <a href="usluge/dijagnostika/">Dijagnostika</a>
           <a href="usluge/fizikalna-terapija/">Fizikalna terapija</a>
           <a href="usluge/kineziterapija/">Kineziterapija</a>
