@@ -71,7 +71,51 @@ sekcije u Opremi, crtice na mapi tela, oznaka na fotografiji u „Naš pristup".
 Traka je bila izuzetak; sada nije. Lajm se nastavlja u traku ciljeva odmah
 ispod, pa se dva pojasa vežu.
 
-**Ništa drugo nije dirano.** Nema izmena u HTML-u, rasporedu, tekstu ni skripti.
+### Hero — zamenjen i prvi kadar (ispravka st. 15)
+
+U v13 je zamenjen **kadar 4** (sala za vežbe), jer mu je kamera bila nakrivljena
+−2,5°. Mladen je posle primetio da je Nikola rekao **„slika ordinacije"** — a
+ordinacija je kadar 1, ne sala. Merenje je to potvrdilo, ali tek kad se merilo
+ono pravo:
+
+| Šta je mereno u kadru 1 | Rezultat |
+|---|---|
+| Vertikale cele prostorije | +0,00° — **prava** |
+| Stub aparata (INDIBA) | 0,00 do +1,09° — **prav** |
+| **Glava aparata** (ekran + narandžasti poklopac) | **+2,3°** — **nakrivljena** |
+
+Prvi put je mereno soba i telo aparata, i kadar je proglašen ispravnim. Krivo je
+bilo **ono na šta oko prvo padne** — ekran na podesivoj ruci, u gornjoj trećini
+kadra. **Pouka: meri predmet na koji se gleda, ne samo okvir oko njega.**
+
+To se ne da ispraviti rotacijom — soba je prava, pa bi ispravljanje ekrana
+nakrivilo sobu. Isti aparat je pod istim uglom i na fotografijama sa snimanja
+27. 8. (`L-8`: glava +2,1°). Jedini izlaz je drugi kadar.
+
+**Novi kadar 1: `L-9`** — druga terapijska soba, vertikale **+0,17°**, bez
+aparata sa nakrivljenim ekranom, sa modelom kičme na prozorskoj dasci.
+
+Tehnički: zadržano je sve od 4,0 s postojećeg videa, a novi kadar (4,6 s, spor
+prilaz `z 1,00 → 1,09`) ubačen je prelivom od 0,6 s. Gradacija ista
+(`saturation 0.82`, `contrast 0.96`), svetlina izjednačena gamom.
+
+| Kadar | Svetlina |
+|---|---|
+| 1 — L-9, terapijska soba (novi) | 136,7 |
+| 2 — IASTM na vratu | 130,8 |
+| 3 — pojas na kolenu | 144,8 |
+| 4 — L-17, čekaonica | 143,7 |
+
+Novi fajlovi, **v5 nisu brisani** (v13 i dalje čita njih):
+
+- `v8/assets/media/hero-loop-v6.mp4` — 1600×900, 16,2 s, 2,3 MB
+- `v8/assets/media/hero-loop-v6-mobile.mp4` — 900×1600, 16,2 s, 2,0 MB
+- `v8/assets/images/hero-poster-v6.jpg` i `hero-poster-v6-mobile.jpg`
+
+**Sada su oba kadra prostorije iz snimanja 27. 8. i oba su merena kao prava** —
+pa nije ni bitno na koji je Nikola mislio.
+
+**Ništa drugo nije dirano.** Nema izmena u rasporedu, tekstu ni skripti.
 Razlika prema v13 su ta dva bloka u sekciji 0 i oznake verzije.
 
 ## Oznake verzije
