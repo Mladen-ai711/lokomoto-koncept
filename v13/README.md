@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostale 4>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=3.2`, `app.js?v=1.2`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=3.3`, `app.js?v=1.2`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -791,6 +791,73 @@ ne i da li ih on želi kao zasebne stranice ili kao stavke u okviru postojećih.
 Provereno na **1440 i 390 px**: 25 redova, 4 grupe, dva stupca gore i jedan
 ispod 900 px, bez preliva i bez JS grešaka. **180 lokalnih linkova na 7 stranica,
 nijedan mrtav** (bilo ih je 168). Stavke 5, 6 i 14 nepromenjene.
+
+## Druga runda — stavka 4, drugo čitanje: sadržaj sekcije „Naš pristup"
+
+Nikola je napisao *„naš pristup je premali tekst"*. Prvo čitanje je bilo
+**veličina slova** — gramatički tako i stoji („premali tekst", ne „premalo
+teksta"), a u prvoj rundi je tri puta rekao „premalo je" baš za veličinu. To je
+urađeno (odeljak 19 gore).
+
+Mladen je pročitao drugačije: da fali sadržaja. Izmereno pre nego što se
+odlučivalo:
+
+| Sekcija | Reči | Visina |
+|---|---|---|
+| **01 Naš pristup** | **87** | **1582 px** |
+| 02 Usluge | 244 | 2472 px |
+| 03 O centru | 210 | 2220 px |
+| 05 Cenovnik | 308 | 1962 px |
+
+Tri koraka su nosila **13, 16 i 11 reči** ispod naslova od 43 px. Najpraznija
+sekcija na stranici, i to ona koja treba da odgovori zašto baš oni.
+
+### Prava dijagnoza nije bila „premalo teksta"
+
+Problem je bio što u sekciji **ništa nije konkretno**. „Razgovor, klinički
+pregled i testiranje daju jasniju sliku uzroka problema" može da napiše bilo
+koja ambulanta u Beogradu.
+
+**A konkretno je postojalo — u čestim pitanjima, iza klika, na dnu stranice:**
+
+- *„Prvu procenu napretka radimo posle 4–6 dolazaka. Ako pomaka nema, menjamo
+  pristup — ne produžavamo isto."*
+- *„Iz ordinacije izlazite sa nalazom i konkretnim predlogom — ne sa 'javite se
+  za nedelju dana'."*
+- *„Trening najčešće ne mora da stane — reći ćemo šta da izbegavate i šta možete
+  odmah."*
+
+To **jeste** pristup. Bio je zakopan u harmonici koju otvara mali broj posetilaca.
+
+### Šta je urađeno
+
+Svaki korak je dobio drugi pasus — prvi kaže šta se radi, drugi šta to konkretno
+znači: koliko traje, kada se meri, šta odnosite kući.
+
+| Korak | Dopuna, i odakle | Reči |
+|---|---|---|
+| 01 Procena | trajanje 45 min, uput nije potreban, nalaz i predlog *(pitanja 1 i 2)* | 13 → 42 |
+| 02 Terapija | rad jedan na jedan, procena napretka posle 4–6 dolazaka *(pitanje 4 + traka)* | 16 → 44 |
+| 03 Funkcija | trening ne mora da stane, šta izbegavati a šta ne *(pitanje 7)* | 11 → 45 |
+
+Sekcija: **87 → 166 reči**, visina 1582 → 1760 px. Gustina teksta udvostručena,
+sekcija skoro iste visine.
+
+**Nijedna rečenica nije nova tvrdnja.** Sve je već stajalo na istoj stranici i
+prošlo klijenta — samo je preseljeno tamo gde se čita. Odgovori u čestim
+pitanjima su ostali kako jesu: ko traži „koliko tretmana", mora da nađe odgovor
+i tamo. Preklapanje između sekcije i njenog FAQ-a je normalno — sekcija gradi
+argument, pitanje daje odgovor.
+
+`.approach-step p + p` dobija razmak od `0.75rem`, manji od razmaka između
+koraka; inače drugi pasus izgleda kao poseban korak bez naslova.
+
+### Otvoreno
+
+Ako je Nikola ipak mislio na veličinu slova, oboje je sada urađeno i ništa se ne
+gubi. Ako je mislio na sadržaj, ovo je prvi krug — sledeći bi tražio od njega
+činjenice kojih na sajtu nema: po čemu odlučuju da je neko završio, radi li se
+retest na kraju, šta pacijent dobija kad izađe iz programa.
 
 ## Provereno pre isporuke
 

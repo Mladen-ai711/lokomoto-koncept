@@ -2117,3 +2117,16 @@ h1 .name-alt {
     columns: 1;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   27. „Naš pristup" — drugi pasus u koraku
+   ══════════════════════════════════════════════════════════════ */
+
+/* Svaki korak sada nosi dva pasusa: prvi kaže šta se radi, drugi šta to
+   konkretno znači — koliko traje, kada se meri, šta odnosite kući.
+   Razmak između njih mora da bude manji od razmaka između koraka, inače
+   drugi pasus izgleda kao poseban korak bez naslova. */
+
+.approach-step p + p {
+  margin-top: 0.75rem;
+}
