@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostale 4>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=2.9`, `app.js?v=1.2`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=3.0`, `app.js?v=1.2`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -602,6 +602,77 @@ Sitnica koju je render uhvatio: duži natpis se prelama u dva reda, a sa
 `align-items: center` je crtica padala **između** redova. Sada stoji uz prvi red
 (`align-items: flex-start` + `margin-top: 0.62rem`), kao i kod jednorednih.
 
+## Druga runda — stavka 13: sekcija „Osnivači" (28.08.2026)
+
+Nikola, doslovno: *„sekcija tim neka ostanu samo Novak i Strahinja (kod njega
+piše bol u leđima i vratu) oni su osnivači Lokomota i kao kratka bio u 2/3
+rečenice i stats za jednog i stats za drugog."*
+
+Mladen je potvrdio i identifikaciju: **Strahinja je predzadnja kartica** u
+dotadašnjem redu od šest. To je `tim-04.webp` (izvor `L-134`), čiji je opis i
+glasio „Bol u leđima i vratu" — dva nezavisna traga se poklapaju, pa je pripadanje
+fotografije potvrđeno, ne pretpostavljeno.
+
+### Zašto „Osnivači", a ne skraćeni „Tim"
+
+Traka sa brojevima iznad tvrdi **„6 — fizioterapeuta u timu"**. Dve kartice pod
+naslovom „Tim" čitaju se kao da tim ima dvoje ljudi, pa bi broj 6 izgledao kao
+neistina. Pod naslovom **„Osnivači"** dva broja govore o dve različite stvari i
+ne sudaraju se. Traka ostaje netaknuta.
+
+### Zašto nova porodica klasa
+
+`.team-grid` iz v12 je mreža od četiri stupca sa `subgrid` redovima za šest
+kartica. Dve kartice u toj mreži izgledaju kao da su ostale četiri otpale.
+Nova kartica je **vodoravna** — fotografija uz tekst — jer sada ima šta da nosi:
+ime, zvanje, biografiju i tri broja. `.team-grid` u v12 ostaje netaknut i
+neizmenjen.
+
+Prelamanje: dva stupca do 980 px, jedan ispod; ispod 520 px fotografija ide
+iznad teksta ali ograničena na `11rem` — 4:5 preko cele širine od 390 px znači
+480 px portreta pre nego što ijedna reč krene.
+
+### Šta je stvarno, a šta placeholder
+
+| Podatak | Stanje |
+|---|---|
+| Obe fotografije | **prave**, pripadanje potvrdio Nikola |
+| „Novak Ilić" | pravo ime, bilo je i ranije nepodvučeno |
+| „Osnivač" za oboje | Nikolina reč |
+| „U Lokomotu od 2016." | izvedeno iz dve potvrđene činjenice — centar je osnovan 2016, njih dvojica su osnivači |
+| „Fokus" za Novaka | „Manualna terapija, sportske povrede" — zatečen tekst kartice |
+| „Fokus" za Strahinju | „Bol u leđima i vratu" — tekst po kom ga je Nikola i prepoznao |
+| Prezime, zvanje, biografije, godine iskustva | **placeholder**, žuto, uz značku „ZA POTVRDU" |
+
+Biografija je namerno napisana kao **zadatak, ne kao lorem**: „Dve do tri
+rečenice: čime se najviše bavi, kako radi sa pacijentom i odakle mu to." Tako
+prazno mesto istovremeno govori šta tačno treba poslati.
+
+Brojevi su spisak parova, ne krupne cifre. Od tri vrednosti po čoveku danas je
+poznata samo godina; krupno postavljen placeholder umesto broja izgleda kao
+pokvarena stranica, a ne kao prazno mesto.
+
+### Šta je usput nestalo — proveriti da li se traži nazad
+
+Sa blokom `.team-note` otišle su i tri stvari:
+
+1. **„Prosečno *8 godina* kliničkog iskustva po terapeutu."** Taj broj **nije
+   imao izvor** i nije bio označen kao placeholder — promakao je u prvoj rundi.
+   Ako se vraća, treba mu potvrda, kao i svakom drugom broju na sajtu.
+2. Pasus „Tim se dopunjava: fizijatar postavlja dijagnozu, fizioterapeut vodi
+   terapiju, kineziterapeut vraća opterećenje." — tačan opis centra, ali govori o
+   timu, ne o osnivačima. Ima mesto u sekciji 03, ako se traži.
+3. Pasus „Znanje ne stoji na diplomi — proverava se na svakom pacijentu."
+
+### Fotografije koje su ostale neiskorišćene
+
+`tim-01.webp`, `tim-02.webp`, `tim-03.webp`, `tim-05.webp` **nisu obrisane** — u
+repou su i spremne ako se tim ikada vrati na stranicu. `novak-ilic.webp` i
+`tim-04.webp` su u upotrebi.
+
+Provereno na **1440, 980, 520 i 390 px**: dve kartice, bez preliva, bez JS
+grešaka; 158 lokalnih linkova na 7 stranica, nijedan mrtav.
+
 ## Provereno pre isporuke
 
 Puštena skripta kroz browser:
@@ -634,7 +705,7 @@ Na stranici fizikalne terapije žuto označeno, oznaka „ZA POTVRDU":
 | Šta | Stanje |
 |---|---|
 | „Prvi pomak posle 3–4 dolaska" | izmišljeno kao primer, mora potvrditi struka |
-| Imena i uloge tima | **fotografije su prave**, imena i raspored po ulogama nisu |
+| Prezime, zvanje, biografije i godine iskustva osnivača | **fotografije su prave i pripadanje je potvrđeno**, ostalo čeka Novaka i Strahinju |
 | Foto: magnetoterapija, krioterapija, limfna drenaža | nema kadra u snimanju, kartica nosi označeno prazno mesto |
 | FAQ „Koliko košta?" na naslovnoj | rečenica stoji bez brojeva, oznaka „CENE ZA POTVRDU" |
 | Opisi tri uređaja u sekciji Oprema | kategorija uređaja je proverljiva; indikacija čeka struku, značka „TEKST ZA POTVRDU" |
