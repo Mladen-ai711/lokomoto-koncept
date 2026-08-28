@@ -27,7 +27,7 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
 | `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=2.7`, `app.js?v=1.1`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=2.8`, `app.js?v=1.2`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -482,6 +482,65 @@ Novi fajlovi, **stari `v4` nisu brisani**:
 
 Nova imena umesto `?v=` jer se menja sadržaj videa, a ne stila — tako stara
 verzija ostaje dostupna za poređenje.
+
+## Druga runda — stavke 5 i 6 (28.08.2026)
+
+Obe su o kretanju kroz stranicu i obe žive u `app.js`, pa su rađene u jednom prolazu.
+
+### 5 — Procena / Terapija / Funkcija prate skrol
+
+`is-current` je stajao zakucan u HTML-u na prvom koraku, a `.step-line span` je
+u v12 imao **zamrznutu ispunu od 42%** — merač koji ništa ne meri. Sada oboje
+vodi skrol.
+
+- Merna tačka je **55% visine ekrana**, ne vrh. Korak se pali kad uđe u čitljivi
+  deo ekrana, a ne kad tek proviri odozdo — inače se pali dok se još ne vidi.
+- Linija se puni srazmerno, `0 → 100%` kroz blok koraka.
+- Pređeni koraci dobijaju `.is-passed` — tačka je teal, ali **bez oreola**.
+  Oreol nosi „ovde si sada". Bez ove razlike bi se linija punila a tačke iza nje
+  ostajale sive, pa bi napredak i stanje koraka govorili dve različite stvari.
+- Računanje je u `requestAnimationFrame`, jedan prolaz po frejmu.
+- `prefers-reduced-motion`: logika radi isto, samo bez CSS prelaza. Ovo je
+  pokret koji izaziva sam posetilac skrolom, ne animacija koja se dešava sama.
+
+Mereno (1440 px, kroz blok koraka): ispuna 0% → 4,8% → 40,1% → 71,8% → 100%,
+aktivan korak 0 → 0 → 1 → 1 → 2. Isto na 390 px.
+
+### 6 — povratak sa stranice usluge vraća na sekciju
+
+Pravilo „osvežavanje ide na vrh" je ostalo, ali je bilo prešироko: hvatalo je i
+povratak sa stranice usluge, koji nije osvežavanje — posetilac je otišao **sa**
+nekog mesta i očekuje da se vrati na njega.
+
+Sada se pri svakom odlasku na drugu stranicu sajta u `sessionStorage` upisuje
+`{ y, id }`. Pri povratku se pročita **jednom i potroši**.
+
+Dve stvari koje su se usput pokazale:
+
+1. **Pamti se sekcija koju je posetilac gledao, ne ona u kojoj link stoji.** Nije
+   isto — futer je van svake sekcije, a link se može aktivirati tastaturom dok je
+   ekran negde drugde. Prva verzija je pamtila `link.closest("section[id]")` i u
+   testu vratila posetioca 2.800 px iznad mesta na kom je bio.
+2. **Tačna visina je prvi izbor, sekcija je rezerva.** Ako se raspored u
+   međuvremenu pomerio (učitane slike, drugi ekran), zapamćeni `y` više ne znači
+   ništa i ide se na sekciju.
+
+Radi i preko dugmeta „nazad" (`pageshow` sa `persisted`) i preko logoa na
+stranici usluge (obična navigacija).
+
+**Šta je ostalo netaknuto** — provereno, jer je lako pokvariti:
+
+| Slučaj | Očekivano | Izmereno |
+|---|---|---|
+| Prvi dolazak na sajt | vrh | 0 px |
+| Osvežavanje posle skrola na 3000 px | vrh | 0 px |
+| Deljeni link `index.html#pitanja` | sekcija Pitanja | ±96 px (`scroll-padding-top`) |
+| Klik na sidro iz menija | sekcija, bez `#` u adresi | ✓ |
+| Nazad sa stranice usluge | mesto sa kog je otišao | 3317 → 3317 px |
+| Logo sa stranice usluge | isto | 5450 → 5450 px |
+
+Sve mereno na **1440 i 390 px**, svih 8 stranica bez JS grešaka i bez
+horizontalnog preliva.
 
 ## Provereno pre isporuke
 

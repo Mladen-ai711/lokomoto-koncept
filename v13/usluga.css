@@ -1683,3 +1683,36 @@ h1 .name-alt {
     grid-template-columns: 1fr;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   22. Koraci „Naš pristup" prate skrol (Nikola, stavka 5)
+   ══════════════════════════════════════════════════════════════ */
+
+/* Linija je u v12 imala zamrznutu ispunu od 42% — izgledala je kao merač
+   koji ništa ne meri. Sada je vodi skrol (`app.js`), pa joj treba samo
+   prelaz da promena ne bude skokovita. */
+
+.step-line span {
+  transition: height 260ms var(--ease);
+}
+
+/* Pređeni korak ostaje obojen, ali bez oreola — oreol nosi „ovde si sada".
+   Bez ovoga bi se linija punila, a tačke iza nje ostajale sive, pa bi
+   napredak i stanje koraka govorili dve različite stvari. */
+.approach-step.is-passed .step-number {
+  background: var(--teal);
+}
+
+/* Prelaz na samoj tački, da paljenje ne bude trzaj. */
+.step-number {
+  transition:
+    background 260ms var(--ease),
+    box-shadow 260ms var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step-line span,
+  .step-number {
+    transition: none;
+  }
+}

@@ -5,14 +5,88 @@
     history.scrollRestoration = "manual";
   }
 
-  const goToTop = () => {
-    if (!window.location.hash) window.scrollTo(0, 0);
+  // Osvezavanje i dalje vraca na vrh. Ali povratak sa stranice usluge nije
+  // osvezavanje — posetilac je otisao SA nekog mesta i ocekuje da se vrati na
+  // njega. Zato se pri odlasku zapamti gde je stao, a pri povratku se to
+  // primeni jednom i potrosi. Kljuc zivi u sessionStorage, pa nestaje sa
+  // zatvaranjem kartice.
+  const KLJUC_POVRATKA = "lokomoto:povratak";
+
+  const procitajPovratak = () => {
+    try {
+      const zapis = window.sessionStorage.getItem(KLJUC_POVRATKA);
+      if (!zapis) return null;
+      window.sessionStorage.removeItem(KLJUC_POVRATKA);
+      const podaci = JSON.parse(zapis);
+      return typeof podaci?.y === "number" ? podaci : null;
+    } catch (greska) {
+      return null;
+    }
   };
 
-  goToTop();
-  window.addEventListener("load", goToTop);
+  let povratak = procitajPovratak();
+
+  const postaviPoziciju = () => {
+    if (window.location.hash) return;
+
+    if (!povratak) {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    const sekcija = povratak.id ? document.getElementById(povratak.id) : null;
+
+    // Zapamcena je i tacna visina i sekcija u kojoj je posetilac bio. Ako se
+    // raspored u medjuvremenu pomerio (ucitane slike, drugi ekran), tacna
+    // visina vise ne znaci nista — tada se ide na sekciju.
+    if (sekcija) {
+      const vrh = sekcija.getBoundingClientRect().top + window.scrollY;
+      const dno = vrh + sekcija.offsetHeight;
+      if (povratak.y < vrh - 240 || povratak.y > dno) {
+        sekcija.scrollIntoView({ behavior: "auto", block: "start" });
+        return;
+      }
+    }
+
+    window.scrollTo(0, povratak.y);
+  };
+
+  postaviPoziciju();
+  window.addEventListener("load", postaviPoziciju);
   window.addEventListener("pageshow", (event) => {
-    if (event.persisted) goToTop();
+    if (!event.persisted) return;
+    povratak = procitajPovratak() || povratak;
+    postaviPoziciju();
+  });
+
+  // Zapisuje se pri svakom odlasku na drugu stranicu ovog sajta — mapa tela,
+  // panel usluga, futer, meni. Sidra (#) su izuzeta: ona ne napustaju stranicu.
+  document.addEventListener("click", (event) => {
+    const veza = event.target.closest("a[href]");
+    if (!veza) return;
+
+    const adresa = veza.getAttribute("href") || "";
+    if (!adresa || adresa.startsWith("#") || /^(https?:|tel:|mailto:)/i.test(adresa)) return;
+    if (veza.target === "_blank") return;
+
+    // Pamti se sekcija koju je posetilac GLEDAO, ne ona u kojoj link stoji.
+    // Nije isto: futer je van svake sekcije, a i link se moze aktivirati
+    // tastaturom dok je ekran negde drugde. Sekcija sluzi samo kao rezerva
+    // ako se raspored u medjuvremenu pomeri.
+    const citanje = window.scrollY + window.innerHeight * 0.4;
+    let sekcija = null;
+    document.querySelectorAll("section[id]").forEach((kandidat) => {
+      if (kandidat.getBoundingClientRect().top + window.scrollY <= citanje) sekcija = kandidat;
+    });
+
+    try {
+      window.sessionStorage.setItem(
+        KLJUC_POVRATKA,
+        JSON.stringify({ y: Math.round(window.scrollY), id: sekcija ? sekcija.id : "" }),
+      );
+    } catch (greska) {
+      /* privatni rezim bez sessionStorage — povratak jednostavno ne radi */
+    }
   });
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -154,6 +228,54 @@
       if (window.matchMedia("(hover: hover)").matches) activateService(item);
     });
   });
+
+  // Tri koraka „Naš pristup" su do sada bila zamrznuta na prvom: `is-current`
+  // je stajao u HTML-u. Sada ih vodi skrol — linija se puni, tacka prelazi na
+  // korak do kog je posetilac stigao, predjeni koraci ostaju obojeni.
+  //
+  // Merna tacka je 55% visine ekrana, a ne vrh: korak se pali kad dodje u
+  // citljivi deo ekrana, ne kad tek proviri odozdo.
+  const koraci = [...document.querySelectorAll(".approach-step")];
+  const linijaKoraka = document.querySelector(".step-line");
+  const punjenjeLinije = document.querySelector(".step-line span");
+
+  if (koraci.length && linijaKoraka) {
+    let zakazano = false;
+
+    const osveziKorake = () => {
+      zakazano = false;
+
+      const linija = linijaKoraka.getBoundingClientRect();
+      const citanje = window.innerHeight * 0.55;
+
+      if (punjenjeLinije && linija.height > 0) {
+        const napredak = Math.min(1, Math.max(0, (citanje - linija.top) / linija.height));
+        punjenjeLinije.style.height = (napredak * 100).toFixed(2) + "%";
+      }
+
+      let aktivan = 0;
+      koraci.forEach((korak, redni) => {
+        const tacka = korak.querySelector(".step-number") || korak;
+        if (tacka.getBoundingClientRect().top <= citanje) aktivan = redni;
+      });
+
+      koraci.forEach((korak, redni) => {
+        korak.classList.toggle("is-current", redni === aktivan);
+        korak.classList.toggle("is-passed", redni < aktivan);
+      });
+    };
+
+    const zakaziKorake = () => {
+      if (zakazano) return;
+      zakazano = true;
+      window.requestAnimationFrame(osveziKorake);
+    };
+
+    window.addEventListener("scroll", zakaziKorake, { passive: true });
+    window.addEventListener("resize", zakaziKorake);
+    window.addEventListener("load", zakaziKorake);
+    osveziKorake();
+  }
 
   const revealItems = [...document.querySelectorAll(".reveal")];
 
