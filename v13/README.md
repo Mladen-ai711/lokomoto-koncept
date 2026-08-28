@@ -25,9 +25,9 @@ Na GitHub Pages posle pusha sve radi bez servera.
 | `v13/usluga.css` | dodatak na `v12/styles.css` — sve nove komponente |
 | `v13/usluge/index.html` | lista usluga |
 | `v13/usluge/fizikalna-terapija/index.html` | **jedina popunjena stranica** |
-| `v13/usluge/<ostalih 5>/index.html` | stranice sa oznakom „u pripremi" |
+| `v13/usluge/<ostale 4>/index.html` | stranice sa oznakom „u pripremi" |
 
-Oznaka verzije: `usluga.css?v=2.8`, `app.js?v=1.2`, `stranica.js?v=1.0`.
+Oznaka verzije: `usluga.css?v=2.9`, `app.js?v=1.2`, `stranica.js?v=1.0`.
 **Kad menjaš CSS ili skriptu, podigni broj** u svakom HTML-u koji je koristi.
 
 ## Šta je promenjeno na naslovnoj
@@ -541,6 +541,66 @@ stranici usluge (obična navigacija).
 
 Sve mereno na **1440 i 390 px**, svih 8 stranica bez JS grešaka i bez
 horizontalnog preliva.
+
+## Druga runda — stavke 8 i 7 (28.08.2026)
+
+### 8 — medicinski trening obrisan
+
+Nikola: *„medicinski trening je višak."* Potvrđeno sa Mladenom da se **briše**,
+ne spaja. Usluga je stajala na sedam mesta:
+
+| Gde | Šta je urađeno |
+|---|---|
+| Panel usluga na naslovnoj | kartica `06` uklonjena — panel ide 01–05 |
+| Futer naslovne | link uklonjen |
+| Futer svih 5 preostalih stranica usluge | link uklonjen |
+| `/usluge/` spisak | red `06` uklonjen, naslov „**Šest** usluga" → „**Pet** usluga" |
+| `/usluge/` meta opis | ime izbačeno iz nabrajanja |
+| Tegoba „Povratak treningu bez novog izletanja" | preusmerena na `kineziterapija/` |
+| Opis člana tima („Medicinski trening i prevencija povreda.") | → „Vođene vežbe i povratak punoj aktivnosti." |
+| `v13/usluge/medicinski-trening/` | **folder obrisan** |
+
+Numeracija nije morala da se pomera — medicinski trening je bio poslednji (`06`).
+`space.webp` je bio njegova slika u pregledu; i dalje se koristi na dva druga
+mesta, pa ostaje.
+
+Provereno: **158 lokalnih linkova na 7 stranica, nijedan mrtav**; reč
+„medicinski" se više ne pojavljuje ni na jednoj stranici.
+
+### 7 — „Nije uvek jedna tačka" vidljivo i uklopljeno
+
+Nikola: *„dobra ideja ali vizuelno neubedljivo i neprimetno."* U pravu je, i
+uzrok je konkretan, ne stvar ukusa.
+
+**Te četiri tegobe nasleđivale su `.complaint-list` iz v12** — mrežu ćelija sa
+tankim linijama, ostatak nekadašnje tabele od 12 tegoba. Osam natpisa na telu su
+u međuvremenu postali kartice: okvir, zaobljenje, tamna podloga, lajm crtica.
+**Ista vrsta sadržaja u dva različita jezika**, pa je slabiji čitao kao fusnota
+ispod slike, a ne kao ravnopravna ponuda.
+
+Tri izmene:
+
+1. **Iste kartice kao onih osam.** Vrednosti su prepisane sa `.bm` — isti
+   padding, isto zaobljenje (`0.65rem`), ista podloga, isti odziv na prelaz mišem
+   (teal okvir, tamnija podloga). Strelica `↗` je uklonjena, jer je nemaju ni
+   natpisi na telu.
+2. **Crtica je isprekidana.** Jedina namerna razlika. Osam njih vodi linija do
+   tačke na telu; ove četiri nemaju gde da pokažu, pa im je crtica prekinuta.
+   Isti znak, prekinut — to je cela poruka sekcije u jednom potezu, bez dodatnog
+   objašnjavanja.
+3. **Traka je nalepljena na dno fotografije.** Preko 1000 px `.body-map-stage`
+   gubi donja zaobljenja, a `.complaints-rest` dobija njih i podlogu malo svetliju
+   od sekcije — čita se kao podnožje iste kartice, ne kao sledeći blok. Ispod
+   1000 px natpisi ionako ispadaju iz fotografije u običan spisak, pa se traka
+   nema na šta nalepiti i ostaje kako jeste; kartice su i tamo iste.
+
+Dodata je i rečenica uz oznaku, jer sama oznaka nije govorila zašto su odvojene:
+*„Ove tegobe nemaju jedno mesto na telu, pa ih mapa ne pokazuje. Put je isti:
+pregled, pa plan."*
+
+Sitnica koju je render uhvatio: duži natpis se prelama u dva reda, a sa
+`align-items: center` je crtica padala **između** redova. Sada stoji uz prvi red
+(`align-items: flex-start` + `margin-top: 0.62rem`), kao i kod jednorednih.
 
 ## Provereno pre isporuke
 
