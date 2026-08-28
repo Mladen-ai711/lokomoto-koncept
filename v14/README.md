@@ -54,12 +54,29 @@ stari `--teal-deep` #078b7d = **3,68:1**, novi #057eb6 = **3,94:1**.
 pozadini. Ako Nikola traži doslovnu zelenu iz logoa, menja se jednim redom u
 sekciji 0.
 
+### Traka sa brojevima — lajm, ne plava
+
+Znaci `+`, `:` i `h` u traci iznad („4.000+", „1:1", „48h") ostaju **lajm**.
+Nije stvar ukusa nego svetline. Kontrast na podlozi trake (`--ink-2` #26322f):
+
+| | Odnos |
+|---|---|
+| tirkiz #13c9b3 (v13) | 6,35:1 |
+| plava #2c9ecb (v14) | **4,34:1** — zamena boje ih je prigušila |
+| lajm #c9f25f | **10,35:1** |
+
+Dvotačka u „1:1" je jedan potez na cifri od 3,35rem; pri 4,34:1 se praktično
+gubi. Uz to je **na tamnoj podlozi lajm svuda drugde nosilac naglaska** — broj
+sekcije u Opremi, crtice na mapi tela, oznaka na fotografiji u „Naš pristup".
+Traka je bila izuzetak; sada nije. Lajm se nastavlja u traku ciljeva odmah
+ispod, pa se dva pojasa vežu.
+
 **Ništa drugo nije dirano.** Nema izmena u HTML-u, rasporedu, tekstu ni skripti.
-Razlika prema v13 je taj jedan blok i oznake verzije.
+Razlika prema v13 su ta dva bloka u sekciji 0 i oznake verzije.
 
 ## Oznake verzije
 
-v14 kreće od `?v=14.0` za `usluga.css`, `app.js` i `stranica.js` — namerno daleko
+v14 kreće od `?v=14.0` (`usluga.css` je na **14.1** posle izmene trake) za `usluga.css`, `app.js` i `stranica.js` — namerno daleko
 od v13 brojeva, da keš jedne verzije ne servira drugu.
 
 ## Provereno

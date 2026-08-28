@@ -27,6 +27,26 @@
   --blue: #2c9ecb;
 }
 
+/* Traka sa brojevima: sitni znaci `+`, `:` i `h` idu na lajm, ne na plavu.
+
+   Nisu boja nego svetlina. Kontrast na podlozi trake (`--ink-2` #26322f):
+
+     tirkiz  #13c9b3  (v13)   6,35:1
+     plava   #2c9ecb  (v14)   4,34:1   ← zamena boje ih je prigušila
+     lajm    #c9f25f         10,35:1
+
+   Dvotačka u „1:1" je jedan piksel širine na 3,35rem cifri; pri 4,34:1
+   se praktično gubi. Uz to, na tamnoj podlozi je lajm svuda drugde nosilac
+   naglaska — broj sekcije u Opremi, crtice na mapi tela, oznaka na
+   fotografiji. Traka je bila izuzetak; sada nije.
+
+   Lajm se nastavlja u traku ciljeva odmah ispod, pa se dva pojasa vežu. */
+.proof-plus,
+.proof-unit,
+.proof-sep {
+  color: var(--lime);
+}
+
 /* ══════════════════════════════════════════════════════════════
    Lokomoto — šablon stranice usluge
    Dodatak na v12/styles.css. Ne redefiniše nijedan token.
