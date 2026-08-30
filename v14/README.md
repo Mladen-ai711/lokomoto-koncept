@@ -1052,3 +1052,116 @@ Naslovna u `v13/index.html` je **kopija** v12 naslovne. To je privremeno i namer
 kad dođe Eleventy, naslovna se generiše iz `sadrzaj/naslovna.yml`, a ova kopija se
 briše. Do tada dve naslovne ne smeju da se razilaze — ako se menja tekst, menja se
 u v13, a v12 ostaje zamrznut kao referenca prepisa.
+
+---
+
+# Runda 30.08.2026 — popunjene preostale četiri stranice usluga
+
+Do sada je popunjena bila samo `fizikalna-terapija`; ostale četiri su nosile
+oznaku „u pripremi". Sada su sve **napisane po istom šablonu** (devet sekcija,
+redosled nepromenjen) i oznaka „u pripremi" je uklonjena.
+
+## Fajlovi koji su se promenili
+
+| Fajl | Šta |
+|---|---|
+| `v14/usluge/dijagnostika/index.html` | napisana cela stranica (161 → 526 linija) |
+| `v14/usluge/kineziterapija/index.html` | napisana cela stranica (161 → 584) |
+| `v14/usluge/manualna-terapija/index.html` | napisana cela stranica (161 → 543) |
+| `v14/usluge/postoperativna-rehabilitacija/index.html` | napisana cela stranica (161 → 539) |
+| `v14/usluge/index.html` | skinuto `is-soon` sa četiri reda, izmenjena napomena u futeru |
+| `v14/index.html` | ispravljena trajanja u panelu Usluge (vidi ispod) |
+
+**`usluga.css` i `stranica.js` nisu dirani** — nijedna nova klasa nije bila potrebna,
+pa oznaka verzije ostaje `?v=14.1`. Stranice koriste postojeće komponente:
+`service-hero`, `for-whom-grid`, `steps-layout`, `method-grid`, `expectation`,
+`complaint-links`, `price-list`, `faq-item`, `service-cta`.
+
+## Izvor teksta
+
+Osnova je stari sajt (`lokomoto.rs/dijagnostika/`, `/kineziterapija/`,
+`/manuelna-terapija/`, `/postoperativna-rehabilitacija/`) — pročitan u celini,
+pa prepisan. Zadržane su **činjenice** (nazivi metoda, indikacije, faze oporavka,
+spisak operacija), promenjen je **način**: kraće rečenice, bez marketinškog tona,
+i svuda objašnjeno *zašto* se nešto radi tako. Ništa nije dodato preko onoga što
+klijent već tvrdi o sebi.
+
+## Trajanja — ispravljen nesklad, po cenovniku
+
+Nesklad iz prethodne runde („30–40 min" u panelu vs. 60 min u cenovniku) postojao je
+na tri mesta. Presuđeno je **u korist cenovnika**, jer je to klijentov dokument:
+
+| Usluga | Panel je govorio | Sada | Izvor |
+|---|---|---|---|
+| Fizikalna terapija | 30–40 min | **60 min** | „Terapijski dan (60 min)" |
+| Kineziterapija | 45–60 min | **60 min** | „Jedan termin 60 min / 60+ min" |
+| Manualna terapija | 30 min | **60 min** | „Manualna terapija, osteopatija 60 min" |
+| Dijagnostika | 45 min | 45 min (nepromenjeno) | **cenovnik ne navodi trajanje — čeka potvrdu** |
+
+Ako je klijentu neko od ovih trajanja pogrešno, menja se na dva mesta: `data-meta`
+u `v14/index.html` i čip u zaglavlju stranice usluge.
+
+## Cenovnik — šta je gde otišlo
+
+| Stranica | Grupa iz cenovnika |
+|---|---|
+| Dijagnostika | Dijagnostika (3 stavke, sve tri) |
+| Fizikalna terapija | Fizikalna terapija (terapijski dan + REHAB paketi) |
+| Kineziterapija | Rehab trening / Kineziterapija (svih 8) |
+| Manualna terapija | „Manualna terapija, osteopatija" iz grupe 2, **plus tri stavke masaže iz grupe „Oporavak i masaža"** |
+| Postoperativna rehabilitacija | **nema svoju grupu** — prikazani terapijski dan i REHAB paketi, sa označenom napomenom |
+
+**Nalaz za sudar oko cenovnika** (`claude/12-predaja-eleventy.md`, odeljak 3):
+grupa „Oporavak i masaža" nije jednorodna. Masaže po sadržaju pripadaju **manualnoj
+terapiji**, a stavka „Oporavak" (limfna drenaža, istezanje, krioterapija) je mešavina
+fizikalne terapije i kineziterapije. Znači: grupa se **ne preslikava na jednu uslugu**,
+pa izlaz (b) — „dodati ih kao usluge" — ne rešava problem. Odluka i dalje stoji otvorena.
+
+## Novi placeholderi (sve nosi `mark.ph` + značku)
+
+| Gde | Šta čeka |
+|---|---|
+| Dijagnostika · cene | ultrazvučni pregled nije zasebna stavka u cenovniku — ulazi li u cenu pregleda ili se plaća posebno |
+| Dijagnostika · FAQ | RFZO |
+| Kineziterapija · cene | potvrda cena i trajanja termina |
+| Kineziterapija · FAQ | „da li dobijam vežbe za kuću" — tvrdnja o načinu rada, nije sa starog sajta |
+| Manualna terapija · očekivanje | „razlika se često oseti posle prvog tretmana" — tvrdnja o dejstvu |
+| Manualna terapija · cene | gde stoje masaže (grupa 4 cenovnika) |
+| Manualna terapija · FAQ | RFZO |
+| Postoperativna · cene | kako se naplaćuje — nema svoju grupu u cenovniku |
+| Postoperativna · FAQ | saradnja sa hirurgom i rad po njegovom protokolu |
+
+## Fotografije — šta je iskorišćeno i šta fali
+
+Nijedna nova fotografija nije dodata; korišćene su postojeće iz `v8/assets/images/`.
+
+| Stranica | Zaglavlje | Uz korake | Uz „šta da očekujete" |
+|---|---|---|---|
+| Dijagnostika | `assessment` | `manifesto` | `clinical-work` |
+| Kineziterapija | `guided-training` | `space` | `assessment` |
+| Manualna terapija | `system-detail` | `assessment` | `manifesto` |
+| Postoperativna | `manifesto` | `guided-training` | `clinical-work` |
+
+Iste slike se ponavljaju preko stranica — **to je privremeno**. Iz snimanja od
+27. 8. (`claude/10-fotografije-snimanje.md`) postoje neiskorišćeni kadrovi koji bi ovo
+rešili bez novog snimanja:
+
+- **Dijagnostika:** `L-30`–`L-32` (UZ sonda na kolenu + monitor) — najpotrebnija zamena,
+  jer trenutna slika uz korake ne prikazuje ultrazvuk.
+- **Manualna terapija:** `L-33`–`L-46` (manuelno testiranje kolena i ramena), `L-12` (IASTM alati).
+- **Kineziterapija:** `L-21`–`L-26` (sala, širok kadar).
+
+**Kartice metoda na ove četiri stranice namerno nemaju fotografiju** — ne postoji kadar
+za koji se pouzdano zna da prikazuje baš tu metodu. Klasa `.method-photo` je i dalje tu
+i kartica je prima čim slika bude.
+
+## Provereno pre isporuke
+
+Sve četiri stranice renderovane kroz Chromium, na **1440 i 390 px**:
+
+- HTTP 200, bez JS grešaka i bez neuspelih zahteva
+- `scrollWidth == clientWidth` na obe širine — **nema horizontalnog pomeranja**
+- nijedna slika nije puknuta (`naturalWidth > 0` za sve)
+- svi lokalni linkovi (14 po stranici) vode na postojeće ciljeve; futer nosi
+  `aria-current="page"` na sopstvenoj usluzi
+- harmonika pitanja se otvara, sekcije se pojavljuju na skrol
