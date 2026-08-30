@@ -2446,3 +2446,72 @@ h1 .name-alt {
    to ono na šta se klikće. Ne kurziv (to je u v12 rezervisano za izjave),
    nego boja i težina. */
 
+
+/* ══════════════════════════════════════════════════════════════
+   22. Sekcija „Šta je ovo" — hijerarhija umesto tri ista pasusa
+   ══════════════════════════════════════════════════════════════ */
+
+/* Izmereno na fizikalnoj terapiji, 1440 px:
+   - leva kolona 292 × 299 px, a u njoj samo oznaka od 23 px — 92% prazno;
+   - desna kolona široka 961 px, tekst ograničen na 44rem = 704 px, pa
+     257 px stoji neiskorišćeno i unutar nje;
+   - sva tri pasusa 21,12 px, isti font, ista težina.
+
+   Prvo je prazno, drugo je monotono. Rešava se bez ijedne nove reči:
+   oznaka dobija liniju uz koju stoji, prvi pasus postaje uvod, poslednji
+   se odvaja kao zaključak. Ništa se ne dopisuje — samo se čita redosled
+   koji je već napisan. */
+
+.service-intro-grid {
+  align-items: stretch;
+  grid-template-columns: 0.3fr minmax(0, 1.35fr);
+}
+
+/* `stretch` je potreban da linija uz tekst ide celom visinom, ali je usput
+   spustio oznaku u sredinu kolone. Oznaka pripada vrhu, uz prvi red uvoda. */
+.service-intro-grid .section-label {
+  align-self: start;
+  margin-top: 0.55rem;
+}
+
+/* Linija uz levu ivicu teksta. Prazna kolona time prestaje da bude rupa
+   i postaje margina — isti potez kao hairline između redova drugde. */
+.service-intro-grid > div {
+  padding-left: clamp(1.5rem, 3vw, 2.75rem);
+  border-left: 1px solid var(--line);
+}
+
+/* Prvi pasus nosi tezu, pa se i čita kao teza. */
+.service-intro-grid > div p:first-child {
+  margin-bottom: 1.6rem;
+  font-size: clamp(1.25rem, 1.95vw, 1.7rem);
+  letter-spacing: -0.022em;
+  line-height: 1.4;
+}
+
+/* Srednji pasusi su objašnjenje — mirniji i uži od uvoda. */
+.service-intro-grid > div p:not(:first-child) {
+  max-width: 40rem;
+  color: var(--ink-soft, var(--ink));
+  font-size: clamp(1rem, 1.25vw, 1.1rem);
+  line-height: 1.65;
+}
+
+/* Poslednji pasus je zaključak sekcije — odvaja se linijom, kao što se
+   i u tekstu odvaja („…je početak, ne ceo put"). */
+.service-intro-grid > div p:last-child {
+  margin-top: 1.9rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 900px) {
+  .service-intro-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .service-intro-grid > div {
+    padding-left: 0;
+    border-left: 0;
+  }
+}

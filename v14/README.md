@@ -1492,3 +1492,54 @@ Izmereno posle izmene, na svakoj stranici: **7 `em` u naslovima — 5 plavih,
 
 Provereno: svih pet stranica, 1440 i 390 px — HTTP 200, bez JS grešaka, bez
 horizontalnog pomeranja.
+
+## Sekcija „Šta je ovo" — hijerarhija umesto tri ista pasusa
+
+Izmereno na fizikalnoj terapiji, 1440 px, pre izmene:
+
+| Mera | Bilo |
+|---|---|
+| Leva kolona | 292 × 299 px, u njoj oznaka od **23 px** → **92% prazno** |
+| Desna kolona | široka 961 px, tekst ograničen na 44rem = 704 px → **257 px neiskorišćeno i unutar nje** |
+| Sva tri pasusa | **21,12 px**, isti font, ista težina |
+| Visina sekcije | 615 px, od toga 317 px razmak gore i dole |
+
+Dva odvojena problema: prazna leva kolona i tri pasusa koji izgledaju identično.
+
+### Rešeno bez ijedne nove reči
+
+Redosled misli je već bio napisan — teza, objašnjenje, zaključak. Samo se nije video:
+
+| Pasus | Bilo | Sada |
+|---|---|---|
+| Prvi — teza | 21,1 px | **27,2 px**, uže vođenje, veći razmak ispod |
+| Srednji — objašnjenje | 21,1 px | 17,6 px, mirniji, `max-width` 40rem |
+| Poslednji — zaključak | 21,1 px | 17,6 px, **odvojen linijom odozgo** |
+
+Leva kolona je dobila **liniju uz levu ivicu teksta**. Prazna kolona time
+prestaje da bude rupa i postaje margina — isti potez kao hairline između redova
+u ostalim sekcijama. Odnos stubaca je pomeren sa `0.38fr / 1.25fr` na
+`0.3fr / 1.35fr`, pa tekst dobija širinu koju je i tražio.
+
+### Greška uhvaćena na renderu
+
+`align-items: stretch` je bio potreban da linija ide celom visinom teksta, ali je
+usput **spustio oznaku „ŠTA JE OVO" u sredinu kolone**. U kodu ništa nije izgledalo
+sumnjivo. Ispravljeno sa `align-self: start` — oznaka sada stoji uz prvi red uvoda.
+
+### Važi na svih pet stranica bez diranja HTML-a
+
+Izmena je **samo u `usluga.css`**, a taj fajl učitava svih sedam stranica. Nijedan
+HTML nije menjan osim oznake verzije.
+
+Provereno na svih pet stranica, 1440 i 390 px:
+
+| Provera | Rezultat |
+|---|---|
+| Linija uz tekst | 1px na 1440, **0px na 390** (media upit je skida) |
+| Veličine pasusa | 27,2 / 17,6 / 17,6 na desktopu, 20 / 16 / 16 na telefonu |
+| Crta iznad zaključka | 1px, na svih pet |
+| Oznaka u odnosu na prvi red | −19 px, identično na svih pet |
+| Horizontalno pomeranje · JS greške | nema, nigde |
+
+**Oznaka verzije podignuta na `?v=14.6` u svih 7 HTML fajlova.**
