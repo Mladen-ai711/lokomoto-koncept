@@ -1316,3 +1316,60 @@ se na fotografiji ne razlikuju od bilo kog rada rukama. Jedna popunjena kartica 
 
 Provereno posle izmene: dijagnostika i manualna, 1440 i 390 px — HTTP 200, bez JS
 grešaka, bez horizontalnog pomeranja, nijedna slika puknuta.
+
+## Sekcija „Za koga je" — dobila je sadržaj, pa i oblik
+
+Izgledala je siromašno. **Izmereno pre dodirivanja stila**, kineziterapija, 1440 px:
+
+| Mera | Bilo |
+|---|---|
+| Visina sekcije | 546 px |
+| Prazan razmak gore i dole | 158,4 + 158,4 = **317 px, 58%** |
+| Red sa stavkama | **85 px** |
+| Prazan pojas ispod stavki | 131 px |
+| Sav tekst u četiri stavke | **191 znak** |
+| Naslov / tekst stavke | 48 px / 15,2 px — **odnos 3,2 : 1** |
+
+Poređenja radi, „Kako izgleda" na istoj stranici je 1366 px sa oko 1000 znakova.
+**Ovo je bila najtanja sekcija po sadržaju po pikselu.**
+
+Zaključak: nije stil, nego sadržaj. Stavka od sedam reči je fragment, ne rečenica
+u kojoj čitalac prepoznaje sebe. Stil se ne popravlja dok nema šta da nosi.
+
+### Šta je promenjeno
+
+**Sadržaj.** Svaka stavka sada ima **tvrdnju i jedan red objašnjenja**, umesto
+gole etikete. Dodata je i **napomena koja usmerava dalje** — jedina rečenica na
+stranici koja kaže kada ovo *nije* prvi korak i šta je onda:
+
+| Stranica | Napomena |
+|---|---|
+| Dijagnostika | ako imate skorašnji nalaz, donesite ga — pregled je kraći |
+| Fizikalna terapija | fizikalna je početak, ne ceo put; čim bol popusti ide pokret |
+| Kineziterapija | ako je bol akutan, prvo fizikalna; kod hroničnog je često obrnuto |
+| Manualna terapija | retko ide sama — ono što ruka otvori, vežba mora da zadrži |
+| Postoperativna | ponesite otpusnu listu, od nje počinje prvi termin |
+
+**Oblik.** Četiri tanka stupca postala su naslov levo + spisak desno. Naslov i
+uvod ostaju spojeni gore, napomena pada na dno levog stupca.
+
+| Mera | Bilo | Sada |
+|---|---|---|
+| Teksta u stavkama | 191 znak | **431–507 znakova** |
+| Visina sekcije | 546 px | 688–712 px |
+| Razlika u visini stubaca | — | **28 px** |
+
+Prvi pokušaj poravnanja koristio je `align-content: space-between` na levom stupcu
+i **razdvojio naslov od uvodne rečenice** — greška se videla tek na renderu, ne u
+kodu. Ispravljeno kroz `grid-template-rows: auto auto 1fr` i `align-self: end` na
+napomeni.
+
+### Fajlovi
+
+`usluga.css` (nova sekcija 20) i **svih pet stranica usluga**, uključujući
+fizikalnu terapiju — sekcija mora da izgleda isto na svih pet.
+
+**Oznaka verzije podignuta na `?v=14.2` u svih 7 HTML fajlova.**
+
+Provereno: svih pet stranica, 1440 i 390 px — HTTP 200, bez JS grešaka, bez
+horizontalnog pomeranja.
