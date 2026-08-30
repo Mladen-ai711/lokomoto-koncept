@@ -1665,3 +1665,62 @@ Znači: **odmah lokalni odziv, sa zadrškom skupa promena.**
 
 **`app.js` podignut na `?v=14.1` u `index.html`** (jedina stranica koja ga učitava).
 `usluga.css` nije diran, ostaje `?v=14.8`.
+
+## Panel Usluge — natpis odlepljen od ivice, i nalaz o dve fotografije
+
+Prijava: „ove dve slike ne zauzimaju kompletnu širinu pa su slova zalepljena za
+početak". Merenjem su ispala **dva odvojena uzroka**, a ne jedan.
+
+### 1. Razmak natpisa — popravljeno
+
+Razmak natpisa od ivice karte, u odnosu na veličinu slova naslova:
+
+| Širina | Karta | Razmak | Font | Odnos |
+|---|---|---|---|---|
+| 1440 | 669×752 | 43 px | 72 px | 0,60 |
+| 1000 | 920×608 | 30 px | 50 px | 0,60 |
+| **600** | 560×496 | **22 px** | **51 px** | **0,43** |
+
+Razmak i naslov su rasli po različitim skalama: razmak staje na `1.4rem`, a naslov
+ima pod na `2.6rem`. Ispod 832 px naslov stoji na 41–51 px, a razmak na 22 px — pa
+slovo visoko 51 px počinje 22 px od ivice i optički je zalepljeno.
+
+Razmak sada ide po istoj skali kao naslov, `clamp(2.1rem, 4.2vw, 4.4rem)`:
+
+| Širina | Odnos pre | Odnos posle |
+|---|---|---|
+| 1440 | 0,60 | **0,83** |
+| 1000 | 0,60 | **0,84** |
+| 600 | **0,43** | **0,67** |
+| 390 | 0,54 | **0,83** |
+
+Dalje se ne ide jer bi na karti od 440 px pojelo tekst.
+
+### 2. Fotografije — nalaz, nije popravljeno
+
+Provereno da li slika letterboxuje: **ne letterboxuje.** Isečak izvora po pravilu
+`cover` poređen je piksel po piksel sa onim što se renderuje — razlika 15–21, i to
+je samo zatamnjenje za natpis.
+
+Pravi uzrok:
+
+| | |
+|---|---|
+| Izvor `clinical-work.webp` | 1100×1400, odnos **0,79** — uspravna |
+| Karta na 1000 px | 920×608, odnos **1,51** — položena |
+| `cover` | prikazuje **punu širinu**, seče **48% visine** |
+
+Ostaje vodoravni pojas kroz sredinu uspravne fotografije. Izmerena svetlina tog
+pojasa: **levih 8% = 243, desnih 8% = 253, sredina = 208.** Ivice su najsvetlije i
+najpraznije — beo zid sa obe strane, a terapeut i pacijent u sredini.
+
+Zato deluje da slika „ne zauzima celu širinu": zauzima je, ali joj je **sadržaj u
+sredini**, a krajevi su prazan zid. Isto važi za `guided-training.webp`
+(kineziterapija), takođe 1100×1400.
+
+**Ovo se ne rešava u CSS-u.** Traži položen isečak iz originala — Triton serija
+`L-66`–`L-72` za fizikalnu, NeuFit serija `L-73`–`L-80` za kineziterapiju — i
+odvojen fajl za panel, pošto ista slika u zaglavlju stranice usluge treba da
+ostane uspravna.
+
+**Oznaka verzije podignuta na `?v=14.9` u svih 7 HTML fajlova.**

@@ -2521,3 +2521,28 @@ h1 .name-alt {
     border-left: 0;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   23. Panel Usluge — natpis se odlepljuje od ivice slike
+   ══════════════════════════════════════════════════════════════ */
+
+/* Izmereno na devet širina: razmak natpisa od ivice karte prema veličini
+   slova naslova je bio 0,60 na desktopu i pada na 0,43 između 480 i 600 px.
+
+   | širina | karta   | razmak | font | odnos |
+   |--------|---------|--------|------|-------|
+   | 1440   | 669×752 | 43     | 72   | 0,60  |
+   | 1000   | 920×608 | 30     | 50   | 0,60  |
+   |  600   | 560×496 | 22     | 51   | 0,43  |
+
+   Uzrok je u tome što razmak i naslov rastu po različitim skalama: razmak
+   se zaustavi na 1,4rem, a naslov ima pod na 2,6rem. Ispod 832 px naslov
+   stoji na 41–51 px, a razmak na 22 px — pa slovo visine 51 px počinje
+   22 px od ivice i optički je zalepljeno.
+
+   Razmak se sada vodi po istoj skali kao naslov, sa ciljem oko 0,85. */
+.service-preview figcaption {
+  right: clamp(2.1rem, 4.2vw, 4.4rem);
+  bottom: clamp(1.8rem, 3.4vw, 3.4rem);
+  left: clamp(2.1rem, 4.2vw, 4.4rem);
+}
