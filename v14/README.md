@@ -1543,3 +1543,55 @@ Provereno na svih pet stranica, 1440 i 390 px:
 | Horizontalno pomeranje · JS greške | nema, nigde |
 
 **Oznaka verzije podignuta na `?v=14.6` u svih 7 HTML fajlova.**
+
+## Mapa tela — okviri i prelaz mišem u plavoj
+
+Traženo: okvir dugmadi plav kao linije, i četiri čipa ispod koja nisu povezana
+linijama. Merenjem se ispostavilo da problem nije bio samo u okviru.
+
+**Izmereno pre izmene, na naslovnoj, 1440 px:**
+
+| Element | Boja | |
+|---|---|---|
+| Linije ka telu | `rgb(44,158,203)` @ 0.65 | plava iz logoa |
+| Tačka, ispuna | `rgb(44,158,203)` | plava |
+| **Tačka, oreol** | `rgba(19,201,179, …)` | **stari tirkiz iz v13** |
+| **Okvir na prelaz mišem** | `rgba(19,201,179, 0.7)` | **stari tirkiz iz v13** |
+| Okvir natpisa i čipova | `rgba(255,255,255,0.18)` | bela |
+
+**Prelazak sa v13 na v14 remapovao je promenljivu `--teal`, ali ne i upisane
+vrednosti.** Boja je zamenjena na jednom mestu, a na **25 mesta je ostala upisana
+ručno** — pa je tačka imala plavu ispunu i zelen oreol, a natpis je na prelaz mišem
+skakao u tirkiz. To se u kodu ne vidi jer `var(--teal)` i `rgba(19,201,179)` stoje
+jedno pored drugog i oba izgledaju „kao tirkiz".
+
+### Šta je promenjeno
+
+| Šta | Bilo | Sada |
+|---|---|---|
+| Okvir natpisa `.bm` | `rgba(255,255,255,0.18)` | **`--bm-okvir`** = `rgba(44,158,203,0.55)` |
+| Okvir četiri čipa ispod | `rgba(255,255,255,0.18)` | **`--bm-okvir`** |
+| Okvir na prelaz mišem | tirkiz `0.7` | plava `0.7` |
+| Oreol tačke, mirovanje i prelaz | tirkiz | plava |
+| **25 upisanih tirkiznih vrednosti** | `rgba(19,201,179,…)` | `rgba(44,158,203,…)`, iste alfe |
+
+Okvir je na **0.55**, a linija na 0.65 — namerno. Linija je potez od 1 px, okvir
+zatvara ceo pravougaonik, pa ista alfa daje mnogo više mastila. Vrednost stoji u
+`:root` kao `--bm-okvir`, da se menja na jednom mestu.
+
+**Limeta crtica ispred natpisa nije dirana** — ona je brend akcenat, ne ostatak
+stare palete.
+
+### Provereno stvarnim prelazom miša
+
+Ne čitanjem koda nego `hover`-om u browseru, pa očitavanjem izračunatih vrednosti:
+
+| | |
+|---|---|
+| Natpis na telu, okvir | `rgba(44, 158, 203, …)` |
+| Čip ispod, okvir na prelaz | `rgba(44, 158, 203, 0.7)` |
+| Oreol tačke | `rgba(44, 158, 203, 0.22)` i `rgba(44, 158, 203, 0.55)` |
+
+Nigde više nema tirkiza: `grep` na `rgba(19, 201, 179` vraća **0 pogodaka**.
+
+**Oznaka verzije podignuta na `?v=14.7` u svih 7 HTML fajlova.**
