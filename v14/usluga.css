@@ -25,12 +25,13 @@
   --teal: #2c9ecb;
   --teal-deep: #057eb6;
   --blue: #2c9ecb;
-
-  /* Okvir natpisa i čipova na mapi tela. Ista boja kao linije
-     (`--teal`), ali slabija: linija je potez od 1 px, okvir zatvara ceo
-     pravougaonik, pa ista alfa daje mnogo više mastila. */
-  --bm-okvir: rgba(44, 158, 203, 0.55);
 }
+
+/* Okvir natpisa na mapi tela je probno bio plav kao linije
+   (`rgba(44,158,203,0.55)`) pa vraćen na belu `--line-light`. Razlog:
+   linija je potez od 1 px, a okvir zatvara ceo pravougaonik — ista boja
+   daje mnogo više mastila, pa osam kutija počne da nadjača telo na slici.
+   Plava na mapi ostaje tamo gde je i bila: linije, tačke, i prelaz mišem. */
 
 /* Traka sa brojevima: sitni znaci `+`, `:` i `h` idu na lajm, ne na plavu.
 
@@ -1326,7 +1327,7 @@ h1 .name-alt {
   top: var(--y);
   display: block;
   padding: 0.72rem 0.95rem;
-  border: 1px solid var(--bm-okvir);
+  border: 1px solid var(--line-light);
   border-radius: 0.65rem;
   background: rgba(20, 28, 26, 0.62);
   color: var(--white);
@@ -1865,7 +1866,7 @@ h1 .name-alt {
 .complaint-list.is-rest .complaint {
   height: 100%;
   padding: 0.72rem 0.95rem;
-  border: 1px solid var(--bm-okvir);
+  border: 1px solid var(--line-light);
   border-radius: 0.65rem;
   color: var(--white);
   background: rgba(20, 28, 26, 0.62);

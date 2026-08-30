@@ -1569,15 +1569,23 @@ jedno pored drugog i oba izgledaju „kao tirkiz".
 
 | Šta | Bilo | Sada |
 |---|---|---|
-| Okvir natpisa `.bm` | `rgba(255,255,255,0.18)` | **`--bm-okvir`** = `rgba(44,158,203,0.55)` |
-| Okvir četiri čipa ispod | `rgba(255,255,255,0.18)` | **`--bm-okvir`** |
-| Okvir na prelaz mišem | tirkiz `0.7` | plava `0.7` |
-| Oreol tačke, mirovanje i prelaz | tirkiz | plava |
+| Okvir na prelaz mišem, natpisi i čipovi | tirkiz `0.7` | **plava `rgba(44,158,203,0.7)`** |
+| Oreol tačke, mirovanje i prelaz | tirkiz | **plava** |
 | **25 upisanih tirkiznih vrednosti** | `rgba(19,201,179,…)` | `rgba(44,158,203,…)`, iste alfe |
+| Okvir u **mirovanju** | `rgba(255,255,255,0.18)` | **nepromenjen — beli** |
 
-Okvir je na **0.55**, a linija na 0.65 — namerno. Linija je potez od 1 px, okvir
-zatvara ceo pravougaonik, pa ista alfa daje mnogo više mastila. Vrednost stoji u
-`:root` kao `--bm-okvir`, da se menja na jednom mestu.
+### Plavi okvir u mirovanju je probn i odbačen
+
+Prvo je okvir u mirovanju bio prebačen na plavu `rgba(44,158,203,0.55)`, uz
+promenljivu `--bm-okvir`. Klijent je tražio da se utiša, pa je vraćen na belu.
+
+Razlog zašto plava tu ne radi, a na liniji radi: **linija je potez od 1 px, a okvir
+zatvara ceo pravougaonik.** Ista boja daje mnogo više mastila, pa dvanaest kutija
+počne da nadjača telo na fotografiji. Plava na mapi ostaje tamo gde je i bila —
+linije, tačke i prelaz mišem.
+
+Promenljiva `--bm-okvir` je obrisana; razlog stoji kao komentar u `:root`, da se
+odluka ne pokušava ponovo.
 
 **Limeta crtica ispred natpisa nije dirana** — ona je brend akcenat, ne ostatak
 stare palete.
@@ -1588,10 +1596,11 @@ Ne čitanjem koda nego `hover`-om u browseru, pa očitavanjem izračunatih vredn
 
 | | |
 |---|---|
-| Natpis na telu, okvir | `rgba(44, 158, 203, …)` |
-| Čip ispod, okvir na prelaz | `rgba(44, 158, 203, 0.7)` |
+| Natpis i čip, okvir u mirovanju | `rgba(255, 255, 255, 0.18)` — beli |
+| Natpis, okvir na prelaz mišem | `rgba(44, 158, 203, 0.7)` |
+| Čip ispod, okvir na prelaz mišem | `rgba(44, 158, 203, 0.7)` |
 | Oreol tačke | `rgba(44, 158, 203, 0.22)` i `rgba(44, 158, 203, 0.55)` |
 
 Nigde više nema tirkiza: `grep` na `rgba(19, 201, 179` vraća **0 pogodaka**.
 
-**Oznaka verzije podignuta na `?v=14.7` u svih 7 HTML fajlova.**
+**Oznaka verzije podignuta na `?v=14.8` u svih 7 HTML fajlova.**
