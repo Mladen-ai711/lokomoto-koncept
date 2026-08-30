@@ -1779,3 +1779,73 @@ Uzeta je srednja: podiže pod sa 4,6 na 5,2, a ne jede fotografiju kao najjača.
 Naslov u belom je svuda 11,2–15,4 — nikad nije bio sporan.
 
 **Oznaka verzije podignuta na `?v=15.0` u svih 7 HTML fajlova.**
+
+## Mobilni hero video — napravljen iz originala, ne isečen iz desktop verzije
+
+Prijava: na telefonu su kadrovi u makro planu, gotovo se ništa ne vidi.
+
+### Izmereno
+
+`hero-loop-v6-mobile.mp4` **nije napravljen iz izvornog materijala** nego isečen iz
+gotovog 16:9 renda. Poređenjem kadrova u istim sekundama, traženjem isečka koji se
+najbolje poklapa:
+
+| Kadar | Oštrina desktop | Oštrina mobilni | Pad |
+|---|---|---|---|
+| 1s | 349 | 276 | −21% |
+| **5s** | 123 | **48** | **−61%** |
+| 9s | 78 | 70 | −10% |
+| 13s | 261 | 173 | −34% |
+
+**Zadržavao je 506 od 1600 piksela širine — 32% kadra — pa se taj isečak dizao na
+900 px, uvećanje 1,78 puta.** Položaj isečka se menjao od kadra do kadra
+(x=550…1090), pa nije bio ni dosledan. Otud makro plan i mekoća: ono što je na
+desktopu već krupan plan, na telefonu postane koža bez konteksta.
+
+### Napravljen ponovo, po receptu iz skilla `miran-hero-video`
+
+Iz **uspravnih originala od 4000 px**, Ken Burns, **bez ijednog uvećanja**:
+
+| Kadar | Izvor | Uloga | Trajanje | Pokret |
+|---|---|---|---|---|
+| 1 | `L-9` 3931×4914 — terapijska soba | mirovanje | 4 s | spor prilaz 1,00 → 1,09 |
+| 2 | `L-62` 3994×4992 — Ergon na ramenu | dodir | 5 s | prilaz + klizanje desno |
+| 3 | `L-71` 4000×6000 — Triton pojas | vođen pokret | 5 s | klizanje levo |
+| 4 | `L-17` 4000×5000 — čekaonica | sloboda | 4 s | povlačenje 1,10 → 1,00 |
+
+Isti raspored i isto trajanje kao desktop verzija — **16,2 s**, prelivi 0,6 s.
+
+**Sub-pikselski render, ne `zoompan`.** Skill upozorava da `zoompan` zaokružuje
+isečak na cele piksele pa slika drhti. Provereno merenjem promena smera pokreta:
+**0, 0, 0 i 1 promena** na 100–125 frejmova, uz prag drhtanja od ~50.
+
+**Svetlina izjednačena gamom**, ne brightness-om:
+
+| | kadar 1 | kadar 2 | kadar 3 | kadar 4 | raspon |
+|---|---|---|---|---|---|
+| Pre | 145,6 | 130,2 | 159,1 | 140,9 | **28,9** |
+| Posle | 143,9 | 143,6 | 148,0 | 148,8 | **5,2** |
+
+Nije sve svedeno na isti broj: uvod ostaje najtiši, završni kadar najsvetliji, pa
+petlja ne bode oko.
+
+### Novi fajlovi
+
+| Fajl | |
+|---|---|
+| `v8/assets/media/hero-loop-v7-mobile.mp4` | 900×1600, 16,2 s, **1,74 MB** (staro 2,03 MB) |
+| `v8/assets/images/hero-poster-v7-mobile.jpg` | 113 KB, prvi kadar |
+
+`hero-loop-v6-mobile.mp4` ostaje u repou kao povratna tačka, kao i starije verzije.
+Desktop verzija **nije dirana**.
+
+### Usput ispravljeno: `preload` je na telefonu učitavao pogrešan poster
+
+U `<head>` je stajao samo `preload` desktop postera (1600×900), pa je telefon
+povlačio sliku koju nikad ne prikaže. Sada su dva, sa `media` uslovom na 720 px.
+
+### Provereno
+
+Na 390 i 360 px: ispravan izvor i poster, `object-fit: cover`, **vidi se 82% širine
+i 100% visine kadra** (isečak 18%, protiv 68% koliko je gubila stara verzija),
+bez horizontalnog pomeranja i bez JS grešaka.
