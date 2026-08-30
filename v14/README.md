@@ -1604,3 +1604,64 @@ Ne čitanjem koda nego `hover`-om u browseru, pa očitavanjem izračunatih vredn
 Nigde više nema tirkiza: `grep` na `rgba(19, 201, 179` vraća **0 pogodaka**.
 
 **Oznaka verzije podignuta na `?v=14.8` u svih 7 HTML fajlova.**
+
+## Panel Usluge — prelet mišem više ne pali panel
+
+Sekcija je delovala nervozno na prelaz mišem. Izmereno zašto:
+
+`app.js` je na `pointerenter` **odmah** pozivao `activateService`. Kad se mišem
+pređe preko svih pet stavki, panel se promeni pet puta zaredom — a svaka promena
+znači izbledivanje slike, pa prepisivanje natpisa, naslova, opisa i tri čipa.
+
+| Prelet preko liste | Promena panela, pre izmene |
+|---|---|
+| ~100 ms | 4 |
+| ~200 ms | 4–5 |
+| ~500 ms | 5 |
+
+Mapa tela ima istu zaštitu od 2. runde — `transition-delay: 120ms`, uz komentar
+*„pali se tek kad se zadržiš"*. Panel je nije imao, jer promenu vodi skripta,
+a ne CSS, pa se CSS zadrška na njega ne odnosi.
+
+### Rešenje: zadrška namere, u JS-u
+
+`pointerenter` više ne pali panel nego zakazuje paljenje za **180 ms**;
+`pointerleave` ga otkazuje. Prelet tako ne stigne ništa da upali.
+
+180 ms je usklađeno sa izbledivanjem slike (`is-changing`, takođe 180 ms) —
+kraće i dalje propušta prelet, duže se oseti kao kašnjenje.
+
+**Klik i tastatura (`focus`) pale odmah** i usput otkazuju odbrojavanje — tu nema
+nedoumice šta je posetilac hteo.
+
+### Izmereno posle izmene
+
+| Prelet preko svih pet stavki | Promena panela |
+|---|---|
+| 102 ms | **0** |
+| 212 ms | **0** |
+| 513 ms | **0** |
+
+| Zadržavanje na stavci | |
+|---|---|
+| do 350 ms | ne pali |
+| 600 ms | **pali, jednom** |
+
+Panel se vidno promeni oko **360 ms** po zadržavanju: 180 ms zadrške + 180 ms
+izbledivanja.
+
+### Red pod mišem i dalje odgovara odmah
+
+Ovo je bila jedina prava opasnost od zadrške — da red deluje mrtvo dok se čeka.
+Ne deluje, jer odziv reda ide kroz CSS (`.service-item:hover`), nezavisno od skripte:
+
+| 60 ms po prelazu | |
+|---|---|
+| Boja teksta | `rgba(255,255,255,0.48)` → **`0.63`** |
+| Strelica | `0` → **`0.29`** |
+| `is-active` (skripta) | još `false` |
+
+Znači: **odmah lokalni odziv, sa zadrškom skupa promena.**
+
+**`app.js` podignut na `?v=14.1` u `index.html`** (jedina stranica koja ga učitava).
+`usluga.css` nije diran, ostaje `?v=14.8`.

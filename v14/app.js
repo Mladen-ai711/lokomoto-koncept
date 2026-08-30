@@ -220,13 +220,47 @@
     window.setTimeout(updatePreview, 180);
   };
 
+  // Prelaz mišem je do sada palio panel odmah, na `pointerenter`. Kad se
+  // mišem pređe preko svih pet stavki, panel se promeni pet puta u sekundi:
+  // slika se izbledi i vrati, natpis, opis i tri čipa se prepišu — svaki put.
+  // Izmereno: prelaz preko liste za 300 ms izazove 4 promene panela.
+  //
+  // Zato ista zaštita koju mapa tela već ima (`transition-delay: 120 ms`),
+  // samo ovde mora kroz JS jer promenu vodi skripta, ne CSS: panel se pali
+  // tek kad se pokazivač ZADRŽI na stavci. Prelet ništa ne pali.
+  //
+  // 180 ms je usklađeno sa izbledivanjem slike (`is-changing`, isto 180 ms) —
+  // kraće od toga i dalje uspe da uhvati prelet, duže se oseti kao kašnjenje.
+  const ZADRSKA_PRELAZA = 180;
+  let odbrojavanje = null;
+
+  const otkaziOdbrojavanje = () => {
+    if (odbrojavanje === null) return;
+    window.clearTimeout(odbrojavanje);
+    odbrojavanje = null;
+  };
+
   serviceItems.forEach((item) => {
-    // Klik sada otvara stranicu usluge — panel se samo osvežava usput.
-    item.addEventListener("click", () => activateService(item));
-    item.addEventListener("focus", () => activateService(item));
-    item.addEventListener("pointerenter", () => {
-      if (window.matchMedia("(hover: hover)").matches) activateService(item);
+    // Klik i tastatura pale odmah — tu nema nedoumice šta je posetilac hteo.
+    item.addEventListener("click", () => {
+      otkaziOdbrojavanje();
+      activateService(item);
     });
+    item.addEventListener("focus", () => {
+      otkaziOdbrojavanje();
+      activateService(item);
+    });
+
+    item.addEventListener("pointerenter", () => {
+      if (!window.matchMedia("(hover: hover)").matches) return;
+      otkaziOdbrojavanje();
+      odbrojavanje = window.setTimeout(() => {
+        odbrojavanje = null;
+        activateService(item);
+      }, ZADRSKA_PRELAZA);
+    });
+
+    item.addEventListener("pointerleave", otkaziOdbrojavanje);
   });
 
   // Tri koraka „Naš pristup" su do sada bila zamrznuta na prvom: `is-current`
