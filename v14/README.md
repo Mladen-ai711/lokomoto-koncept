@@ -1440,3 +1440,55 @@ sa kineziterapije otvaraju se sa 200.
 Kad stranice `/tegobe/<slug>/` budu napravljene, **ova sekcija se ne vraća na staro.**
 Raskrsnica ka uslugama je zaseban i koristan blok. Tegobe dobijaju svoje mesto —
 mapa tela na naslovnoj već radi taj posao za ulazni smer.
+
+## Plava kroz naslove — i na stranicama usluga
+
+Naslovna to ne radi bojom nego **oblikom rečenice**. Svaki njen naslov je izjava
+pa obrt u plavom kurzivu:
+
+| Naslovna | Plavi deo |
+|---|---|
+| Ne tretiramo samo mesto bola. | *Želimo da rešimo problem zauvek.* |
+| Cenu znate | *pre nego što počnete.* |
+| Pre nego što zakažete. | *Odgovori bez uvijanja.* |
+
+Na stranicama usluga je **svih 30 naslova bilo etiketa** — „Kako izgleda pregled",
+„Cena dijagnostike". Nemaju drugu polovinu, pa boja nema na šta da sleti. Zato je
+`em` tamo i bio ugašen (`color: inherit`), i taj razlog je bio tačan.
+
+**Znači posao nije pravilo za boju nego prepisivanje naslova.** Prepisano je svih
+30, po obrascu naslovne:
+
+| Bilo | Sada |
+|---|---|
+| Kako izgleda pregled | Kako izgleda pregled. *Meri se, ne nagađa.* |
+| Četiri načina da se dođe do nalaza | Četiri načina do nalaza. *Nijedan se ne radi napamet.* |
+| Sedam procedura fizikalne terapije | Sedam procedura. *Bira ih nalaz, ne navika.* |
+| Kako izgleda tretman | Kako izgleda tretman. *Prvo test, pa ruke.* |
+| Četiri koraka, od pripreme do sporta | Četiri koraka, od pripreme do sporta. *Nijedan se ne preskače.* |
+| Cena X | Cena X. *Znate je pre nego što počnete.* |
+| Česta pitanja o X | Česta pitanja o X. *Odgovori bez uvijanja.* |
+
+Obrt nije ukras — svaki nosi po jedno pravilo koje na stranici i stoji u tekstu.
+
+### Boja se bira prema podlozi, ne po navici
+
+| Podloga | Sekcije | Boja obrta |
+|---|---|---|
+| Svetla | za koga je, koraci, raskrsnica, cene, pitanja | **`--teal-deep` `#057eb6`** — plava izmerena iz logoa |
+| Tamna | metode, poziv na akciju | **`--lime` `#c9f25f`** |
+
+Na tamnoj podlozi plava pada u pozadinu, pa tamo ide limeta — isto kao tamna
+sekcija Usluge na naslovnoj. Pravilo `.service-methods .section-intro h2 em` sa
+limetom je već stajalo u fajlu, samo ga je kasniji `color: inherit` gasio.
+
+Izmereno posle izmene, na svakoj stranici: **7 `em` u naslovima — 5 plavih,
+2 limeta, nijedan bez boje.**
+
+### Fajlovi
+
+`usluga.css` (prepisano pravilo iz sekcije 11) i **svih pet stranica usluga**.
+**Oznaka verzije podignuta na `?v=14.4` u svih 7 HTML fajlova.**
+
+Provereno: svih pet stranica, 1440 i 390 px — HTTP 200, bez JS grešaka, bez
+horizontalnog pomeranja.

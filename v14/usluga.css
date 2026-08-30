@@ -1182,17 +1182,42 @@ h1 .name-alt {
   padding-top: clamp(0.8rem, 1.1vw, 1.05rem);
 }
 
-/* Ako se u miran naslov ikad vrati `em`, ne sme da skoči u drugu boju —
-   taj kontrast pripada izjavama iz v12, ne oznaci sekcije. */
-.for-whom-section h2 em,
+/* Ranije je ovde stajalo `color: inherit` — em u naslovu sekcije nije smeo
+   da skoči u drugu boju. Razlog je bio tačan dok su naslovi bili etikete
+   („Kako izgleda pregled"): boja bez druge polovine rečenice nema na šta
+   da sleti.
+
+   30. 8. su svih 30 naslova na pet stranica prepisani kao izjave sa obrtom,
+   po istom obrascu kao naslovna („Cenu znate *pre nego što počnete.*").
+   Sada obrt postoji, pa se plava vraća — ista `--teal-deep` (#057eb6, boja
+   iz logoa) kao u v12, i isti tanji kurziv. */
 .service-steps .section-intro h2 em,
-.service-methods .section-intro h2 em,
-.service-complaints .section-intro h2 em,
-.service-prices .section-intro h2 em,
+.service-prices .section-intro h2 em {
+  color: var(--teal-deep);
+  font-style: italic;
+  font-weight: 480;
+}
+
+/* Obrt nosе samo tri sekcije — koraci, metode, cene. Na ostale tri se
+   naslov vratio na etiketu, jer šest izjava jedna za drugom na podstranici
+   počne da zvuči kao naslovna. Naslovna ubeđuje, podstranica objašnjava.
+
+   Pravilo ostaje kao brana: ako `em` ikad upadne u naslov jedne od te tri
+   sekcije, neće skočiti u boju sam od sebe. */
+.for-whom-section h2 em,
+.complaint-head h2 em,
 .service-faq .section-intro h2 em {
   color: inherit;
   font-style: italic;
   font-weight: inherit;
+}
+
+/* Sekcija metoda je na tamnoj podlozi — tamo plava pada u pozadinu, pa
+   nosi limetu, isto kao tamna sekcija Usluge na naslovnoj. */
+.service-methods .section-intro h2 em {
+  color: var(--lime);
+  font-style: italic;
+  font-weight: 480;
 }
 
 /* ══════════════════════════════════════════════════════════════
