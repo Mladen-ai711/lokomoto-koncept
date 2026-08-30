@@ -1849,3 +1849,29 @@ povlačio sliku koju nikad ne prikaže. Sada su dva, sa `media` uslovom na 720 p
 Na 390 i 360 px: ispravan izvor i poster, `object-fit: cover`, **vidi se 82% širine
 i 100% visine kadra** (isečak 18%, protiv 68% koliko je gubila stara verzija),
 bez horizontalnog pomeranja i bez JS grešaka.
+
+### Ispravka — iste slike i u zaglavljima stranica usluga
+
+Pretpostavka iz prethodnog odeljka — da zaglavlje stranice usluge traži uspravnu
+sliku — **bila je pogrešna, i merenje to pokazuje.**
+
+`.service-hero-photo` nema zadat odnos: okvir **prati odnos same slike**. Sa
+uspravnom fotografijom 0,79 okvir postaje 0,79 i prikazuje **ceo kadar**, zajedno sa
+praznim zidom gore i dole. Na 1080 px i niže to je blok od 994×1265 px.
+
+Zato su `panel-fizikalna.webp` i `panel-kineziterapija.webp` sada i u zaglavljima:
+
+| Širina | Okvir pre | Okvir sada | Vidi se |
+|---|---|---|---|
+| 1440 | 510×649 (0,79) | 510×461 (1,11) | 83% × 100% |
+| 1080 | 994×1265 (0,79) | 994×745 (1,33) | 100% × 100% |
+| 390 | 350×445 (0,79) | 350×320 (1,09) | 82% × 100% |
+
+**Time otpada „dve slike po usluzi".** Panel i zaglavlje dele istu sliku, kao i kod
+ostale tri usluge — model ostaje jedna slika po usluzi. Imena fajlova (`panel-`)
+su sada šira od svoje uloge, ali se ne menjaju jer su već u istoriji repoa.
+
+`clinical-work.webp` više nije u upotrebi u `v14/` (ostaje zbog v12 i v13).
+`guided-training.webp` i dalje stoji uz korake na postoperativnoj.
+
+Provereno: **325 referenci u 7 HTML fajlova, nijedna ne visi.**
