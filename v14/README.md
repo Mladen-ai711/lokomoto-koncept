@@ -1165,3 +1165,105 @@ Sve četiri stranice renderovane kroz Chromium, na **1440 i 390 px**:
 - svi lokalni linkovi (14 po stranici) vode na postojeće ciljeve; futer nosi
   `aria-current="page"` na sopstvenoj usluzi
 - harmonika pitanja se otvara, sekcije se pojavljuju na skrol
+
+## Ispravka istog dana — slike u traci „Šta da očekujete"
+
+Traka je pukla na tri stranice: umesto fotografije video se zamućen zid i radijator.
+**Uzrok je izmeren, ne pogođen.**
+
+`.expectation` je visok `clamp(24rem, 34vw, 32rem)`, što na 1440 px daje **1440 × 490,
+odnos 2,94 : 1**. Slika ide `object-fit: cover` sa `object-position: 62% 42%`.
+Uspravna fotografija 1100 × 1400 se pri tome uveća 1,31 puta, pa se od nje vidi
+**svega 27% visine** — i to pojas iz sredine, u kome nema ni terapeuta ni pacijenta.
+Preko toga ide zatamnjenje od 95% sa leve strane. Rezultat je mrlja.
+
+Slike u repou po obliku:
+
+| Pejzaž (za traku) | Uspravne (za zaglavlje i okvir uz korake) |
+|---|---|
+| `manifesto` 1,78 · `space` 1,78 · `oprema` 2,0 · `hero-poster-v6` 1,78 | `assessment` 0,8 · `clinical-work` 0,79 · `guided-training` 0,79 · `system-detail` 1,25 |
+
+**Pravilo za ubuduće:**
+
+| Mesto | Šta traži |
+|---|---|
+| `.expectation-photo` — traka | **pejzaž, 16:9 ili šire.** Uspravna slika ovde ne radi |
+| `.steps-photo` — uz korake | **4:5 uspravno** (`aspect-ratio` je zaključan u CSS-u) |
+| `.service-hero-photo` — zaglavlje | uspravno ili blizu kvadrata |
+
+### Šta je promenjeno
+
+| Stranica | Traka pre | Traka sada |
+|---|---|---|
+| Dijagnostika | `clinical-work` (uspravna) | **`oprema`** — terapijska soba, tamni zid levo nosi tekst |
+| Kineziterapija | `assessment` (uspravna) | **`space`** — sala |
+| Postoperativna | `clinical-work` (uspravna) | **`space`** — sala, poslednja faza oporavka |
+
+Uz to je na kineziterapiji `space` izašla iz okvira uz korake (bila je pejzaž u
+uspravnom 4:5 okviru, pa se videla uska traka sale) i zamenjena sa `assessment`,
+a natpis ispod slike je prepisan da govori o polaznom merenju.
+
+**Sala se sada ponavlja na dve trake** (kineziterapija i postoperativna). Po značenju
+stoji na obe — obe sekcije govore o opterećenju i napredovanju — ali je i dalje
+ponavljanje. Reši se kadrovima `L-21`–`L-26` (sala, širok kadar) i `L-10`, `L-11`
+(terapijske sobe, izvorno 16:9) iz `E:\Lokomoto`.
+
+Provereno posle izmene: sve tri stranice, 1440 i 390 px — HTTP 200, bez JS grešaka,
+bez horizontalnog pomeranja, nijedna slika puknuta.
+
+## Dopuna — dve prave fotografije iz `E:\Lokomoto`
+
+Folder sa snimanja je 30. 8. povezan, pa je ponavljanje sale u dve trake rešeno
+pravim kadrovima umesto zaobilaženja.
+
+**Od 104 fotografije samo je 8 pejzažnih** (odnos ≥ 1,5): `L-6`, `L-10`, `L-11`,
+`L-16`, `L-24`, `L-25`, `L-26`, `L-28`. Ostalih 96 su uspravne (0,67 ili 0,8) i u
+traku „Šta da očekujete" ne mogu, ma koliko dobro izgledale. To je i razlog što je
+traka do sada bila usko grlo.
+
+### Izbor je izmeren, ne odabran okom
+
+Nagib vertikala, mereno preko gradijenta ivica (medijana skoro-vertikalnih ivica,
+zasebno za ceo kadar i za centralnih 50%, da se odbije uticaj perspektive širokog objektiva):
+
+| Kadar | Ceo kadar | Centralnih 50% |
+|---|---|---|
+| **`L-24`** sala | **+0,67°** | **+1,58°** |
+| `L-25` sala | −3,25° | −2,97° |
+| `L-26` sala | −2,46° | −2,98° |
+| **`L-28`** sprave | **−0,37°** | **0,00°** |
+
+Oko bi izabralo `L-25` — svetliji je i otvoreniji. **Merenje bira `L-24`**, koji je
+četiri puta prav. Isto pravilo kao kod heroja.
+
+### Novi fajlovi
+
+| Fajl | Izvor | Gde stoji |
+|---|---|---|
+| `v8/assets/images/sala-sirok.webp` | `L-24`, isečeno na 16:9, 1800×1013, q82, 185 KB | traka na kineziterapiji |
+| `v8/assets/images/sprave.webp` | `L-28`, isečeno sa 3:2 na 16:9, 1800×1013, q74, 180 KB | traka na postoperativnoj |
+
+Trake sada nose pet različitih slika na pet stranica — ponavljanja više nema:
+
+| Stranica | Traka |
+|---|---|
+| Dijagnostika | `oprema` |
+| Fizikalna terapija | `manifesto` |
+| Kineziterapija | **`sala-sirok`** (novo) |
+| Manualna terapija | `manifesto` |
+| Postoperativna | **`sprave`** (novo) |
+
+### Ispravka uz `claude/10-fotografije-snimanje.md`
+
+Taj dokument vodi `L-5` i `L-6` kao „beli aparati na postolju, ne može se tvrditi
+šta su". **`L-6` se sada čita:** na ekranu piše `CHATTANOOGA GROUP`, a na njemu
+`Traction Meter`, `Rope Release`, `Progressive / Static / Intermittent` i vreme u
+minutima — to je **upravljačka jedinica za trakciju**, dakle Triton, a ne
+magnetoterapija. Iz spiska kandidata za magnet **ispada**.
+
+`L-10`, `L-11` i `L-16` prikazuju aparat sa natpisom `MP 50` i `Medical Technology`,
+sa plavim crevima i bocom gela. Marka se delimično čita, **ali šta je aparat ne
+treba tvrditi bez potvrde klijenta** — pravilo o pogrešno označenom uređaju i dalje važi.
+
+Provereno posle izmene: kineziterapija i postoperativna, 1440 i 390 px — HTTP 200,
+bez JS grešaka, bez horizontalnog pomeranja, nijedna slika puknuta.
