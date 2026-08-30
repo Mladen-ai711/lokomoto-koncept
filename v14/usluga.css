@@ -2559,3 +2559,65 @@ h1 .name-alt {
     transparent 58%
   );
 }
+
+/* ══════════════════════════════════════════════════════════════
+   24. Stavke panela Usluge — smiren odziv na prelaz mišem
+   ══════════════════════════════════════════════════════════════ */
+
+/* Izmereno na jednom prelazu preko stavke: dešavale su se četiri stvari
+   istovremeno —
+     1. tekst skoči 16 px udesno (`padding` 0 → 1rem levo i desno; reflow),
+     2. boja skoči sa `rgba(255,255,255,0.48)` na punu belu,
+     3. strelica doleti dijagonalno 9 px (`translate(-0.4rem, 0.4rem)` → 0),
+     4. pozadinski preliv se upali.
+
+   Zadrška od 180 ms u `app.js` je sprečila da se panel pali u preletu, ali
+   sama stavka je i dalje odgovarala sa četiri pokreta odjednom.
+
+   Sada: pomeranje teksta se ukida, strelica samo bledi bez leta, a boja ide
+   u dva stepena — tiši na prelaz, pun tek kad je stavka izabrana. Ostaje
+   dovoljno odziva da se zna gde je miš, bez skakanja. */
+
+/* 1. Bez pomeranja teksta. Izabrani red se već razlikuje po pozadini,
+      punoj beloj i otvorenom opisu — pomeranje je bilo višak. */
+.service-list .service-item:hover,
+.service-list .service-item.is-active {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/* 2. Boja u dva stepena umesto jednog skoka. */
+.service-list .service-item:hover {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.service-list .service-item.is-active {
+  color: var(--white);
+}
+
+/* 3. Strelica samo bledi, bez dijagonalnog leta. */
+.service-list .service-arrow {
+  transform: none;
+  transition: opacity 260ms ease;
+}
+
+.service-list .service-item:hover .service-arrow {
+  opacity: 0.5;
+  transform: none;
+}
+
+.service-list .service-item.is-active .service-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+/* 4. Duži prelazi — bez `padding` u spisku, jer se više ne menja. */
+.service-list .service-item {
+  transition:
+    color 320ms ease,
+    background-color 320ms ease;
+}
+
+.service-list .service-item::before {
+  transition: opacity 380ms ease;
+}

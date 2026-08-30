@@ -1875,3 +1875,40 @@ su sada šira od svoje uloge, ali se ne menjaju jer su već u istoriji repoa.
 `guided-training.webp` i dalje stoji uz korake na postoperativnoj.
 
 Provereno: **325 referenci u 7 HTML fajlova, nijedna ne visi.**
+
+## Stavke panela Usluge — smiren odziv
+
+Zadrška od 180 ms u `app.js` sprečila je da se panel pali u preletu, ali je sama
+stavka i dalje odgovarala **sa četiri pokreta istovremeno**. Izmereno na jednom prelazu:
+
+| Šta se dešavalo | Bilo |
+|---|---|
+| Tekst | **skoči 16 px udesno** (`padding` 0 → 1rem levo i desno, uz reflow) |
+| Boja | `rgba(255,255,255,0.48)` → **puna bela**, jednim skokom |
+| Strelica | **doleti dijagonalno 9 px** (`translate(-0.4rem, 0.4rem)` → 0) uz bleđenje |
+| Pozadina | preliv se upali |
+
+### Šta je promenjeno
+
+| | Sada |
+|---|---|
+| Pomeranje teksta | **ukinuto** — izabrani red se već razlikuje po pozadini, punoj beloj i otvorenom opisu |
+| Boja | **dva stepena**: `0.74` na prelaz, puna bela tek kad je stavka izabrana |
+| Strelica | **samo bledi**, bez leta; `0.5` na prelaz, `1` kad je izabrana |
+| Prelazi | 320–380 ms umesto 200–300 ms |
+
+### Izmereno posle
+
+Položaj teksta i strelice praćen kroz ceo prelaz, na 60, 150, 300, 600 i 900 ms:
+
+| | Pomeranje |
+|---|---|
+| Tekst | **0 px** na svakom očitavanju (bilo 16) |
+| Strelica | **0 px** vodoravno i uspravno (bilo 9 dijagonalno) |
+
+Menja se **samo prozirnost** — boje teksta, strelice i pozadine. Bez horizontalnog
+pomeranja stranice i bez JS grešaka.
+
+Pisano kao override u `usluga.css`, sekcija 24; `v12/styles.css` nije diran.
+
+**Oznaka verzije podignuta na `?v=15.1` u svih 7 HTML fajlova.**
