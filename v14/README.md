@@ -1267,3 +1267,52 @@ treba tvrditi bez potvrde klijenta** — pravilo o pogrešno označenom uređaju
 
 Provereno posle izmene: kineziterapija i postoperativna, 1440 i 390 px — HTTP 200,
 bez JS grešaka, bez horizontalnog pomeranja, nijedna slika puknuta.
+
+## Prolaz kroz ceo folder `E:\Lokomoto` — tri prave fotografije
+
+Prošao sam svih 104 kadra po grupama, ne uzorak. Izbor unutar svake grupe je
+merio **nagib vertikala** i **oštrinu** (varijansa Laplasijana), pa je uzet najbolji.
+
+| Grupa | Kandidati | Izabrano | Zašto |
+|---|---|---|---|
+| Ultrazvučni pregled | `L-30` `L-31` `L-32` | **`L-32`** | jedini u izvornom 4:5, nagib 1,43° prema 2,44° kod `L-31`; sa monitorom u kadru |
+| Manuelno testiranje ramena | `L-42`–`L-46` | **`L-42`** | oštrina 92,5 prema 12,5 kod `L-46`; izvorni 4:5, nagib −0,84° |
+| Ergon / IASTM u radu | `L-62`–`L-65` | **`L-62`** | oštrina 107,8; izvorni 4:5, nagib 0,69° |
+
+### Novi fajlovi
+
+| Fajl | Izvor | Gde stoji |
+|---|---|---|
+| `v8/assets/images/uz-pregled.webp` | `L-32`, 1280×1600, 50 KB | uz korake na **dijagnostici** |
+| `v8/assets/images/manuelno-testiranje.webp` | `L-42`, 1280×1600, 79 KB | uz korake na **manualnoj terapiji** |
+| `v8/assets/images/ergon.webp` | `L-62`, 1280×1600, 83 KB | zaglavlje **manualne terapije** |
+
+`ergon.webp` menja `system-detail.webp` u zaglavlju — stari fajl je bio 900×720,
+najmanja slika u celom setu, i vidno mekši. `system-detail` ostaje na naslovnoj.
+
+**Dijagnostika sada ima fotografiju ultrazvuka.** To je bila najveća rupa: stranica
+o ultrazvučnoj dijagnostici prikazivala je pregled kolena rukama.
+
+### Nijedna slika se više ne ponavlja unutar jedne stranice
+
+| Stranica | Zaglavlje | Uz korake | Traka |
+|---|---|---|---|
+| Dijagnostika | `assessment` | **`uz-pregled`** | `oprema` |
+| Fizikalna terapija | `clinical-work` | `assessment` | `manifesto` |
+| Kineziterapija | `guided-training` | `assessment` | `sala-sirok` |
+| Manualna terapija | **`ergon`** | **`manuelno-testiranje`** | `manifesto` |
+| Postoperativna | `manifesto` | `guided-training` | `sprave` |
+
+### Kartice metoda i dalje bez fotografija — sada sa razlogom, ne iz opreza
+
+Prolaz kroz svih 104 kadra potvrđuje ono što je dokument 10 slutio na uzorku:
+**magnetoterapija, krioterapija i limfna drenaža ne postoje ni na jednom kadru.**
+To više nije pretpostavka nego pretraženo.
+
+Od metoda koje jesu snimljene, samo se Ergon može dokazati iz same fotografije
+(`L-62`–`L-65`, alat na koži; `L-12`, set alata u koferu). Osteopatija, NKT i masaža
+se na fotografiji ne razlikuju od bilo kog rada rukama. Jedna popunjena kartica od
+četiri izgleda gore nego četiri čiste, pa kartice ostaju tekstualne.
+
+Provereno posle izmene: dijagnostika i manualna, 1440 i 390 px — HTTP 200, bez JS
+grešaka, bez horizontalnog pomeranja, nijedna slika puknuta.
