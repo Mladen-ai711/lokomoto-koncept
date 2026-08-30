@@ -1724,3 +1724,58 @@ odvojen fajl za panel, pošto ista slika u zaglavlju stranice usluge treba da
 ostane uspravna.
 
 **Oznaka verzije podignuta na `?v=14.9` u svih 7 HTML fajlova.**
+
+### Dopuna — položeni isečci za panel
+
+Uzrok iz prethodnog odeljka rešen je na izvoru, ne u CSS-u: dve nove fotografije
+isečene iz originala, u odnosu **4:3**, tako da subjekt ide od ivice do ivice.
+
+**Zašto baš 4:3.** Karta panela menja oblik sa širinom ekrana:
+
+| Ekran | Karta | Odnos |
+|---|---|---|
+| 1440 px | 669×752 | **0,89 — uspravna** |
+| 1000 px | 920×608 | **1,51 — položena** |
+
+Jedna slika mora da posluži oba. Uspravni izvor (0,79) na položenoj karti ostavlja
+prazne krajeve; položeni izvor na uspravnoj karti gubi bokove. 4:3 je sredina —
+seče 33% širine na uspravnoj karti i 12% visine na položenoj, pa subjekt preživi oba.
+
+**Izbor kadra, mereno u svojoj seriji:**
+
+| Panel | Serija | Uzeto | Nagib | Oštrina |
+|---|---|---|---|---|
+| Fizikalna terapija | Triton, `L-66`–`L-72` | **`L-71`, centar na 56% visine** | **0,00°** | 88,2 |
+| Kineziterapija | NeuFit, `L-73`–`L-80` | **`L-78`, centar na 42% visine** | +1,31° | **181,3** |
+
+Vertikalni položaj isečka nije pogođen nego izabran sa lista od dvanaest kandidata
+(tri položaja × četiri kadra): na 28% i 42% Triton kadar pokazuje prozor i zid —
+tačno problem koji se rešava; tek na 56% pacijent leži preko celog kadra.
+
+**Novi fajlovi:**
+
+| Fajl | Izvor | Veličina |
+|---|---|---|
+| `v8/assets/images/panel-fizikalna.webp` | `L-71` | 1600×1200, 64 KB |
+| `v8/assets/images/panel-kineziterapija.webp` | `L-78` | 1600×1200, 89 KB |
+
+**Zaglavlja stranica usluga nisu dirana.** `clinical-work.webp` i
+`guided-training.webp` tamo ostaju uspravne — to je i razlog za odvojene fajlove.
+Model se time menja: **usluga sme da ima dve slike, jednu za panel i jednu za
+zaglavlje.** Za sada je tako kod dve od pet.
+
+### Zatamnjenje pojačano, jer su nove slike svetlije
+
+Nove fotografije su svetlije, pa je lime nadnaslov pao na kontrast **4,6** — taman
+iznad praga 4,5. Izmereno na sve tri varijante zatamnjenja:
+
+| Zatamnjenje | dijagn. | fizikal. | kinezi | manual. | postop | najslabiji |
+|---|---|---|---|---|---|---|
+| 0,86 / 48% (bilo) | 10,2 | 4,9 | **4,6** | 9,7 | 13,1 | 4,6 |
+| **0,90 / 58% (uzeto)** | 10,4 | 5,4 | **5,2** | 9,9 | 12,9 | **5,2** |
+| 0,92 / 64% | 10,6 | 6,2 | 5,8 | 10,2 | 12,7 | 5,8 |
+
+Uzeta je srednja: podiže pod sa 4,6 na 5,2, a ne jede fotografiju kao najjača.
+Naslov u belom je svuda 11,2–15,4 — nikad nije bio sporan.
+
+**Oznaka verzije podignuta na `?v=15.0` u svih 7 HTML fajlova.**

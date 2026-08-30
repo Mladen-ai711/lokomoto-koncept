@@ -2546,3 +2546,16 @@ h1 .name-alt {
   bottom: clamp(1.8rem, 3.4vw, 3.4rem);
   left: clamp(2.1rem, 4.2vw, 4.4rem);
 }
+
+/* Nove panel fotografije su svetlije od starih, pa je lime nadnaslov pao na
+   kontrast 4,6 — taman iznad praga 4,5. Zatamnjenje se produžava sa 48% na
+   58% visine i pojačava sa 0,86 na 0,90, uz među-tačku da prelaz ostane mek.
+   Izmereno posle: najslabiji nadnaslov 5,2 umesto 4,6, ostali nepromenjeni. */
+.service-preview-wash {
+  background: linear-gradient(
+    0deg,
+    rgba(31, 41, 39, 0.9) 0%,
+    rgba(31, 41, 39, 0.34) 34%,
+    transparent 58%
+  );
+}
