@@ -1373,3 +1373,70 @@ fizikalnu terapiju — sekcija mora da izgleda isto na svih pet.
 
 Provereno: svih pet stranica, 1440 i 390 px — HTTP 200, bez JS grešaka, bez
 horizontalnog pomeranja.
+
+## Sekcija „Tegobe" — nije podebljana nego joj je promenjen posao
+
+Isti tretman kao „Za koga je" bi ovde bio greška. **Prebrojano pre izmene, po svih
+pet stranica:**
+
+| Stranica | Stavki u „Tegobe" | Koliko ih ponavlja „Za koga je" |
+|---|---|---|
+| Manualna terapija | 3 | **3** — „Teniski ili golferski lakat" je bio doslovno isti u obe |
+| Dijagnostika | 3 | **2** |
+| Kineziterapija | 4 | **2** |
+| Postoperativna | 2 | **1** |
+| Fizikalna terapija | 3 | 1 delimično |
+
+I drugi nalaz: **svih 15 linkova u toj sekciji vodilo je na istu adresu**,
+`index.html#usluge` — privremeno rešenje dok ne postoje stranice `/tegobe/<slug>/`.
+
+Dakle: ista poruka dvaput na istoj stranici i petnaest linkova na jedno mesto.
+Da je sekcija samo dobila deblji tekst, ponavljanje bi se udvostručilo.
+
+### Šta je sekcija postala
+
+**Raskrsnica ka ostalim uslugama.** Umesto spiska tegoba koje vode *ovde* — što
+„Za koga je" već radi — sada stoje četiri tegobe koje vode *drugde*, svaka sa
+objašnjenjem i **linkom na uslugu kojoj pripada**.
+
+| Stranica | Naslov sekcije | Redova |
+|---|---|---|
+| Dijagnostika | „Šta sledi posle nalaza" | 4 — sve četiri terapije |
+| Ostale četiri | „Ako je vaša tegoba drugačija" | 4 — ostale usluge, uključujući dijagnostiku |
+
+| Mera | Bilo | Sada |
+|---|---|---|
+| Teksta u sekciji | 90–140 znakova | **530–552** |
+| Linkova | 2–4 | **4** |
+| Različitih odredišta | **1** | **4** |
+| Razlika u visini stubaca | — | 28 px |
+
+Usput je rešeno i to što je stranica usluge do sada imala **izlaz ka drugoj usluzi
+samo u futeru.** Sada svaka nudi put dalje na sredini stranice, tamo gde čitalac
+i shvati da je na pogrešnom mestu.
+
+### Greška uhvaćena na renderu, ne u kodu
+
+Prva izmena je radila regularnim izrazom nad postojećim HTML-om i **u prvom redu
+svake stranice pojela `</span>`** — pet puta, na svih pet stranica. Kod se izvršio
+bez greške i prijavio četiri zamene po fajlu; videlo se tek na slici, gde je naziv
+usluge ostao da visi na kraju rečenice umesto u svom redu.
+
+Popravljeno tako što je ceo `<ul>` **prepisan iz podataka**, ne krpljen. Dodata je
+i provera parnosti tagova (`li`, `a`, `b`, `span`, `em`, `i`) u sekciji, na svih pet
+stranica — sve parno.
+
+### Fajlovi
+
+`usluga.css` (nova sekcija 21) i **svih pet stranica usluga**.
+**Oznaka verzije podignuta na `?v=14.3` u svih 7 HTML fajlova.**
+
+Provereno: svih pet stranica, 1440 i 390 px — HTTP 200, bez JS grešaka, bez
+horizontalnog pomeranja, po 4 reda sa ispravnom strukturom, i sva četiri odredišta
+sa kineziterapije otvaraju se sa 200.
+
+### Šta ovo znači za fazu 2
+
+Kad stranice `/tegobe/<slug>/` budu napravljene, **ova sekcija se ne vraća na staro.**
+Raskrsnica ka uslugama je zaseban i koristan blok. Tegobe dobijaju svoje mesto —
+mapa tela na naslovnoj već radi taj posao za ulazni smer.

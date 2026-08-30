@@ -1093,6 +1093,7 @@ h1 .name-alt {
    Klijent: „samo neka bude naslov i dole pitanja". Manji je od
    `.section-intro h2` iz v12, jer taj stepen nosi izjavu, ne oznaku. */
 .for-whom-section h2,
+.complaint-head h2,
 .service-steps .section-intro h2,
 .service-methods .section-intro h2,
 .service-complaints .section-intro h2,
@@ -2282,3 +2283,141 @@ h1 .name-alt {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   21. Sekcija „Tegobe" — menja posao, ne samo izgled
+   ══════════════════════════════════════════════════════════════ */
+
+/* Prebrojano 30. 8, po svih pet stranica:
+   - „Tegobe" i „Za koga je" su nosile isti sadržaj. Na manualnoj terapiji
+     3 od 3 stavke gotovo doslovno („Teniski ili golferski lakat" je bio
+     identičan u obe), na dijagnostici 2 od 3, na kineziterapiji 2 od 4.
+   - Svih 15 linkova u sekciji vodilo je na **istu adresu**,
+     `index.html#usluge` — privremeno rešenje dok ne postoje `/tegobe/<slug>/`.
+
+   Znači: ista poruka dvaput i petnaest linkova na jedno mesto. Da se sekcija
+   samo podebljala, udvostručilo bi se ponavljanje.
+
+   Zato menja posao. Umesto spiska tegoba koje vode OVDE — što „Za koga je"
+   već radi — sada je to raskrsnica ka ostalim uslugama, sa linkovima koji
+   stvarno negde vode. Usput rešava i to što je stranica usluge do sada
+   imala izlaz ka drugoj usluzi samo u futeru.
+
+   Oblik je isti kao „Za koga je": naslov levo, spisak desno. */
+
+.for-whom-layout,
+.complaint-layout {
+  display: grid;
+  align-items: stretch;
+  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+}
+
+.for-whom-head,
+.complaint-head {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+}
+
+.complaint-lead {
+  max-width: 40rem;
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.5;
+}
+
+.complaint-note {
+  max-width: 32rem;
+  margin: clamp(1.4rem, 3vw, 2.2rem) 0 0;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+  align-self: end;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.complaint-note b {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.complaint-note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+/* Mreža od tri uokvirena polja postaje jedna kolona redova. Okvir je
+   držao čipove na okupu dok su bili kratki; sada red nosi dva stepena
+   teksta, pa mu okvir smeta — ostaje samo linija između redova. */
+.complaint-links {
+  margin: 0;
+  border-top: 0;
+  border-left: 0;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.complaint-links li {
+  border-right: 0;
+  border-bottom: 0;
+  border-top: 1px solid var(--line);
+}
+
+.complaint-links a {
+  display: grid;
+  padding: 1.15rem 1.25rem 1.3rem 1.3rem;
+  align-items: start;
+  gap: 0.35rem;
+  grid-template-columns: minmax(0, 1fr);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.complaint-links a b {
+  color: var(--ink);
+  font-size: 1.06rem;
+  font-weight: 620;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.complaint-links a span {
+  color: var(--muted);
+  font-size: 0.94rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Odredište je u svom redu, ne na kraju rečenice — tamo se prelamalo
+   i čitalo kao nastavak opisa umesto kao mesto na koje se ide. */
+.complaint-links a em {
+  margin-top: 0.2rem;
+  color: var(--teal-deep);
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.complaint-links a em i {
+  margin-left: 0.15rem;
+  font-style: normal;
+  opacity: 0.55;
+}
+
+.complaint-links a:hover,
+.complaint-links a:focus-visible {
+  padding-left: 1.7rem;
+}
+
+@media (max-width: 900px) {
+  .complaint-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Naziv usluge na kraju reda — odredište linka, pa se mora videti da je
+   to ono na šta se klikće. Ne kurziv (to je u v12 rezervisano za izjave),
+   nego boja i težina. */
+
