@@ -2328,3 +2328,78 @@ Oznaka `usluga.css` podignuta na **`?v=16.3`** u svih 7 HTML fajlova.
 
 **Sledeći korak ako se traži:** `v11/favicon.svg` je i dalje stari znak. Sada
 postoji vektor iz kog se može izvući znak za favicon.
+
+## Cenovnik po klijentovom sistemu (01.09.2026, ista runda)
+
+Sat vremena posle zbijanja razmaka, Mladen je poslao `lokomoto.rs/cenovnik-2/` i
+rekao: to su te cene, napravi po ovom sistemu. **Tek tada je postalo jasno šta je
+klijent mislio sa „60 puta 60" (Loom 9:47).**
+
+To nije raspored nego **dve kolone cena**: „60 min" i „60+ min". Jedan red usluge
+nosi dve cene.
+
+Naša verzija je istu stvar razvlačila: „Terapijski dan, 60 min" i „Terapijski dan
++ vežbe, 60+ min" bila su **dva odvojena reda**. Otud 25 redova tamo gde klijent
+ima 18, i otud njegovo „ti si ga verovatno sve raširio".
+
+**Zbijanje razmaka iz sekcije 26 lečilo je simptom.** Problem nije bio razmak
+između redova nego to što je matrica bila razvučena u spisak. Sekcija 26 je zato
+svedena na razmak između grupa; merenja u njoj ostaju zapisana.
+
+### Struktura, preslikana sa njihovog cenovnika
+
+| Grupa | Redova | Kolona cena |
+|---|---|---|
+| Dijagnostika | 3 | 1 |
+| Fizikalna terapija | 6 | 2 (tri ćelije prazne) |
+| Rehab trening / Kineziterapija | 4 | 2 |
+| Oporavak i masaža | 5 | 1 |
+
+**Broj iznosa je isti kao pre: 25.** Broj redova pada sa 25 na 18.
+
+### Prava `<table>`, ne `<dl>`
+
+Podatak je matrica: usluga puta trajanje. `<dl>` to ne može da izrazi, pa je
+čitač ekrana ranije čitao „Terapijski dan, 5.000" bez naznake na šta se cena
+odnosi. Sada `th[scope=col]` nosi trajanje, `th[scope=row]` uslugu.
+
+Prazna ćelija (na njihovom sajtu „X") je crtica za oko i „ne nudi se" za čitač
+ekrana. **Crtica je ovde znak u tabeli, ne interpunkcija u rečenici**, pa se ne
+kosi sa pravilom o crtama iz iste runde.
+
+Ispod 720 px tabela se raspada u blokove: naziv pun red, pa ispod cene sa svojom
+oznakom trajanja iz `data-kolona`. Zaglavlje se tada sakriva da se ne ponavlja.
+
+### Izmereno
+
+| | Pre runde | Posle zbijanja (sekcija 26) | Po klijentovom sistemu |
+|---|---|---|---|
+| visina sekcije, 1440 | 1985 px | 1772 px | **1453 px** |
+| visina sekcije, 390 | 3978 px | 3528 px | **2476 px** |
+| redova | 25 | 25 | **18** |
+| vidljivo bez skrola, 1440 | 17 od 25 | 22 od 25 | **svih 18** |
+| vidljivo bez skrola, 390 | 6 | 7 | **9** |
+| cela naslovna, 1440 | 12809 px | 12596 px | **12278 px** |
+
+Na 1440 **ceo cenovnik sada staje u jedan ekran**. To je ono što je klijent tražio.
+
+### Cene više nisu placeholder
+
+„To su te cene" (Mladen, 01.09.2026) uz cenovnik preslikan 1:1 sa njihovog
+važećeg sajta zatvara stavku 11 iz `3-podaci-za-popuniti.md`. Skinute su oznake
+`CENE ZA POTVRDU` sa naslovne i `traže potvrdu` sa četiri stranice usluga.
+
+**Ostala pitanja nisu skinuta zajedno sa cenama**, samo su odvojena od njih:
+
+| Gde | Šta i dalje čeka |
+|---|---|
+| dijagnostika | ultrazvučni pregled nema zasebnu stavku; ulazi li u cenu pregleda specijaliste |
+| kineziterapija | trajanje 60 / 60+ min iz cenovnika protiv 45–60 min sa panela |
+| manualna terapija | gde pripada grupa „Oporavak i masaža" |
+| postoperativna | nema svoju grupu u cenovniku |
+
+Sve četiri stranice usluga i dalje nose **stari spisak** (`.price-list` /
+`.price-row`). Prelazak i njih na tabelu ima smisla tek kad se presudi gde koja
+grupa pripada, jer bi se inače isti raspored pravio dvaput.
+
+Oznaka `usluga.css` podignuta na **`?v=17.0`** u svih 7. Nova sekcija 28.

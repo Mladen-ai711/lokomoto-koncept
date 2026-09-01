@@ -14,7 +14,7 @@
     <link rel="preload" href="../v8/assets/images/hero-poster-v7-mobile.jpg" as="image"
       media="(max-width: 720px)" />
     <link rel="stylesheet" href="../v12/styles.css?v=13.0" />
-    <link rel="stylesheet" href="usluga.css?v=16.3" />
+    <link rel="stylesheet" href="usluga.css?v=17.0" />
     <link rel="icon" href="../v11/favicon.svg" type="image/svg+xml" />
     <title>Lokomoto centar | fizikalna medicina i rehabilitacija, Beograd</title>
   </head>
@@ -707,204 +707,118 @@
           </div>
 
           <div class="pricing-groups">
+
             <section class="price-group reveal">
               <h3>Dijagnostika</h3>
-              <dl class="price-list">
-              <div class="price-row">
-                <dt>
-                  Pregled lekara specijaliste
-                </dt>
-                <dd>8.000 RSD</dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Fizioterapeutski pregled
-                </dt>
-                <dd>6.000 RSD</dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Funkcionalna analiza tela
-                </dt>
-                <dd>6.000 RSD</dd>
-              </div>
-              </dl>
+              <table class="price-table">
+                <tbody>
+                  <tr><th scope="row">Pregled lekara specijaliste</th><td>8.000 RSD</td></tr>
+                  <tr><th scope="row">Fizioterapeutski pregled</th><td>6.000 RSD</td></tr>
+                  <tr><th scope="row">Funkcionalna analiza tela</th><td>6.000 RSD</td></tr>
+                </tbody>
+              </table>
             </section>
 
             <section class="price-group reveal">
               <h3>Fizikalna terapija</h3>
-              <p class="price-group-sub">INDIBA · Medestec · NeuFit · dekompresija · kineziterapija · krioterapija</p>
-              <dl class="price-list">
-              <div class="price-row">
-                <dt>
-                  Terapijski dan
-                <small>60 min · samo terapija</small>
-                </dt>
-                <dd>5.000 RSD</dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Terapijski dan + vežbe
-                <small>60+ min · terapija i vođene vežbe</small>
-                </dt>
-                <dd>7.000 RSD</dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Manualna terapija, osteopatija
-                <small>60 min · samo terapija</small>
-                </dt>
-                <dd>5.000 RSD</dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Manualna terapija, osteopatija + vežbe
-                <small>60+ min · terapija i vođene vežbe</small>
-                </dt>
-                <dd>7.000 RSD</dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  REHAB paket od 10 terapija
-                <small>Samo terapija</small>
-                </dt>
-                <dd>45.000 RSD<u>ušteda 5.000</u></dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  REHAB paket od 10 terapija sa vežbama
-                </dt>
-                <dd>60.000 RSD<u>ušteda 10.000</u></dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  REHAB paket od 12 terapija sa vežbama
-                </dt>
-                <dd>72.000 RSD<u>ušteda 12.000</u></dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  REHAB paket od 16 terapija sa vežbama
-                </dt>
-                <dd>90.000 RSD<u>ušteda 22.000</u></dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  REHAB paket od 20 terapija sa vežbama
-                </dt>
-                <dd>108.000 RSD<u>ušteda 32.000</u></dd>
-              </div>
-              </dl>
+              <p class="price-group-sub">INDIBA &middot; Medestec &middot; NeuFit &middot; dekompresija &middot; kineziterapija &middot; krioterapija</p>
+              <table class="price-table price-table-duo">
+                <thead>
+                  <tr>
+                    <td></td>
+                    <th scope="col">Samo terapija<span>60 min</span></th>
+                    <th scope="col">Terapija i vežbe<span>60+ min</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Terapijski dan</th>
+                    <td data-kolona="Samo terapija, 60 min">5.000 RSD</td>
+                    <td data-kolona="Terapija i vežbe, 60+ min">7.000 RSD</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Manualna terapija, osteopatija</th>
+                    <td data-kolona="Samo terapija, 60 min">5.000 RSD</td>
+                    <td data-kolona="Terapija i vežbe, 60+ min">7.000 RSD</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">REHAB paket, 10 terapija</th>
+                    <td data-kolona="Samo terapija, 60 min">45.000 RSD</td>
+                    <td data-kolona="Terapija i vežbe, 60+ min">60.000 RSD</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">REHAB paket, 12 terapija</th>
+                    <td class="price-nema" data-kolona="Samo terapija, 60 min"><span aria-hidden="true">&mdash;</span><span class="vh">ne nudi se</span></td>
+                    <td data-kolona="Terapija i vežbe, 60+ min">72.000 RSD</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">REHAB paket, 16 terapija</th>
+                    <td class="price-nema" data-kolona="Samo terapija, 60 min"><span aria-hidden="true">&mdash;</span><span class="vh">ne nudi se</span></td>
+                    <td data-kolona="Terapija i vežbe, 60+ min">90.000 RSD</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">REHAB paket, 20 terapija</th>
+                    <td class="price-nema" data-kolona="Samo terapija, 60 min"><span aria-hidden="true">&mdash;</span><span class="vh">ne nudi se</span></td>
+                    <td data-kolona="Terapija i vežbe, 60+ min">108.000 RSD</td>
+                  </tr>
+                </tbody>
+              </table>
             </section>
 
             <section class="price-group reveal">
               <h3>Rehab trening / Kineziterapija</h3>
-              <dl class="price-list">
-              <div class="price-row">
-                <dt>
-                  Jedan termin
-                <small>60 min</small>
-                </dt>
-                <dd>3.500 RSD</dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Jedan termin
-                <small>60+ min</small>
-                </dt>
-                <dd>4.500 RSD</dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Paket od 12 termina
-                <small>60 min</small>
-                </dt>
-                <dd>36.000 RSD<u>ušteda 6.000</u></dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Paket od 12 termina
-                <small>60+ min</small>
-                </dt>
-                <dd>48.000 RSD<u>ušteda 6.000</u></dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Paket od 16 termina
-                <small>60 min</small>
-                </dt>
-                <dd>45.000 RSD<u>ušteda 11.000</u></dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Paket od 16 termina
-                <small>60+ min</small>
-                </dt>
-                <dd>60.000 RSD<u>ušteda 12.000</u></dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Paket od 20 termina
-                <small>60 min</small>
-                </dt>
-                <dd>54.000 RSD<u>ušteda 16.000</u></dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Paket od 20 termina
-                <small>60+ min</small>
-                </dt>
-                <dd>72.000 RSD<u>ušteda 18.000</u></dd>
-              </div>
-              </dl>
+              <table class="price-table price-table-duo">
+                <thead>
+                  <tr>
+                    <td></td>
+                    <th scope="col"><span>60 min</span></th>
+                    <th scope="col"><span>60+ min</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Jedan termin</th>
+                    <td data-kolona="60 min">3.500 RSD</td>
+                    <td data-kolona="60+ min">4.500 RSD</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Paket, 12 termina</th>
+                    <td data-kolona="60 min">36.000 RSD</td>
+                    <td data-kolona="60+ min">48.000 RSD</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Paket, 16 termina</th>
+                    <td data-kolona="60 min">45.000 RSD</td>
+                    <td data-kolona="60+ min">60.000 RSD</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Paket, 20 termina</th>
+                    <td data-kolona="60 min">54.000 RSD</td>
+                    <td data-kolona="60+ min">72.000 RSD</td>
+                  </tr>
+                </tbody>
+              </table>
             </section>
 
             <section class="price-group reveal">
               <h3>Oporavak i masaža</h3>
-              <dl class="price-list">
-              <div class="price-row">
-                <dt>
-                  Oporavak
-                <small>Masaža 30 min, limfna drenaža, istezanje, krioterapija</small>
-                </dt>
-                <dd>5.000 RSD</dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Masaža
-                <small>30 min</small>
-                </dt>
-                <dd>4.000 RSD</dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Masaža
-                <small>45 min</small>
-                </dt>
-                <dd>4.500 RSD</dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Masaža
-                <small>60 min</small>
-                </dt>
-                <dd>5.000 RSD</dd>
-              </div>
-              <div class="price-row">
-                <dt>
-                  Limfna drenaža
-                </dt>
-                <dd>2.000 RSD</dd>
-              </div>
-              </dl>
+              <table class="price-table">
+                <tbody>
+                  <tr><th scope="row">Oporavak<span>masaža 30 min, limfna drenaža, istezanje, krioterapija</span></th><td>5.000 RSD</td></tr>
+                  <tr><th scope="row">Masaža<span>30 min</span></th><td>4.000 RSD</td></tr>
+                  <tr><th scope="row">Masaža<span>45 min</span></th><td>4.500 RSD</td></tr>
+                  <tr><th scope="row">Masaža<span>60 min</span></th><td>5.000 RSD</td></tr>
+                  <tr><th scope="row">Limfna drenaža</th><td>2.000 RSD</td></tr>
+                </tbody>
+              </table>
             </section>
+
           </div>
 
           <div class="pricing-notes reveal">
             <p>
-              <mark class="ph" data-ph>Cene su prepisane sa lokomoto.rs/cenovnik-2/
-              28. 8. 2026. Treba potvrditi da su aktuelne.</mark>
-              <span class="ph-note">CENE ZA POTVRDU</span>
+              Cenovnik je preuzet sa lokomoto.rs/cenovnik-2/ i prati isti raspored:
+              cena po usluzi i po dužini termina.
             </p>
             <p>
               Ne radimo preko RFZO. Terapije se plaćaju direktno, a uz račun koji
@@ -977,7 +891,7 @@
                 <p>Prvi pregled i pojedinačni tretman imaju fiksnu cenu, a za duže
                   planove postoje paketi. Ceo spisak je u
                   <a href="#cenovnik">cenovniku</a>. Cenu znate pre nego što
-                  počnete, ne posle. <span class="ph-note">CENE ZA POTVRDU</span></p>
+                  počnete, ne posle.</p>
               </div>
             </details>
             <details class="faq-item" name="faq">

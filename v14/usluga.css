@@ -2738,26 +2738,14 @@ h1 .name-alt {
    prst ovde ne važi; da jesu, ne bi se smelo ići ispod toga.
    ══════════════════════════════════════════════════════════════════ */
 
-.pricing .price-row {
-  padding: 0.62rem 0;
-}
-
-.pricing .price-list {
-  margin-top: 0.8rem;
-}
+/* Od sekcije 28 cenovnik više ne koristi `.price-row` nego `<table>`, pa su
+   pravila za red spiska povučena. Ostaje samo razmak između grupa, koji i
+   dalje važi. Merenja iznad ostaju zapisana: ona su pokazala da zbijanje
+   samog razmaka daje 22 od 25 stavki u ekranu, a prelazak na klijentov
+   sistem obara i broj redova sa 25 na 18. */
 
 .price-group {
   margin-bottom: clamp(1.6rem, 3vw, 2.2rem);
-}
-
-/* Podnaslov cene („60 min", „ušteda 6.000") nosi svoj razmak odozgo, koji je
-   u zbijenom redu postao veći od razmaka između samih redova. */
-.pricing .price-row dt small {
-  margin-top: 0.2rem;
-}
-
-.pricing .price-row dd u {
-  margin-top: 0.18rem;
 }
 
 /* ══════════════════════════════════════════════════════════════════
@@ -2794,3 +2782,169 @@ h1 .name-alt {
 
    `logo-lokomoto-h-svetli.png` ostaje u repou kao neiskorišćena varijanta.
    ══════════════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════════════════════
+   28. CENOVNIK PO KLIJENTOVOM SISTEMU — 01.09.2026
+
+   Klijent (Loom 9:47): „ja sam ga ovako 60 puta 60, ti si ga verovatno sve
+   raširio". Tek uvidom u `lokomoto.rs/cenovnik-2/` postalo je jasno šta je
+   time mislio: „60 puta 60" nije raspored, nego DVE KOLONE CENA —
+   „60 min" i „60+ min". Jedan red usluge nosi dve cene.
+
+   Naša prva verzija je istu stvar razvukla: „Terapijski dan 60 min" i
+   „Terapijski dan + vežbe 60+ min" bila su dva odvojena reda. Otud 25 redova
+   tamo gde klijent ima 18, i otud osećaj da je „sve raširio".
+
+   Struktura je sada preslikana sa njihovog cenovnika:
+
+     Dijagnostika ................. 3 reda, jedna cena
+     Fizikalna terapija ........... 6 redova, dve kolone (3 ćelije prazne)
+     Rehab trening/Kineziterapija . 4 reda, dve kolone
+     Oporavak i masaža ............ 5 redova, jedna cena
+
+   Broj cena je isti kao pre (25 iznosa), broj redova pada sa 25 na 18.
+
+   ZAŠTO PRAVA `<table>`, A NE `<dl>`
+
+   Podatak je matrica: usluga puta trajanje. `<dl>` to ne može da izrazi, pa
+   je čitač ekrana ranije čitao „Terapijski dan, 5.000" bez ikakve naznake na
+   šta se cena odnosi. Sada `th[scope=col]` nosi trajanje, `th[scope=row]`
+   uslugu, i veza je izrečena.
+
+   Prazna ćelija („X" na njihovom sajtu) je crtica za oko i „ne nudi se" za
+   čitač ekrana. Crtica je ovde znak u tabeli, ne interpunkcija u rečenici,
+   pa se ne kosi sa pravilom o crtama iz iste runde.
+
+   NA UZAN EKRAN TABELA NE STAJE. Ispod 720 px tri kolone se raspadaju u
+   blokove: naziv pun red, pa ispod njega cene sa svojom oznakom trajanja,
+   koja se čita iz `data-kolona`. Zaglavlje se tada sakriva jer bi se
+   ponavljalo uz svaku cenu.
+   ══════════════════════════════════════════════════════════════════ */
+
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.price-table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+}
+
+.price-table th,
+.price-table td {
+  padding: 0.62rem 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: baseline;
+}
+
+.price-table thead th {
+  padding-top: 0;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.price-table thead th span {
+  display: block;
+  color: var(--teal-deep);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.price-table thead td {
+  border-bottom: 1px solid var(--line);
+}
+
+.price-table tbody th {
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  font-weight: 550;
+  letter-spacing: -0.02em;
+}
+
+/* Podnaslov stavke („30 min", sastav paketa „oporavak") */
+.price-table tbody th span {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.price-table td {
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  font-weight: 620;
+  letter-spacing: -0.03em;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.price-table-duo td {
+  width: 8.5rem;
+}
+
+.price-nema {
+  color: var(--muted);
+  font-weight: 400;
+  opacity: 0.55;
+}
+
+/* ── Uzan ekran: tabela se raspada u blokove ─────────────────────── */
+@media (max-width: 720px) {
+  .price-table-duo thead {
+    display: none;
+  }
+
+  .price-table-duo,
+  .price-table-duo tbody,
+  .price-table-duo tr,
+  .price-table-duo th,
+  .price-table-duo td {
+    display: block;
+    width: auto;
+  }
+
+  .price-table-duo tr {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .price-table-duo tbody th,
+  .price-table-duo td {
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .price-table-duo td {
+    display: flex;
+    margin-top: 0.35rem;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .price-table-duo td::before {
+    color: var(--muted);
+    content: attr(data-kolona);
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .price-table-duo .price-nema {
+    display: none;
+  }
+}
