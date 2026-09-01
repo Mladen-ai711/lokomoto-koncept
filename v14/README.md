@@ -2111,8 +2111,13 @@ usklađene, a naš lajm nije bio ni sa jednom.
 
 ### Šta je promenjeno
 
-`usluga.css`, **nova sekcija 25**: `--lime` postaje `#80c347`. `--teal` i
+`usluga.css`, **nova sekcija 25**: `--lime` postaje `#84c350`. `--teal` i
 `--teal-deep` se ne diraju.
+
+Vrednost je klijentova, dobijena posle merenja. Izmereno sa snimka sajta bilo je
+`#80c347`; klijent je dao `#84c350`, ton 92,9°, zasićenost 59%. Razlika je
+**0,5° u tonu i 5 poena u zasićenosti** — merenje je pogodilo tačku, klijentova
+vrednost je zvanična, pa se koristi ona.
 
 **Pravilo 6 je opet uhvatilo skriveni deo posla.** `grep` po upisanoj vrednosti
 `rgba(201, 242, 95, …)` našao je **10 mesta** u zamrznutom `v12/styles.css` koja
@@ -2128,11 +2133,11 @@ promašila jer je tražila samo `rgba(19, 201, 179)`. Sada je plava.
 
 ### Cena u kontrastu
 
-| Podloga | Lajm pre | Zelena posle |
+| Podloga | Lajm `#c9f25f` | Zelena `#84c350` |
 |---|---|---|
-| `--ink` `#26322f` (traka sa brojevima) | 10,35:1 | **6,21:1** |
-| tamna sekcija `#253130` | 10,48:1 | **6,29:1** |
-| `--paper` `#f1f0e9` | 1,12:1 | 1,87:1 |
+| `--ink` `#26322f` (traka sa brojevima) | 10,35:1 | **6,27:1** |
+| tamna sekcija `#253130` | 10,48:1 | **6,35:1** |
+| `--paper` `#f1f0e9` | 1,12:1 | 1,86:1 |
 
 Pad je znatan, ali 6,2:1 prolazi AA i za sitan tekst (traži 4,5) i AAA za veliki.
 Na svetloj podlozi se zelena ne koristi za tekst, tamo su obe vrednosti
