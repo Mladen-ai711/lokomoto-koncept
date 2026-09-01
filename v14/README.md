@@ -2403,3 +2403,84 @@ Sve četiri stranice usluga i dalje nose **stari spisak** (`.price-list` /
 grupa pripada, jer bi se inače isti raspored pravio dvaput.
 
 Oznaka `usluga.css` podignuta na **`?v=17.0`** u svih 7. Nova sekcija 28.
+
+## Tri koraka i pravi osnivači (01.09.2026, ista runda)
+
+Novak je poslao `myodetox.com` i predložio da „Naš pristup" postane imenovan okvir
+od tri koraka: **testiraj, tretiraj, treniraj**. Uz to je poslao Google dokument
+`Lokomoto sajt 2026. tekstovi` sa tekstom tog okvira, biografijama i tekstovima po
+tegobi.
+
+### Šta je uzeto, a šta nije
+
+**Okvir je već postojao, samo bez imena.** Sekcija je imala tri kartice:
+Procena → Terapija → Funkcija. Novakova verzija je bolja iz jednog razloga: tri
+glagola na isto slovo se pamte, imenice se ne pamte.
+
+**Faze nisu postale fioke za usluge.** Novak je predložio i mapiranje (testiraj =
+dijagnostika, tretiraj = fizikalna i manualna, treniraj = kineziterapija), uz
+postoperativnu kao izuzetak. To nije urađeno, i to je namerno:
+
+- Kod Myodetoxa se **usluge ne grupišu po fazama.** Faze su put kroz koji prolazi
+  svaki pacijent; usluge su odvojen spisak. Prvi pregled je most između to dvoje.
+- Da faze postanu nazivi za usluge, okvir bi prestao da bude put i postao bi drugi
+  naziv za meni. Posetilac koji dolazi na kineziterapiju pomislio bi da je
+  preskočio testiranje.
+- **Postoperativna ne strči zato što je izuzetak nego zato što nije stvar istog
+  reda.** Ona prolazi kroz sva tri koraka. Isto važi za diskus herniju i sportsku
+  povredu: to su putevi, ne faze.
+
+Uvodni pasus sekcije zato izričito kaže da red važi i posle operacije. Tako je
+postoperativna dokaz da okvir radi, a ne rupa u njemu.
+
+**Lice: prvo lice množine.** Novakov tekst je pisan u drugom licu jednine („zašto
+te tačno boli"), a ceo v14 govori sa „vi". Mešanje bi bilo gore od bilo kog izbora,
+pa je njegov tekst prebačen u „vi", a naslovi koraka glase **Testiramo,
+Tretiramo, Treniramo**. Glagol u prvom licu množine kaže ko radi posao; imperativ
+(„Testiraj") zvuči kao uputstvo terapeutu, ne kao obraćanje pacijentu.
+
+Prelazak celog sajta na „ti" je moguć, ali je to poseban potez kroz svih 7 fajlova,
+ne izmena jedne sekcije.
+
+**Dve rečenice iz dokumenta nisu prenete:**
+
+| Rečenica | Zašto ne |
+|---|---|
+| „Rođen si da se krećeš, snažno i sa ciljem." | doslovan prevod Myodetoxovog `You were born to move—powerfully and purposefully`; preuzimanje tuđeg slogana |
+| „Bol je poruka, nije stop znak." | jaka je, ali je medicinska tvrdnja: bol ponekad jeste stop znak. Traži struku pre objave |
+
+### Dužina kartica
+
+Izmereno posle izmene, jer je runda 14 pokazala da prazan utisak dolazi od premalo
+teksta: **412, 407 i 359 znakova.** Sve tri su iznad 191 znaka koji je tada pravio
+problem.
+
+### Osnivači, više nisu placeholder
+
+Iz istog dokumenta:
+
+| | Novak Ilić | Strahinja Marković |
+|---|---|---|
+| zvanje | Osnivač · Fizioterapeut | Osnivač · Fizioterapeut |
+| u Lokomotu od | 2016. | 2016. |
+| fokus | manualna terapija, dijagnostika, bol u leđima | manualna terapija, fizikalna terapija, sportske povrede |
+| godine iskustva | **15** | **13** |
+
+Biografije su njihove, skraćene i prebačene u „vi". Time se zatvaraju stavke iz
+`3-podaci-za-popuniti.md`: **prezime i zvanje za Strahinju, biografije osnivača,
+godine iskustva.** Značka `ZA POTVRDU` sa te sekcije je skinuta.
+
+### Nađen propust iz ranije runde
+
+Traka sa brojevima nosila je **„4.000+ tretmana godišnje" bez ijedne oznake**, iako
+je klijent taj broj u Loomu (0:16) proglasio netačnim. Broj je sada pod
+`mark.ph` sa značkom **`BROJ ZA ISPRAVKU`**.
+
+To je bila greška u dosadašnjem radu: tvrdnja koju je klijent oborio stajala je
+kao da je proverena. Pravilo je da broj bez potvrde ide označen, a ovde je
+označavanje izostalo jer je broj postojao od ranije i niko ga nije ponovo pogledao.
+
+**Na naslovnoj sada stoje samo dve oznake:** `BROJ ZA ISPRAVKU` na traci i
+`TEKST ZA POTVRDU` na opisima opreme.
+
+Menjan je samo HTML, stil nije diran, pa oznaka `usluga.css` ostaje `?v=17.0`.
