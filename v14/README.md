@@ -2237,3 +2237,94 @@ iz `L-7` sa 5000×4000, odsečeno 250 px odozgo jer je gornji deo polica.
 1:11 gleda naslovnu, a rečenica je u transkriptu isprekidana. Slike koje je u
 istom dahu pohvalio („ovo je super, ovo je super") nose isti rizik da budu
 zamenjene greškom. Čeka jednu rečenicu potvrde.
+
+## Zvanični logo ugrađen (01.09.2026, ista runda)
+
+Klijent je dostavio `LOGO LOKOMOTO CENTAR.pdf` — vektor iz CorelDRAW X8. Time se
+zatvara **stavka 3 iz `3-podaci-za-popuniti.md`** („tekstualni logo, Nikola ga
+dostavlja").
+
+### Boje iz zvaničnog logoa
+
+Izmereno iz rendera na 300 dpi, brojanjem piksela:
+
+| Element | Boja | Ton | Zasićenost | Svetlina |
+|---|---|---|---|---|
+| zelena | `#7fc347` | 92,9° | 64% | 76% |
+| plava | `#0095c1` | 193,7° | 100% | 76% |
+| tamnija plava | `#0076ae` | 199,3° | 100% | 68% |
+
+**Ovo potvrđuje paletu iz zvaničnog izvora.** Klijentova zelena `#84c350` iz
+sekcije 25 je na 92,9° — ista kao u logou. Naša `--teal-deep` `#057eb6` je na
+199,0°, logo ima 199,3°. Paleta više ne počiva na merenju sa snimka sajta.
+
+Jedina preostala razlika je zasićenost: logo plava je 100% zasićena, naša
+`--teal` `#2c9ecb` je 78%. Nije dirano — promena bi pomerila kontraste kroz ceo
+sajt, a razlika u tonu je ispod jednog stepena.
+
+### Logo ide nedirnut
+
+Prvo je bila napravljena horizontalna varijanta (znak levo, ime desno, bez
+podnaslova), jer merenje pokazuje da original u traci daje sitan tekst. **Mladen
+je 01.09.2026 odlučio da logo ide takav kakav jeste.** Varijanta je povučena.
+
+Merenja ostaju zapisana jer objašnjavaju kako logo izgleda u traci, da se kasnije
+ne traži greška u kodu. Pri visini 4,6rem = 73,6 px:
+
+| | Visina slova |
+|---|---|
+| „LOKOMOTO CENTAR" | **5,0 px** |
+| „FIZIKALNA TERAPIJA I REHABILITACIJA" | **1,8 px** |
+
+Sivi podnaslov (`#58595b`) na podlozi zaglavlja `#26322f` daje kontrast
+**1,96:1**. To je posledica uspravnog lockupa u vodoravnoj traci, ne greška.
+Ako se ikada bude tražilo da se ime bolje vidi, izbor je između veće trake i
+horizontalne varijante — ne između boja.
+
+**Dimenzije se ne override-uju.** Odnos originala je 1,02, a v12 pravilo (visina
+4,6rem, širina najviše 6rem) pravljeno je za 1,33; uspravniji logo staje u isti
+okvir bez ijedne izmene. Izmereno na renderu: **75 × 74 px** na 1440,
+**56 × 54 px** na 390.
+
+### Fajlovi
+
+**Tri nova fajla u `v8/assets/images/`** — u GitHub Desktopu ih treba čekirati:
+
+| Fajl | Šta je |
+|---|---|
+| `logo-lokomoto.png` | **koristi ga sajt** — pun uspravni logo u boji, 1200 px |
+| `logo-lokomoto.svg` | vektorski izvor iz PDF-a |
+| `logo-lokomoto-h-svetli.png` | povučena horizontalna varijanta, stoji neiskorišćena |
+
+`v11/logo-lockup.png` **nije obrisan** — koriste ga starije verzije.
+
+Zamena `src` na **svih 14 mesta** (zaglavlje i futer u svakom od 7 fajlova).
+
+### Greška u putanjama, i zašto je prva provera nije uhvatila
+
+Prva zamena `src` upisala je u šest fajlova **jedan `../` viška**:
+`../../../../v8/assets/images/…` umesto `../../../v8/…`. Uzrok je zamena po
+podnizu: traženo je `../../v11/logo-lockup.png`, a u fajlu je stajalo
+`../../../v11/logo-lockup.png`, pa je pogođen sufiks i vodeće `../` je ostalo.
+
+**Provera je to propustila jer je lokalni server servirao iz korena.** Tamo se
+`../` zaustavlja na korenu, pa `../../../../v8/` i `../../../v8/` daju isti
+rezultat. Na Pages sajt živi u `/lokomoto-koncept/`, gde bi ista putanja izašla
+iz projekta i sve slike bi pukle.
+
+**Otud novo pravilo provere: sajt se testira iz poddirektorijuma**, kako i stoji
+na Pages, a ne iz korena servera. Provera je ponovljena tako i prolazi:
+
+| Provera | Rezultat |
+|---|---|
+| HTTP status, svih 7 stranica | 200 |
+| zahtevi sa greškom (404) | 0 |
+| slomljene slike | 0 |
+| `scrollWidth == clientWidth` na 1440 i 390 | da |
+| JS greške | 0 |
+| logo učitan i izmeren | da, na svih 7 |
+
+Oznaka `usluga.css` podignuta na **`?v=16.3`** u svih 7 HTML fajlova.
+
+**Sledeći korak ako se traži:** `v11/favicon.svg` je i dalje stari znak. Sada
+postoji vektor iz kog se može izvući znak za favicon.

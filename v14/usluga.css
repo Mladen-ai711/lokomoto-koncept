@@ -2759,3 +2759,38 @@ h1 .name-alt {
 .pricing .price-row dd u {
   margin-top: 0.18rem;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   27. ZVANIČNI LOGO — 01.09.2026
+
+   Klijent je dostavio `LOGO LOKOMOTO CENTAR.pdf` (CorelDRAW X8, vektor).
+   Time se zatvara stavka 3 iz `3-podaci-za-popuniti.md`.
+
+   BOJE IZ ZVANIČNOG LOGOA, izmerene iz rendera na 300 dpi:
+
+     zelena ....... #7fc347   ton 92,9°   zasićenost 64%   svetlina 76%
+     plava ........ #0095c1   ton 193,7°  zasićenost 100%  svetlina 76%
+     tamnija plava  #0076ae   ton 199,3°  zasićenost 100%  svetlina 68%
+
+   Klijentova zelena #84c350 (sekcija 25) je na 92,9° — ISTA. Naša
+   --teal-deep #057eb6 je na 199,0°, logo ima 199,3°. Paleta je potvrđena
+   iz zvaničnog izvora, ne samo sa snimka sajta.
+
+   LOGO IDE NEDIRNUT, po odluci od 01.09.2026.
+
+   Prvo je bila napravljena horizontalna varijanta, jer merenje pokazuje da
+   pri visini trake original daje sitan tekst:
+
+     „LOKOMOTO CENTAR" .................... 5,0 px
+     „FIZIKALNA TERAPIJA I REHABILITACIJA"  1,8 px
+
+   Ta varijanta je odbačena — logo se ne prekraja. Merenja ostaju zapisana
+   jer objašnjavaju zašto tekst u traci izgleda sitno: to je posledica
+   uspravnog lockupa u vodoravnoj traci, ne greška u kodu.
+
+   Dimenzije se NE override-uju. Odnos originala je 1,02, a v12 pravilo
+   (visina 4,6rem, širina najviše 6rem) je pravljeno za 1,33 — uspravniji
+   logo staje u isti okvir bez ijedne izmene.
+
+   `logo-lokomoto-h-svetli.png` ostaje u repou kao neiskorišćena varijanta.
+   ══════════════════════════════════════════════════════════════════ */
