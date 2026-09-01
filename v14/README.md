@@ -1912,3 +1912,257 @@ pomeranja stranice i bez JS grešaka.
 Pisano kao override u `usluga.css`, sekcija 24; `v12/styles.css` nije diran.
 
 **Oznaka verzije podignuta na `?v=15.1` u svih 7 HTML fajlova.**
+
+---
+
+# Runda 01.09.2026 — prvi klijentov Loom
+
+Izvor: Loom „Pregled i dorade web stranice ordinacije" (10:54), snimio nalog
+Lokomoto centar, uz devet komentara Nikole Tripkovića. Pun nalaz i redosled rada
+su u projektnom dokumentu `claude/15-loom-klijent-1.md`. Ovde stoji samo šta je
+zaista promenjeno u kodu.
+
+**Nijedan stil ni skripta nisu dirani, pa oznake verzije ostaju kakve jesu**
+(`usluga.css ?v=15.1`, `app.js ?v=14.1`, `stranica.js ?v=14.0`, `v12/styles.css ?v=13.0`).
+Sve izmene su u HTML sadržaju.
+
+## Fajlovi koji su se promenili
+
+`index.html`, `usluge/index.html` i svih pet stranica usluga. **Nema novih fajlova.**
+
+## 1. Usluge iznad mape tela
+
+Blok `.service-browser` premešten je iznad `.complaints`, unutar iste sekcije
+`#usluge`. Klijentov argument (1:35): klik na uslugu treba da otvori uslugu i
+tegobe koje ona pokriva, a spisak tegoba je posledica izbora usluge, ne ulaz u njega.
+
+Usput se pokazalo da uvod sekcije („Ne birate vi terapiju. Biramo je zajedno,
+posle pregleda.") oduvek uvodi usluge, a ne tegobe — mapa je stajala između
+naslova i onoga na šta se naslov odnosi.
+
+Izmereni razmaci posle premeštanja, bez ijedne izmene CSS-a:
+
+| | 1440 px | 390 px |
+|---|---|---|
+| naslov → panel usluga | 111 px | 61 px |
+| panel → mapa tela | 85 px | 47 px |
+| mapa tela → sekcija Centar | 150 px | 96 px |
+
+`.complaints` nosi `border-top`, pa linija sada razdvaja panel od mape umesto
+naslov od mape. To je bolje nego pre: linija pada tamo gde se menja tema.
+
+## 2. RFZO — odgovoreno, ne obrisano
+
+Klijent na 5:16: nema naplate preko RFZO, sve je privatno, uz refundaciju od
+privatnog osiguranja ili plaćanje direktno.
+
+**Pitanje u FAQ-u je zadržano, dobio je odgovor.** Posetilac to pitanje ima u
+glavi bez obzira na to da li stoji na sajtu; brisanjem pitanja ostaje samo
+nedoumica. Izmenjeno na 6 mesta:
+
+- `index.html` — napomena uz cenovnik (bio placeholder „nema odgovora") i FAQ
+  („Radite li preko RFZO?", bio `[Popuniti: da / ne / delimično.]`)
+- `dijagnostika`, `fizikalna-terapija`, `manualna-terapija` — FAQ odgovor, bio
+  `mark.ph` sa značkom `ZA POTVRDU`
+- `fizikalna-terapija` — iz napomene uz cene skinuta rečenica „Nedostaje odgovor
+  na RFZO i način plaćanja"
+
+**Četiri placeholdera manje.**
+
+## 3. Crte izbačene, 168 pojava pregledano
+
+Klijent (3:38): „bilo bi dobro bez ovih, da se zna da nije AI"; potvrđeno da
+misli na crtu.
+
+| | Pre | Posle |
+|---|---|---|
+| Em-crta `—` u HTML fajlovima | **136** | **0** |
+| En-crta `–` | 32 | 26, sve u opsezima |
+
+Preostale en-crte su `Pon–Pet`, `08:00–20:00`, `01–03`, `45–60 min` i maska
+telefona — to su opsezi, ne interpunkcija, i ostaju.
+
+**Ovo nije bila zamena znaka znakom.** Crta je na desetak mesta nosila obrt koji
+zarez ne nosi, pa je rečenica prepisana:
+
+| Bilo | Sada |
+|---|---|
+| `Broj ponavljanja nije poenta — tačnost jeste.` | `Broj ponavljanja nije poenta. Tačnost jeste.` |
+| `Ovo usmerava sve dalje — bez toga se testira nasumično.` | `Ovo usmerava sve dalje. Bez toga se testira nasumično.` |
+| `Mišići — rupture. Zglobovi — distorzije. Tetive — povrede.` | dvotačka umesto crte |
+| `Faza 1 — zarastanje tkiva` | `Faza 1: zarastanje tkiva` |
+| `REHAB paket — 10 terapija` | `REHAB paket od 10 terapija` (11 stavki cenovnika) |
+| `<title>Dijagnostika — Lokomoto centar` | `<title>Dijagnostika \| Lokomoto centar` |
+| `aria-label="Lokomoto centar — početna"` | `aria-label="Lokomoto centar, početna"` |
+
+Dirani su i `title`, `alt` i `aria-label`, jer se `title` vidi u kartici brauzera,
+a `alt` čita čitač ekrana.
+
+## 4. Broj dolazaka bez brojeva
+
+Klijent na 5:33: „ajde ovde da ne preciziramo, tu napiši nekoliko."
+
+- `4–6 dolazaka` → `nekoliko dolazaka` (naslovna, dva mesta)
+- `3–4 dolaska` → `nekoliko dolazaka` (fizikalna terapija, dva mesta)
+
+Oba mesta na fizikalnoj su bila `mark.ph` sa značkom `ZA POTVRDU`, jer je broj
+čekao potvrdu struke. **Neprecizna formulacija ne traži potvrdu koju precizna
+traži, pa su značke skinute.** Dva placeholdera manje.
+
+## 5. Adresa izlazi, godina ostaje
+
+Klijent na 6:46: adresa je menjana, ne može da nosi kontinuitet.
+
+| | Bilo | Sada |
+|---|---|---|
+| Naslov kartice | `Ista adresa od 2016.` | `Radimo od 2016.` |
+| Tekst | `Tabanovačka 27b na Autokomandi. Ovde smo od osnivanja.` | `Danas smo u Tabanovačkoj 27b, na Autokomandi. Isti pristup od osnivanja.` |
+
+Susedna kartica `Iz kabineta u salu.` postala je **`Od pregleda do sale.`**
+Klijent je naglas tražio zamenu za „kabinet" i ponudio „iz terapijskog bloka u
+salu za vežbanje", što je Nikola u komentaru na 7:16 oborio. „Od pregleda do
+sale" pokriva ceo put pacijenta i izbegava obe reči.
+
+## 6. Oprema — opisi dobili izvor
+
+Klijent na 8:37: puni tekstovi za INDIBA, NeuFit i Triton stoje na `lokomoto.rs`.
+Preuzeti su sa `/indiba-nov-nacin-rehabilitacije/`, `/neufit-neubie/` i
+`/triton-dts/`, pa svedeni na po dve rečenice.
+
+**Brojevi sa tih stranica namerno nisu preneti.** Stari sajt tvrdi „uspešnost
+75–86%" za Triton i „90% pacijenata primećuje napredak u prvoj sesiji" za NeuFit,
+bez izvora. Na sajtu zdravstvene ustanove to je tvrdnja, ne opis, i ne prenosi se
+dok se ne zna odakle je.
+
+Značka `TEKST ZA POTVRDU` **ostaje**, ali joj se promenio razlog: ranije nije bilo
+izvora, sada izvor postoji a nedostaje pogled struke.
+
+Prva verzija opisa bila je duža i **treća kolona se prelila preko svetlijeg dela
+fotografije u pozadini**. Izmereno na najsvetlijem delu podloge ispod teksta
+(90. percentil svetline): kontrast belog teksta 7,3:1, ali tekst je
+`rgba(255,255,255,0.72)`, pa je stvarni kontrast **4,7:1**. Prolazi AA, ali sa
+malo mesta, pa su sva tri opisa skraćena na po četiri reda.
+
+## Provereno pre isporuke
+
+Svih 7 stranica renderovano Chromiumom na **1440 i 390 px**, sa skrolom kroz celu
+stranicu da se dignu lazy slike:
+
+| Provera | Rezultat |
+|---|---|
+| HTTP status | 200 na svih 7 |
+| `scrollWidth == clientWidth` | da, na obe širine |
+| Slomljene slike | 0 |
+| Neuspeli mrežni zahtevi | 0 |
+| JS greške | 0 |
+| Em-crta u vidljivom tekstu | 0 |
+
+## Šta i dalje čeka klijenta
+
+- **Boje** — klijent (0:16, 0:37) i Nikola (komentar 4:32) nezavisno kažu da
+  paleta nije njihova. To se kosi sa merenjem iz logoa opisanim na vrhu ovog
+  fajla. Ne dirati dok se ne zna da li su gledali v13, da li je logo pogrešan,
+  ili im se boje prosto ne dopadaju.
+- **Broj tretmana** — „4.000 tretmana godišnje" u traci klijent je proglasio
+  netačnim. Njegov predlog je u transkriptu nečitljiv, pa broj **stoji nepromenjen
+  i dalje nosi značku** dok ne stigne tačna vrednost.
+- **Kviz** — traži se ulaz sa naslovne (10:09, Nikola potvrđuje na 10:37). Ne
+  postoji nigde u projektu; čeka se adresa.
+- **Tekstovi po tegobi** — klijent šalje pet tekstova za stavke mape tela.
+- **Kadar sa narandžastom mašinom** — menja se Indibom (1:11), tek kad se utvrdi
+  o kom kadru je reč.
+- **Cenovnik zbijeniji** — klijentu je njegov raspored bio pregledniji (9:47).
+  Izmereno: sekcija je **1985 px na 1440 px** i 3942 px na 390 px, 25 stavki u
+  dve kolone, `padding` reda 16/16 px. Spuštanje na 10/10 skratilo bi je za
+  oko 15%. Nije dirano — jedina primedba iz snimka koja je ukus, a ne podatak.
+
+## Zelena, ispravljena po njihovom sajtu (01.09.2026, ista runda)
+
+Mladen je poslao snimak sekcije Usluge sa `lokomoto.rs`. Boje su izmerene iz same
+slike, brojanjem piksela, ne procenom:
+
+| Površina | Udeo slike | Boja | Ton | Zasićenost | Svetlina |
+|---|---|---|---|---|---|
+| plavo polje | 43,4% | `#008cbe` | 195,8° | 100% | 75% |
+| zeleno polje | 43,4% | `#80c347` | 92,4° | 64% | 76% |
+
+Poređenje sa v14 paletom:
+
+| Poređenje | Razlika u tonu |
+|---|---|
+| njihova plava prema `--teal-deep` `#057eb6` | **3,2°** |
+| njihova plava prema `--teal` `#2c9ecb` | **1,2°** |
+| njihova zelena prema `--lime` `#c9f25f` | **15,7°**, uz 19 poena više svetline |
+| njihova zelena prema zelenoj iz logoa `#95d15e` | **1,1°** |
+
+**Plava je već bila njihova.** Razlika od 1 do 3 stepena se ne vidi. Klijentova
+primedba „ovo nisu naše boje" nije mogla da bude o plavoj.
+
+**Promašena je bila zelena.** Naš lajm je na 77°, dakle žućkast, i za 19 poena
+svetliji. Njihova zelena je na 92°, trava-zelena. Zelena sa njihovog sajta i
+zelena iz njihovog logoa slažu se na 1,1°, pa su njihove dve površine međusobno
+usklađene, a naš lajm nije bio ni sa jednom.
+
+> **Ovo obara zaključak sa vrha ovog fajla.** Tamo piše da je lajm „ista porodica
+> kao zelena iz logoa, samo svetlija". To je bila procena. Izmereno: 15,7° razlike
+> u tonu i 19 poena u svetlini nije nijansa, nego druga boja. Poređeno je tada sa
+> logom preko udela piksela po tonu, ali nikad direktno lajm prema zelenoj iz
+> logoa — a to je jedino poređenje koje je bilo važno.
+
+### Šta je promenjeno
+
+`usluga.css`, **nova sekcija 25**: `--lime` postaje `#80c347`. `--teal` i
+`--teal-deep` se ne diraju.
+
+**Pravilo 6 je opet uhvatilo skriveni deo posla.** `grep` po upisanoj vrednosti
+`rgba(201, 242, 95, …)` našao je **10 mesta** u zamrznutom `v12/styles.css` koja
+ne prolaze kroz promenljivu: obrub linka u panelu, gradijent reda usluge,
+pozadina kontakt sekcije, dve tačke sa senkom, pozadina tegobe na prelaz mišem,
+hover u futeru, kružić na mapi, i `@keyframes service-flash` (keyframes se ne
+nasleđuje, pa je redefinisan ceo). Sva su prepisana u sekciji 25, sa istim alfa
+vrednostima.
+
+**Usput nađen još jedan zaostatak iz v13.** Pozadina sekcije Kontakt nosila je
+`rgba(7, 139, 125, 0.06)` — stari tirkiz `#078b7d`, koji je prethodna runda
+promašila jer je tražila samo `rgba(19, 201, 179)`. Sada je plava.
+
+### Cena u kontrastu
+
+| Podloga | Lajm pre | Zelena posle |
+|---|---|---|
+| `--ink` `#26322f` (traka sa brojevima) | 10,35:1 | **6,21:1** |
+| tamna sekcija `#253130` | 10,48:1 | **6,29:1** |
+| `--paper` `#f1f0e9` | 1,12:1 | 1,87:1 |
+
+Pad je znatan, ali 6,2:1 prolazi AA i za sitan tekst (traži 4,5) i AAA za veliki.
+Na svetloj podlozi se zelena ne koristi za tekst, tamo su obe vrednosti
+neupotrebljive i to se nije promenilo.
+
+### Provereno merenjem na renderu
+
+Tri stranice snimljene cele, na 1440 px, pa prebrojani pikseli po tonu:
+
+| | Pre | Posle |
+|---|---|---|
+| prosečan ton zelenih piksela | 77,5° | **93,0°** |
+| prosečna svetlina | 87% | **71%** |
+| udeo zelene na stranici | 1,026% | 1,015% |
+| udeo tirkiza | 0,032% | 0,032% |
+
+Ton je sleteo na njihovih 92,4°. Tirkiza na ekranu praktično nema ni pre ni posle:
+0,032% je antialiasing na ivici plave i zelene, gde mešavina dva piksela pada u
+tirkizni opseg. **Zaostali tirkiz iz v13 je zaista rešen** — hex vrednosti koje
+grep još nalazi u kodu stoje u komentarima ili u pravilima koja ništa ne boje.
+
+Provera posle izmene: svih 7 stranica, 1440 i 390 px, HTTP 200,
+`scrollWidth == clientWidth`, nula slomljenih slika, nula JS grešaka.
+
+**Oznaka verzije `usluga.css` podignuta na `?v=16.0` u svih 7 HTML fajlova.**
+
+### Šta oko boja i dalje stoji otvoreno
+
+Ovo je urađeno prema **snimku sajta**, ne prema brend-priručniku. Ako Lokomoto ima
+zvanične vrednosti, one imaju prednost nad ovim merenjem. Takođe: klijent je rekao
+„boje", u množini. Ako mu i posle ovoga nešto ne odgovara, sledeći na redu nije
+ton nego **koliko se boje koristi** — njihov sajt je pola plav pola zelen u
+punim poljima, a v14 boju koristi kao naglasak na tamnoj podlozi.

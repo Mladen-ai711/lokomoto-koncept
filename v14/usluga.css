@@ -2621,3 +2621,92 @@ h1 .name-alt {
 .service-list .service-item::before {
   transition: opacity 380ms ease;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   25. ZELENA IZ LOKOMOTO IDENTITETA — 01.09.2026
+
+   Klijent i Nikola nezavisno kažu da paleta „nisu naše boje" (Loom 0:16,
+   0:37 i komentar 4:32). Izmereno iz snimka njihovog sajta:
+
+     njihova plava   #008cbe   ton 195,8°   zasićenost 100%   svetlina 75%
+     njihova zelena  #80c347   ton  92,4°   zasićenost  64%   svetlina 76%
+
+   Poređenje sa v14 paletom:
+
+     #008cbe prema --teal-deep #057eb6 ..... 3,2° razlike
+     #008cbe prema --teal      #2c9ecb ..... 1,2° razlike
+     #80c347 prema --lime      #c9f25f .... 15,7° razlike, i 19 poena svetlije
+     #80c347 prema zelenoj iz logoa #95d15e  1,1° razlike
+
+   Dakle PLAVA JE VEĆ NJIHOVA i ne dira se. Promašena je zelena: naš lajm je
+   žućkast (77°) i mnogo svetliji, njihova zelena je trava-zelena (92°).
+   Zaključak prethodne runde da je lajm „ista porodica, samo svetliji" bio je
+   procena, ne merenje: 15,7° i +19 svetline nije nijansa.
+
+   Zelena sa sajta i zelena iz logoa se slažu na 1,1°, pa se dve njihove
+   površine slažu međusobno — a naš lajm nije bio ni sa jednom.
+
+   CENA U KONTRASTU, izmerena pre zamene:
+
+     na --ink #26322f (traka):  lajm 10,35:1  ->  zelena 6,21:1
+     na tamnoj sekciji #253130: lajm 10,48:1  ->  zelena 6,29:1
+     na --paper #f1f0e9:        lajm  1,12:1  ->  zelena 1,87:1
+
+   Pad sa 10,4 na 6,2 je znatan, ali 6,2 prolazi AA i za sitan tekst (traži
+   4,5) i AAA za veliki (traži 4,5). Na svetloj podlozi se zelena ionako ne
+   koristi za tekst, obe vrednosti su tamo neupotrebljive.
+
+   PRAVILO 6 IZ PROJEKTA: promenljiva nije dovoljna. `grep` po upisanoj
+   vrednosti našao je 10 mesta sa `rgba(201, 242, 95, …)` u zamrznutom
+   v12/styles.css. Sva su ovde prepisana, sa istim alfa vrednostima.
+   ══════════════════════════════════════════════════════════════════ */
+
+:root {
+  --lime: #80c347;
+}
+
+/* 10 mesta iz v12 koja nose upisanu staru vrednost, iste alfe */
+
+.motion-trace circle {
+  stroke: rgba(128, 195, 71, 0.2);
+}
+
+.service-item::before {
+  background: linear-gradient(90deg, rgba(128, 195, 71, 0.08), transparent 78%);
+}
+
+.contact {
+  background:
+    radial-gradient(circle at 92% 8%, rgba(128, 195, 71, 0.12), transparent 25rem),
+    radial-gradient(circle at 4% 92%, rgba(5, 126, 182, 0.06), transparent 29rem),
+    var(--paper-light);
+}
+
+.contact-response i {
+  box-shadow: 0 0 0 0.24rem rgba(128, 195, 71, 0.18);
+}
+
+.contact-map-badge i {
+  box-shadow: 0 0 0 0.2rem rgba(128, 195, 71, 0.14);
+}
+
+.service-nudge-link {
+  border-bottom: 1px solid rgba(128, 195, 71, 0.4);
+}
+
+.complaint:hover,
+.complaint:focus-visible {
+  background: rgba(128, 195, 71, 0.07);
+}
+
+.footer-social a:hover {
+  background: rgba(128, 195, 71, 0.1);
+}
+
+/* Animacija bljeska u panelu Usluge: keyframes se ne nasleđuje, pa se
+   redefiniše ceo, sa istim trajanjem i istim alfa vrednostima. */
+
+@keyframes service-flash {
+  0%, 100% { background: linear-gradient(90deg, rgba(128, 195, 71, 0.08), transparent 78%); }
+  25% { background: linear-gradient(90deg, rgba(128, 195, 71, 0.3), transparent 82%); }
+}
