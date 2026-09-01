@@ -2171,3 +2171,69 @@ zvanične vrednosti, one imaju prednost nad ovim merenjem. Takođe: klijent je r
 „boje", u množini. Ako mu i posle ovoga nešto ne odgovara, sledeći na redu nije
 ton nego **koliko se boje koristi** — njihov sajt je pola plav pola zelen u
 punim poljima, a v14 boju koristi kao naglasak na tamnoj podlozi.
+
+## Cenovnik zbijen (01.09.2026, ista runda)
+
+Klijent (Loom 9:47): „ja sam ga ovako 60 puta 60, ti si ga verovatno sve raširio…
+možda mi je malo preglednije ovako."
+
+Stegnuto je troje: razmak u redu (16 px → 10 px gore i dole), razmak iznad spiska
+(1,1rem → 0,8rem) i razmak između grupa (2,2–3,2rem → 1,6–2,2rem). **Veličine
+slova nisu dirane** — primedba je o količini praznog, ne o veličini teksta.
+
+Izmereno na istoj stranici, sa i bez izmene:
+
+| | 1440 px pre | 1440 px posle | 390 px pre | 390 px posle |
+|---|---|---|---|---|
+| visina sekcije | 1985 px | **1772 px** | 3978 px | **3528 px** |
+| stavki vidljivo bez skrola | 17 od 25 | **22 od 25** | 6 | **7** |
+| visina reda | 60 / 81 / 83 px | **48 / 67 / 68 px** | 88–133 px | **76–117 px** |
+| cela naslovna | 12809 px | **12596 px** | 18543 px | **18094 px** |
+
+Na 1440 se sada vidi **22 od 25 stavki odjednom**, umesto 17. To je ono što je
+klijent tražio: cenovnik koji se obuhvati jednim pogledom.
+
+Redovi cenovnika nisu klikabilni (`dt`/`dd`), pa pravilo o meti od 44 px za prst
+ovde ne važi. Da jesu, ne bi se smelo ići ispod toga, i to stoji u komentaru
+sekcije 26 da se ne izgubi.
+
+`usluga.css`, **nova sekcija 26**. Oznaka podignuta na **`?v=16.1`** u svih 7.
+
+## Aparati identifikovani sa kontakt-lista (01.09.2026)
+
+Klijent na 1:11 traži da se negde stavi „ona narandžasta mašina". Pretragom
+`_pregled/aparati.jpg` i uvećanjem natpisa na originalima, **svi do sada
+neidentifikovani aparati su prepoznati**:
+
+| Kadar | Šta je | Kako je utvrđeno |
+|---|---|---|
+| `L-7` | **INDIBA** | ime na ekranu i na kućištu; narandžasto kućište, ovo je „narandžasta mašina" |
+| `L-5` | **Triton DTS**, Chattanooga Group | natpis `TRITON` na kućištu, merilo sile trakcije, logo proizvođača |
+| `L-6` | **Triton DTS**, ekran izbliza | isti ekran kao `L-5`: `Traction Meter`, `Rope Release` |
+| `L-10`, `L-11`, `L-16` | **Medestec MP 50**, tecar | natpis `Medestec` i `MP 50`, poruka `Please connect plate return`, uz `medestec GEL NEUTRO` |
+| `L-62`, `L-64` | **Ergon (IASTM)**, ne INDIBA | metalni alat za meko tkivo, ne RF sonda |
+
+Time stavka „neidentifikovan aparat `L-5` i `MP 50` sa `L-10`/`L-11`/`L-16`" iz
+`3-podaci-za-popuniti.md` **više nije otvorena**.
+
+**Medestec MP 50 je tecar terapija, ista kategorija kao INDIBA, a ne
+magnetoterapija.** To je važno jer je bilo primamljivo popuniti praznu karticu
+magnetoterapije baš tim kadrom. Pogrešno označen aparat je tvrdnja, ne dekoracija.
+
+Provera metoda na stranici fizikalne terapije: `metoda-indiba` = `L-7`,
+`metoda-triton` = `L-69`, `metoda-neufit` = `L-19`, `metoda-elektro` = elektrode.
+**Sva četiri su tačno označena.**
+
+Ostaje potvrđeno da **magnetoterapija, krioterapija i limfna drenaža nemaju kadar**
+ni na jednom od 104 snimka. Sada je to pretraženo do kraja, jer više nema
+nepoznatih aparata iza kojih bi se mogle kriti.
+
+### Isečak Indibe je spreman, mesto nije potvrđeno
+
+Napravljen je `panel-indiba.webp`, 1600×1200 (4:3, kao ostale panel slike), isečak
+iz `L-7` sa 5000×4000, odsečeno 250 px odozgo jer je gornji deo polica.
+
+**Nije ugrađen.** Iz transkripta se ne vidi na koju sliku klijent pokazuje: na
+1:11 gleda naslovnu, a rečenica je u transkriptu isprekidana. Slike koje je u
+istom dahu pohvalio („ovo je super, ovo je super") nose isti rizik da budu
+zamenjene greškom. Čeka jednu rečenicu potvrde.

@@ -2713,3 +2713,49 @@ h1 .name-alt {
   0%, 100% { background: linear-gradient(90deg, rgba(132, 195, 80, 0.08), transparent 78%); }
   25% { background: linear-gradient(90deg, rgba(132, 195, 80, 0.3), transparent 82%); }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   26. CENOVNIK ZBIJENIJI — 01.09.2026
+
+   Klijent (Loom 9:47): „ja sam ga ovako 60 puta 60, ti si ga verovatno sve
+   raširio… možda mi je malo preglednije ovako."
+
+   Izmereno pre diranja, na 1440 px:
+
+     visina sekcije .......... 1985 px  (3942 px na 390)
+     stavki .................. 25 u četiri grupe, u dve kolone
+     padding reda ............ 16 px gore i dole
+     visina reda ............. 60 px bez podnaslova, 81–83 px sa njim
+
+   Sekcija je zauzimala oko 2,2 ekrana na 1440. Red od 60 px za jednu liniju
+   teksta i jednu cenu je razmak, ne disanje.
+
+   Stegnuto je troje: razmak u redu, razmak između grupa i razmak iznad
+   spiska. Veličine slova nisu dirane — cenovnik mora da ostane čitljiv, a
+   klijentova primedba je o količini praznog, ne o veličini teksta.
+
+   Redovi cenovnika nisu klikabilni (`dt`/`dd`), pa pravilo o 44 px meti za
+   prst ovde ne važi; da jesu, ne bi se smelo ići ispod toga.
+   ══════════════════════════════════════════════════════════════════ */
+
+.pricing .price-row {
+  padding: 0.62rem 0;
+}
+
+.pricing .price-list {
+  margin-top: 0.8rem;
+}
+
+.price-group {
+  margin-bottom: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+/* Podnaslov cene („60 min", „ušteda 6.000") nosi svoj razmak odozgo, koji je
+   u zbijenom redu postao veći od razmaka između samih redova. */
+.pricing .price-row dt small {
+  margin-top: 0.2rem;
+}
+
+.pricing .price-row dd u {
+  margin-top: 0.18rem;
+}
