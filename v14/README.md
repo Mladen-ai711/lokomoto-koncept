@@ -2694,3 +2694,45 @@ njihovog sajta.
 Vraćanje na tamnozelenu je brisanje sekcije 30, ništa drugo.
 
 Oznaka `usluga.css` podignuta na **`?v=17.3`** u svih 7.
+
+### Traka spuštena na dno hera (ista runda)
+
+Traženo je da sličice idu niže. Dok je traka bila u toku, to nije bilo besplatno:
+`.hero-content` centrira decu, pa je **svaki piksel dat traci uziman naslovu**.
+Izmereno na 1440 pre nego što je izabrano:
+
+| Rešenje | Traka od dna | Naslov |
+|---|---|---|
+| u toku, kako je bilo | 170 px | 258 |
+| `margin-top: 7rem` | 141 px | 229 |
+| `margin-top: auto` | 96 px | 184 |
+| **van toka, `bottom` 2rem** | **35 px** | **321** |
+
+Van toka traka stvarno seda na dno, a **naslov pada niže nego što je bio**, jer se
+centrira bez nje. To je uz miran hero bolje nego pre, pa je izabrano to.
+
+**Dve greške u prvom pokušaju, obe uhvaćene merenjem:**
+
+1. `inset-inline: 0` uz `padding-inline` uvuklo je sadržaj, ali je **linija
+   `border-top` i dalje išla preko cele širine ekrana** (1440 umesto 1325 px).
+   Ispravljeno na `inset-inline: var(--gutter)`, pa i linija prati `.shell`.
+2. Na uskom ekranu traka se vraća u tok, a bez `align-self: stretch` **svela se na
+   širinu sadržaja: 251 px umesto 350**.
+
+Na uskom ekranu traka namerno ostaje u toku: apsolutna bi se na niskim telefonima
+sudarila sa dugmadima.
+
+### Provereno na četiri odnosa
+
+| | traka | razmak od dugmadi | do dna hera |
+|---|---|---|---|
+| 1440 × 900 | x 58, širina 1325 | 126 px | 35 px |
+| 1440 × 760 | x 58, širina 1325 | 56 px | 35 px |
+| 1024 × 800 | x 41, širina 942 | 102 px | 27 px |
+| 390 × 844 | x 20, širina 350 | 28 px | 110 px |
+| 390 × 667 | x 20, širina 350 | 28 px | 88 px |
+
+Kontrast imena preko videa, ponovo izmeren na novom mestu (podloga se promenila):
+**5,66 na 1440 i 5,92 na 390**, u tri trenutka videa. Prolazi AA.
+
+Oznaka `usluga.css` podignuta na **`?v=17.4`** u svih 7.

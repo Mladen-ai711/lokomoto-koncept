@@ -2981,17 +2981,32 @@ h1 .name-alt {
    ══════════════════════════════════════════════════════════════════ */
 
 .hero-partners {
+  /* Traka sedi na dnu hera, van toka. Dok je bila u toku, „spustiti niže"
+     je značilo i podići naslov, jer `.hero-content` centrira decu: svaki
+     piksel dat traci uzimao se naslovu. Izmereno na 1440:
+
+       u toku, sada .............. traka 170 px od dna, naslov na 258
+       margin-top 7rem ........... traka 141 px od dna, naslov na 229
+       margin-top auto ........... traka  96 px od dna, naslov na 184
+       van toka, bottom 2rem ..... traka  32 px od dna, naslov na 321
+
+     Van toka traka stvarno seda na dno, a naslov ostaje centriran i pada
+     niže nego što je bio, što je uz miran hero bolje nego pre.
+
+     `inset-inline: 0` uz `padding-inline: var(--gutter)` ponavlja raspored
+     `.shell`, jer apsolutni element ne nasleđuje njegov padding; bez toga
+     bi traka bila široka celih 1440 umesto 1325 px. */
+  position: absolute;
+  /* `inset-inline: var(--gutter)`, a ne `0` uz `padding-inline`: padding bi
+     uvukao sadržaj, ali bi linija `border-top` i dalje išla preko cele
+     širine ekrana. Ovako i linija prati raspored `.shell`. */
+  inset-inline: var(--gutter);
+  bottom: clamp(1.4rem, 2.6vw, 2.2rem);
   display: flex;
-  /* `.hero-content` centrira decu po sadržaju, pa bi traka bila uža od
-     teksta iznad nje i linija bi delovala kao greška. `align-self: stretch`
-     joj daje punu širinu bloka, a `justify-content: center` drži imena na
-     istoj osi kao naslov. */
-  align-self: stretch;
   justify-content: center;
   /* `baseline` je radio dok su u traci stajala samo imena; sa sličicama
      etiketa pada na dno reda, pa ide `center`. */
   align-items: center;
-  margin-top: clamp(2.2rem, 4vw, 3.4rem);
   padding-top: clamp(1.1rem, 2vw, 1.5rem);
   border-top: 1px solid rgba(255, 255, 255, 0.16);
   gap: clamp(1rem, 2.5vw, 2rem);
@@ -3030,7 +3045,13 @@ h1 .name-alt {
 }
 
 @media (max-width: 720px) {
+  /* Na uskom ekranu traka se vraća u tok: apsolutna bi se na niskim
+     telefonima sudarila sa dugmadima, a prostora ispod njih ima malo. */
   .hero-partners {
+    position: static;
+    /* Bez `stretch` traka se u toku svodi na širinu sadržaja: izmereno 251 px
+       umesto pune širine. */
+    align-self: stretch;
     margin-top: 1.8rem;
     padding-top: 1rem;
     gap: 0.5rem;
