@@ -3042,3 +3042,29 @@ Ovo je još jedan slučaj pravila „meri predmet na koji se gleda, ne okvir oko
 njega". Skripta: `razmaci.py`.
 
 Oznaka `usluga.css` na **`?v=18.5`** u svih 7 fajlova.
+
+## Zeleni obrub na hero dugmetu vraćen (02.09.2026)
+
+Pitanje: zašto je obrub oko „Zakažite pregled" u heru izgubio zelenu.
+
+**Uzrok: prošla runda ga je slomila usput.** `v12/styles.css` daje zelen obrub
+preko `.hero-actions .button[href="#kontakt"]` — vezano za **tačan tekst linka**.
+Kad je to dugme prevezano na kalendar (`lokomotocentar.alpinbook.com`), href
+više nije bio `#kontakt`, selektor je prestao da se poklapa, i dugme je tiho
+palo na podrazumevani obrub (belo, 1px, 90% providnosti). Bez greške u konzoli,
+bez slomljene reference — samo izgled koji se promenio bez ijedne izmene u
+`.hero-actions .button`.
+
+v12 je zamrznut, pa se ne dopisuje novi selektor po URL-u — isti problem bi se
+ponovio čim se adresa kalendara promeni. Dugme je dobilo sopstvenu klasu,
+`hero-cta-zakazivanje`, nezavisnu od toga kuda vodi.
+
+**Prva verzija ispravke nije radila.** `.hero-cta-zakazivanje` sama (jedna
+klasa) gubi po specifičnosti od `.hero-actions .button` (dve klase) — obrub je
+ostao beo i posle dodavanja pravila. Ispravljeno na `.hero-actions
+.hero-cta-zakazivanje` (dve klase, isti nivo).
+
+Provereno: obrub 2px `#84c350` i na mirovanju i na hover-u; drugo dugme
+(„Pogledajte usluge") nepromenjeno, belo. 7 stranica × 1440/390: 0 padova.
+
+Nova sekcija 34, oznaka `usluga.css` na **`?v=18.8`** u svih 7 fajlova.

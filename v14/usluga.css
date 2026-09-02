@@ -3489,3 +3489,29 @@ h1 .name-alt {
 .contact-form-panel {
   align-self: start;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   34. LIME OBRUB NA HERO DUGMETU — VRAĆEN, 02.09.2026
+
+   `v12/styles.css` daje zeleni obrub ovom dugmetu preko
+   `.hero-actions .button[href="#kontakt"]` — selektor je vezan za TAČAN
+   tekst linka. Kad je dugme prevezano na kalendar za zakazivanje, href
+   više nije `#kontakt`, selektor je prestao da se poklapa, i dugme je
+   nečujno palo na podrazumevani obrub (1px belo na 90% providnosti).
+
+   v12 je zamrznut, pa se ne dopisuje selektor po URL-u (isti problem bi se
+   ponovio čim se adresa kalendara promeni). Umesto toga dugme nosi svoju
+   klasu, nezavisnu od toga kuda vodi.
+
+   PRVI POKUŠAJ NIJE RADIO: `.hero-cta-zakazivanje` sama (jedna klasa) gubi
+   od `.hero-actions .button` (dve klase) po specifičnosti — obrub je ostao
+   beo i posle dodavanja pravila. Selektor mora da nosi bar isti broj klasa
+   koliko i ono što nadjačava. */
+.hero-actions .hero-cta-zakazivanje {
+  border: 2px solid var(--lime);
+}
+
+.hero-actions .hero-cta-zakazivanje:hover,
+.hero-actions .hero-cta-zakazivanje:focus-visible {
+  border-color: var(--lime);
+}
