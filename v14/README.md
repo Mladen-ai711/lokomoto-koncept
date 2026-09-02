@@ -2792,3 +2792,84 @@ online zakazivanje termina. Dugme „Zakažite pregled" danas vodi na kontakt fo
 koja ne šalje. To je moguće pravo rešenje za zakazivanje i vredi pitati.
 
 Nova sekcija 31, oznaka `usluga.css` na **`?v=17.6`**.
+
+## Futer u brend bojama (01.09.2026)
+
+Zahtev: *„Gornji dio neka bude plav, a dole ispod linije neka bude zelena."*
+
+| Deo | Pre | Sada |
+|---|---|---|
+| gornji futer | `#0f1a18` (skoro crna) | **`#0076ae`** |
+| ispod linije (`.footer-bottom` + `.footer-note`) | ista tamna | **`#84c350`** (`var(--lime)`) |
+
+### Prvo merenje: 29 padova
+
+Prozirnosti u futeru bile su podešene za skoro crnu podlogu. Na plavoj su sve
+pale odjednom:
+
+| Element | Kontrast na `#0076ae` |
+|---|---|
+| opis pod logoom | 2,57 |
+| linkovi u kolonama | 2,84 |
+| dani u radnom vremenu | 2,18 |
+| naslovi kolona (`--teal`) | 1,63 |
+| strelica „Na vrh" (lajm na lajmu) | 1,00 |
+
+Uzrok je jedan broj: **bela na `#0076ae` daje tek 5,00.** Na crnoj je davala 18,
+pa je `opacity: 0.62` i dalje ostavljalo 11. Ovde ista prozirnost obara na 2,6.
+Ispod 4,5 nema mesta za stišavanje — **hijerarhija je prebačena sa prozirnosti na
+veličinu i težinu slova** (naslovi kolona 10 px, `letter-spacing`, `uppercase`;
+linkovi 14 px).
+
+### Posle ispravke: 0 padova
+
+Izmereno svih 32 tekstualna elementa u futeru, alfa-kompozicija preko stvarne
+podloge:
+
+- gornji deo, bela na `#0076ae`: **5,00** (26 elemenata)
+- donji deo, `--ink` na `#84c350`: **7,05** (6 elemenata)
+
+### Dva problema uhvaćena na renderu
+
+**Logo je nestao.** Originalni `logo-lokomoto.png` ima tamnoplavu figuru i tamni
+tekst — na `#0076ae` se izgubio. U futer je ubačen svetli izvod
+`logo-lokomoto-svetli.png` (nov fajl, 1200 × 1176), `src` zamenjen **samo posle
+`footer-brand` markera**, u svih 7 fajlova. Zaglavlje i dalje nosi original,
+kako je traženo.
+
+**Dve nijanse zelene u donjoj traci.** `.footer-note` je nasleđivao `opacity`
+podešen za tamnu podlogu; prozirnost stišava i pozadinu, ne samo tekst, pa je
+traka bila prugasta. Zamenjeno bojom teksta (`var(--ink)`, `opacity: 1`).
+
+### Kako je zelena došla do ivica ekrana
+
+`.footer-bottom` sedi u centriranom `.shell`, a zelena treba preko cele širine.
+Bez novog omotača:
+
+```css
+box-shadow: 0 0 0 100vmax var(--lime);
+clip-path: inset(0 -100vmax);
+```
+
+Senka bez zamućenja slika pravougaonik preko celog prozora, `clip-path` ga seče
+po visini elementa. Isti postupak koji je korišćen za traku sa brojevima.
+
+### Provereno
+
+7 stranica × 1440 i 390 px, servirano **iz poddirektorijuma** `/lokomoto-koncept/`:
+HTTP 200, 0 404, 0 slomljenih slika, 0 JS grešaka, `scrollWidth == clientWidth`
+svuda. Futer 1440 × 514 px na desktopu.
+
+### Nalaz koji nije rešen
+
+**Logo u futeru se renderuje na 82 × 80 px.** Na toj veličini je natpis
+„LOKOMOTO CENTAR" visok ~5 px, a podnaslov „FIZIKALNA TERAPIJA I REHABILITACIJA"
+je nečitka mrlja. To nije posledica ove izmene — ista veličina je stajala i na
+tamnoj podlozi — ali sada je vidljivije, jer okvir natpisa svetli na plavoj.
+Figura znaka meri **1,33–2,75 kontrasta** prema `#0076ae`; kao znak, ne tekst, to
+ne pada po WCAG-u, ali je murno. Predlog za sledeću rundu: u futeru koristiti
+**horizontalni izvod** logoa (`logo-lokomoto-h-svetli.png`, već u repou i
+neiskorišćen) na ~200 px širine, gde natpis dobija čitljivu visinu.
+
+Nova sekcija 32, oznaka `usluga.css` na **`?v=17.9`** u svih 7 fajlova.
+Nov fajl: `v8/assets/images/logo-lokomoto-svetli.png`.

@@ -3269,3 +3269,90 @@ h1 .name-alt {
     white-space: nowrap;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   32. FUTER U BREND BOJAMA — 01.09.2026
+
+   Traženo: gornji deo futera plav, deo ispod linije zelen.
+
+   PUNA ŠIRINA IZ CENTRIRANOG ELEMENTA. `.footer-bottom` i `.footer-note`
+   nose klasu `.shell`, dakle centrirani su i ograničeni na `--shell`.
+   Pozadina bi stala unutar tog okvira i ostavila plave rubove sa strane.
+   `box-shadow` sa `100vmax` širine plus `clip-path: inset(0 -100vmax)`
+   razliva boju do ivica ekrana, a element ostaje na svom mestu.
+
+   TEKSTOVI SU BILI PODEŠENI ZA TAMNU PODLOGU. Skoro sve u futeru je bela
+   sa prozirnošću između 0,22 i 0,62. Na plavoj to pada ispod 3, a na
+   svetlozelenoj bela ne radi uopšte. Zato:
+
+     gornji deo, na plavoj  ... bela se podiže, naslovi kolona pune bele
+     donji deo, na zelenoj  ... tekst postaje taman (`--ink`), ne beo
+
+   Izmereni kontrasti stoje u sekciji ispod svake grupe pravila.
+   ══════════════════════════════════════════════════════════════════ */
+
+.site-footer {
+  background: #0076ae;
+}
+
+/* ── gornji deo, na plavoj ──────────────────────────────────────────
+   Izmereno na #0076ae: bela daje 5,00, pa SVAKA prozirnost ispod 1 pada
+   ispod 4,5. Zato u futeru više nema prigušenog teksta; hijerarhija ide
+   preko veličine i težine slova, ne preko prozirnosti.
+
+     bilo 0,55 (opis) ......... 2,57  ->  puna bela 5,00
+     bilo 0,62 (linkovi) ...... 2,84  ->  puna bela 5,00
+     bilo 0,45 (dani) ......... 2,18  ->  puna bela 5,00
+     --teal (naslovi kolona) .. 1,63  ->  puna bela 5,00                */
+
+.site-footer .footer-col h2,
+.site-footer .footer-col a,
+.site-footer .footer-contact a,
+.site-footer .footer-intro,
+.site-footer .footer-hours dt,
+.site-footer .footer-hours dd,
+.site-footer .footer-brand-copy,
+.site-footer p,
+.site-footer address {
+  color: var(--white);
+}
+
+.site-footer .footer-col h2 {
+  opacity: 0.82;
+}
+
+.site-footer .footer-col a:hover,
+.site-footer .footer-bottom-links a:hover {
+  color: var(--lime);
+}
+
+/* ── donji deo, na zelenoj ──────────────────────────────────────────
+   Na `--lime` bela ne radi (1,85). Tekst je taman, u punoj `--ink`:
+   6,22. Sa prozirnošću 0,78 padao je na 4,06, a strelica „na vrh" je
+   bila lajm na lajmu, dakle 1,00 i nevidljiva.                        */
+
+.site-footer .footer-bottom,
+.site-footer .footer-note {
+  position: relative;
+  background: var(--lime);
+  box-shadow: 0 0 0 100vmax var(--lime);
+  clip-path: inset(0 -100vmax);
+  color: var(--ink);
+}
+
+.site-footer .footer-bottom {
+  border-top: 0;
+}
+
+.site-footer .footer-bottom-links a,
+.site-footer .footer-bottom-links a span,
+.site-footer .footer-top span {
+  color: var(--ink);
+}
+
+/* `opacity` bi stišao i pozadinu, pa bi donja traka imala dve nijanse
+   zelene. Prigušenje ide samo na boju teksta. */
+.site-footer .footer-note {
+  color: var(--ink);
+  opacity: 1;
+}
