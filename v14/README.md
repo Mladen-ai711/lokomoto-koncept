@@ -2760,3 +2760,35 @@ Oznaka `usluga.css` podignuta na **`?v=17.5`** u svih 7 (sekcije 29b i 29c).
 | 390 × 667 | 163 | 559 | 587 | 28 px | 96 px |
 
 Kontrast imena preko videa: **5,99** na 390, prolazi AA na svim merenim trenucima.
+
+## Kviz: adresa nađena, ulaz postavljen (01.09.2026)
+
+**`https://kviz.lokomoto.rs/`** — „Otkrij koji tip bola imaš u leđima", traje dva
+minuta.
+
+Adresa nije bila zapisana nigde. Nađena je premotavanjem Looma: Nikolin komentar
+visi na vremenskoj oznaci 10:37, pa „ovde" znači ono što je tada na ekranu. Na
+10:27 klijent otvara kviz i u adresnoj traci se čita poddomen. Dakle **„na home"
+je mesto ulaza, a „ovde" je odredište, sam kviz.**
+
+**Dva ulaza:**
+
+| Gde | Šta |
+|---|---|
+| naslovna, ispod mape tela | kartica: „Bol u leđima? Otkrijte koji je tip." (1325 × 149 px) |
+| futer, svih 7 stranica | stavka `Kviz ↗` u spisku „Sajt" |
+
+Kviz pita **samo o leđima**, pa ne može da bude opšti ulaz za „ne znam šta mi je".
+Zato kartica stoji ispod mape tela, gde posetilac ionako bira tegobu, i izričito
+kaže da je o leđima. Otvara se u novoj kartici: to je druga aplikacija na
+poddomenu, a posetilac koji odustane treba da se vrati na sajt.
+
+**Dve stvari za kasnije:** kviz je pisan u „ti" formi („Otkrij koji tip bola
+imaš"), a sajt govori sa „vi", pa je prelaz primetan. I dizajn mu je zeleno-beo,
+bez Lokomoto plave.
+
+**Usput nađeno u istom kadru:** klijent ima **`lokomotocentar.alpinbook.com`** za
+online zakazivanje termina. Dugme „Zakažite pregled" danas vodi na kontakt formu
+koja ne šalje. To je moguće pravo rešenje za zakazivanje i vredi pitati.
+
+Nova sekcija 31, oznaka `usluga.css` na **`?v=17.6`**.

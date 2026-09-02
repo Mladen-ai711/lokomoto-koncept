@@ -3178,3 +3178,94 @@ h1 .name-alt {
     padding-bottom: 6rem;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   31. ULAZ ZA KVIZ — 01.09.2026
+
+   Klijent (Loom 10:09): „jedna stvar koja nam ovde definitivno fali, to
+   je onaj kviz… ovaj link treba da bude tu negde." Nikola potvrđuje na
+   10:37: „kviz treba da bude na home i da linkuje ovde."
+
+   ŠTA JE „OVDE". Loom komentar visi na vremenskoj oznaci, pa je „ovde"
+   ono što je tada na ekranu. Premotano: na 10:27 klijent otvara
+   `kviz.lokomoto.rs`, pa se vraća na sajt i traži mesto za link. Dakle
+   „na home" je mesto ulaza, a „ovde" je odredište, sam kviz.
+
+   MESTO. Kviz pita samo o LEĐIMA („Otkrij koji tip bola imaš u leđima"),
+   pa ne može da bude opšti ulaz za „ne znam šta mi je". Zato stoji ispod
+   mape tela, gde posetilac ionako bira tegobu, i izričito kaže da je o
+   leđima.
+
+   Otvara se u novoj kartici: to je druga aplikacija na poddomenu, ne
+   stranica ovog sajta, i posetilac koji odustane od kviza treba da se
+   vrati na sajt, a ne da ga izgubi.
+   ══════════════════════════════════════════════════════════════════ */
+
+.kviz-ulaz {
+  display: grid;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding: clamp(1.4rem, 2.6vw, 2rem) clamp(1.4rem, 2.6vw, 2.2rem);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  gap: 0.45rem;
+  text-decoration: none;
+  transition: background 260ms var(--ease), border-color 260ms var(--ease);
+}
+
+.kviz-ulaz:hover,
+.kviz-ulaz:focus-visible {
+  border-color: rgba(132, 195, 80, 0.55);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.kviz-ulaz-oznaka {
+  color: var(--lime);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.kviz-ulaz strong {
+  color: var(--white);
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.kviz-ulaz-tekst {
+  max-width: 46ch;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.kviz-ulaz-cta {
+  margin-top: 0.35rem;
+  color: var(--lime);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+@media (min-width: 900px) {
+  /* Na širokom ekranu poziv na akciju ide desno, u istu liniju sa naslovom,
+     da kartica ne bude visok stub teksta. */
+  .kviz-ulaz {
+    align-items: center;
+    grid-template-columns: 1fr auto;
+    column-gap: 2rem;
+  }
+
+  .kviz-ulaz-oznaka { grid-column: 1; }
+  .kviz-ulaz strong { grid-column: 1; }
+  .kviz-ulaz-tekst { grid-column: 1; }
+
+  .kviz-ulaz-cta {
+    margin-top: 0;
+    grid-row: 1 / span 3;
+    grid-column: 2;
+    white-space: nowrap;
+  }
+}
