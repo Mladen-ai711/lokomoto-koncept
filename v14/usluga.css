@@ -3374,12 +3374,17 @@ h1 .name-alt {
 
    Kartica je LAJM, ne staklo kao kviz. Razlog: u sekciji kontakta stoji uz
    formu i mora da je nadglasa — to je jedini put na sajtu koji zaista
-   završava zakazanim terminom. Kviz je usput, ovo je cilj. */
+   završava zakazanim terminom. Kviz je usput, ovo je cilj.
+
+   ISPRAVKA 02.09.2026: radius je prvo bio kopiran sa kviz kartice (`1rem`),
+   ali ova kartica ne stoji uz kviz nego uz `.contact-details` i
+   `.contact-map` iz v12, koje koriste `var(--radius)` = 6px. Zaobljenje
+   sada prati komšije, ne udaljenu karticu na drugom kraju stranice. */
 
 .zakazivanje {
   display: grid;
   padding: clamp(1.4rem, 2.6vw, 1.9rem) clamp(1.4rem, 2.6vw, 2rem);
-  border-radius: 1rem;
+  border-radius: var(--radius);
   background: var(--lime);
   gap: 0.4rem;
   color: var(--ink);
