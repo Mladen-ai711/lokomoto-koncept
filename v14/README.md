@@ -2873,3 +2873,45 @@ neiskorišćen) na ~200 px širine, gde natpis dobija čitljivu visinu.
 
 Nova sekcija 32, oznaka `usluga.css` na **`?v=17.9`** u svih 7 fajlova.
 Nov fajl: `v8/assets/images/logo-lokomoto-svetli.png`.
+
+## Beli logo u futeru (01.09.2026)
+
+Pitanje: postoji li logo samo u beloj. **Postoji, ali nepotpun.**
+
+| Fajl | Šta je | Nedostatak |
+|---|---|---|
+| `Downloads/Logo-Lokomoto-bijeli-.png` | znak, cela bela, 1060 × 934 | nema natpis |
+| `v8/assets/images/logo-white.png` | isti znak, bela, 252 × 256 | nema natpis, i premali je |
+| `v8/assets/images/logo-lokomoto-h-svetli.png` | horizontalni izvod | znak i dalje plav |
+
+Nijedan nije pun lockup u beloj. Sastavljen je: beli znak iz
+`Logo-Lokomoto-bijeli-.png` (isečen po `bbox` 231,114–842,735 i skaliran u okvir
+856 × 868) plus blok natpisa iz `logo-lokomoto-svetli.png` (`y` 902–1176), koji je
+**već bio čista bela** — provereno, 71.468 piksela `(255,255,255)`. Nova
+`logo-lokomoto-bijeli.png`, 800 × 784.
+
+Zapisana je kao **`LA`** (siva + alfa) umesto `RGBA`, jer je monohromna:
+**300 KB → 76 KB.**
+
+### Zašto je zamenjen
+
+Merenje figure znaka prema `#0076ae`:
+
+| Verzija | Kontrast |
+|---|---|
+| `logo-lokomoto-svetli.png` (plava figura) | **1,33 – 2,75** |
+| `logo-lokomoto-bijeli.png` | **5,00**, ravnomerno |
+
+Na renderovanih 82 × 80 px stara figura se raspadala u plavu podlogu; bela drži
+oblik. **Cena je limeta** — beli izvod nema zeleni luk, pa u futeru ostaje samo
+plava. Ako je to gubitak, povratak je zamena jednog `src` u 7 fajlova.
+
+Zaglavlje i dalje nosi original u boji, na beloj podlozi, netaknuto.
+
+### Nalaz koji i dalje stoji
+
+Podnaslov „FIZIKALNA TERAPIJA I REHABILITACIJA" je na 82 px nečitak i u beloj
+verziji. To je pitanje veličine, ne boje — vidi prethodnu sekciju.
+
+Oznaka `usluga.css` na **`?v=18.0`** u svih 7 fajlova.
+Nov fajl: `v8/assets/images/logo-lokomoto-bijeli.png`.
