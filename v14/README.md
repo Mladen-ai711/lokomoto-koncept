@@ -2650,3 +2650,47 @@ ne ide na sajt, ili je usluga ugašena. Na starom sajtu (`lokomoto.rs`) i dalje
 stoji u spisku fizikalne terapije, pa se to negde mora uskladiti.
 
 Menjan je samo HTML, oznaka `usluga.css` ostaje `?v=17.2`.
+
+## Traka sa brojevima u njihovoj plavoj (01.09.2026)
+
+Klijent se više puta vraća na to da boje nisu njihove, pa je traka probana u
+plavoj iz logoa umesto u tamnozelenoj `--ink-2`.
+
+### Četiri varijante, izmerene pre nego što je išta upisano
+
+| Varijanta | Pozadina | Broj | Znak `+` `:` `h` | Etiketa |
+|---|---|---|---|---|
+| A sadašnja tamnozelena | `#26322f` | 13,29 | 6,27 (lajm) | 5,31 |
+| B plava, lajm znaci | `#0076ae` | 5,00 | **2,36** | **2,61** |
+| C plava, beli znaci | `#0076ae` | 5,00 | 5,00 | **2,61** |
+| D svetlija plava | `#0095c1` | **3,46** | 3,46 | **2,03** |
+
+**Dve stvari koje merenje pokazuje, a oko ne bi:**
+
+1. **Lajm znaci na plavoj padaju na 2,36.** To nije dekoracija nego informacija:
+   bez `+` broj „7.000+" postaje „7.000". Zato su na plavoj beli.
+2. **Etiketa ispod broja je `rgba(255,255,255,0.56)`**, pravljena za tamnu
+   podlogu. Na plavoj daje 2,61 i praktično nestaje. Podignuta je na **0,92**.
+
+**Svetlija plava je odbačena.** Broj pada na 3,46, što prolazi samo kao veliki
+tekst, a etiketa na 2,03. Ista boja radi u logou, gde nema sitnog teksta preko nje.
+
+### Upisano: varijanta C
+
+| | Rezultat |
+|---|---|
+| pozadina | `#0076ae`, tamnija plava iz logoa |
+| broj | 5,00 |
+| znak | 5,00 |
+| etiketa | **4,48** |
+
+Sve tri prolaze AA, na 1440 i na 390.
+
+**Cena je zelena.** Traka je bila jedino mesto gde je lajm stajao na velikom
+brojkama, i toga više nema. Zelena i dalje živi u traci ciljeva odmah ispod, koja
+sada dolazi neposredno posle plave — plavo pa zeleno, što je tačno raspored sa
+njihovog sajta.
+
+Vraćanje na tamnozelenu je brisanje sekcije 30, ništa drugo.
+
+Oznaka `usluga.css` podignuta na **`?v=17.3`** u svih 7.
