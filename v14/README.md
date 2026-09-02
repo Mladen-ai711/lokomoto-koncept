@@ -2604,3 +2604,49 @@ dekorativna i `alt=""` je ovde tačan izbor, ne propust.
 stajala samo imena; sa sličicama je etiketa padala na dno reda.
 
 Oznaka `usluga.css` podignuta na **`?v=17.2`** u svih 7.
+
+## Magnetoterapija izbačena, broj u traci ispravljen (01.09.2026)
+
+### 7.000+ uspešnih terapija
+
+Klijentov odgovor na stavku koja je od jutros stajala kao `BROJ ZA ISPRAVKU`.
+U Loomu (0:16) je rečeno „7 plus 1.000", što je transkript izobličio; tačno je
+**7.000+**.
+
+| | Bilo | Sada |
+|---|---|---|
+| broj | 4.000+ | **7.000+** |
+| oznaka | Tretmana **godišnje** | **Uspešnih terapija** |
+
+**Vremenska odrednica je otpala.** To nije previd nego ono što je klijent rekao:
+broj nije godišnji učinak nego ukupan. Značka je skinuta, `mark.ph` takođe.
+
+Time **na naslovnoj ostaje samo jedna oznaka**: `TEKST ZA POTVRDU` na opisima
+opreme, koji čekaju struku.
+
+Preostala tri broja u traci (6 fizioterapeuta, 1:1, 48h) i dalje nisu potvrđena i
+stoje u `3-podaci-za-popuniti.md`. Ako je jedan bio netačan, ostali traže isti
+pogled.
+
+### Magnetoterapija van
+
+Izbačena je sa stranice fizikalne terapije, sa sva tri mesta:
+
+- kartica metode („MAGNETNO POLJE / Magnetoterapija")
+- `meta description` stranice
+- spisak procedura u koraku 02 („Izbor procedure")
+
+**Raspored je time bolji, ne gori.** Metoda je sada šest i popunjavaju **dva puna
+reda po tri**; ranije ih je bilo sedam pa je red ostajao krnji. Izmereno na
+renderu: 3 + 3, i posebna kartica „Ne morate da znate" sama u trećem redu, gde i
+pripada jer nije metoda.
+
+**Jedna prazna fotografija manje.** Magnetoterapija je bila jedna od tri kartice
+sa značkom `FOTOGRAFIJA NEDOSTAJE`; ostaju **krioterapija i limfna drenaža**.
+
+U `3-podaci-za-popuniti.md` magnetoterapija se briše iz spiska za dosnimavanje.
+Pitanje koje ostaje za klijenta: **da li se magnetoterapija i dalje radi** a samo
+ne ide na sajt, ili je usluga ugašena. Na starom sajtu (`lokomoto.rs`) i dalje
+stoji u spisku fizikalne terapije, pa se to negde mora uskladiti.
+
+Menjan je samo HTML, oznaka `usluga.css` ostaje `?v=17.2`.
