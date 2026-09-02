@@ -2708,8 +2708,20 @@ Izmereno na 1440 pre nego što je izabrano:
 | `margin-top: auto` | 96 px | 184 |
 | **van toka, `bottom` 2rem** | **35 px** | **321** |
 
-Van toka traka stvarno seda na dno, a **naslov pada niže nego što je bio**, jer se
-centrira bez nje. To je uz miran hero bolje nego pre, pa je izabrano to.
+Van toka traka stvarno seda na dno, ali **naslov je pao sa 258 na 321 px**, jer se
+`.hero-content` centrirao bez nje.
+
+> **To je bila greška, i ispravljena je odmah.** Traženo je da se spuste sličice, a
+> ne da se pomeri ceo hero. Prostor koji je traka zauzimala vraćen je kao
+> `padding-bottom` na `.hero-content` (`clamp(8rem, 25vh, 14rem)`), pa se sadržaj
+> centrira u istom okviru kao pre.
+>
+> Izmereno posle ispravke, na 1440×900: **naslov 257 (bilo 258)**, dugmad do 603
+> (bilo 604). Na 390×844: naslov 181 (bilo 185). Traka je i dalje na dnu.
+>
+> Pouka nije tehnička: nusefekat je bio predstavljen kao dobitak („bolje nego
+> pre") umesto kao odstupanje od onoga što je traženo. Kad izmena pomeri nešto
+> što niko nije pomenuo, to se prijavljuje kao odstupanje, ne brani kao izbor.
 
 **Dve greške u prvom pokušaju, obe uhvaćene merenjem:**
 
@@ -2735,4 +2747,16 @@ sudarila sa dugmadima.
 Kontrast imena preko videa, ponovo izmeren na novom mestu (podloga se promenila):
 **5,66 na 1440 i 5,92 na 390**, u tri trenutka videa. Prolazi AA.
 
-Oznaka `usluga.css` podignuta na **`?v=17.4`** u svih 7.
+Oznaka `usluga.css` podignuta na **`?v=17.5`** u svih 7 (sekcije 29b i 29c).
+
+### Provereno posle ispravke
+
+| | naslov | dugmad do | traka | razmak | do dna hera |
+|---|---|---|---|---|---|
+| 1440 × 900 | **257** (bilo 258) | 603 | 793 | 190 px | 35 px |
+| 1440 × 760 | 204 | 550 | 653 | 103 px | 35 px |
+| 1024 × 800 | 209 | 552 | 706 | 154 px | 27 px |
+| 390 × 844 | **181** (bilo 185) | 577 | 605 | 28 px | 114 px |
+| 390 × 667 | 163 | 559 | 587 | 28 px | 96 px |
+
+Kontrast imena preko videa: **5,99** na 390, prolazi AA na svim merenim trenucima.

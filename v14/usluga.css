@@ -3151,3 +3151,30 @@ h1 .name-alt {
 .proof-bar .proof-item dd {
   color: rgba(255, 255, 255, 0.92);
 }
+
+/* ── 29c. Traka van toka ne sme da pomeri naslov (01.09.2026) ───────
+   Traženo je da se spuste sličice, a ne da se pomeri ceo hero. Kad je
+   traka izvučena iz toka, `.hero-content` je počeo da centrira sadržaj
+   bez nje, pa je naslov skliznuo sa 258 na 321 px. To je bio nusefekat
+   koji niko nije tražio.
+
+   Prostor koji je traka zauzimala vraća se kao `padding-bottom`, pa se
+   sadržaj centrira u istom okviru kao pre. Izmereno na 1440x900:
+
+     padding-bottom  6rem ... naslov 321   (traka izvučena, ništa vraćeno)
+     padding-bottom 12rem ... naslov 273
+     padding-bottom 14rem ... naslov 257   <- kako je bilo pre
+     padding-bottom 15rem ... naslov 249
+
+   `clamp` umesto fiksnih 14rem, da na nižim prozorima ne pojede hero.
+   Na uskom ekranu traka je i dalje u toku, pa se padding vraća na 6rem. */
+
+.hero-content {
+  padding-bottom: clamp(8rem, 25vh, 14rem);
+}
+
+@media (max-width: 720px) {
+  .hero-content {
+    padding-bottom: 6rem;
+  }
+}
