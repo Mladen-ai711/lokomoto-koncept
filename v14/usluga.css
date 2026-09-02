@@ -3317,8 +3317,14 @@ h1 .name-alt {
   color: var(--white);
 }
 
+/* ISPRAVKA 02.09.2026: ovde je stajalo `opacity: 0.82`. Prva provera je
+   javila 0 padova jer je merila samo `color`, a stišavanje je bilo napisano
+   kao `opacity` — pa ga skripta nije videla. Stvarna vrednost je bila 3,89
+   na 10 px, ispod praga 4,5. Naslovi kolona su ionako razdvojeni veličinom,
+   razmakom slova i verzalom; prozirnost nije radila ništa osim što je obarala
+   kontrast. Na `#0076ae` bela daje samo 5,00 — nema rezerve za stišavanje. */
 .site-footer .footer-col h2 {
-  opacity: 0.82;
+  opacity: 1;
 }
 
 .site-footer .footer-col a:hover,
@@ -3355,4 +3361,107 @@ h1 .name-alt {
 .site-footer .footer-note {
   color: var(--ink);
   opacity: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   33. ONLINE ZAKAZIVANJE — 01.09.2026
+
+   Klijent ima živ sistem za zakazivanje na `lokomotocentar.alpinbook.com`.
+   Provereno: nudi jednu uslugu (fizioterapeutski pregled, 60 min), dva
+   terapeuta, i za sutra ima slobodne termine. Sva dugmad „Zakažite pregled"
+   (26 mesta u 7 fajlova) su prevezana tamo; ranije su vodila na kontakt
+   formu koja **ne šalje**, nego otvara e-mail program posetioca.
+
+   Kartica je LAJM, ne staklo kao kviz. Razlog: u sekciji kontakta stoji uz
+   formu i mora da je nadglasa — to je jedini put na sajtu koji zaista
+   završava zakazanim terminom. Kviz je usput, ovo je cilj. */
+
+.zakazivanje {
+  display: grid;
+  padding: clamp(1.4rem, 2.6vw, 1.9rem) clamp(1.4rem, 2.6vw, 2rem);
+  border-radius: 1rem;
+  background: var(--lime);
+  gap: 0.4rem;
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 260ms var(--ease), box-shadow 260ms var(--ease);
+}
+
+.zakazivanje:hover,
+.zakazivanje:focus-visible {
+  box-shadow: 0 14px 34px rgba(132, 195, 80, 0.32);
+  transform: translateY(-2px);
+}
+
+.zakazivanje-oznaka {
+  color: var(--ink);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.zakazivanje strong {
+  color: var(--ink);
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Bez `opacity` na tekstu: na lajmu svako stišavanje ide ka podlozi i
+   obara kontrast. Tiši ton se dobija manjim slovom, ne prozirnijim. */
+.zakazivanje-tekst {
+  max-width: 42ch;
+  color: var(--ink);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.zakazivanje-cta {
+  margin-top: 0.4rem;
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+/* MESTO U RASPOREDU. Kartica je prvo stajala unutar `.contact-side`. Na
+   1440 je izgledala tačno, ali na 390 je `.contact-side` ceo ide ISPOD forme,
+   pa je zakazivanje palo na dno — a uvod forme je pisao „kalendar je desno",
+   što na telefonu nije tačno. Zato je izvučena za direktno dete
+   `.contact-inner`, ispred panela forme: u jednoj koloni (≤1040 px) dolazi
+   prva, jer je to radnja koja završava termin.
+
+   Preko 1041 px raspored je dvokolonski i mesta se zadaju izričito, da
+   automatsko slaganje ne gurne karticu u levu kolonu. */
+.zakazivanje {
+  margin-bottom: clamp(1.4rem, 2.4vw, 2rem);
+}
+
+@media (min-width: 1041px) {
+  .contact-inner > .zakazivanje {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  .contact-inner > .contact-form-panel {
+    grid-row: 1 / span 2;
+    grid-column: 1;
+    margin-bottom: 0;
+  }
+
+  .contact-inner > .contact-side {
+    grid-row: 2;
+    grid-column: 2;
+  }
+}
+
+/* Kartica je produžila desnu kolonu za 230 px, a `.contact-inner` je grid sa
+   `align-items: stretch` — pa se bela ploča forme rastegla za isto toliko i
+   dobila 255 px prazne beline ispod poslednjeg reda (izmereno: ploča 847,
+   sadržaj se završava na 592). Pre kartice je taj višak bio 25 px.
+   `align-self: start` pušta ploču da stane gde joj se sadržaj završava.
+   Kolone se namerno ne poravnavaju po dnu: leva je papir, desna je spisak. */
+.contact-form-panel {
+  align-self: start;
 }

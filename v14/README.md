@@ -2915,3 +2915,98 @@ verziji. To je pitanje veličine, ne boje — vidi prethodnu sekciju.
 
 Oznaka `usluga.css` na **`?v=18.0`** u svih 7 fajlova.
 Nov fajl: `v8/assets/images/logo-lokomoto-bijeli.png`.
+
+## Online zakazivanje povezano (02.09.2026)
+
+Klijent ima živ sistem: **`lokomotocentar.alpinbook.com`**. Nađen je usput, u
+kadru iz Looma. Otvoren je i prošao korak po korak pre nego što je bilo šta
+povezano.
+
+### Šta je provereno na samom sistemu
+
+| Provera | Nalaz |
+|---|---|
+| ustanova | „Ambulanta za rehabilitaciju Lokomoto Centar" |
+| adresa, telefon, e-mail | Tabanovačka 27b, 011/40-95-924, lokomoto.centar@gmail.com — **isti kao na sajtu** |
+| ponuđene usluge | **samo jedna**: fizioterapeutski pregled, 60 min |
+| terapeuti | Novak Ilić, Strahinja Marković |
+| slobodni termini | 2. 9. prazan; **3. 9. ima**: Novak 12:00, Strahinja 10:00, 11:00, 12:00 |
+
+Dakle sistem nije ostavljen da stoji — održava se. Zaustavljeno je pre unosa
+ličnih podataka; termin nije zakazivan.
+
+### Šta je izmenjeno
+
+**26 dugmadi „Zakažite pregled"** u 7 fajlova vodilo je na `#kontakt`, dakle na
+formu koja **ne šalje** nego otvara e-mail program posetioca. Sada vode na
+kalendar, u novoj kartici (`target="_blank" rel="noopener"`).
+
+Ostala su na formi **dva linka koja i ne traže termin**: „Opišite tegobu u jednoj
+rečenici" pod uslugama i „Opišite tegobu, pa računamo zajedno" pod cenovnikom. Za
+njih forma i dalje ima smisla.
+
+**Forma je dobila drugu ulogu.** Bila je „05 PRVI KORAK — Pošaljite upit". Kad
+pored nje stoji kalendar koji radi, ne mogu obe da budu prvi korak. Sada je
+„05 PITANJE ILI NEDOUMICA — Niste sigurni šta vam treba?", a uvod izričito šalje
+na karticu za termin.
+
+**Kartica je lajm, ne staklo kao kviz.** Stoji uz formu i mora da je nadglasa: to
+je jedini put na sajtu koji zaista završava zakazanim terminom.
+
+### Tri greške uhvaćene merenjem, sve tri moje
+
+**1. Skripta za kontrast nije videla `opacity`.** Prošla runda je javila **0
+padova u futeru**. Netačno — skripta je čitala samo `color`, a stišavanja pisana
+kao `opacity` nije uzimala u obzir. Stvarno stanje je bilo **3 pada**: naslovi
+kolona `SAJT`, `USLUGE`, `KONTAKT` na `opacity: 0.82` daju **3,89**, ispod praga
+4,5. Ispravljeno u kodu (`opacity: 1`) i u skripti (množi se lanac prozirnosti
+od elementa do neprozirne podloge).
+
+**2. Ista skripta je poluprozirnu podlogu čitala kao punu.** Kviz kartica ima
+`background: rgba(255,255,255,0.04)`; skripta je uzimala prvu pozadinu sa alfom
+> 0 i odbacivala alfu, pa je belo na beloj davalo lažnih **1,00**. Sada se
+podloge slažu naviše dok se ne skupi puna neprozirnost. Kviz posle ispravke:
+**5,62 – 11,93, bez padova.**
+
+**3. Kartica je razvukla belu ploču forme.** `.contact-inner` je grid sa
+razvlačenjem, pa je desna kolona porasla za 230 px i ista tolika belina se
+pojavila **ispod poslednjeg reda forme**: ploča 847, sadržaj se završava na 592
+→ **255 px praznog**. Pre kartice je taj višak bio 25. `align-self: start`
+na ploči: **255 → 60 px.**
+
+### Mesto kartice u rasporedu
+
+Prva verzija je stavila karticu unutar `.contact-side`. Na 1440 je izgledalo
+tačno. Na 390 je cela ta kolona ide **ispod** forme, pa je zakazivanje palo na
+dno stranice — a uvod forme je pisao „kalendar je desno", što na telefonu nije
+tačno. Kartica je izvučena za direktno dete `.contact-inner`, ispred forme, sa
+izričitim mestima preko 1041 px. Izmereno na četiri širine:
+
+| Širina | Kartica | Forma | Adresa |
+|---|---|---|---|
+| 1440 | x990 y11575 | x58 y11578 | x990 y11855 |
+| 1200 | x760 y10613 | x48 y10616 | x760 y10873 |
+| 1000 | x40, prva | ispod | ispod |
+| 390 | x20, prva | ispod | ispod |
+
+Tekst uvoda više ne kaže „desno" nego „u zelenoj kartici".
+
+### Provereno
+
+7 stranica × 1440 i 390 px iz poddirektorijuma: HTTP 200, 0 404, 0 slomljenih
+slika, 0 JS grešaka, `scrollWidth == clientWidth`. Kartica: **7,02 na sva četiri
+teksta, 0 padova.** Futer posle ispravke: **0 padova, sada stvarnih.**
+
+### Nalaz za sledeću rundu
+
+Prelaz merne skripte preko cele naslovne, sa uračunatim `opacity` i složenim
+podlogama, daje **75 vidljivih padova**. Skoro svi su između **3,9 i 4,4** — dakle
+za dlaku ispod praga, i to na prigušenom sivom tekstu nasleđenom iz v12, ne na
+nečemu iz ove runde. Dva izuzetka su moja: crtica „ne nudi se" u cenovniku
+(**2,06**, `opacity: 0.55`) i oznaka `OPCIONO` u formi (**2,71**).
+
+Ovo nije popravljeno u ovoj rundi namerno: dizanje 75 mesta menja ton cele
+stranice i traži svoju rundu, ne usputnu izmenu. Skripta je
+`kontrast-svuda.py`, prima CSS selektor.
+
+Nova sekcija 33, oznaka `usluga.css` na **`?v=18.4`** u svih 7 fajlova.
