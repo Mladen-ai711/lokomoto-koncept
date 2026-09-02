@@ -3454,6 +3454,25 @@ h1 .name-alt {
     grid-row: 2;
     grid-column: 2;
   }
+
+  /* JEDNAK RAZMAK IZMEĐU SVE TRI KARTICE U DESNOJ KOLONI.
+     Izmereno na 1440: kartica → adresa je bilo 109 px, adresa → mapa 18,72 px
+     — šest puta manje. Razlika nije bila greška u jednoj vrednosti nego u
+     tome što razmak dolazi iz dva izvora: prve dve kartice deli `row-gap`
+     mreže `.contact-inner` (74,88 px) plus `margin-bottom` kartice (32 px),
+     a druge dve `gap` iz `.contact-side` (18,72 px).
+
+     Rešenje je da mreža na ovoj širini pozajmi isti izraz koji `.contact-side`
+     već koristi, a kartici se skida margina. Razmak mreže se ne dira ispod
+     1041 px: tamo su te tri stvari u jednoj koloni i razdvajaju odeljke, ne
+     kartice unutar odeljka. */
+  .contact-inner {
+    row-gap: clamp(1rem, 1.3vw, 1.2rem);
+  }
+
+  .contact-inner > .zakazivanje {
+    margin-bottom: 0;
+  }
 }
 
 /* Kartica je produžila desnu kolonu za 230 px, a `.contact-inner` je grid sa

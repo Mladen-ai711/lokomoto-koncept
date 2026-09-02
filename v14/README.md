@@ -3010,3 +3010,35 @@ stranice i traži svoju rundu, ne usputnu izmenu. Skripta je
 `kontrast-svuda.py`, prima CSS selektor.
 
 Nova sekcija 33, oznaka `usluga.css` na **`?v=18.4`** u svih 7 fajlova.
+
+### Dopuna: jednak razmak između tri kartice u desnoj koloni (02.09.2026)
+
+Izmereno na 1440: **kartica → adresa 109 px, adresa → mapa 18,72 px.** Šest puta.
+
+Razlika nije bila pogrešna vrednost nego **dva izvora razmaka**: prve dve kartice
+deli `row-gap` mreže `.contact-inner` (74,88 px) plus `margin-bottom` same kartice
+(32 px), a druge dve `gap` iz `.contact-side` (18,72 px). Mreža je preko 1041 px
+pozajmila isti izraz koji `.contact-side` već koristi —
+`clamp(1rem, 1.3vw, 1.2rem)` — a kartici je skinuta margina.
+
+Ispod 1041 px razmak mreže se **ne dira**: tamo su te tri stvari u jednoj koloni
+i razdvajaju odeljke, ne kartice unutar odeljka.
+
+**Merenje po okvirima je ovde lagalo.** `getBoundingClientRect` je i posle
+ispravke davao 20,7 prema 17,9 — razlika od 2,8 px koje na ekranu nema. Uzrok:
+lajm traka iznad tamne kartice je iscrtana **iznad njenog okvira**, pa okvir ne
+počinje tamo gde počinje ono što se vidi. Premereno po **boji piksela** u koloni
+kroz sredinu:
+
+| Širina | kartica → adresa | adresa → mapa |
+|---|---|---|
+| 1440 | 18 px | 19 px |
+| 1280 | 17 px | 17 px |
+| 1100 | 16 px | 16 px |
+
+Razlika od 1 px na 1440 je zaokruživanje podpiksela.
+
+Ovo je još jedan slučaj pravila „meri predmet na koji se gleda, ne okvir oko
+njega". Skripta: `razmaci.py`.
+
+Oznaka `usluga.css` na **`?v=18.5`** u svih 7 fajlova.
