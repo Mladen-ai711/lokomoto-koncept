@@ -2948,3 +2948,140 @@ h1 .name-alt {
     display: none;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   29. TRAKA OPREME NA DNU HERA — 01.09.2026
+
+   Novak je poslao fiziogroup.com kao uzor za „čistoću i preglednost".
+   Kod njih odmah ispod hera stoje brojevi, pa traka partnera (Nike,
+   klubovi) pod naslovom „SPORTSKI LIDERI NAM VERUJU". Mladen je tražio
+   isto, na dnu hera.
+
+   RAZLIKA KOJA MENJA ETIKETU. Kod njih traka nosi KLIJENTE: „ovi nam
+   veruju". Kod nas bi nosila PROIZVOĐAČE APARATA: to nije poverenje
+   klijenata nego opremljenost. Zato etiketa glasi „Radimo sa", a ne
+   „veruju nam". Pogrešna etiketa bi bila tvrdnja, a ne dekoracija.
+
+   ZAŠTO IMENA, A NE LOGOTIPI, ZA SADA
+
+   1. Logotipa nema. U repou su samo fotografije aparata.
+   2. Providna pozadina nije dovoljna. Sve podloge na kojima bi traka
+      stajala su tamne (hero video, sekcija Oprema). Logo koji je crn na
+      providnoj pozadini se na tamnom ne vidi. Treba mono-bela verzija,
+      koju proizvođač daje u brend paketu.
+   3. Beljenje tuđeg žiga svojom rukom je izmena žiga. INDIBA i NeuFit
+      imaju programe ovlašćenih centara sa pravilima korišćenja znaka.
+
+   Traka je zato napravljena tipografski. Kad stignu zvanični fajlovi,
+   `li` prima `img` bez ijedne izmene rasporeda.
+
+   MESTO. Hero je tačno jedan ekran (900 px na 1440). Izmereno pre
+   dodavanja: ispod dugmadi je ostajalo 233 px praznog na 1440 i 187 px
+   na 390. Traka staje u taj prostor, pa hero i dalje ne prelazi ekran.
+   ══════════════════════════════════════════════════════════════════ */
+
+.hero-partners {
+  display: flex;
+  /* `.hero-content` centrira decu po sadržaju, pa bi traka bila uža od
+     teksta iznad nje i linija bi delovala kao greška. `align-self: stretch`
+     joj daje punu širinu bloka, a `justify-content: center` drži imena na
+     istoj osi kao naslov. */
+  align-self: stretch;
+  justify-content: center;
+  /* `baseline` je radio dok su u traci stajala samo imena; sa sličicama
+     etiketa pada na dno reda, pa ide `center`. */
+  align-items: center;
+  margin-top: clamp(2.2rem, 4vw, 3.4rem);
+  padding-top: clamp(1.1rem, 2vw, 1.5rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  gap: clamp(1rem, 2.5vw, 2rem);
+  flex-wrap: wrap;
+}
+
+.hero-partners-label {
+  /* Izmereno preko videa: sa 0,5 kontrast pada na 3,05, a etiketa je sitna
+     (0,68rem), pa joj treba 4,5. Sa 0,8 izlazi preko 5. */
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hero-partners-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-items: baseline;
+  gap: clamp(1rem, 3vw, 2.6rem);
+  flex-wrap: wrap;
+}
+
+/* Imena nose optičku težinu logotipa: krupnije od etikete, ali prigušeno,
+   da ne konkurišu naslovu hera. */
+.hero-partners-list li {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(0.86rem, 1.05vw, 1rem);
+  font-weight: 620;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .hero-partners {
+    margin-top: 1.8rem;
+    padding-top: 1rem;
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+
+  .hero-partners-list {
+    gap: 0.9rem 1.4rem;
+  }
+}
+
+/* ── 29b. Fotografije aparata umesto logotipa (01.09.2026) ──────────
+   Logotipa proizvođača nema, a i da ih ima, tražili bi mono-belu verziju
+   i dozvolu. Umesto toga u traci stoje fotografije samih aparata iz ove
+   ordinacije: `L-7` INDIBA, `L-19` NeuFit, `L-5` Triton DTS, `L-16`
+   Medestec MP 50.
+
+   To nije tuđi žig nego njihova fotografija njihove opreme, pa nema šta
+   da se traži ni od koga da se čeka. I govori više: logo dokazuje da
+   marka postoji, fotografija dokazuje da aparat stoji u toj sobi.
+
+   Isečci su kvadratni 240 px, dovoljno za prikaz na 2,6rem i na ekranu
+   trostruke gustine. Zaobljeni ugao i tanka bela ivica drže ih zajedno
+   kao niz, a ne kao četiri nasumične slike preko videa. */
+
+.hero-partners-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.62rem;
+}
+
+.hero-partners-list img {
+  width: 2.9rem;
+  height: 2.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 0.55rem;
+  object-fit: cover;
+  /* Kadrovi su topli i svetli, a hero je hladan i taman. Blago smirivanje
+     zasićenosti spaja ih sa slikom iza, a da se aparat i dalje prepoznaje. */
+  filter: saturate(0.88);
+}
+
+@media (max-width: 720px) {
+  .hero-partners-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem 1rem;
+  }
+
+  .hero-partners-list img {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}

@@ -2484,3 +2484,123 @@ označavanje izostalo jer je broj postojao od ranije i niko ga nije ponovo pogle
 `TEKST ZA POTVRDU` na opisima opreme.
 
 Menjan je samo HTML, stil nije diran, pa oznaka `usluga.css` ostaje `?v=17.0`.
+
+## Traka opreme na dnu hera (01.09.2026, ista runda)
+
+Novak je poslao `fiziogroup.com` kao uzor za „čistoću i preglednost". Kod njih
+odmah ispod hera stoje brojevi, pa traka partnera (Nike, klubovi) pod naslovom
+„SPORTSKI LIDERI NAM VERUJU". Mladen je tražio isto, na dnu hera.
+
+### Mesto: staje, i to je izmereno pre nego što je dodato
+
+Hero je namerno tačno jedan ekran. Pre dodavanja:
+
+| | 1440 px | 390 px |
+|---|---|---|
+| visina hera | 900 px (= ekran) | 844 px (= ekran) |
+| prazno ispod dugmadi | **233 px** | **187 px** |
+
+Traka je zauzela 48 px na 1440 i 62 px na 390, pa **hero i dalje ne prelazi
+ekran**. To je bio jedini razlog zbog kog je mesto uopšte bilo pod znakom pitanja.
+
+### Razlika koja menja etiketu
+
+Kod Fizio Groupa traka nosi **klijente**: „ovi nam veruju". Kod nas nosi
+**proizvođače aparata**, što nije poverenje klijenata nego opremljenost. Zato
+etiketa glasi **„Radimo sa"**, a ne „veruju nam". Pogrešna etiketa bi bila
+tvrdnja, ne dekoracija.
+
+### Zašto imena, a ne logotipi, za sada
+
+**Logotipa nema.** U repou su samo fotografije aparata (`metoda-indiba.webp` i
+druge), u Downloads folderu nijedan fajl proizvođača.
+
+I da ih ima, providna pozadina ne bi bila dovoljna:
+
+1. **Sve podloge su tamne** (hero video, sekcija Oprema). Logo koji je crn na
+   providnoj pozadini na tamnom se ne vidi. Treba **mono-bela (reversed)
+   verzija**, koju proizvođač daje u brend paketu.
+2. **Beljenje tuđeg žiga svojom rukom je izmena žiga.** INDIBA i NeuFit imaju
+   programe ovlašćenih centara sa pravilima korišćenja znaka. Traži se zvanični
+   paket, ne skidanje sa Gugla.
+3. **SVG, ne PNG**, kad stignu. Mono verzija u SVG-u može da uzme boju podloge
+   preko `currentColor`, pa jedan fajl radi i na tamnom i na svetlom.
+4. **Poravnanje po optičkoj površini, ne po visini.** Logotipi različitih
+   proizvođača imaju različite proporcije; postavljeni na istu visinu izgledaju
+   neuredno. To se meri brojem neprovidnih piksela i podešava po fajlu.
+
+Traka je zato napravljena tipografski. `li` prima `img` bez ijedne izmene
+rasporeda kad fajlovi stignu.
+
+### Izmereno posle
+
+Kontrast preko hero videa, merenje sa sakrivenim tekstom da se meri prava
+podloga, u tri trenutka videa (1,0 s, 3,5 s i 6,0 s):
+
+| | najgori kontrast |
+|---|---|
+| 1440 px | **5,11** (etiketa „Radimo sa") |
+| 390 px | **4,69** („Medestec") |
+
+Oba prolaze AA za sitan tekst (4,5).
+
+**Prva verzija je pala.** Etiketa je bila `rgba(255,255,255,0.5)` i davala
+**3,05**. Podignuta je na `0.8`.
+
+Usput ispravljena i greška u samom merenju: prvi pokušaj je uzimao 90. percentil
+svetline unutar okvira teksta kao „podlogu", što kod **svetlog** teksta hvata sam
+tekst, pa je izlazilo lažnih 1,48. Kod tamnog teksta ista metoda radi, i zato je
+prošla u sekciji 28. Za svetao tekst podloga se meri tako što se tekst sakrije.
+
+Traka je `align-self: stretch`, jer je bez toga bila uža od teksta iznad nje pa je
+linija delovala kao greška. Na uskom ekranu etiketa ide u svoj red.
+
+Nova **sekcija 29**, oznaka `usluga.css` podignuta na **`?v=17.1`** u svih 7.
+
+### Fotografije aparata umesto logotipa (ista runda)
+
+Umesto tuđih logotipa, u traci stoje **fotografije samih aparata iz ove
+ordinacije**. To nije tuđi žig nego njihova slika njihove opreme: nema šta da se
+traži ni od koga da se čeka. I govori više — logo dokazuje da marka postoji,
+fotografija dokazuje da aparat stoji u toj sobi.
+
+| Aparat | Kadar | Zašto taj |
+|---|---|---|
+| INDIBA | `L-7` | narandžasto kućište i ime na ekranu |
+| NeuFit | `L-19` | „neubie" i „neufit" se čitaju na kućištu |
+| Triton DTS | `L-5` | ceo aparat sa natpisom i merilom sile; `L-69` je krupni plan sa rukom i ime se ne vidi |
+| Medestec | `L-16` | „Medical Technology" i „MP 50" na kućištu |
+
+Isečci su kvadratni 240 px (5 do 8 KB svaki), dovoljno i za ekran trostruke
+gustine. Prikazuju se na 2,9rem, sa zaobljenim uglom i tankom belom ivicom, uz
+`saturate(0.88)` — kadrovi su topli i svetli, hero je hladan i taman, pa ih blago
+smirivanje spaja sa slikom iza.
+
+**Četiri nova fajla u `v8/assets/images/`:** `aparat-indiba.webp`,
+`aparat-neufit.webp`, `aparat-triton.webp`, `aparat-medestec.webp`.
+
+### Izmereno posle slika
+
+| | 1440 px | 390 px |
+|---|---|---|
+| visina hera | **900 px** (= ekran) | **844 px** (= ekran) |
+| traka | 71 px, u jednom redu | 124 px, mreža 2×2 |
+| prazno do dna hera | 170 px | 110 px |
+| najgori kontrast imena preko videa | **4,98** | **5,92** |
+
+Hero i dalje ne prelazi ekran, na obe širine, i imena prolaze AA.
+
+### Dve greške usput
+
+**Zamenjeni parametri.** Prva verzija je u tekst upisala opis slike umesto imena,
+pa je u traci pisalo „INDIBA aparat u ordinaciji Lokomoto centra" u četiri reda.
+Uhvaćeno na renderu, ne u kodu.
+
+**`alt` je sada prazan.** Ime aparata stoji u tekstu odmah pored slike, pa bi
+opisni `alt` čitač ekrana naterao da isto pročita dvaput. Slika je uz tekst
+dekorativna i `alt=""` je ovde tačan izbor, ne propust.
+
+**`align-items` sa `baseline` na `center`.** Baseline je radio dok su u traci
+stajala samo imena; sa sličicama je etiketa padala na dno reda.
+
+Oznaka `usluga.css` podignuta na **`?v=17.2`** u svih 7.
