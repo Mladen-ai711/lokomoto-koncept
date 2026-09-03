@@ -3441,7 +3441,7 @@ h1 .name-alt {
 .approach-step summary {
   display: grid;
   align-items: start;
-  grid-template-columns: 1.2rem 1fr auto;
+  grid-template-columns: 2.2rem 1fr auto;
   gap: 0.9rem;
   padding: 2.4rem 0;
   cursor: pointer;
@@ -3462,9 +3462,24 @@ h1 .name-alt {
   top: auto;
   left: auto;
   margin-top: 0.3rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-width: 2px;
+  border-color: var(--line);
+  color: var(--ink);
+  background: var(--paper);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  transition:
+    background 260ms var(--ease),
+    border-color 260ms var(--ease),
+    box-shadow 260ms var(--ease);
 }
 
 .approach-step[open] .step-number {
+  border-color: var(--teal);
   background: var(--teal);
   box-shadow: 0 0 0 7px rgba(19, 201, 179, 0.13);
 }
@@ -3510,12 +3525,12 @@ h1 .name-alt {
 }
 
 .approach-step-body {
-  padding: 0 0 2.4rem 2.1rem;
+  padding: 0 0 2.4rem 3.1rem;
   animation: faq-open 320ms var(--ease);
 }
 
 .step-line {
-  left: 0.6rem;
+  left: 1.1rem;
 }
 
 .step-line span {
@@ -3563,16 +3578,22 @@ a.step-tag:focus-visible {
 
 @media (max-width: 720px) {
   .approach-step summary {
-    grid-template-columns: 1rem 1fr auto;
+    grid-template-columns: 1.9rem 1fr auto;
     padding: 1.8rem 0;
   }
 
+  .approach-step .step-number {
+    width: 1.9rem;
+    height: 1.9rem;
+    font-size: 0.72rem;
+  }
+
   .approach-step-body {
-    padding-left: 1.9rem;
+    padding-left: 2.8rem;
   }
 
   .step-line {
-    left: 0.5rem;
+    left: 0.95rem;
   }
 }
 
