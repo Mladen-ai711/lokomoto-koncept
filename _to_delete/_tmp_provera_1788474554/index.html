@@ -14,7 +14,7 @@
     <link rel="preload" href="../v8/assets/images/hero-poster-v7-mobile.jpg" as="image"
       media="(max-width: 720px)" />
     <link rel="stylesheet" href="../v12/styles.css?v=13.0" />
-    <link rel="stylesheet" href="usluga.css?v=19.1" />
+    <link rel="stylesheet" href="usluga.css?v=17.0" />
     <link rel="icon" href="../v11/favicon.svg" type="image/svg+xml" />
     <title>Lokomoto centar | fizikalna medicina i rehabilitacija, Beograd</title>
   </head>
@@ -40,7 +40,7 @@
           <a href="#pitanja">Pitanja</a>
         </nav>
 
-        <a class="header-cta" href="https://lokomotocentar.alpinbook.com/" target="_blank" rel="noopener">
+        <a class="header-cta" href="#kontakt">
           Zakažite pregled
         </a>
 
@@ -63,7 +63,7 @@
         <a href="#oprema"><span>04</span> Oprema</a>
         <a href="#cenovnik"><span>05</span> Cenovnik</a>
         <a href="#pitanja"><span>06</span> Pitanja</a>
-        <a class="mobile-nav-cta" href="https://lokomotocentar.alpinbook.com/" target="_blank" rel="noopener">Zakažite pregled <span>↗</span></a>
+        <a class="mobile-nav-cta" href="#kontakt">Zakažite pregled <span>↗</span></a>
       </nav>
     </header>
 
@@ -109,7 +109,7 @@
               na jednom mestu.
             </p>
             <div class="hero-actions">
-              <a class="button button-outline hero-cta-zakazivanje" href="https://lokomotocentar.alpinbook.com/" target="_blank" rel="noopener">
+              <a class="button button-outline" href="#kontakt">
                 Zakažite pregled
               </a>
               <a class="button button-outline" href="#usluge">
@@ -125,8 +125,8 @@
         <div class="shell">
           <dl class="proof-grid">
             <div class="proof-item">
-              <dt>7.000<span class="proof-plus">+</span></dt>
-              <dd>Uspešnih terapija</dd>
+              <dt><mark class="ph" data-ph>4.000<span class="proof-plus">+</span></mark></dt>
+              <dd>Tretmana godišnje <span class="ph-note">BROJ ZA ISPRAVKU</span></dd>
             </div>
             <div class="proof-item">
               <dt>6</dt>
@@ -207,24 +207,8 @@
           <div class="approach-layout">
             <figure class="approach-visual reveal reveal-clip">
               <img
-                class="approach-visual-photo"
-                data-step="testiramo"
                 src="../v8/assets/images/assessment.webp"
-                alt="Fizioterapeut testira obim pokreta u ramenu tokom kliničkog pregleda"
-                decoding="async"
-              />
-              <img
-                class="approach-visual-photo"
-                data-step="tretiramo"
-                src="../v8/assets/images/ergon.webp"
-                alt="Ergon tehnika, terapeut obrađuje meko tkivo ramena posebnim alatom"
-                decoding="async"
-              />
-              <img
-                class="approach-visual-photo"
-                data-step="treniramo"
-                src="../v8/assets/images/guided-training.webp"
-                alt="Vođena vežba sa opterećenjem u sali Lokomoto centra"
+                alt="Terapeut tokom individualne procene pacijenta"
                 decoding="async"
               />
               <figcaption>
@@ -237,16 +221,11 @@
             <div class="approach-steps" aria-label="Tri faze Lokomoto pristupa">
               <div class="step-line" aria-hidden="true"><span></span></div>
 
-              <details class="approach-step reveal" id="pristup-testiramo" name="pristup" open>
-                <summary>
-                  <span class="step-number">01</span>
-                  <span class="step-heading">
-                    <small>ŠTA JE PROBLEM</small>
-                    <h3>Testiramo</h3>
-                  </span>
-                  <i aria-hidden="true"></i>
-                </summary>
-                <div class="approach-step-body">
+              <article class="approach-step reveal is-current">
+                <span class="step-number">01</span>
+                <div>
+                  <small>ŠTA JE PROBLEM</small>
+                  <h3>Testiramo</h3>
                   <p>
                     Ne krećemo od terapije nego od odgovora na pitanje zašto vas
                     tačno boli. Gledamo kako se krećete, gde gubite snagu i
@@ -258,22 +237,14 @@
                     ne treba, i iz njega izlazite sa nalazom i planom, a ne sa
                     „javite se za nedelju dana".
                   </p>
-                  <div class="step-tags">
-                    <a class="step-tag" href="usluge/dijagnostika/">Dijagnostika</a>
-                  </div>
                 </div>
-              </details>
+              </article>
 
-              <details class="approach-step reveal" id="pristup-tretiramo" name="pristup">
-                <summary>
-                  <span class="step-number">02</span>
-                  <span class="step-heading">
-                    <small>ŠTA GA SKIDA</small>
-                    <h3>Tretiramo</h3>
-                  </span>
-                  <i aria-hidden="true"></i>
-                </summary>
-                <div class="approach-step-body">
+              <article class="approach-step reveal">
+                <span class="step-number">02</span>
+                <div>
+                  <small>ŠTA GA SKIDA</small>
+                  <h3>Tretiramo</h3>
                   <p>
                     Umirujemo bol na izvoru, oslobađamo ukočene zglobove i
                     zategnute mišiće i vraćamo pokretljivost. Godine sedenja,
@@ -285,24 +256,14 @@
                     dovodi vas do tačke odakle možete da se pokrenete, a pravo
                     rešenje počinje u sledećem.
                   </p>
-                  <div class="step-tags">
-                    <a class="step-tag" href="usluge/fizikalna-terapija/">Fizikalna terapija</a>
-                    <a class="step-tag" href="usluge/manualna-terapija/">Manualna terapija</a>
-                    <a class="step-tag" href="usluge/kineziterapija/">Kineziterapija</a>
-                  </div>
                 </div>
-              </details>
+              </article>
 
-              <details class="approach-step reveal" id="pristup-treniramo" name="pristup">
-                <summary>
-                  <span class="step-number">03</span>
-                  <span class="step-heading">
-                    <small>DA SE NE VRATI</small>
-                    <h3>Treniramo</h3>
-                  </span>
-                  <i aria-hidden="true"></i>
-                </summary>
-                <div class="approach-step-body">
+              <article class="approach-step reveal">
+                <span class="step-number">03</span>
+                <div>
+                  <small>DA SE NE VRATI</small>
+                  <h3>Treniramo</h3>
                   <p>
                     Ovo je korak koji se najčešće preskoči, i zato se bol vraća.
                     Doterujemo način na koji se krećete i gradimo snagu koja
@@ -314,11 +275,8 @@
                     siguran. Trening zato najčešće ne mora ni da stane dok traje
                     terapija.
                   </p>
-                  <div class="step-tags">
-                    <a class="step-tag" href="usluge/kineziterapija/">Kineziterapija</a>
-                  </div>
                 </div>
-              </details>
+              </article>
             </div>
           </div>
         </div>
@@ -560,15 +518,6 @@
               </ul>
             </div>
           </div>
-
-          <a class="kviz-ulaz reveal" href="https://kviz.lokomoto.rs/"
-             target="_blank" rel="noopener">
-            <span class="kviz-ulaz-oznaka">Kviz &middot; 2 minuta</span>
-            <strong>Bol u leđima? Otkrijte koji je tip.</strong>
-            <span class="kviz-ulaz-tekst">Nekoliko pitanja, pa vam kažemo od čega
-            se kreće u vašem slučaju.</span>
-            <span class="kviz-ulaz-cta" aria-hidden="true">Započnite kviz &#8599;</span>
-          </a>
         </div>
       </section>
 
@@ -1005,24 +954,15 @@
 
       <section class="contact" id="kontakt">
         <div class="contact-inner shell">
-          <a class="zakazivanje reveal" href="https://lokomotocentar.alpinbook.com/"
-             target="_blank" rel="noopener">
-            <span class="zakazivanje-oznaka">Online zakazivanje</span>
-            <strong>Uzmite termin sami.</strong>
-            <span class="zakazivanje-tekst">Fizioterapeutski pregled, 60 minuta.
-            Birate dan, sat i terapeuta &mdash; bez poziva i bez čekanja odgovora.</span>
-            <span class="zakazivanje-cta" aria-hidden="true">Otvorite kalendar &#8599;</span>
-          </a>
-
           <div class="contact-form-panel reveal">
             <div class="contact-form-heading">
-              <div class="section-label section-label-light"><span>05</span> PITANJE ILI NEDOUMICA</div>
+              <div class="section-label section-label-light"><span>05</span> PRVI KORAK</div>
               <div class="contact-response"><i aria-hidden="true"></i> ODGOVARAMO U TOKU RADNOG DANA</div>
             </div>
 
             <div class="contact-form-intro">
-              <h2>Niste sigurni <em>šta vam treba?</em></h2>
-              <p>Za termin ne morate ovuda &mdash; kalendar je u zelenoj kartici. Ovo je za pitanje pre dolaska: koja usluga, koliko traje, šta poneti.</p>
+              <h2>Pošaljite <em>upit.</em></h2>
+              <p>Ostavite osnovne podatke, a naš tim će vas usmeriti ka odgovarajućem pregledu.</p>
             </div>
 
             <form
@@ -1154,7 +1094,7 @@
       <div class="footer-grid shell">
         <div class="footer-brand-col">
           <a class="brand footer-brand" href="#top" aria-label="Lokomoto centar, vrh stranice">
-            <img class="brand-logo" src="../v8/assets/images/logo-lokomoto-bijeli.png" alt="" aria-hidden="true" />
+            <img class="brand-logo" src="../v8/assets/images/logo-lokomoto.png" alt="" aria-hidden="true" />
             <span class="brand-copy"><strong>LOKOMOTO</strong><small>CENTAR</small></span>
           </a>
           <p class="footer-claim">
@@ -1185,7 +1125,6 @@
           <a href="#oprema">Oprema</a>
           <a href="#cenovnik">Cenovnik</a>
           <a href="#pitanja">Česta pitanja</a>
-          <a href="https://kviz.lokomoto.rs/" target="_blank" rel="noopener">Kviz &#8599;</a>
         </nav>
 
         <nav class="footer-col" aria-label="Usluge">
@@ -1232,9 +1171,9 @@
           <a class="footer-top" href="#top">Na vrh <span aria-hidden="true">↑</span></a>
         </div>
       </div>
-      <div class="footer-note shell">v14 · cene, logo i boje potvrđeni · žuto označeni podaci čekaju potvrdu</div>
+      <div class="footer-note shell">v13 · naslovna sa pravim linkovima ka stranicama usluga</div>
     </footer>
 
-    <script src="app.js?v=14.2" defer></script>
+    <script src="app.js?v=14.1" defer></script>
   </body>
 </html>

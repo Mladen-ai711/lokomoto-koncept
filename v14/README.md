@@ -3164,3 +3164,42 @@ sajtu (npr. u Opremi, ne u heru), ti fajlovi čekaju — upisano u
 Provereno: 7 stranica × 1440/390, 0 padova. Oznaka `usluga.css` na
 **`?v=19.0`** u svih 7 fajlova.
 
+## Naslov u heru vraćen na pravo mesto (03.09.2026)
+
+Mladen je pitao: da li je razmak teksta i dugmadi u heru isti kao pre nego što
+su logotipi uopšte postavljeni. Dobro pitanje — provera je pokazala da nije.
+
+**Uzrok.** Kad je traka proizvođača opreme (v. „Traka opreme uklonjena")
+dodata 01.09., izvučena je iz toka (`position: absolute`), pa je
+`.hero-content` počeo da centrira naslov bez nje — naslov je skliznuo naniže
+za oko 60 px. To je ispravljeno tada dodavanjem kompenzacionog
+`.hero-content { padding-bottom: clamp(8rem, 25vh, 14rem) }` (sekcija 29c),
+baždarenog da naslov vrati na staro mesto DOK je traka i dalje prisutna
+(samo van toka).
+
+Kad je cela traka 03.09. izbačena iz HTML-a, ta kompenzacija je trebalo da ode
+s njom — nema više šta da se nadoknađuje. Previđeno je: sekcija 29c je fizički
+sedela na drugom mestu u fajlu (dodata naknadno, u posebnom komitu „Podignut
+naslov", zalepljena na kraj tadašnjeg fajla, ne uz sekciju 29 koju dopunjuje),
+pa je promakla kad je sekcija 29 uklanjana.
+
+**Provereno render-ovanjem starog komita** (`b8c865a`, poslednji pre ijedne
+logo izmene) uporedo sa trenutnim stanjem, na 1440×900 i 390×844:
+
+| | naslov, top | `.hero-content` padding-bottom |
+|---|---|---|
+| original (pre logotipa) | 320,9 px | 96 px (1440) / 88 px (390) |
+| posle skidanja trake, pre ove ispravke | 256,9 px | 224 px (1440) |
+| posle ove ispravke | **320,9 px** | **96 px (1440) / 88 px (390)** |
+
+Popravka: obrisana sekcija 29c u celosti. Bez ijedne linije override-a,
+`.hero-content` se vraća čisto na `v12/styles.css` — što i jeste tačno stanje
+pre logotipa, sad potvrđeno merenjem, ne pretpostavkom.
+
+Lekcija za sledeći put: kad se nešto vraća „na staro", tražiti SVE komite koji
+pominju taj deo (`git log -- fajl`), ne samo najveći/najočigledniji. Manje
+dopune se lako fizički odvoje od glavne izmene u istom fajlu.
+
+Provereno: 7 stranica × 1440/390, 0 padova. Oznaka `usluga.css` na
+**`?v=19.1`** u svih 7 fajlova.
+
