@@ -3131,3 +3131,36 @@ za sve nove prelaze (fotografija, linija, tagovi, strelica).
 Nova sekcija 35, oznaka `usluga.css` na **`?v=18.9`**, `app.js` na **`?v=14.2`**
 u svih 7 fajlova.
 
+## Traka opreme uklonjena iz hera (03.09.2026)
+
+Novak je poslao snimak ekrana sopstvenog sajta i napisao: „ima logotip za
+neufit, za indibu, triton i medestec ne.. ali ni se to ne dopada da stoji ovde
+ovako... treba ljudi da znaju sa čim radimo, ali da glavna poenta bude šta
+ćemo mi da uradimo za njih." Pozvao je i Nikolu da prokomentariše.
+
+**Razlog nije bio logotipi nego mesto.** Traka je sedela odmah ispod dugmadi
+za zakazivanje — najuže grlo pažnje na celom sajtu — i nosila proizvođače
+aparata pre nego što je iko video šta Lokomoto radi za pacijenta. Sekcija
+Oprema (04) već nosi tu priču, i to ispravno uokvirenu: „Aparat skraćuje put
+do pokreta, ali nijedan ne bira sam šta tretira. To radi nalaz, pa tek onda
+aparat." Traka tu hijerarhiju nije imala. Bila je i nedosledna sa Opremom:
+traka je nosila četiri aparata (uključujući Medestec), Oprema svega tri.
+
+**Urađeno:** traka (`.hero-partners` i sav njen sadržaj) uklonjena iz hera i
+iz `usluga.css` (sekcija 29 — ostavljena kao istorijska beleška sa datumom i
+razlogom, umesto brisanja bez traga). Hero se vratio na stanje pre 01.09.:
+kicker, naslov, potvrda, dugmad. Bez rupe ispod dugmadi — sadržaj hera se
+centrira, pa jednostavno zauzima ono što je traka ranije oduzimala.
+
+Slike aparata (`aparat-indiba.webp`, `aparat-neufit.webp`, `aparat-triton.webp`,
+`aparat-medestec.webp`) ostaju u `v8/assets/` neiskorišćene — deljene su sa
+starijim verzijama, pa nisu brisane.
+
+**Otvoreno:** Novak sada ima prava logotipa proizvođača za NeuFit, INDIBA i
+Triton (ne i za Medestec). Ako se odluči da se marke ipak pokažu negde na
+sajtu (npr. u Opremi, ne u heru), ti fajlovi čekaju — upisano u
+`3-podaci-za-popuniti.md`.
+
+Provereno: 7 stranica × 1440/390, 0 padova. Oznaka `usluga.css` na
+**`?v=19.0`** u svih 7 fajlova.
+
