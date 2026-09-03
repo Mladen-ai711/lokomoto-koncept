@@ -3588,3 +3588,26 @@ a.step-tag:focus-visible {
     animation: none;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   36. „Naš pristup" — slika desno, koraci levo — 04.09.2026
+   ══════════════════════════════════════════════════════════════ */
+
+/* Mladen: fotografija da bude desno, harmonika levo. `order` premešta
+   stavke bez diranja HTML-a; kolone su zamenjene tako da slika i dalje
+   nosi veći stubac (1.08fr), samo na drugoj strani. Vezano samo za
+   `min-width: 1041px` jer ispod toga v12 (linija 1765) svodi raspored
+   na jednu kolonu — mobilni redosled (slika pa koraci) ostaje netaknut. */
+@media (min-width: 1041px) {
+  .approach-layout {
+    grid-template-columns: minmax(24rem, 0.92fr) minmax(0, 1.08fr);
+  }
+
+  .approach-steps {
+    order: 1;
+  }
+
+  .approach-visual {
+    order: 2;
+  }
+}
