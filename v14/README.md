@@ -3068,3 +3068,66 @@ Provereno: obrub 2px `#84c350` i na mirovanju i na hover-u; drugo dugme
 („Pogledajte usluge") nepromenjeno, belo. 7 stranica × 1440/390: 0 padova.
 
 Nova sekcija 34, oznaka `usluga.css` na **`?v=18.8`** u svih 7 fajlova.
+
+## „Naš pristup" kao harmonika, sa tagovima usluga (03.09.2026)
+
+Novak je u dva WhatsApp snimka (transkribovana ručno, ASR nije dostupan u ovom
+okruženju) tražio spoj dve stvari koje je pokazivao na tuđim sajtovima:
+
+- **fiziogroup.com** — svaka faza pristupa nosi tagove sa konkretnim uslugama
+  koje spadaju u nju.
+- **myodetox.com, "FutureProof Method"** — harmonika: jedan korak otvoren,
+  ostali skupljeni, fotografija uz otvoreni korak.
+
+**Šta je urađeno.** Testiramo / Tretiramo / Treniramo su od skrol-vodjene
+sekcije (tri koraka uvek otvorena, boji ih pozicija skrola) postali prava
+`<details>`/`<summary>` harmonika — isti obrazac kao „Česta pitanja", sa
+deljenim `name` atributom, pa je samo jedan otvoren u svakom trenutku i
+brauzer to sam čuva, bez ijednog reda JS-a. Ukinut je stari skrol-listener u
+`app.js` koji je ručno dodavao/skidao `is-current`/`is-passed`.
+
+Svaki korak dobio je i **tagove usluga** (link na stranicu te usluge):
+
+| Korak | Tagovi |
+|---|---|
+| Testiramo | Dijagnostika |
+| Tretiramo | Fizikalna terapija, Manualna terapija, Kineziterapija |
+| Treniramo | Kineziterapija |
+
+Tekst svakog koraka je **ostao isti** — već je bio konkretan i po dužini
+blizak fiziogroup uzorku, pa zamena tim tekstom (npr. uvodnim pasusom sa
+stranice Dijagnostika, koji je Novak takođe pominjao) nije napravljena;
+duplirala bi sadržaj između naslovne i stranice usluge bez razloga.
+
+**Fotografija prati otvoreni korak.** Tri slike su naslagane jedna preko
+druge (`position: absolute`), a CSS bira koja se vidi preko `:has()` — čita
+stanje `[open]` na odgovarajućem `<details>`. Bez podrške za `:has()` ostaje
+prva slika (Testiramo) — degradira bez greške, samo bez izmene pri kliku.
+
+Iskorišćene su postojeće fotografije, izabrane po dva kriterijuma — sadržaj i
+**odnos stranica** (panel je 4:5, uspravan):
+
+| Korak | Fotografija | Zašto |
+|---|---|---|
+| Testiramo | `assessment.webp` | već je tu bila, prikaz kliničkog testa pokreta, 0.80 |
+| Tretiramo | `ergon.webp` | ručna tehnika na tkivu, najbliža „umirujemo bol" opisu, 0.80 |
+| Treniramo | `guided-training.webp` | vođen trening sa opterećenjem, već korišćena na stranici Postoperativna rehabilitacija, 0.79 |
+
+Sve tri su portretnog odnosa blizu panela (0.79–0.80) — nema agresivnog
+opsecanja koje bi imale landscape fotografije (`panel-fizikalna.webp`,
+`panel-kineziterapija.webp`, 1.33).
+
+**Otvoreno pitanje — nije dodato:** Novak je u prvom snimku pomenuo i „rehab
+trening" kao mogući poseban tag za Treniramo. Ta usluga ne postoji kao
+stranica na sajtu, pa tag nije dodat — Treniramo nosi samo Kineziterapija.
+Treba potvrditi da li „rehab trening" postaje posebna usluga/stranica, ili
+ostaje pod Kineziterapija.
+
+**Provereno:** 7 stranica × 1440/390, 0 padova (`pages-provera.py`). Klik na
+svaki korak otvara tačno njega i zatvara ostale, fotografija i ispuna linije
+prate klik, kontrast tagova 13.08 (prag 4.5). Dodat `prefers-reduced-motion`
+za sve nove prelaze (fotografija, linija, tagovi, strelica).
+
+Nova sekcija 35, oznaka `usluga.css` na **`?v=18.9`**, `app.js` na **`?v=14.2`**
+u svih 7 fajlova.
+

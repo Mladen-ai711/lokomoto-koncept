@@ -263,53 +263,13 @@
     item.addEventListener("pointerleave", otkaziOdbrojavanje);
   });
 
-  // Tri koraka „Naš pristup" su do sada bila zamrznuta na prvom: `is-current`
-  // je stajao u HTML-u. Sada ih vodi skrol — linija se puni, tacka prelazi na
-  // korak do kog je posetilac stigao, predjeni koraci ostaju obojeni.
-  //
-  // Merna tacka je 55% visine ekrana, a ne vrh: korak se pali kad dodje u
-  // citljivi deo ekrana, ne kad tek proviri odozdo.
-  const koraci = [...document.querySelectorAll(".approach-step")];
-  const linijaKoraka = document.querySelector(".step-line");
-  const punjenjeLinije = document.querySelector(".step-line span");
-
-  if (koraci.length && linijaKoraka) {
-    let zakazano = false;
-
-    const osveziKorake = () => {
-      zakazano = false;
-
-      const linija = linijaKoraka.getBoundingClientRect();
-      const citanje = window.innerHeight * 0.55;
-
-      if (punjenjeLinije && linija.height > 0) {
-        const napredak = Math.min(1, Math.max(0, (citanje - linija.top) / linija.height));
-        punjenjeLinije.style.height = (napredak * 100).toFixed(2) + "%";
-      }
-
-      let aktivan = 0;
-      koraci.forEach((korak, redni) => {
-        const tacka = korak.querySelector(".step-number") || korak;
-        if (tacka.getBoundingClientRect().top <= citanje) aktivan = redni;
-      });
-
-      koraci.forEach((korak, redni) => {
-        korak.classList.toggle("is-current", redni === aktivan);
-        korak.classList.toggle("is-passed", redni < aktivan);
-      });
-    };
-
-    const zakaziKorake = () => {
-      if (zakazano) return;
-      zakazano = true;
-      window.requestAnimationFrame(osveziKorake);
-    };
-
-    window.addEventListener("scroll", zakaziKorake, { passive: true });
-    window.addEventListener("resize", zakaziKorake);
-    window.addEventListener("load", zakaziKorake);
-    osveziKorake();
-  }
+  // Tri koraka „Naš pristup" su do 03.09.2026 bila skrol-vodjena harmonika
+  // simulirana klasama (is-current/is-passed), sa linijom koja se punila
+  // prema poziciji skrola. Sada su to prava <details>/<summary> polja
+  // (isti obrazac kao „Česta pitanja"), pa otvaranje/zatvaranje i
+  // ekskluzivnost (jedan otvoren) radi brauzer sam, bez JS-a. Fotografija
+  // uz otvoren korak i ispuna linije rade preko CSS :has() — vidi
+  // usluga.css, sekcija 35.
 
   const revealItems = [...document.querySelectorAll(".reveal")];
 

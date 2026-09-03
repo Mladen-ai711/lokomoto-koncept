@@ -3515,3 +3515,221 @@ h1 .name-alt {
 .hero-actions .hero-cta-zakazivanje:focus-visible {
   border-color: var(--lime);
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   35. „NAŠ PRISTUP" KAO HARMONIKA — 03.09.2026
+
+   Novak je u dva WhatsApp snimka tražio spoj dve stvari koje je pokazivao:
+   - fiziogroup.com — svaka faza nosi TAGOVE sa konkretnim uslugama koje
+     spadaju u nju (kod nas: Testiramo → Dijagnostika; Tretiramo →
+     Fizikalna, Manualna, Kineziterapija; Treniramo → Kineziterapija).
+   - myodetox.com „FutureProof Method" — harmonika: jedan korak otvoren,
+     ostali skupljeni, fotografija uz otvoreni korak.
+
+   Umesto nove komponente, iskorišćen je isti obrazac kao „Česta pitanja"
+   (`<details>`/`<summary>`, deljeni `name`): brauzer sam drži da je samo
+   jedan otvoren, bez ijednog reda JS-a. To je i zamenilo staru skrol-vodjenu
+   verziju (v14 sekcije 19+22) — ta je koracima dodavala is-current/is-passed
+   dok se stranica skroluje; sad korak otvara i zatvara sam posetilac, pa te
+   klase više niko ne postavlja i pravila iz sekcije 22 koja ih koriste su
+   neaktivna (ostavljena, ne smetaju).
+
+   Fotografija uz otvoreni korak: tri slike su naslagane preko `position:
+   absolute`, a CSS bira koja se vidi preko `:has()` — čita se stanje
+   `[open]` na susednom `<details>` istog roditelja. Bez `:has()` podrške
+   ostaje prva slika (Testiramo) stalno vidljiva — degradira bez greške,
+   samo bez izmene.
+
+   Tekst svakog koraka je ostao isti kao pre (već je bio dovoljno konkretan
+   i po dužini blizak fiziogroup uzoru) — dodati su samo tagovi. Za
+   Treniramo (03), Novak je u prvom snimku pomenuo i "rehab trening" kao
+   mogući poseban tag, ali ta usluga ne postoji kao stranica na sajtu, pa
+   nije dodata: v14/README.md nosi to kao otvoreno pitanje, umesto da
+   nesiguran naziv ide pred posetioce. */
+
+.approach-step {
+  padding: 0;
+}
+
+.approach-step:first-of-type {
+  border-top: none;
+}
+
+.approach-visual .approach-visual-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 480ms var(--ease);
+}
+
+.approach-visual .approach-visual-photo[data-step="testiramo"] {
+  opacity: 1; /* podrazumevano stanje — takodje i bez :has() podrske */
+}
+
+.approach-layout:has(#pristup-tretiramo[open]) .approach-visual-photo[data-step="testiramo"],
+.approach-layout:has(#pristup-treniramo[open]) .approach-visual-photo[data-step="testiramo"] {
+  opacity: 0;
+}
+
+.approach-layout:has(#pristup-tretiramo[open]) .approach-visual-photo[data-step="tretiramo"] {
+  opacity: 1;
+}
+
+.approach-layout:has(#pristup-treniramo[open]) .approach-visual-photo[data-step="treniramo"] {
+  opacity: 1;
+}
+
+.approach-step summary {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1.2rem 1fr auto;
+  gap: 0.9rem;
+  padding: 2.4rem 0;
+  cursor: pointer;
+  list-style: none;
+  transition: transform 260ms var(--ease);
+}
+
+.approach-step summary::-webkit-details-marker {
+  display: none;
+}
+
+.approach-step:hover summary {
+  transform: translateX(0.4rem);
+}
+
+.approach-step .step-number {
+  position: static;
+  top: auto;
+  left: auto;
+  margin-top: 0.3rem;
+}
+
+.approach-step[open] .step-number {
+  background: var(--teal);
+  box-shadow: 0 0 0 7px rgba(19, 201, 179, 0.13);
+}
+
+.step-heading {
+  display: block;
+}
+
+.step-heading small {
+  display: block;
+}
+
+.step-heading h3 {
+  margin: 0.5rem 0 0;
+}
+
+.approach-step summary i {
+  position: relative;
+  top: 0.9rem;
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: none;
+}
+
+.approach-step summary i::before,
+.approach-step summary i::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--teal-deep);
+  content: "";
+  transition: transform 280ms var(--ease);
+}
+
+.approach-step summary i::after {
+  transform: rotate(90deg);
+}
+
+.approach-step[open] summary i::after {
+  transform: rotate(0deg);
+}
+
+.approach-step-body {
+  padding: 0 0 2.4rem 2.1rem;
+  animation: faq-open 320ms var(--ease);
+}
+
+.step-line {
+  left: 0.6rem;
+}
+
+.step-line span {
+  height: 100%;
+  transform: scaleY(0.15);
+  transform-origin: top;
+  transition: transform 380ms var(--ease);
+}
+
+.approach-steps:has(#pristup-tretiramo[open]) .step-line span {
+  transform: scaleY(0.5);
+}
+
+.approach-steps:has(#pristup-treniramo[open]) .step-line span {
+  transform: scaleY(0.85);
+}
+
+.step-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.3rem;
+}
+
+.step-tag {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  transition:
+    border-color 200ms ease,
+    color 200ms ease,
+    background 200ms ease;
+}
+
+a.step-tag:hover,
+a.step-tag:focus-visible {
+  border-color: var(--teal);
+  color: var(--teal-deep);
+  background: rgba(19, 201, 179, 0.08);
+}
+
+@media (max-width: 720px) {
+  .approach-step summary {
+    grid-template-columns: 1rem 1fr auto;
+    padding: 1.8rem 0;
+  }
+
+  .approach-step-body {
+    padding-left: 1.9rem;
+  }
+
+  .step-line {
+    left: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .approach-visual .approach-visual-photo,
+  .approach-step summary,
+  .approach-step summary i::before,
+  .approach-step summary i::after,
+  .step-line span,
+  .step-tag {
+    transition: none;
+  }
+
+  .approach-step-body {
+    animation: none;
+  }
+}
