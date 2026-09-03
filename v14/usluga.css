@@ -910,10 +910,12 @@
 }
 
 .svc-row b {
-  color: var(--teal-deep);
-  font-size: 0.68rem;
-  font-weight: 850;
-  letter-spacing: 0.1em;
+  padding-right: 1rem;
+  border-right: 1px solid var(--line);
+  color: var(--ink);
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
   font-variant-numeric: tabular-nums;
 }
 
