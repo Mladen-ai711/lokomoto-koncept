@@ -3203,3 +3203,60 @@ dopune se lako fizički odvoje od glavne izmene u istom fajlu.
 Provereno: 7 stranica × 1440/390, 0 padova. Oznaka `usluga.css` na
 **`?v=19.1`** u svih 7 fajlova.
 
+## Hero kadar 1 zamenjen — lokomoto-9 → lokomoto-8 (04.09.2026)
+
+Na zahtev: prvi kadar u hero videu (soba za terapiju, „mirovanje" u nizu
+mirovanje → dodir → vođen pokret → sloboda) zamenjen sa `lokomoto-8.jpg`,
+druga, modernije opremljena soba (siva tekstuirana zid-obloga, INDIBA aparat,
+providna staklena pregrada). Kadrovi 2–4 (IASTM na vratu, pojas na kolenu,
+čekaonica — `L-62`/`L-71`/`L-17`) **nisu dirani**.
+
+**Upozorenje, izmereno pre nego što je urađeno:** isti INDIBA ekran koji je
+zabeležen u `claude/10-fotografije-snimanje.md` kao nakrivljen +2,3° na
+`lokomoto-9` (soba je prava, ekran na podesivoj ruci nije) — nakrivljen je i na
+`lokomoto-8`, izmereno na **+2,1° do +2,3°** (Hough detekcija ivica ekrana).
+Ne popravlja se rotacijom kadra iz istog razloga kao ranije: soba je merena
+prava (vertikale 0,14–0,35°), ispravljanje ekrana bi nakrivilo sobu. Ista mana
+je već bila razlog da se `lokomoto-8` ranije zaobiđe — sada je svesno prihvaćena
+uz ovu betleg, ne previđena.
+
+**Tehnički postupak** (skill `miran-hero-video`):
+
+- Izvor: `lokomoto-8.jpg` (3806×4757). Desktop isečak 16:9 iz sredine kadra
+  (aparat levo, ležaj dijagonalno, pod dole) — ista kompozициona logika kao
+  raniji kadar 1. Mobilni isečak 9:16, puna visina originala, uže po širini,
+  centriran na aparat+ležaj.
+- Ken Burns spor prilaz (zum 1,000 → 1,090, bez pomeranja), 4,0 s — isti pokret
+  kao pre. Desktop 30 fps (120 frejmova), mobilni 25 fps (100 frejmova) — video
+  fajlovi imaju različit frame rate i to je zadržano.
+- Svetlina izjednačena gamom (1,30) da novi kadar (izvorno tamniji, ~111–122)
+  dođe na nivo starog kadra 1 i početka kadra 2 (~136 desktop, ~145 mobilni),
+  pa isto grading (`saturation=0.82:contrast=0.96:brightness=0.01`) kao i
+  ostatak videa.
+- Kadrovi 2–4 **izvučeni direktno** iz postojećih `hero-loop-v6.mp4` (desktop)
+  i `hero-loop-v7-mobile.mp4` (mobilni — taj je već bio na v7 od ranije
+  mobilne ispravke) počev od t=4,0 s (tačka gde je prelaz sa starog kadra 1
+  završen), pa je preliv ka novom kadru 1 rađen samo jednom, sveže — bez
+  udvostručenog gradinga na kadrovima 2–4.
+- **Posledica:** ukupna dužina petlje pala je sa 16,2 s na **15,6 s** (za 0,6 s,
+  tačno jedan preliv) — nije moguće rekonstruisati potpuno identičan prelaz bez
+  sirovih, negradiranih klipova segmenata 2–4 iz ranije sesije, koji se ne čuvaju
+  u repou. Razlika je ispod praga primetnog na petlji sa ambijentalnim,
+  usporenim pokretom.
+
+**Novi fajlovi** (staro ime zadržano, nov broj verzije — brojevi desktop/mobilni
+sada ponovo usklađeni na **v8**, pošto je mobilni od ranije bio na v7 dok je
+desktop ostao na v6):
+
+- `v8/assets/media/hero-loop-v8.mp4` (2,29 MB), `hero-loop-v8-mobile.mp4` (2,18 MB)
+- `v8/assets/images/hero-poster-v8.jpg`, `hero-poster-v8-mobile.jpg`
+
+Stari `hero-loop-v6*` / `hero-poster-v6*` / `hero-poster-v7-mobile.jpg` /
+`hero-loop-v7-mobile.mp4` **nisu obrisani** (isti princip kao ranije verzije).
+
+`index.html` je jedina stranica koja učitava hero video — ažurirane sve četiri
+reference (preload desktop/mobilni, `poster`, `<source>`, i mobilni JS swap).
+Nema izmene u `usluga.css` ni `app.js`, pa oznake verzije ostaju nepromenjene.
+
+Provereno: 1440 i 390 px, bez JS grešaka, `scrollWidth == clientWidth`,
+prelaz kadar1→kadar2 gledan frejm-po-frejm (nema duha starog kadra).

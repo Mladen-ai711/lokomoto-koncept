@@ -9,9 +9,9 @@
       name="description"
       content="Dizajnerski koncept glavnog sajta Lokomoto centra: fizikalna medicina, dijagnostika i rehabilitacija u Beogradu."
     />
-    <link rel="preload" href="../v8/assets/images/hero-poster-v6.jpg" as="image"
+    <link rel="preload" href="../v8/assets/images/hero-poster-v8.jpg" as="image"
       media="(min-width: 721px)" />
-    <link rel="preload" href="../v8/assets/images/hero-poster-v7-mobile.jpg" as="image"
+    <link rel="preload" href="../v8/assets/images/hero-poster-v8-mobile.jpg" as="image"
       media="(max-width: 720px)" />
     <link rel="stylesheet" href="../v12/styles.css?v=13.0" />
     <link rel="stylesheet" href="usluga.css?v=19.8" />
@@ -76,17 +76,17 @@
             loop
             playsinline
             preload="auto"
-            poster="../v8/assets/images/hero-poster-v6.jpg"
+            poster="../v8/assets/images/hero-poster-v8.jpg"
             data-hero-video
           >
-            <source src="../v8/assets/media/hero-loop-v6.mp4" type="video/mp4" />
+            <source src="../v8/assets/media/hero-loop-v8.mp4" type="video/mp4" />
           </video>
           <script>
             if (window.matchMedia('(max-width: 720px)').matches) {
               var v = document.querySelector('[data-hero-video]');
-              v.poster = '../v8/assets/images/hero-poster-v7-mobile.jpg';
+              v.poster = '../v8/assets/images/hero-poster-v8-mobile.jpg';
               v.innerHTML =
-                '<source src="../v8/assets/media/hero-loop-v7-mobile.mp4" type="video/mp4">';
+                '<source src="../v8/assets/media/hero-loop-v8-mobile.mp4" type="video/mp4">';
               v.load();
             }
           </script>
