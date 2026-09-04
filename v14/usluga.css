@@ -938,9 +938,7 @@
   color: var(--teal-deep);
   font-size: 0.95rem;
   font-style: normal;
-  opacity: 0.45;
   text-align: right;
-  transition: opacity 200ms ease;
 }
 
 .svc-row > a:hover i {
@@ -3728,4 +3726,105 @@ a.step-tag:focus-visible {
 /* `.form-field > span small` (oznaka „OPCIONO") je takođe u v12. */
 .form-field > span small {
   color: rgba(85, 99, 94, 0.88);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   38. Zamena tamno/krem — Pitanja i Poziv na akciju — 04.09.2026
+   ══════════════════════════════════════════════════════════════
+
+   Klijent (na sve pet stranica usluga): crna sekcija (poziv na akciju)
+   stoji odmah uz plavi footer — dve tamne trake zalepljene jedna za
+   drugu. Traži da se tamna pozadina pomeri sekciju gore, a da na njeno
+   mesto (uz footer) dođe krem.
+
+   Redosled sekcija se ne menja (poziv na akciju ostaje poslednji, po
+   `claude/6-sablon-stranice-usluge.md`) — menja se koja od poslednje
+   dve nosi tamnu pozadinu:
+
+     pre:   cene (krem) → pitanja (krem)  → poziv (crno=--ink) → footer (plavo)
+     posle: cene (krem) → pitanja (crno)  → poziv (krem)       → footer (plavo)
+
+   Tako krem sekcija ostaje uz footer, a tamna se premešta jednu gore, uz
+   drugu krem sekciju (cene) — isti prelaz kakav sajt već koristi između
+   "Metode" (tamno) i suседnih krem sekcija.
+
+   Pitanja (.service-faq) dobijaju tamnu pozadinu i sve boje koje to
+   povlači (linije, hover na pitanju, ikonica +/-, tekst odgovora) —
+   isti obrazac kao .service-methods.
+
+   Poziv na akciju (.service-cta) dobija krem pozadinu. Limeta (`--lime:
+   #84c350`) je birana za tamnu podlogu i na kremu pada na 1,86:1 —
+   daleko ispod praga čak i za krupan tekst (3,0:1), pa naslov i ivica
+   dugmeta prelaze na `--teal-deep` (4,71:1 na `--paper`, ista boja koju
+   već nose naslovi sekcija Koraci/Cene). Dugmad i sitан tekst prelaze sa
+   bele na mastilo-baziranu verziju istog oblika (ista pilula, ista
+   debljina ivice, samo obrnut ton). Izmereno preko kontrast-test.py:
+   0 padova na svih pet stranica, na 1440 i 390px. */
+
+.service-faq {
+  color: var(--white);
+  background: var(--ink);
+}
+
+.service-faq .faq-list {
+  border-top: 1px solid var(--line-light);
+}
+
+.service-faq .faq-item {
+  border-bottom: 1px solid var(--line-light);
+}
+
+.service-faq .faq-item summary:hover span,
+.service-faq .faq-item summary:focus-visible span {
+  color: var(--teal);
+}
+
+.service-faq .faq-item summary i::before,
+.service-faq .faq-item summary i::after {
+  background: var(--teal);
+}
+
+.service-faq .faq-answer p {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.service-cta {
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.service-cta h2 em {
+  color: var(--teal-deep);
+}
+
+.service-cta-actions .button {
+  border: 1px solid rgba(31, 41, 39, 0.4);
+  color: var(--ink);
+  background: transparent;
+}
+
+.service-cta-actions .button-accent {
+  border: 2px solid var(--teal-deep);
+}
+
+.service-cta-actions .button:hover {
+  background: rgba(31, 41, 39, 0.06);
+}
+
+.service-cta-actions small {
+  color: var(--muted);
+}
+
+/* Uzgredni nalaz dok se ova sekcija merila: strelice na dva mesta su bile
+   zatamnjene providnošću ispod 100% dok nose `--teal-deep` na kremu, gde
+   ta boja i na punoj jačini dostiže tek 4,71:1 — nema prostora da bude
+   zatamnjena i čitljiva u isto vreme:
+     `.complaint-links a em i` (5 stranica usluga, „Tegobe koje vode
+       na ovu uslugu")             0,55 → 2,23:1
+     `.svc-row i` (usluge/index.html, spisak usluga)  0,45 → 1,91:1
+   Providnost je u oba slučaja gašena samo da hover dodatno posvetli
+   strelicu; hover na oba mesta već pomera red (`padding-left`), pa
+   ugašena providnost ne gubi ništa od signala. */
+.complaint-links a em i {
+  opacity: 1;
 }

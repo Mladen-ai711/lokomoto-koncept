@@ -3309,3 +3309,39 @@ snimkom cele naslovne. Bez JS grešaka, `scrollWidth == clientWidth` na obe
 širine, nijedna slika slomljena (skripta za proveru slika bez skrolovanja
 lažno prijavljuje lenjo učitane slike kao "slomljene" — nije stvarna greška,
 potvrđeno da fajlovi postoje i da se učitavaju kad dođu u vidno polje).
+
+## Crna sekcija uz plavi footer — pomerena (04.09.2026)
+
+Klijent (na sve pet stranica usluga): poziv na akciju (crna sekcija) stoji
+odmah uz plavi footer — dve tamne trake zalepljene jedna za drugu. Traženo:
+pomeri crnu pozadinu sekciju gore, na njeno mesto neka dođe krem.
+
+Redosled sekcija ostaje isti (poziv na akciju je i dalje poslednji, po
+`claude/6-sablon-stranice-usluge.md`) — menja se koja od poslednje dve nosi
+tamnu pozadinu:
+
+    pre:   cene (krem) → pitanja (krem) → poziv (crno) → footer (plavo)
+    posle: cene (krem) → pitanja (crno) → poziv (krem) → footer (plavo)
+
+Pitanja (`.service-faq`) su dobila tamnu pozadinu (`--ink`) i sve što to
+povlači: linije, hover na pitanju, ikonica +/-, tekst odgovora — isti
+obrazac koji sekcija Metode već koristi za tamnu podlogu. Poziv na akciju
+(`.service-cta`) je dobio krem pozadinu (`--paper`); limeta korišćena za
+naglašeni deo naslova je na kremu merena na 1,86:1 (ispod praga i za
+krupan tekst), pa je zamenjena sa `--teal-deep` (4,71:1) — ista boja koju
+već nose naslovi Koraka i Cena. Dugmad i sitan tekst su prešli sa bele na
+mastilo-baziranu verziju istog oblika (ista pilula, ista debljina ivice).
+
+`usluga.css`, nova sekcija 38, `?v=19.10` u svih 7 fajlova.
+
+Uzgred, dok se ova sekcija merila, nađena su i popravljena dva stara
+kontrast propusta van ovog zahteva (obe strelice `↗` su bile zatamnjene
+providnošću ispod nivoa na kom `--teal-deep` uopšte prolazi na kremu):
+
+    `.complaint-links a em i` ("Tegobe koje vode na ovu uslugu", 5 str.)  0,55 → 2,23:1 → puna boja, 4,71:1
+    `.svc-row i` (usluge/index.html, spisak usluga)                       0,45 → 1,91:1 → puna boja, 4,71:1
+
+Provereno na 1440 i 390 px, na svih 7 stranica: 0 padova kontrasta, bez JS
+grešaka, bez horizontalnog pomeranja. Vizuelno potvrđeno snimkom prelaza
+cene → pitanja → poziv → footer, i otvorenim FAQ pitanjem (tekst odgovora
+čitljiv na tamnoj podlozi).
