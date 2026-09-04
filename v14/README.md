@@ -3260,3 +3260,52 @@ Nema izmene u `usluga.css` ni `app.js`, pa oznake verzije ostaju nepromenjene.
 
 Provereno: 1440 i 390 px, bez JS grešaka, `scrollWidth == clientWidth`,
 prelaz kadar1→kadar2 gledan frejm-po-frejm (nema duha starog kadra).
+
+## Kontrast — runda za ceo sajt (04.09.2026)
+
+`3-podaci-za-popuniti.md` je prijavio 75 mesta ispod WCAG AA praga (4,5:1 za
+sitan tekst) na naslovnoj, izmereno skriptom koja uzima u obzir pravu podlogu
+i ceo lanac `opacity` (ne samo `color`). Isto merenje pokrenuto i na svih 5
+stranica usluga — tamo 32–40 padova po stranici, ranije neprijavljeno jer se
+tamo merenje dotad nije ni pokretalo.
+
+**Uzrok je sistemski, ne 100+ zasebnih grešaka.** Tri deljene promenljive su
+birane po boji (iz logoa, ranije runde), ne po kontrastu, pa su ispale tik
+ispod praga na stvarnim podlogama sajta:
+
+| Promenljiva | Stara vrednost | Najgori slučaj (podloga) | Kontrast pre | Kontrast posle | Nova vrednost |
+|---|---|---|---|---|---|
+| `--teal-deep` | `#057eb6` | tekst na `--paper` | 3,94:1 | 4,71:1 | `#0571a4` |
+| `--teal` / `--blue` | `#2c9ecb` | tekst na tamnim podlogama (`--ink-2` i slično) | 3,95:1 | 4,74:1 | `#4aacd2` |
+| `--muted` | `#697872` | tekst na `--paper-dark` | 4,04:1 | 4,57:1 | `#596661` |
+
+Sve tri su tamnije/svetlije uz **istu nijansu** (RGB skaliranje ne menja hue,
+samo svetlinu) — nije promena boje, nego dovoljno zatamnjenje/posvetljenje da
+se pređe prag na najgoroj stvarnoj podlozi na sajtu.
+
+**Četiri mesta nisu bila pokrivena ovim promenljivama**, jer koriste svoju
+`rgba(...)` vrednost sa dodatnim `opacity`, koji dodatno gasi tekst — ista
+greška ponovljena zasebno na svakom mestu:
+
+| Mesto | Staro | Novo | Kontrast pre → posle |
+|---|---|---|---|
+| `.proof-bar .proof-item dd` (traka sa brojevima) | opacity 0,92 | 0,95 | 4,48 → 4,74 |
+| `.trust-card-accent p` (v12, override u usluga.css) | opacity 0,68 | 0,80 | 3,62 → 4,70 |
+| `.form-field > span small` „OPCIONO" (v12, override) | opacity 0,62 | 0,88 | 2,71 → 4,70 |
+| `.price-nema` „—" / „ne nudi se" (cenovnik) | opacity 0,55 | uklonjena | 2,06 → 5,25 |
+
+Poslednja dva su bila najgora na sajtu — „OPCIONO" u formi i „—"/„ne nudi se"
+u cenovniku su pre ove runde bili praktično nečitljivi, ne samo ispod praga.
+
+**Sve promene su u `usluga.css`, nova sekcija 37** (v12 se ne dira — dve od
+četiri pojedinačne popravke su override na v12 pravila). Verzija podignuta na
+**`?v=19.9`**, u svih 7 HTML fajlova.
+
+Provereno preko svih 7 stranica (naslovna, lista usluga, 5 stranica usluga),
+na 1440 i 390 px: **0 padova** ispod praga na bilo kojoj, sa `.reveal`
+prinudno vidljivim (da se izmeri i sadržaj koji se inače otkriva skrolom).
+Vizuelno: boje ostaju prepoznatljivo iste (plava, muted siva) — provereno
+snimkom cele naslovne. Bez JS grešaka, `scrollWidth == clientWidth` na obe
+širine, nijedna slika slomljena (skripta za proveru slika bez skrolovanja
+lažno prijavljuje lenjo učitane slike kao "slomljene" — nije stvarna greška,
+potvrđeno da fajlovi postoje i da se učitavaju kad dođu u vidno polje).

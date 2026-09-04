@@ -2901,7 +2901,8 @@ h1 .name-alt {
 .price-nema {
   color: var(--muted);
   font-weight: 400;
-  opacity: 0.55;
+  /* opacity je bila 0,55 — sa --muted preko toga kontrast je pao na
+     2,06:1, praktično nečitljivo. Vidi sekciju 37. */
 }
 
 /* ── Uzan ekran: tabela se raspada u blokove ─────────────────────── */
@@ -3651,4 +3652,80 @@ a.step-tag:focus-visible {
   .approach-visual {
     order: 2;
   }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   37. KONTRAST — RUNDA ZA CELI SAJT — 04.09.2026
+
+   `3-podaci-za-popuniti.md` je prijavio 75 mesta ispod WCAG AA praga na
+   naslovnoj, izmereno preko `kontrast-svuda.py` (uzima u obzir opacity
+   lanac i prave podloge, ne samo `color`). Pre popravke izmereno i na
+   svih 5 stranica usluga — tamo 32–40 padova po stranici, isti uzrok,
+   ranije neprijavljeno jer merenje dotad nije ni pokrenuto tamo.
+
+   UZROK JE SISTEMSKI, NE 100+ ZASEBNIH GREŠAKA: tri deljene promenljive
+   su birane po boji (iz logoa, sekcija 0 i 25), ne po kontrastu, pa su
+   ispale tik ispod praga na stvarnim podlogama sajta:
+
+     promenljiva      stara vrednost   najgori slučaj (podloga)         kontrast
+     --teal-deep       #057eb6         tekst na --paper (#f1f0e9)        3,94:1
+     --teal / --blue   #2c9ecb         tekst na tamnim podlogama tipa
+                                        --ink-2, sa opacity-slojevima     3,95:1
+     --muted           #697872         tekst na --paper-dark (#e2e1d8)   4,04:1
+
+   Prag za sitan/nepodebljan tekst je 4,5:1 (WCAG AA); nijedna od ove tri
+   nije tu stizala, iako je „velik tekst" prag (3,0:1) zadovoljavala — ali
+   se koriste i za sitne oznake (9–14px), gde 3,0 ne važi.
+
+   POPRAVKA: iste boje, malo tamnije/svetlije uz ISTU nijansu (RGB
+   skaliranje ne menja hue, samo svetlinu), tačno onoliko koliko je
+   trebalo da se pređe 4,5:1 na najgoroj stvarnoj podlozi na sajtu:
+
+     promenljiva      nova vrednost   najgori slučaj              kontrast
+     --teal-deep       #0571a4         tekst na --paper             4,71:1
+     --teal / --blue   #4aacd2         tekst na tamnim podlogama     4,74:1
+     --muted           #596661         tekst na --paper-dark         4,57:1
+
+   Provereno preko svih 7 HTML fajlova (naslovna, lista usluga, 5
+   stranica usluga) na 1440px, sa `.reveal` prinudno vidljivim (da se
+   izmeri i sadržaj koji se inače otkriva skrolom): 0 padova, svuda.
+
+   Četiri mesta nisu bila pokrivena ovim trima promenljivama, jer koriste
+   svoju `rgba(...)` vrednost sa `opacity` koji dodatno gasi tekst —
+   ista greška, ponovljena zasebno na svakom mestu:
+
+     mesto                              staro    novo    kontrast pre/posle
+     .proof-bar .proof-item dd           0,92     0,95     4,48 → 4,74
+     .trust-card-accent p (v12, override) 0,68    0,80     3,62 → 4,70
+     .form-field > span small „OPCIONO"  0,62     0,88     2,71 → 4,70
+     .price-nema „—" / „ne nudi se"      0,55     1,00     2,06 → 5,25
+
+   Poslednja dva su bila najgora na sajtu (2,71 i 2,06) — „OPCIONO" u
+   formi i „—"/„ne nudi se" u cenovniku su pre ove runde bili praktično
+   nečitljivi, ne samo ispod praga.
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  --teal: #4aacd2;
+  --teal-deep: #0571a4;
+  --blue: #4aacd2;
+  --muted: #596661;
+}
+
+.proof-bar .proof-item dd {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* `.trust-card-accent p` je definisano u zamrznutom v12/styles.css
+   (rgba(31, 41, 39, 0.68) na `--lime`, koja je u v14 postala klijentova
+   zelena #84c350 — tamnija od originalne v12 limete, pa je isti tekst
+   ispao tamniji nego što je planirano kad je 0,68 biralo). Override ovde,
+   v12 ostaje netaknut. */
+.trust-card-accent p {
+  color: rgba(31, 41, 39, 0.8);
+}
+
+/* `.form-field > span small` (oznaka „OPCIONO") je takođe u v12. */
+.form-field > span small {
+  color: rgba(85, 99, 94, 0.88);
 }
