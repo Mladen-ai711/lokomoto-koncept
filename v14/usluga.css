@@ -3238,18 +3238,14 @@ h1 .name-alt {
    `.contact-map` iz v12, koje koriste `var(--radius)` = 6px. Zaobljenje
    sada prati komšije, ne udaljenu karticu na drugom kraju stranice. */
 
-/* ISPRAVKA 04.09.2026: Mladen — kartica je delovala „kao stare novine“.
-   Uzrok je `--lime` #84c350 (klijentova potvrđena zelena, ton 92,9°) —
-   ista nijansa, ali muljevita, srednje zasićenosti (48,9%), uz taman
-   tekst preko nje: ta kombinacija oko čita kao požuteo papir/stara
-   štampa, ne kao poziv na akciju. Global `--lime` se ne dira (to je
-   potvrđena brend boja, koristi se svuda drugde) — ovde je samo
-   zasićenija verzija ISTOG tona (92,9° nepromenjen), lokalna
-   promenljiva koja pokriva `--lime` samo unutar ove kartice: 48,9% ->
-   78% zasićenosti, #84c350 -> #76e21c. Kontrast sa --ink ostaje visok
-   (9,1:1, bilo 7,1:1). */
+/* ISPRAVKA 04.09.2026, VRAĆENO: Mladenu se nije svideo pokušaj sa
+   zasićenijom bojom i krupnijim naslovom (probano, odbačeno) — vraćeno na
+   izvornu `--lime` #84c350 i izvornu tipografiju. Umesto boje/veličine,
+   probano je „ubaciti belo u tekst": oznaka je sad tamna pločica sa belim
+   slovima, ne gola zelena podloga — direktno belo na `--lime` ne prolazi
+   kontrast (2,1:1), pa je pločica taman `--ink`, kontrast belog teksta na
+   njoj 14,9:1. */
 .zakazivanje {
-  --lime: #76e21c;
   display: grid;
   padding: clamp(1.4rem, 2.6vw, 1.9rem) clamp(1.4rem, 2.6vw, 2rem);
   border-radius: var(--radius);
@@ -3267,7 +3263,11 @@ h1 .name-alt {
 }
 
 .zakazivanje-oznaka {
-  color: var(--ink);
+  justify-self: start;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
   font-size: 0.66rem;
   font-weight: 800;
   letter-spacing: 0.13em;
@@ -3276,23 +3276,18 @@ h1 .name-alt {
 
 .zakazivanje strong {
   color: var(--ink);
-  font-size: clamp(1.3rem, 1.9vw, 1.65rem);
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
   font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 /* Bez `opacity` na tekstu: na lajmu svako stišavanje ide ka podlozi i
-   obara kontrast. Tiši ton se dobija manjim slovom, ne prozirnijim.
-   Razmak slova i redova malo otvoreniji nego pre (0 -> 0.01em,
-   1.5 -> 1.6) — zbijeno slovo uz gust red je deo onog „stare novine“
-   utiska, ne samo boja. */
+   obara kontrast. Tiši ton se dobija manjim slovom, ne prozirnijim. */
 .zakazivanje-tekst {
   max-width: 42ch;
   color: var(--ink);
   font-size: 0.88rem;
-  letter-spacing: 0.01em;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .zakazivanje-cta {
