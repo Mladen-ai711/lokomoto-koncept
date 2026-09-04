@@ -3265,7 +3265,7 @@ h1 .name-alt {
 .zakazivanje-oznaka {
   justify-self: start;
   padding: 0.35rem 0.75rem;
-  border-radius: 999px;
+  border-radius: var(--radius);
   background: var(--ink);
   color: var(--paper);
   font-size: 0.66rem;
