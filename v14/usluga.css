@@ -3423,13 +3423,20 @@ h1 .name-alt {
   border-top: none;
 }
 
+/* ISPRAVKA 04.09.2026: ovo pravilo (dve klase, jače od v12 `.approach-visual
+   img`) je gasilo `transition` na SAMO opacity, pa je zum na hover
+   (`.approach-visual:hover img`, iz v12, 900ms) ostajao bez prelaza —
+   slika je skakala na uvećanje trenutno umesto da klizi. Transform je
+   vraćen u listu, sa istim trajanjem kao u v12. */
 .approach-visual .approach-visual-photo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 480ms var(--ease);
+  transition:
+    opacity 480ms var(--ease),
+    transform 900ms var(--ease);
 }
 
 .approach-visual .approach-visual-photo[data-step="testiramo"] {
