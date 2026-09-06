@@ -3868,3 +3868,23 @@ a.step-tag:focus-visible {
 .contact-map {
   height: clamp(16rem, 14vw, 17rem);
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   40. Kontakt — ploča forme rastegnuta do dna desne kolone — 06.09.2026
+   ═══════════════════════════════════════════════════════════════
+
+   Mladen: umesto da ostane 84 px kraća, zašto se ploča forme prosto ne
+   produži do dna?
+
+   Ranije (komentar iznad sekcije 39, `align-self: start`) to je bilo
+   odbačeno — ali tada je razlika bila 255 px prazne beline u ploči, pre
+   nego što je sekcija 39 skratila desnu kolonu. Sad kad je razlika 84 px,
+   vredelo je premeriti, ne pretpostaviti da važi ista odluka.
+
+   `align-self: stretch` (podrazumevano ponašanje mreže, bez ove
+   override-a) razvlači ploču do visine desne kolone. Prazan prostor ne
+   nestaje — premešta se: umesto rupe IZMEĐU dve kartice različite visine,
+   postaje ivica UNUTAR bele ploče, ispod dugmeta „Pošaljite upit“. */
+.contact-form-panel {
+  align-self: stretch;
+}
