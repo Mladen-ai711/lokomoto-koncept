@@ -1938,6 +1938,9 @@ h1 .name-alt {
   list-style: none;
 }
 
+/* Mladen, 04.09.2026: fotografije Novaka i Strahinje da budu veće — izmereno
+   pre/posle na 1440 px, kolona fotografije 176px → 216px (+23%), tekst pored
+   nje i dalje ima ~354px (bilo ~394px), bez prelamanja u dve reči po redu. */
 .founder-card {
   display: grid;
   padding: clamp(1.1rem, 1.9vw, 1.6rem);
@@ -1945,7 +1948,7 @@ h1 .name-alt {
   border-radius: var(--radius);
   background: var(--paper);
   gap: clamp(1.1rem, 1.9vw, 1.6rem);
-  grid-template-columns: clamp(8.5rem, 13vw, 11rem) minmax(0, 1fr);
+  grid-template-columns: clamp(10rem, 16vw, 13.5rem) minmax(0, 1fr);
 }
 
 .founder-photo {
@@ -2054,7 +2057,7 @@ h1 .name-alt {
   }
 
   .founder-photo {
-    max-width: 11rem;
+    max-width: 13rem;
   }
 }
 
