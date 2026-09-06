@@ -3831,3 +3831,40 @@ a.step-tag:focus-visible {
 .complaint-links a em i {
   opacity: 1;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   39. Kontakt — desna kolona da se približi dnu forme — 04.09.2026
+   ══════════════════════════════════════════════════════════════
+
+   Mladen: mapa (dole desno) upadljivo prelazi ispod forme (dole levo) —
+   traži poravnanje po dnu.
+
+   Izmereno (1440 px, pre izmene): ploča forme 652 px. Desna kolona (karta
+   za zakazivanje + adresa/email + mapa) 826 px — **174 px niže**. Razlog
+   nije loš razmak nego sastav: desna kolona nosi tri kartice, leva samo
+   jednu, pa nema poravnanja koje ne bi ili zgužvalo mapu ili u formu
+   ubacilo prazninu koja ničemu ne služi (to je tačno ono što je ranije
+   popravljeno u ovoj sekciji, „align-self: start" iznad — vraćati mu se
+   novom prazninom bilo bi korak nazad).
+
+   Merenje pokazuje gde JE bilo viška, ne pretpostavka: `.contact-details`
+   (adresa + email) ima 291 px, a sadržaj joj je dva kratka bloka teksta —
+   padding je nosio više od polovine visine kartice. Skraćen na iznos koji
+   sadržaju odgovara (233 px). Mapa spuštena na već postojeći donji prag
+   njene skale iz v12 (`clamp(16rem, ...)`, do sada je na 1440 px sedela
+   blizu gornjeg — 288 px, sad 256 px, minimum koji je sistem već predviđao,
+   ne nova vrednost).
+
+   Rezultat: razmak 174 px → 84 px. Ne nula — da bi bio nula, mapa bi morala
+   ispod 256 px (ispod sopstvenog predviđenog minimuma) ili bi forma morala
+   da dobije prostor koji joj sadržaj ne traži. Oba su gora zamena za tačno
+   poravnanje. Preostalih 84 px je razlika u broju kartica, ne u razmaku —
+   vidljivo manje upadljivo nego ranijih 174, bez zgužvane mape i bez
+   veštačke praznine. */
+.contact-details > div {
+  padding-block: clamp(1.2rem, 1.8vw, 1.5rem);
+}
+
+.contact-map {
+  height: clamp(16rem, 14vw, 17rem);
+}
