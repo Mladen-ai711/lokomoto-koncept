@@ -3888,3 +3888,48 @@ a.step-tag:focus-visible {
 .contact-form-panel {
   align-self: stretch;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   41. Kontakt — dugme i telefon spušteni do dna ploče — 06.09.2026
+   ══════════════════════════════════════════════════════════════
+
+   Sekcija 40 je razvukla `.contact-form-panel` do visine desne kolone, ali
+   sadržaj forme i dalje staje odmah ispod polja za unos — prazan prostor
+   ostaje kao mrtva praznina ISPOD „Klikom na dugme..." teksta, na samom
+   dnu ploče, nezavisno od ostatka forme.
+
+   Mladen: taj blok (dugme, telefon, napomena) da se spusti, ne da prazan
+   prostor ostane ispod njega.
+
+   Ploča i forma postaju flex kolone, forma dobija `flex: 1` da ispuni
+   visinu koju je sekcija 40 dodala.
+
+   Prva verzija je gurala red dugme+telefon sa `margin-top: auto` —
+   izmereno se pokazalo pogrešno: auto margina na 390 i 800 px (gde nema
+   viška prostora) obriše i postojećih 1,5rem razmaka iz v12 (auto se u
+   flex koloni računa na 0 kad nema slobodnog prostora, ne na ništa
+   manje). Rezultat bi bio da se checkbox i dugme slepe kad god ploča
+   NIJE rastegnuta.
+
+   Rešenje je nevidljivi razmernik (`.contact-form-spacer`, prazan div u
+   HTML-u) ubačen PRE reda sa dugmetom. On uzima slobodan prostor na
+   sebe (`flex: 1 0 auto`) i gura sve posle sebe na dno — dugme, telefon,
+   napomenu, status poruku — a `.contact-form-actions` zadržava svoj
+   originalni `margin-top: 1,5rem` iz v12, nedirnut, pa razmak ostaje isti
+   svuda gde ploča nije rastegnuta (mobilni, tablet, i svaki slučaj gde
+   forma ionako ispunjava ploču). Polja za unos i pristanak ostaju gde
+   jesu, na vrhu. */
+.contact-form-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form-panel .contact-form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.contact-form-spacer {
+  flex: 1 0 auto;
+}
