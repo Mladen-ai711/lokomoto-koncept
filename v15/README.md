@@ -3447,3 +3447,70 @@ Za ove tri stvari treba folder `E:\Lokomoto` sa 104 kadra, kog u repou nema:
 
 Isečci iz ovog kruga rađeni su iz već izvezenih `.webp` fajlova, ne iz originala.
 Bira se **položaj isečka, ne kadar.** Ako original ponudi bolji kadar, menjaju se.
+
+---
+
+# SEO faza 0 (13.09.2026)
+
+Urađeno po planu iz SEO analize. Detalji o tome šta čeka klijenta i šta se
+prebacuje na dan objave su u `PRED-OBJAVU.md`.
+
+## Šta je promenjeno
+
+| Zahvat | Obim |
+|---|---|
+| Nevalidan HTML | uklonjen orfan `</span>` u `.service-lead`, 5 stranica |
+| Meta podaci | novi `title` i `description` na svih 7, sve u rasponu 53–55 / 151–154 |
+| H1 naslovne | kicker uvučen u `<h1>`, naslov sada nosi ključnu reč |
+| Društvene mreže | dva prazna `href="#"` u futeru povezana |
+| CLS | `width`/`height` na svih **42** slike |
+| Logo | PNG → WebP, **354 KB uštede** po učitavanju |
+| Open Graph | OG + Twitter Card na svih 7, sa novom slikom 1200×630 |
+| Strukturirani podaci | sa **0 na 8 blokova** |
+
+## `noindex` NIJE skinut — namerno
+
+U planu je naveden kao prva stavka faze 0, ali to važi za objavu na
+`lokomoto.rs`. Dok v15 stoji na `mladen-ai711.github.io`, skidanje bi
+indeksiralo koncept na pogrešnom domenu — tačno duplikat protiv kog plan
+upozorava. Ostaje; postupak za dan objave je u `PRED-OBJAVU.md`.
+
+## Osam „praznih mesta" nisu bila prazna
+
+Ranija procena je bila pogrešna. `<mark class="ph">` ne označava rupu nego
+**napisan tekst koji čeka potvrdu klijenta**, uz vidljivu značku `ZA POTVRDU`.
+Samo parking na `index.html:998` je stvarno prazan.
+
+Posao zato nije pisanje teksta nego skidanje recenzentske skele — a to sme tek
+kad klijent potvrdi cene i protokol. Spisak od osam pitanja je u `PRED-OBJAVU.md`.
+
+## Zamka na H1, uhvaćena pre izmene
+
+`.hero-kicker` je `display: flex`, ali `.hero-title span { display: block }` ima
+specifičnost **0,1,1** prema **0,1,0** — uvlačenje kickera u `<h1>` kao `<span>`
+oborilo bi mu raspored. Vraćeno selektorom `.hero-title .hero-kicker` (0,2,0),
+uz `line-height: normal`, jer `.hero-title` nosi `0.82`.
+
+Provereno na renderu: `display=flex` na 1440 i 390 px, vizuelno nepromenjeno.
+
+## Parking blokira i shemu, ne samo tekst
+
+Pitanje „Gde ste i ima li parkinga?" je **izostavljeno iz `FAQPage`** jer bi se
+`[Popuniti: …]` objavilo kao strukturirani podatak. Zato shema nosi 9 od 10
+pitanja. Kad se popuni, vraća se deseto.
+
+## Šta je upisano u `MedicalClinic`
+
+Upisano je ono što v15 sam tvrdi: Tabanovačka 27b, radno vreme 08–20 i Sub
+09–14, telefon 011/40 95 924, osnovan 2016, osnivači Novak Ilić i Strahinja
+Marković. **Sva četiri podatka imaju suparničku verziju na drugim izvorima**
+(v. `PRED-OBJAVU.md`, 6.2). Geo koordinate namerno nisu upisane — nemam
+izmerene, a procenjene koordinate na karti su gore od nijednih.
+
+## Provereno
+
+14 učitavanja (7 stranica × 1440 i 390 px), za svako: tačno jedan `<h1>`,
+bar jedan JSON-LD blok, OG prisutan, `noindex` na mestu, nijedna slika bez
+`width`/`height`, nijedna puknuta, bez horizontalnog pomeranja, bez JS grešaka.
+
+Svih 8 JSON-LD blokova prolazi `json.loads()`.

@@ -1,0 +1,132 @@
+# Pred objavu — kontrolna lista
+
+v15 je **namerno `noindex`**. Ovaj fajl je popis svega što se prebacuje
+na dan objave, i svega što čeka odgovor klijenta.
+
+---
+
+## 1. Prekidač indeksiranja — POSLEDNJI korak
+
+Svih 7 stranica nosi, u 7. liniji `<head>`-a:
+
+```html
+<meta name="robots" content="noindex, nofollow" />
+```
+
+**Dok sajt stoji na `mladen-ai711.github.io`, ovo mora da ostane.** Skidanje
+bi indeksiralo koncept na pogrešnom domenu i napravilo duplikat `lokomoto.rs`-u.
+
+Briše se tek kad sajt bude na produkcionom domenu, i to kao poslednja izmena,
+pa se odmah proveri kroz Search Console → Provera URL-a uživo.
+
+## 2. `robots.txt` — u koren sajta
+
+```
+User-agent: *
+Allow: /
+
+Sitemap: https://lokomoto.rs/sitemap.xml
+```
+
+## 3. `sitemap.xml` — u koren sajta
+
+URL-ovi ispod prate **sadašnju** strukturu v15. Ako se u fazi 1 pređe na
+plitke slugove, menjaju se i ovde i u `BreadcrumbList` blokovima.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://lokomoto.rs/</loc><priority>1.0</priority></url>
+  <url><loc>https://lokomoto.rs/usluge/</loc><priority>0.8</priority></url>
+  <url><loc>https://lokomoto.rs/usluge/dijagnostika/</loc><priority>0.9</priority></url>
+  <url><loc>https://lokomoto.rs/usluge/fizikalna-terapija/</loc><priority>0.9</priority></url>
+  <url><loc>https://lokomoto.rs/usluge/kineziterapija/</loc><priority>0.9</priority></url>
+  <url><loc>https://lokomoto.rs/usluge/manualna-terapija/</loc><priority>0.9</priority></url>
+  <url><loc>https://lokomoto.rs/usluge/postoperativna-rehabilitacija/</loc><priority>0.9</priority></url>
+</urlset>
+```
+
+## 4. `canonical` — namerno još nije dodat
+
+Nije propust. Stranice su `noindex`, pa je canonical bespredmetan, a odluka o
+URL-ovima pripada fazi 1. Dodaje se **tek pošto struktura bude zaključana**,
+jer canonical na URL koji će se menjati je gore nego da ga nema.
+
+## 5. `og:image` — relativna putanja
+
+Sada stoji kao `assets/images/og-lokomoto.jpg`, da bi pregled radio i na
+konceptu i u produkciji. Većina skrejpera to razreši, ali specifikacija traži
+apsolutnu adresu. Na dan objave prebaciti na
+`https://lokomoto.rs/assets/images/og-lokomoto.jpg` u svih 7 fajlova.
+
+---
+
+## 6. Čeka odgovor klijenta — blokira objavu
+
+### 6.1 Osam označenih mesta u tekstu
+
+Ovo **nisu rupe** — tekst je napisan. Označen je žutom i značkom `ZA POTVRDU`
+jer traži potvrdu činjenice. Kad klijent potvrdi, skida se `<mark class="ph">`
+i `<span class="ph-note">`, a tekst ostaje.
+
+| Fajl | Linija | Pitanje |
+|---|---|---|
+| `index.html` | ~998 | **Jedino stvarno prazno.** Kakav je parking — ispred zgrade ili u okolnim ulicama? |
+| `usluge/dijagnostika/` | ~374 | Da li ultrazvučni pregled ulazi u cenu pregleda specijaliste ili se plaća posebno? |
+| `usluge/kineziterapija/` | ~422 | Trajanje termina: cenovnik kaže 60 i 60+ min, panel je govorio 45–60. Šta važi? |
+| `usluge/kineziterapija/` | ~476 | Vežbe za kuću — daju li se, i od kog trenutka? |
+| `usluge/manualna-terapija/` | ~288 | Da li se razlika u pokretu zaista oseti posle prvog tretmana? |
+| `usluge/manualna-terapija/` | ~389 | Masaže su u cenovniku pod „Oporavak i masaža" — prikazati ih uz manualnu ili odvojeno? |
+| `usluge/postoperativna-.../` | ~389 | Postoperativna nema svoju grupu u cenovniku. Važe li cene terapijskog dana i REHAB paketa? |
+| `usluge/postoperativna-.../` | ~428 | Potvrditi opis saradnje sa hirurgom. |
+
+> **Parking blokira i strukturirane podatke.** Pitanje „Gde ste i ima li
+> parkinga?" je izostavljeno iz `FAQPage` sheme, jer bi se `[Popuniti: …]`
+> objavilo kao strukturirani podatak. Kad se popuni, vratiti ga — biće
+> 10 pitanja umesto 9.
+
+### 6.2 Podaci koji se ne slažu između izvora
+
+| Podatak | Verzije u opticaju | Šta je upisano u shemu |
+|---|---|---|
+| **Adresa** | Tabanovačka 27b (Autokomanda) · Gen. Lj. Milića 3/2 (Stepa Stepanović) | Tabanovačka 27b |
+| **Radno vreme** | 08–20 (sajt) · 09–21 (stari sajt) · 09–20 (portali) | 08–20, Sub 09–14 |
+| **Telefon** | 011/40 95 924 · 063 687 460 (Stetoskop) | samo 011 broj |
+| **Godina osnivanja** | 2016 · 2013 (deo izvora) | 2016 |
+
+Upisano je ono što v15 sam tvrdi. **Ako je bilo šta od ovoga netačno, ispravlja
+se i u tekstu i u `MedicalClinic` shemi na naslovnoj.**
+
+Najhitnije je pitanje adrese: dve adrese pod istim imenom i telefonom prave
+duplirani Google profil. Ako stari profil postoji, **ne sme se obrisati** —
+ide „Move business" ili spajanje, inače nestaju sve postojeće recenzije.
+
+### 6.3 Politika privatnosti
+
+Link u futeru je i dalje `href="#"`. Kod zdravstvene ustanove taj tekst opisuje
+obradu podataka pacijenata i podleže ZZPL-u — mora ga napisati neko ko odgovara
+za to, ne dizajner ni alat. Do tada link ostaje mrtav.
+
+### 6.4 Facebook profil
+
+Sheme i futer vode `facebook.com/lokomotostepastepanovic/`. Slug nosi ime
+**stare lokacije**. Proveriti da li je to i dalje aktivan profil centra i da li
+je preimenovan.
+
+---
+
+## 7. Ostaje za fazu 1
+
+- **Struktura URL-ova.** Stari sajt već rangira na plitkim adresama
+  (`/kineziterapija/`, `/manuelna-terapija/`, `/dijagnostika/`,
+  `/postoperativna-rehabilitacija/`). Preporuka iz plana je da se zadrže, čime
+  četiri najvrednije stranice migriraju sa nula redirekcija.
+- **`manualna` ili `manuelna`.** v15 koristi `manualna`; stari sajt rangira na
+  `manuelna`. Preporuka: zadržati stari slug, proveriti u Search Console →
+  Queries pre konačne odluke.
+- **Nedostaju kao URL:** `/cenovnik/`, `/kontakt/`, `/o-nama/`, `/tim/`,
+  `/politika-privatnosti/`. Sadržaj za prve četiri već postoji na naslovnoj,
+  zarobljen u sidrima koja ne mogu da rangiraju.
+- **Hosting.** GitHub Pages ne ume 301 redirekcije, a one su za migraciju
+  obavezne. Preporuka: Cloudflare Pages.
+- **Stranice po tegobama** — najveći dugoročni dobitak, cela faza 2.

@@ -3933,3 +3933,16 @@ a.step-tag:focus-visible {
 .contact-form-spacer {
   flex: 1 0 auto;
 }
+
+
+/* ── Kicker uvučen u <h1> (SEO faza 0) ─────────────────────────────────────
+   Naslov naslovne je nosio nula ključnih reči. Kicker koji stoji iznad njega
+   ih već ima, pa je uvučen unutar <h1> — vidljivo se ne menja ništa.
+   Zamka: `.hero-title span { display: block }` ima specifičnost 0,1,1 i
+   pobeđuje `.hero-kicker` (0,1,0), pa bi flex raspored pao. Vraća se
+   selektorom 0,2,0. Sve ostalo i dalje dolazi iz postojećih .hero-kicker
+   pravila, uključujući i ona u medijskim upitima. */
+.hero-title .hero-kicker {
+  display: flex;
+  line-height: normal;
+}
