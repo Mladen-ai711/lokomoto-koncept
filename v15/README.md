@@ -3689,131 +3689,141 @@ Dve zamke pri renderovanju, za sledeći put:
   privremeni lokalni server ubaci skript koji sakrije sekcije **iznad** ciljne
   i ugasi `motion-ready` (bez toga `.reveal` ostaje na `opacity: 0`).
 
-## Mobilni hero video v9 — format ispravljen, kadrovi iz fotografija (14.09.2026)
+## Mobilni hero video v10 (14.09.2026)
 
 Prijava: na telefonu su kadrovi u makro planu. Ista prijava vođena je kao
 rešena u `v14` („Mobilni hero video — napravljen iz originala"), pa se vratila.
+
+### Četiri pravila za sledeći put
+
+Da se ne kreće iz početka:
+
+1. **Okvir hera na telefonu je oko 0,46, nije 9:16.** Video mora da prati taj
+   odnos. Ako ne prati, `object-fit: cover` odseca još **18% širine** pre nego
+   što iko pogleda. **To je bio pravi uzrok „makro" prijave, a ne rez.**
+2. **Desktop hero se NE dira.** `hero-loop-v8.mp4` i `hero-poster-v8.jpg`
+   ostaju kakvi jesu.
+3. **Sadržaj mora da ostane snimak terapije.** Ovaj krug je isprva krenuo
+   pogrešno — video je napravljen iz fotografija umesto iz snimka, pa je za
+   poster ispala prazna soba bez terapeuta i pacijenta.
+4. **Kadrovi u originalu traju 1,3–1,8 s i moraju se razvlačiti 2,4×.** To je
+   granica materijala, ne montaže. Ako hero ikad opet zatreba, rešenje nije
+   nov rez nego **novo snimanje mirnih, dugih kadrova**.
 
 ### Šta je iz v14 preneto pogrešno, pa ispravljeno
 
 Prva verzija ovog zapisa tvrdila je da popravka iz v7 „nije bila preneta na sve
 kadrove", kao da je nešto propušteno. **Nije tačno.** `v14` README, red 3245,
 kaže izričito da su kadrovi 2–4 uzeti iz `hero-loop-v7-mobile.mp4` **namerno** —
-da preliv ka novom kadru 1 bude rađen jednom, sveže, *bez udvostručenog
-gradinga* na kadrovima 2–4. Mobilni 2–4 su pri tom već nosili raniju mobilnu
-ispravku iz v7. Odluka, ne propust.
+da preliv ka novom kadru 1 bude rađen jednom, sveže, bez udvostručenog gradinga.
+Odluka, ne propust.
 
 Isto tako, brojevi iz v14 tabele oštrine (5s −61%, 13s −34%) mere **gubitak
-oštrine od re-enkodiranja**, ne kadriranje. To su dva različita kvara i ne
-treba ih mešati.
+oštrine od re-enkodiranja**, ne kadriranje. Dva različita kvara.
 
-### Dva merenja koja su promenila plan
+### Merenja
 
-**1. Format je gubio petinu kadra.** Okvir hera na telefonu izmeren na pet
-veličina: 360×800 → 0,450 · 390×844 → 0,462 · 414×896 → 0,462 · 430×932 →
-0,461 · 360×640 → 0,523. Video je bio 900×1600 (0,5625), pa je `object-fit:
-cover` odsecao **18% širine**, a `transform: scale(1.025)` još ~2,4%. Petina
-kodiranog kadra se nikad nije videla.
+**Okvir hera na telefonu**, izmeren na pet veličina: 360×800 → 0,450 ·
+390×844 → 0,462 · 414×896 → 0,462 · 430×932 → 0,461 · 360×640 → 0,523. Video je
+bio 900×1600 (0,5625), pa je `cover` odsecao 18% širine, a `transform:
+scale(1.025)` još ~2,4%.
 
-**2. Original ne može da nahrani strukturu 4/5/5/4.** `E:\Lokomoto\lokomoto 1.3
-2.mp4` nije sirov materijal nego montiran promo: **53 reza u 62 s, prosečan
-kadar 1,15 s**. Najduži neprekidan kadar je 3,68 s i postoji jedan jedini.
-Kadrovi od 4–5 s se iz njega ne mogu iseći.
+**Original nije sirov materijal nego montiran promo.** 53 reza u 62 s, prosečan
+kadar 1,15 s. Na finijem pragu detekcije (0,12 umesto 0,30) ispadne da neki
+„kadrovi" imaju skrivene rezove — onaj na 5,60 s upotrebljiv je samo 0,92 s, pa
+naglo prelazi na ulicu. **Svaki kadar proveriti na pragu 0,12 pre upotrebe.**
 
-**Geometrija, da se ne bi ponovo pokušavalo:** iz kadra 16:9 prozor odnosa
-0,4615 po punoj visini je **498 px širine — 26% kadra**, bez obzira na rez.
-Promena formata ne proširuje kadar, nego samo prestaje da baca 18% piksela.
-Kodiranje na 1080×2340 bilo bi dizanje tih 498 px za 2,17× — veći fajl, nijedan
-novi detalj. Zato je izlaz **720×1560** (isti odnos 0,4615).
+**Geometrija:** iz kadra 16:9 prozor odnosa 0,4615 po punoj visini je 498 px
+širine — 26% kadra, bez obzira na rez. Promena formata ne proširuje kadar, nego
+samo prestaje da baca 18% piksela. Šire se dobija jedino biranjem širih kadrova.
 
 ### Provereno odvojeno: da li sama promena formata rešava prijavu
 
-Pošto bi bilo najjeftinije da rešava, napravljena je verzija u kojoj je
-**promenjen samo format** — isti rez, isti kadrovi, prozor 0,4615 po punoj
-visini uzet iz postojećeg `900×1600`, izlaz `1080×2340`. Zatim su sve tri
-verzije presečene onako kako ih telefon vidi na 390×844 i izmerene.
+Napravljena je verzija u kojoj je promenjen **samo format** — isti rez, isti
+kadrovi, izlaz 1080×2340. Sve tri verzije presečene su onako kako ih telefon
+vidi na 390×844 i izmerene:
 
 | Verzija | Vidi se scene | Energija ivica na 390×844 |
 |---|---|---|
-| A — sadašnje stanje (900×1600 + CSS rez) | 25,9% širine | 4,15 |
-| B — **samo promenjen format** (1080×2340) | 26,4% širine | **4,14** |
-| C — kadrovi iz fotografija (720×1560) | 58–69% po kadru | **4,29** |
+| sadašnje stanje (900×1600 + CSS rez) | 25,9% širine | 4,15 |
+| **samo promenjen format** (1080×2340) | 26,4% | **4,14** |
+| kadrovi iz fotografija (720×1560) | 58–69% | 4,29 |
 
-**Sama promena formata ne rešava ni jedno ni drugo.** Kadriranje se pomeri za
-jedva pola procenta, a oštrina ostaje ista — 4,14 naspram 4,15.
+Sama promena formata ne rešava ni kadriranje ni oštrinu. Oštrina ne raste jer se
+ta verzija pravi **dizanjem** već kodiranog `900×1600` — to dodaje još jednu
+generaciju umesto da je skine. Format je ipak zadržan, jer prestaje da se kodira
+petina kadra koja se nikad ne vidi.
 
-Razlog za kadriranje je geometrijski i opisan iznad: prozor 0,4615 iz kadra
-16:9 pokazuje 26% širine scene, pa se od 0,5625 na 0,4615 ne dobija scena nego
-samo prestaje rasipanje piksela.
+### Šta je na kraju ušlo
 
-Razlog za oštrinu je taj što se verzija B pravi **dizanjem** već kodiranog
-`900×1600` na `1080×2340` — to dodaje još jednu generaciju umesto da je skine.
-Gubitak oštrine iz v14 tabele dolazi iz lanca re-enkodiranja, pa se leči jedino
-sečenjem iz materijala sa manje generacija, ne promenom izlaznog formata.
+Četiri kadra iz `E:\Lokomoto\lokomoto 1.3 2.mp4`, svaki proveren na skrivene
+rezove:
 
-Promena formata **jeste** vredna, ali iz trećeg razloga: prestaje da se kodira
-petina kadra koja se nikad ne vidi, pa isti kvalitet staje u bitno manji fajl.
-Zato je i zadržana u v9.
+| Kadar | Izvor | Prozor x | Usporenje | Trajanje |
+|---|---|---|---|---|
+| 1 | 54,44 s (1,64 s) | 760 | 2,4× | 3,76 s |
+| 2 | 51,08 s (1,28 s) | 900 | 2,6× | 3,16 s |
+| 3 | 31,88 s (1,40 s) | 760 | 2,4× | 3,20 s |
+| 4 | 45,64 s (1,80 s) | 400 | 2,4× | 4,16 s |
 
-### Rešenje: Ken Burns iz fotografija
+Prelivi 0,6 s, ukupno **12,48 s** (v8 je bio 15,6 s). Kraće je jer duže
+razvlačenje počinje da izgleda kao usporen snimak.
 
-Iz uspravne fotografije 4000×5873 prozor 0,4615 zadržava **58–69% širine kadra**
-umesto 26%, i ne diže se nijedan piksel. Rađeno po skillu `miran-hero-video`,
-struktura mirovanje → dodir → vođen pokret → sloboda:
+Kadar 1 je uvodni jer je jedini čiji **prvi frejm** pokazuje i terapeuta i
+pacijenta — a prvi frejm je poster. Kadar 2 je najbliži plan od sva četiri i
+jedini sa dodirom; zadržan namerno, jer je dodir ono što je verziji iz
+fotografija nedostajalo.
 
-| Kadar | Izvor | Trajanje | Pokret |
-|---|---|---|---|
-| 1 mirovanje | `L-8` terapijska soba | 4 s | prilaz 1,000 → 1,090 |
-| 2 dodir | `L-60` rad na leđima | 5 s | prilaz 1,000 → 1,100 + klizanje desno |
-| 3 vođen pokret | `L-38` testiranje kolena | 5 s | 1,020 → 1,100 + klizanje levo |
-| 4 sloboda | `L-17` čekaonica | 4 s | povlačenje 1,100 → 1,000 |
+**Usporavanje ide `minterpolate=mi_mode=blend`, ne `mci`.** `mci` je izobličavao
+lica — na probnom renderu je terapeutu lice ispalo razliveno u blokove.
 
-Prelivi 0,6 s, ukupno **16,2 s** (bilo 15,6 s).
+Svetlina izjednačena gamom pre spajanja (gama ograničena na 1,75 da se ne
+ispere crno), pa isti grading kao v8. Rezultat:
 
-**Bez `zoompan`**, kako skill i traži. Svaki frejm je zaseban `crop` u punoj
-rezoluciji fotografije, pa `scale` na 720 px — jedan izvorni piksel je ~0,27
-izlaznih, dakle rez je efektivno subpikselski i bez Pythona, koga na ovoj
-mašini nema (WindowsApps stub koji ne radi; ni `sharp` za Node). Provera na
-drhtanje: **0 promena smera** po obe ose, najveći skok 0,53 izlaznih piksela.
+| | YAVG |
+|---|---|
+| novi mobilni v10 | 134,9 |
+| desktop v8 | 136,2 |
+| stari mobilni v8 | 143,3 |
 
-Svetlina izjednačena gamom pre spajanja (kadar 1 YAVG 117 → gama 1,180; kadar 2
-141 → 1,026; kadar 3 137 → 1,079; kadar 4 141 → 1,024), pa isti grading kao v8
-(`saturation=0.82:contrast=0.96:brightness=0.01`) uz `gamma=1.059` da ukupan
-YAVG padne na 145,6 — v8 mobilni je bio 143,3, a CSS filter je na njega naštelovan.
-Kadar 1 ostaje najtiši (137), kadar 4 najsvetliji (150), pa petlja ne bode oko.
+Novi mobilni je na svetlini desktopa. Stari mobilni je bio taj koji je odudarao.
 
-### Fajlovi i težina
+### Fajlovi
 
-| | Bilo | Sada |
+| | Bilo (v8) | Sada (v10) |
 |---|---|---|
-| mobilni video | 2126 kB, 900×1600, H.264 | **335 kB**, 720×1560, AV1 |
-| fallback | — | 965 kB, 720×1560, H.264 |
-| poster | 900×1600 | 720×1560, 92 kB |
+| mobilni video | 2126 kB, 900×1600, H.264 | **406 kB**, 720×1560, AV1 (crf 46) |
+| fallback | — | 772 kB, H.264 (crf 34) |
+| poster | 900×1600 | 720×1560, 50 kB |
 
-Poster je usklađen sa odnosom videa — inače bi pri zameni skočio kadar.
+Poster prati odnos videa — inače bi pri zameni skočio kadar.
 
 **AV1 nije sam.** Na iPhone-u AV1 radi tek od 15 Pro, pa bi samostalan AV1
-ostavio većinu iPhone-a na posteru. Mobilni swap sada upisuje **dva izvora**:
-AV1 sa `codecs=av01.0.08M.08` (seq_level_idx 8, Main, 8-bit — pročitano iz
-fajla, ne pretpostavljeno) pa H.264 bez `codecs`. Ko ne ume AV1, pređe na drugi.
+ostavio većinu iPhone-a na posteru. Mobilni swap upisuje dva izvora: AV1 sa
+`codecs=av01.0.08M.08` (seq_level_idx pročitan iz fajla, ne pretpostavljen), pa
+H.264 bez `codecs`. Zato je i fallback stisnut sa 1196 na 772 kB — njega dobija
+većina iPhone korisnika, nije retki slučaj.
 
-Desktop ostaje na `v8` i nije diran. Stari `v8` mobilni fajlovi nisu brisani.
+`v9` fajlovi (verzija iz fotografija) ostaju u repou kao i stariji, po istom
+pravilu da se stare verzije ne brišu.
 
-### Provereno
+### Zamke, izmereno
 
-Na 360×800, 390×844 i 430×932, u više vremenskih tačaka — ne samo u prvom
-kadru, jer je baš tu prethodna popravka stala. Od videa se sada vidi **100%
-širine** umesto 82%. U pregledaču potvrđeno: bira se AV1 izvor, video svira,
-720×1560, 16,2 s, bez greške; desktop i dalje učitava `hero-loop-v8.mp4`.
-
-### Zamka za sledeći put
-
-`ffmpeg` u `while read` petlji **guta stdin** i pojede preostale redove ulaza —
-prvi prolaz je tiho preskočio kadrove 2 i 4. Rešenje je `ffmpeg -nostdin`.
+- **`ffmpeg` u `while read` petlji guta stdin** i pojede preostale redove ulaza —
+  prvi prolaz je tiho preskočio dva kadra. Rešenje: `ffmpeg -nostdin`.
+- **Headless Chrome ne učitava `Instrument Sans`** sa lokalnog servera, pa pada
+  na širi zamenski font i naslov hera izgleda kao da se preliva van ekrana. U
+  pravom pregledaču je 350 px u okviru od 390, `scrollWidth` 390. Ako render
+  pokazuje prelivanje teksta, prvo proveriti font pa tek onda CSS.
+- **Headless `--screenshot` snima od vrha dokumenta**, bez obzira na skrol, i ne
+  čeka da se video premota. Za prikaz tačnog frejma u okviru: postaviti taj
+  frejm kao `poster` videa i ukloniti izvore — poster se crta kroz isti
+  `object-fit`, `object-position` i filter kao i video.
+- **Hero je `100vh`**, pa sa visokim prozorom naraste na visinu prozora i pogura
+  sve ispod. Pogađa samo naslovnu.
 
 ### Ostaje otvoreno
 
 `preload="auto"` stoji na zajedničkom `<video>` elementu, dakle važi i za
-desktop, gde je fajl 2233 kB. Za mobilni to više nije skupo (335 kB), ali je za
-desktop i dalje pun fajl pre bilo kakve interakcije. Nije menjano jer izlazi iz
-opsega ovog zadatka.
+desktop, gde je fajl 2233 kB. Za mobilni više nije skupo. Nije menjano jer
+izlazi iz opsega ovog zadatka.
