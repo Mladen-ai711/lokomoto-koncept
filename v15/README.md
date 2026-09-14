@@ -3909,3 +3909,71 @@ menja `object-fit` sa `cover` na `contain` i `transform` sa `scale(1.025)` na
 `preload="auto"` stoji na zajedničkom `<video>` elementu, dakle važi i za
 desktop, gde je fajl 2233 kB. Za mobilni više nije skupo. Nije menjano jer
 izlazi iz opsega ovog zadatka.
+
+## Mobilni hero v11 — uspravni video iz namenski snimljenih fotografija (15.09.2026)
+
+Klijent je snimio **četiri fotografije 4000×5873** baš za ovaj okvir, po specifikaciji
+iz prethodnog kruga. Redosled je njegov: soba → rad na leđima → Triton sto → čekaonica.
+To je i narativ koji skill `miran-hero-video` traži: mirovanje → dodir → vođen
+pokret → sloboda.
+
+### Zašto je 1080×2340 ovog puta opravdano
+
+Ranije je 1080 px bilo odbijeno jer je izvor bio video 1920×1080: uspravni prozor
+0,4615 po punoj visini daje **498 px** stvarne širine, pa bi 1080 bilo dizanje 2,17×.
+
+Iz fotografije 4000×5873 isti prozor je **2710 px**. Izlaz od 1080 px je dakle
+**smanjenje**, ne dizanje. Uz to ostaje **1290 px bočnog prostora**, pa kadrovi 2 i 3
+stvarno putuju kroz sliku umesto da samo zumiraju.
+
+### Kadrovi
+
+| Kadar | Izvor | Trajanje | Pokret |
+|---|---|---|---|
+| 1 | `Hero slike 1 za mobilni.jpg` | 4 s | prilaz 1,000 → 1,090 |
+| 2 | `Hero slike 2 za mobilni.jpg` | 5 s | prilaz 1,000 → 1,100 + klizanje desno |
+| 3 | `Hero slike 3 za mobilni.jpg` | 5 s | 1,020 → 1,100 + klizanje levo |
+| 4 | `Hero slike 4 za mobilni.jpg` | 4 s | povlačenje 1,100 → 1,000 |
+
+Prelivi 0,6 s, ukupno **16,2 s**. Bez `zoompan`, svaki frejm je zaseban `crop` u
+punoj rezoluciji fotografije pa `scale` na 1080. Provera na drhtanje: **0 promena
+smera** na sva četiri kadra.
+
+Svetlina izjednačena gamom pre spajanja (kadar 1 `1.168`, kadar 2 `1.043`, kadar 3
+`0.893`, kadar 4 `1.082`), pa isti grading kao ranije. Ukupno **YAVG 141,5** —
+stari mobilni v8 bio je 143,3, dakle na istom nivou za koji je CSS filter naštelovan.
+Kadar 1 ostaje najtiši, kadar 4 najsvetliji, pa povratak petlje ne bode oko.
+
+### CSS vraćen na cover
+
+Dok je mobilni vukao desktop video 16:9, na `max-width: 720px` je stajao
+`object-fit: contain` — da se kadar vidi ceo, u traci. Sada video ima **isti odnos
+kao okvir**, pa `cover` skoro ništa ne odseca i traka više nema svrhe. `transform:
+none` ostaje namerno: `scale(1.025)` bi pojeo 2,4% ivica koje sada nemamo zašto da
+gubimo.
+
+Izmereno posle: na svežem učitavanju na 390 px vidi se **100% širine**.
+
+### Težina
+
+| | v11 |
+|---|---|
+| AV1 (crf 42) | **432 kB** |
+| H.264 fallback (crf 34) | 1167 kB |
+| poster | 139 kB |
+| *ranije: mobilni je vukao `hero-loop-v8.mp4`* | *2236 kB* |
+
+Postoji i varijanta **810×1754** (isti odnos): AV1 376 kB, H.264 **804 kB**. Nije
+uzeta, ali je razlika u oštrini na ekranu od 390 px zanemarljiva — ako H.264 grana
+ikad postane problem, to je prvo mesto gde se skida 363 kB.
+
+`styles.css?v=` dignut na **13.2**, na svih sedam stranica.
+
+### Povratna tačka
+
+Traženo izričito. Tri puta:
+
+1. **Git** — stanje pre ovoga je `d7b1c22`; povratak je jedan `git revert`.
+2. **Fajlovi** — `_backups/pre-v11-20260915-0005/` (`index.html`, `styles.css` i
+   svih sedam stranica).
+3. **Stari mediji nisu brisani** — `hero-loop-v8`, `v9` i `v10` su i dalje u repou.

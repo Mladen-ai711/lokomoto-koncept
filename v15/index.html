@@ -8,9 +8,9 @@
     <meta name="description" content="Ordinacija fizikalne medicine i rehabilitacije na Autokomandi, od 2016. Dijagnostika, terapija i vođene vežbe na jednom mestu. Zakažite pregled online." />
     <link rel="preload" href="assets/images/hero-poster-v8.jpg" as="image"
       media="(min-width: 721px)" />
-    <link rel="preload" href="assets/images/hero-poster-v10-mobile.jpg" as="image"
+    <link rel="preload" href="assets/images/hero-poster-v11-mobile.jpg" as="image"
       media="(max-width: 720px)" />
-    <link rel="stylesheet" href="styles.css?v=13.1" />
+    <link rel="stylesheet" href="styles.css?v=13.2" />
     <link rel="stylesheet" href="usluga.css?v=19.14" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <title>Fizikalna terapija i rehabilitacija Beograd | Lokomoto</title>
@@ -273,13 +273,14 @@
                 poster: 'assets/images/hero-poster-v8.jpg',
                 html: '<source src="assets/media/hero-loop-v8.mp4" type="video/mp4">'
               };
-              // Mobilni koristi ISTI video kao desktop. Da ne ispadne makro,
-              // CSS na <=720px prebacuje object-fit na contain, pa se kadar
-              // 16:9 vidi ceo. Poster je desktop poster, da se prvi frejm
-              // poklapa sa videom.
+              // Mobilni ima svoj uspravni video, snimljen za taj okvir:
+              // 1080x2340 (0,4615), cetiri kadra iz fotografija 4000x5873.
+              // Zato CSS na <=720px koristi cover, ne contain.
               var mobilni = {
-                poster: 'assets/images/hero-poster-v8.jpg',
-                html: '<' + 'source src="assets/media/hero-loop-v8.mp4" type="video/mp4">'
+                poster: 'assets/images/hero-poster-v11-mobile.jpg',
+                html:
+                  '<' + 'source src="assets/media/hero-loop-v11-mobile-av1.mp4" type="video/mp4; codecs=av01.0.12M.08">' +
+                  '<' + 'source src="assets/media/hero-loop-v11-mobile.mp4" type="video/mp4">'
               };
               // <video> je prazan u HTML-u, pa mobilni nikad ne krene po desktop fajl.
               // Izvor upisuje skript, na obe strane.
