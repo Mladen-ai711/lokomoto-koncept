@@ -567,7 +567,7 @@ ordinacije je ukrivo" — izmereno je koji je to kadar, umesto pogađanja:
 
 | Kadar | Nagib vertikala | Ocena |
 |---|---|---|
-| 1 — terapijska soba sa aparatom | 0,0° | prav, kosе linije su perspektiva |
+| 1 — terapijska soba sa aparatom | 0,0° | prav, kose linije su perspektiva |
 | 4 — sala za vežbe, širok kadar | **−2,5°** | **kamera nakrivljena** |
 
 Zamenjen je **kadar 4**. Novi izvor: **`L-17` (čekaonica)** iz snimanja od
@@ -623,7 +623,7 @@ aktivan korak 0 → 0 → 1 → 1 → 2. Isto na 390 px.
 
 ### 6 — povratak sa stranice usluge vraća na sekciju
 
-Pravilo „osvežavanje ide na vrh" je ostalo, ali je bilo prešироko: hvatalo je i
+Pravilo „osvežavanje ide na vrh" je ostalo, ali je bilo preširoko: hvatalo je i
 povratak sa stranice usluge, koji nije osvežavanje — posetilac je otišao **sa**
 nekog mesta i očekuje da se vrati na njega.
 
@@ -3223,7 +3223,7 @@ uz ovu betleg, ne previđena.
 **Tehnički postupak** (skill `miran-hero-video`):
 
 - Izvor: `lokomoto-8.jpg` (3806×4757). Desktop isečak 16:9 iz sredine kadra
-  (aparat levo, ležaj dijagonalno, pod dole) — ista kompozициona logika kao
+  (aparat levo, ležaj dijagonalno, pod dole) — ista kompoziciona logika kao
   raniji kadar 1. Mobilni isečak 9:16, puna visina originala, uže po širini,
   centriran na aparat+ležaj.
 - Ken Burns spor prilaz (zum 1,000 → 1,090, bez pomeranja), 4,0 s — isti pokret
@@ -3843,57 +3843,38 @@ Provereno u pregledaču, sva tri slučaja bez osvežavanja:
 
 Svež load na 390 takođe daje v10 i poster v10.
 
-### Mobilni hero je poster, ne video (odluka, 14.09.2026)
+### Mobilni koristi isti video kao desktop, prikazan ceo (14.09.2026)
 
-**Na telefonu se više ne učitava nikakav video.** Hero je poster
-`hero-poster-v10-mobile.jpg`, 720×1560, **52 kB**. Desktop **zadržava** video
-`hero-loop-v8.mp4`.
+Odluka da mobilni hero bude samo poster **povučena je isti dan**. Zadatak je bio
+da kadrovi ne budu makro, ne da video nestane.
 
-**Razlog.** Za većinu iPhone korisnika mobilni video je bio **776 kB naspram
-52 kB** — petnaest puta više. AV1 varijanta od 406 kB stiže samo do iPhone 15
-Pro i novijih i do Android Chrome-a; svi stariji iPhone-i povlače H.264. A to
-se plaćalo za pokret koji je ionako prigušen: mobilni CSS nosi
-`brightness(0.78)`, `saturate(0.68)`, `sepia(0.2)` i još jedan gradijentni
-preliv preko svega. Video je tu **pozadina ispod naslova, ne sadržaj** — kroz
-hero se prođe za nekoliko sekundi skrola.
+Na telefonu sada ide **isti fajl kao na desktopu**, `hero-loop-v8.mp4`, i to
+**ceo**, bez isecanja.
 
-**Zašto je uopšte bio tu.** Mobilna varijanta videa postoji **od `v3` do `v9`,
-kroz šest rundi i sedam verzija**. Nijedan README, ni v14 ni v15, ne sadrži
-rečenicu koja obrazlaže zašto je uvedena. Odluka je doneta davno i od tada se
-prenosila nasleđem, ne izborom.
+**Kako.** Okvir hera na telefonu je odnosa ~0,46, a video je 16:9. Sa
+`object-fit: cover` od njega se vidi samo **26% širine kadra** — to je bio
+„makro prikaz" iz prijave. Zato na `max-width: 720px` ide:
 
-**Kako je izvedeno.** `<video>` u HTML-u je sada **prazan** — bez ijednog
-`<source>`. Izvor upisuje skript, na obe strane:
+```css
+.hero-media { background: var(--ink); }
+.hero-media video {
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
+```
 
-- mobilni: samo `poster`, `html` je prazan string, plus `pause()` pre zamene;
-- desktop: `<source>` na `hero-loop-v8.mp4`.
+Kadar tada stane ceo, u traku preko sredine; gore i dole ostaje podloga.
+`transform: none` je tu namerno — `scale(1.025)` bi ponovo pojeo ivice koje smo
+upravo vratili.
 
-Statički `<source>` je morao da izađe iz HTML-a. Dok je stajao, izmereno je da
-pregledač na mobilnom **već krene po desktop fajl** pre nego što skript stigne
-da ga ukloni — `currentSrc` je bio postavljen na `hero-loop-v8.mp4`. Sada je na
-svežem učitavanju na 390 px broj zahteva za `.mp4` **nula**.
+Poster na mobilnom je `hero-poster-v8.jpg`, dakle desktop poster, da se prvi
+frejm poklapa sa videom i da nema skoka pri pokretanju.
 
-Uz `change` na media upitu sluša se i `resize`. Razlog je izmeren: u emulaciji
-viewporta `change` se **ne okine pouzdano** — media upit se prevrne na `false`,
-a listener ne dobije ništa. `primeni()` izlazi odmah ako se stanje nije
-promenilo, pa je dupli okidač bez cene.
-
-**Provereno**, četiri slučaja:
-
-| Slučaj | Izvora | Šta se učita |
-|---|---|---|
-| svež load na 390 | 0 | poster v10, **nijedan `.mp4` zahtev** |
-| 390 → 1440 bez osvežavanja | 1 | `hero-loop-v8.mp4`, 1600×900, svira |
-| 1440 → 390 bez osvežavanja | 0 | poster v10, pauzirano |
-| svež load na 1440 | 1 | `hero-loop-v8.mp4`, 2233 kB, svira |
-
-Konzola bez grešaka u sva četiri.
-
-**Fajlovi ostaju u repou.** `hero-loop-v9-mobile*` i `hero-loop-v10-mobile*`
-više nisu vezani ni za jednu stranicu, ali se **ne brišu** — ako se odluka ikad
-okrene, tu su. Poster `v10` je jedino što je od tog posla ostalo u upotrebi, i
-zbog njega je taj posao i dalje vredeo: poster je sada u odnosu 0,4615 i
-prikazuje terapeuta i pacijenta u radu, umesto prazne sobe.
+**Šta ovo znači za v10.** `hero-loop-v10-mobile*` i `hero-poster-v10-mobile.jpg`
+više nisu vezani ni za jednu stranicu, ali **ostaju u repou**. Taj posao je i
+dalje upotrebljiv ako se ikad pređe na poseban uspravni video za telefon —
+kadrovi su iz snimka, u odnosu 0,4615, i nisu makro.
 
 ### Zamke, izmereno
 

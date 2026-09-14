@@ -273,12 +273,13 @@
                 poster: 'assets/images/hero-poster-v8.jpg',
                 html: '<source src="assets/media/hero-loop-v8.mp4" type="video/mp4">'
               };
-              // Mobilni hero je SAMO poster, bez <source>. Razlog je u
-              // README-u: 776 kB naspram 52 kB za vecinu iPhone-a, a video je
-              // pozadina ispod naslova, ne sadrzaj. Desktop zadrzava video.
+              // Mobilni koristi ISTI video kao desktop. Da ne ispadne makro,
+              // CSS na <=720px prebacuje object-fit na contain, pa se kadar
+              // 16:9 vidi ceo. Poster je desktop poster, da se prvi frejm
+              // poklapa sa videom.
               var mobilni = {
-                poster: 'assets/images/hero-poster-v10-mobile.jpg',
-                html: ''
+                poster: 'assets/images/hero-poster-v8.jpg',
+                html: '<' + 'source src="assets/media/hero-loop-v8.mp4" type="video/mp4">'
               };
               // <video> je prazan u HTML-u, pa mobilni nikad ne krene po desktop fajl.
               // Izvor upisuje skript, na obe strane.
@@ -288,7 +289,6 @@
                 if (zeljeni === tekuci) return;
                 tekuci = zeljeni;
                 var c = mq.matches ? mobilni : desktop;
-                if (!c.html) v.pause();
                 v.poster = c.poster;
                 v.innerHTML = c.html;
                 v.load();

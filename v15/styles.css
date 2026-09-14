@@ -4555,3 +4555,26 @@ button {
     padding-left: 1.15rem;
   }
 }
+
+/* ============================================================
+   Mobilni hero: desktop video se vidi CEO, ne isecen
+   ------------------------------------------------------------
+   Okvir hera na telefonu je odnosa ~0,46, a desktop video je
+   16:9. Sa object-fit: cover od njega bi se videlo samo 26%
+   sirine kadra - to je bio "makro prikaz" iz prijave.
+   Sa contain kadar stane ceo, u traku preko sredine, a gore i
+   dole ostaje podloga. Zato ovde ide i transform: none - scale
+   bi ponovo pojeo ivice koje smo upravo vratili.
+   ============================================================ */
+
+@media (max-width: 720px) {
+  .hero-media {
+    background: var(--ink);
+  }
+
+  .hero-media video {
+    object-fit: contain;
+    object-position: center;
+    transform: none;
+  }
+}
