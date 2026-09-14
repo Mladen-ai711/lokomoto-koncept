@@ -3917,15 +3917,6 @@ iz prethodnog kruga. Redosled je njegov: soba → rad na leđima → Triton sto 
 To je i narativ koji skill `miran-hero-video` traži: mirovanje → dodir → vođen
 pokret → sloboda.
 
-### Zašto je 1080×2340 ovog puta opravdano
-
-Ranije je 1080 px bilo odbijeno jer je izvor bio video 1920×1080: uspravni prozor
-0,4615 po punoj visini daje **498 px** stvarne širine, pa bi 1080 bilo dizanje 2,17×.
-
-Iz fotografije 4000×5873 isti prozor je **2710 px**. Izlaz od 1080 px je dakle
-**smanjenje**, ne dizanje. Uz to ostaje **1290 px bočnog prostora**, pa kadrovi 2 i 3
-stvarno putuju kroz sliku umesto da samo zumiraju.
-
 ### Kadrovi
 
 | Kadar | Izvor | Trajanje | Pokret |
@@ -3935,37 +3926,60 @@ stvarno putuju kroz sliku umesto da samo zumiraju.
 | 3 | `Hero slike 3 za mobilni.jpg` | 5 s | 1,020 → 1,100 + klizanje levo |
 | 4 | `Hero slike 4 za mobilni.jpg` | 4 s | povlačenje 1,100 → 1,000 |
 
-Prelivi 0,6 s, ukupno **16,2 s**. Bez `zoompan`, svaki frejm je zaseban `crop` u
-punoj rezoluciji fotografije pa `scale` na 1080. Provera na drhtanje: **0 promena
-smera** na sva četiri kadra.
+Prelivi 0,6 s, ukupno **16,2 s**. Bez `zoompan`: svaki frejm je zaseban `crop` u
+punoj rezoluciji fotografije pa `scale`. Provera na drhtanje: **0 promena smera**
+na sva četiri kadra.
+
+Uspravni prozor 0,4615 po punoj visini fotografije je **2710 px**, dakle 68% širine
+kadra — i ostaje **1290 px bočnog prostora**, pa kadrovi 2 i 3 stvarno putuju kroz
+sliku umesto da samo zumiraju. (Za poređenje: iz videa 1920×1080 isti prozor daje
+svega 498 px, bez ikakvog prostora za pomeranje.)
 
 Svetlina izjednačena gamom pre spajanja (kadar 1 `1.168`, kadar 2 `1.043`, kadar 3
 `0.893`, kadar 4 `1.082`), pa isti grading kao ranije. Ukupno **YAVG 141,5** —
-stari mobilni v8 bio je 143,3, dakle na istom nivou za koji je CSS filter naštelovan.
+stari mobilni v8 bio je 143,3, dakle na nivou za koji je CSS filter naštelovan.
 Kadar 1 ostaje najtiši, kadar 4 najsvetliji, pa povratak petlje ne bode oko.
+
+### Zašto 810×1754, a ne 1080×2340
+
+Prvo je napravljeno **1080×2340** i to je bilo tehnički opravdano — izvor od 2710 px
+znači da je 1080 *smanjenje*, ne dizanje. Ali je H.264 grana ispala **1167 kB**, a
+nju dobija većina iPhone-a.
+
+Napravljena je i varijanta **810×1754** (isti odnos) i obe su prikazane jedna pored
+druge u veličini telefonskog ekrana, pa uvećane. Razlika se u pravoj veličini ne vidi;
+na uvećanju se nazire tek na ivicama rukavice i na kosi. Odluka je pala na 810.
+
+**Ako ikad zatreba oštrija verzija**, 1080 se pravi iz istih fotografija istim
+postupkom — izvor to podnosi.
+
+### Težina
+
+| | v11 (810×1754) | *odbačeno: 1080×2340* |
+|---|---|---|
+| AV1 (crf 40 / 42) | **376 kB** | *432 kB* |
+| H.264 fallback (crf 32 / 34) | **802 kB** | *1167 kB* |
+| poster | **92 kB** | *139 kB* |
+
+**Izmereno u pregledaču, sveže učitavanje na 390 px: ukupno 468 kB** (video 376 +
+poster 92). Ranije je mobilni vukao `hero-loop-v8.mp4` od **2236 kB**.
+
+### Statički `poster` atribut je morao da izađe
+
+Uz `<source>`, i `poster="…hero-poster-v8.jpg"` je stajao direktno na `<video>`.
+Izmereno: telefon je skidao **i taj desktop poster, 121 kB**, pre nego što skript
+stigne da ga zameni. Sada `<video>` u HTML-u nema ni `poster` ni `<source>` — oba
+upisuje skript, na obe strane.
+
+Isto pravilo kao kod `<source>`: **sve što stoji staticki u `<video>` biva povučeno
+pre nego što JS stigne da promeni.**
 
 ### CSS vraćen na cover
 
 Dok je mobilni vukao desktop video 16:9, na `max-width: 720px` je stajao
 `object-fit: contain` — da se kadar vidi ceo, u traci. Sada video ima **isti odnos
-kao okvir**, pa `cover` skoro ništa ne odseca i traka više nema svrhe. `transform:
-none` ostaje namerno: `scale(1.025)` bi pojeo 2,4% ivica koje sada nemamo zašto da
-gubimo.
-
-Izmereno posle: na svežem učitavanju na 390 px vidi se **100% širine**.
-
-### Težina
-
-| | v11 |
-|---|---|
-| AV1 (crf 42) | **432 kB** |
-| H.264 fallback (crf 34) | 1167 kB |
-| poster | 139 kB |
-| *ranije: mobilni je vukao `hero-loop-v8.mp4`* | *2236 kB* |
-
-Postoji i varijanta **810×1754** (isti odnos): AV1 376 kB, H.264 **804 kB**. Nije
-uzeta, ali je razlika u oštrini na ekranu od 390 px zanemarljiva — ako H.264 grana
-ikad postane problem, to je prvo mesto gde se skida 363 kB.
+kao okvir**, pa `cover` skoro ništa ne odseca. `transform: none` ostaje namerno:
+`scale(1.025)` bi pojeo 2,4% ivica. Izmereno posle: na 390 px vidi se **100% širine**.
 
 `styles.css?v=` dignut na **13.2**, na svih sedam stranica.
 
