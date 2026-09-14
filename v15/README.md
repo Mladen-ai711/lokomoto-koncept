@@ -3694,11 +3694,18 @@ Dve zamke pri renderovanju, za sledeći put:
 Prijava: na telefonu su kadrovi u makro planu. Ista prijava vođena je kao
 rešena u `v14` („Mobilni hero video — napravljen iz originala"), pa se vratila.
 
-### Zašto se vratila
+### Šta je iz v14 preneto pogrešno, pa ispravljeno
 
-`v14` README, red 3236: pri prelasku na v8 **kadrovi 2–4 su izvučeni direktno**
-iz `hero-loop-v7-mobile.mp4`, a iz originala je sveže rađen samo kadar 1.
-Popravka iz v7 dakle nije bila preneta na sve kadrove.
+Prva verzija ovog zapisa tvrdila je da popravka iz v7 „nije bila preneta na sve
+kadrove", kao da je nešto propušteno. **Nije tačno.** `v14` README, red 3245,
+kaže izričito da su kadrovi 2–4 uzeti iz `hero-loop-v7-mobile.mp4` **namerno** —
+da preliv ka novom kadru 1 bude rađen jednom, sveže, *bez udvostručenog
+gradinga* na kadrovima 2–4. Mobilni 2–4 su pri tom već nosili raniju mobilnu
+ispravku iz v7. Odluka, ne propust.
+
+Isto tako, brojevi iz v14 tabele oštrine (5s −61%, 13s −34%) mere **gubitak
+oštrine od re-enkodiranja**, ne kadriranje. To su dva različita kvara i ne
+treba ih mešati.
 
 ### Dva merenja koja su promenila plan
 
@@ -3711,14 +3718,42 @@ kodiranog kadra se nikad nije videla.
 **2. Original ne može da nahrani strukturu 4/5/5/4.** `E:\Lokomoto\lokomoto 1.3
 2.mp4` nije sirov materijal nego montiran promo: **53 reza u 62 s, prosečan
 kadar 1,15 s**. Najduži neprekidan kadar je 3,68 s i postoji jedan jedini.
-Kadrovi od 4–5 s se iz njega ne mogu iseći — to je i razlog zašto je ranija
-sesija prekopirala kadrove umesto da ih seče iznova.
+Kadrovi od 4–5 s se iz njega ne mogu iseći.
 
 **Geometrija, da se ne bi ponovo pokušavalo:** iz kadra 16:9 prozor odnosa
 0,4615 po punoj visini je **498 px širine — 26% kadra**, bez obzira na rez.
 Promena formata ne proširuje kadar, nego samo prestaje da baca 18% piksela.
 Kodiranje na 1080×2340 bilo bi dizanje tih 498 px za 2,17× — veći fajl, nijedan
 novi detalj. Zato je izlaz **720×1560** (isti odnos 0,4615).
+
+### Provereno odvojeno: da li sama promena formata rešava prijavu
+
+Pošto bi bilo najjeftinije da rešava, napravljena je verzija u kojoj je
+**promenjen samo format** — isti rez, isti kadrovi, prozor 0,4615 po punoj
+visini uzet iz postojećeg `900×1600`, izlaz `1080×2340`. Zatim su sve tri
+verzije presečene onako kako ih telefon vidi na 390×844 i izmerene.
+
+| Verzija | Vidi se scene | Energija ivica na 390×844 |
+|---|---|---|
+| A — sadašnje stanje (900×1600 + CSS rez) | 25,9% širine | 4,15 |
+| B — **samo promenjen format** (1080×2340) | 26,4% širine | **4,14** |
+| C — kadrovi iz fotografija (720×1560) | 58–69% po kadru | **4,29** |
+
+**Sama promena formata ne rešava ni jedno ni drugo.** Kadriranje se pomeri za
+jedva pola procenta, a oštrina ostaje ista — 4,14 naspram 4,15.
+
+Razlog za kadriranje je geometrijski i opisan iznad: prozor 0,4615 iz kadra
+16:9 pokazuje 26% širine scene, pa se od 0,5625 na 0,4615 ne dobija scena nego
+samo prestaje rasipanje piksela.
+
+Razlog za oštrinu je taj što se verzija B pravi **dizanjem** već kodiranog
+`900×1600` na `1080×2340` — to dodaje još jednu generaciju umesto da je skine.
+Gubitak oštrine iz v14 tabele dolazi iz lanca re-enkodiranja, pa se leči jedino
+sečenjem iz materijala sa manje generacija, ne promenom izlaznog formata.
+
+Promena formata **jeste** vredna, ali iz trećeg razloga: prestaje da se kodira
+petina kadra koja se nikad ne vidi, pa isti kvalitet staje u bitno manji fajl.
+Zato je i zadržana u v9.
 
 ### Rešenje: Ken Burns iz fotografija
 
