@@ -3807,6 +3807,41 @@ većina iPhone korisnika, nije retki slučaj.
 `v9` fajlovi (verzija iz fotografija) ostaju u repou kao i stariji, po istom
 pravilu da se stare verzije ne brišu.
 
+### Zamena videa bila je jednokratna — popravljeno
+
+Prijava: kad se u pregledaču prelazi sa desktop na mobilnu širinu, svaki put
+krene makro slika, a posle osvežavanja se vrati u normalu.
+
+**Izmereno:** stranica učitana na 1440 pa smanjena na 390 **bez osvežavanja**
+i dalje drži `hero-loop-v8.mp4` (1600×900) — od njega se u uspravnom okviru
+vidi **26,0% širine**. To je ta makro slika.
+
+**Uzrok:** mobilna zamena je bila jednokratna provera pri učitavanju:
+
+```js
+if (window.matchMedia('(max-width: 720px)').matches) { ...zameni izvor... }
+```
+
+`matchMedia` se posle toga više ne proverava, pa promena širine ne menja ništa.
+Osvežavanje pomaže jer skript tada ponovo prođe. **Greška je starija od v10** —
+ista logika stoji od v8 — ali je sada upadljivija, jer je mobilni video 0,4615
+a desktop 1,78, pa je nesklad veći nego ranije.
+
+**Popravka:** zamena sluša promenu media upita i radi u oba smera. Pamti se
+tekuće stanje, pa se izvor ne prepisuje bez potrebe; početno stanje je
+`desktop`, jer HTML već nosi desktop `<source>` — tako se na desktopu ne
+pokreće nepotrebno ponovno učitavanje.
+
+Provereno u pregledaču, sva tri slučaja bez osvežavanja:
+
+| Korak | Izvor | Vidi se širine |
+|---|---|---|
+| učitano na 1440 | `hero-loop-v8.mp4` 1600×900 | — |
+| smanjeno na 390 | `hero-loop-v10-mobile-av1.mp4` 720×1560 | **100%** |
+| vraćeno na 1440 | `hero-loop-v8.mp4` 1600×900 | — |
+
+Svež load na 390 takođe daje v10 i poster v10.
+
 ### Zamke, izmereno
 
 - **`ffmpeg` u `while read` petlji guta stdin** i pojede preostale redove ulaza —

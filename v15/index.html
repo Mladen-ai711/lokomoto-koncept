@@ -266,14 +266,35 @@
             <source src="assets/media/hero-loop-v8.mp4" type="video/mp4" />
           </video>
           <script>
-            if (window.matchMedia('(max-width: 720px)').matches) {
+            (function () {
               var v = document.querySelector('[data-hero-video]');
-              v.poster = 'assets/images/hero-poster-v10-mobile.jpg';
-              v.innerHTML =
-                '<source src="assets/media/hero-loop-v10-mobile-av1.mp4" type="video/mp4; codecs=av01.0.08M.08">' +
-                '<source src="assets/media/hero-loop-v10-mobile.mp4" type="video/mp4">';
-              v.load();
-            }
+              if (!v) return;
+              var mq = window.matchMedia('(max-width: 720px)');
+              var desktop = {
+                poster: 'assets/images/hero-poster-v8.jpg',
+                html: '<source src="assets/media/hero-loop-v8.mp4" type="video/mp4">'
+              };
+              var mobilni = {
+                poster: 'assets/images/hero-poster-v10-mobile.jpg',
+                html:
+                  '<source src="assets/media/hero-loop-v10-mobile-av1.mp4" type="video/mp4; codecs=av01.0.08M.08">' +
+                  '<source src="assets/media/hero-loop-v10-mobile.mp4" type="video/mp4">'
+              };
+              // HTML vec nosi desktop izvor, pa se na desktopu nista ne prepisuje
+              var tekuci = 'desktop';
+              function primeni() {
+                var zeljeni = mq.matches ? 'mobilni' : 'desktop';
+                if (zeljeni === tekuci) return;
+                tekuci = zeljeni;
+                var c = mq.matches ? mobilni : desktop;
+                v.poster = c.poster;
+                v.innerHTML = c.html;
+                v.load();
+              }
+              primeni();
+              if (mq.addEventListener) mq.addEventListener('change', primeni);
+              else if (mq.addListener) mq.addListener(primeni);
+            })();
           </script>
           <div class="hero-media-wash"></div>
         </div>
