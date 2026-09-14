@@ -3633,9 +3633,15 @@ dno.
 Odnos ide od 0,75 do 1,51 — **duplo**. Zato se slika za ovaj panel ne bira po
 tome kako izgleda na 1440.
 
-**Šta iz toga sledi za sadržaj slike:** `cover` seče **simetrično oko centra**.
-Sve što treba da se vidi na svakoj širini mora da stane u **srednjih 56%**
-širine slike. Predmet uz ivicu kadra nestaje prvi.
+**Šta iz toga sledi za sadržaj slike:** `cover` seče **simetrično oko centra** —
+ali samo zato što u `styles.css:1219` stoji
+`.service-preview img { object-position: center }`. Uz to podešavanje, sve što
+treba da se vidi na svakoj širini mora da stane u **srednjih 56%** širine slike.
+Predmet uz ivicu kadra nestaje prvi.
+
+Pravilo, dakle, nije bezuslovno — zavisi od `object-position`. Sa
+`object-position: left` vidljivi pojas bi bio **0–56%** umesto 22–78%, i predmet
+uz levu ivicu bi ušao u kadar.
 
 Isprobana su četiri isečka iz `L-40`, svaki renderovan u kartici: 3400 px,
 3800 px, 4000 px (pun kadar) i jedan uži kod koga je desna strana odsečena da
@@ -3649,8 +3655,14 @@ Uzet je **pun kadar (4000 px)**: na 860, 1000 i 720 px aparat se vidi ceo, na
 i ne gubi u odnosu na uže isečke. Kartica na tim širinama nosi krupan plan
 kolena sa rukama terapeuta, što je i dalje tačan prikaz pregleda.
 
-Ako se ikad bude tražilo da se aparat vidi i na 1200, to se ne rešava isecanjem
-nego **drugim kadrom** — treba snimak na kome aparat stoji bliže sredini.
+Ako se ikad bude tražilo da se aparat vidi i na 1200, rešenja su **tri, ne dva**:
+
+1. **Drugi kadar** — snimak na kome je predmet bliže sredini.
+2. **Drugi isečak** — pomeriti prozor isecanja tako da predmet uđe u srednjih 56%.
+3. **Promena `object-position`** — najjeftinija izmena, ali ono je jedno pravilo
+   na jednom `<img data-service-image>` kroz koji prolazi **svih pet panela**.
+   Pomeranje zbog jedne slike pomerilo bi i četiri koje su sada dobre, pa se za
+   jednu sliku ne isplati.
 
 ### Tri prazne kartice ostaju prazne
 
