@@ -3876,6 +3876,19 @@ više nisu vezani ni za jednu stranicu, ali **ostaju u repou**. Taj posao je i
 dalje upotrebljiv ako se ikad pređe na poseban uspravni video za telefon —
 kadrovi su iz snimka, u odnosu 0,4615, i nisu makro.
 
+**Propust uhvaćen odmah posle:** `styles.css` je izmenjen, a `?v=` nije dignut.
+Konvencija projekta je da se broj diže pri svakoj izmeni CSS-a (12.0 → 12.3 →
+… → 13.0), upravo zato što pregledač inače servira keširanu verziju. Simptom je
+bio da se pri prebacivanju na mobilni prikaz vidi makro slika sve dok se
+stranica ne osveži — stari `styles.css` nije imao pravilo `contain`.
+
+Dignuto na `?v=13.1` **na svih sedam stranica**, ne samo na naslovnoj; sve
+učitavaju isti `styles.css`.
+
+Provereno lokalno, sa svežim CSS-om: prelazak sa 1440 na 390 **bez osvežavanja**
+menja `object-fit` sa `cover` na `contain` i `transform` sa `scale(1.025)` na
+`none`, odmah. Dakle kod je bio ispravan, falila je samo nova verzija fajla.
+
 ### Zamke, izmereno
 
 - **`ffmpeg` u `while read` petlji guta stdin** i pojede preostale redove ulaza —
