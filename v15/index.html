@@ -263,7 +263,6 @@
             poster="assets/images/hero-poster-v8.jpg"
             data-hero-video
           >
-            <source src="assets/media/hero-loop-v8.mp4" type="video/mp4" />
           </video>
           <script>
             (function () {
@@ -274,19 +273,22 @@
                 poster: 'assets/images/hero-poster-v8.jpg',
                 html: '<source src="assets/media/hero-loop-v8.mp4" type="video/mp4">'
               };
+              // Mobilni hero je SAMO poster, bez <source>. Razlog je u
+              // README-u: 776 kB naspram 52 kB za vecinu iPhone-a, a video je
+              // pozadina ispod naslova, ne sadrzaj. Desktop zadrzava video.
               var mobilni = {
                 poster: 'assets/images/hero-poster-v10-mobile.jpg',
-                html:
-                  '<source src="assets/media/hero-loop-v10-mobile-av1.mp4" type="video/mp4; codecs=av01.0.08M.08">' +
-                  '<source src="assets/media/hero-loop-v10-mobile.mp4" type="video/mp4">'
+                html: ''
               };
-              // HTML vec nosi desktop izvor, pa se na desktopu nista ne prepisuje
-              var tekuci = 'desktop';
+              // <video> je prazan u HTML-u, pa mobilni nikad ne krene po desktop fajl.
+              // Izvor upisuje skript, na obe strane.
+              var tekuci = null;
               function primeni() {
                 var zeljeni = mq.matches ? 'mobilni' : 'desktop';
                 if (zeljeni === tekuci) return;
                 tekuci = zeljeni;
                 var c = mq.matches ? mobilni : desktop;
+                if (!c.html) v.pause();
                 v.poster = c.poster;
                 v.innerHTML = c.html;
                 v.load();
@@ -294,6 +296,7 @@
               primeni();
               if (mq.addEventListener) mq.addEventListener('change', primeni);
               else if (mq.addListener) mq.addListener(primeni);
+              window.addEventListener('resize', primeni, { passive: true });
             })();
           </script>
           <div class="hero-media-wash"></div>
