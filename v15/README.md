@@ -3688,3 +3688,97 @@ Dve zamke pri renderovanju, za sledeći put:
   pa ni sidro (`#usluge`) ni `scrollIntoView` ne pomažu. Rešeno tako što
   privremeni lokalni server ubaci skript koji sakrije sekcije **iznad** ciljne
   i ugasi `motion-ready` (bez toga `.reveal` ostaje na `opacity: 0`).
+
+## Mobilni hero video v9 — format ispravljen, kadrovi iz fotografija (14.09.2026)
+
+Prijava: na telefonu su kadrovi u makro planu. Ista prijava vođena je kao
+rešena u `v14` („Mobilni hero video — napravljen iz originala"), pa se vratila.
+
+### Zašto se vratila
+
+`v14` README, red 3236: pri prelasku na v8 **kadrovi 2–4 su izvučeni direktno**
+iz `hero-loop-v7-mobile.mp4`, a iz originala je sveže rađen samo kadar 1.
+Popravka iz v7 dakle nije bila preneta na sve kadrove.
+
+### Dva merenja koja su promenila plan
+
+**1. Format je gubio petinu kadra.** Okvir hera na telefonu izmeren na pet
+veličina: 360×800 → 0,450 · 390×844 → 0,462 · 414×896 → 0,462 · 430×932 →
+0,461 · 360×640 → 0,523. Video je bio 900×1600 (0,5625), pa je `object-fit:
+cover` odsecao **18% širine**, a `transform: scale(1.025)` još ~2,4%. Petina
+kodiranog kadra se nikad nije videla.
+
+**2. Original ne može da nahrani strukturu 4/5/5/4.** `E:\Lokomoto\lokomoto 1.3
+2.mp4` nije sirov materijal nego montiran promo: **53 reza u 62 s, prosečan
+kadar 1,15 s**. Najduži neprekidan kadar je 3,68 s i postoji jedan jedini.
+Kadrovi od 4–5 s se iz njega ne mogu iseći — to je i razlog zašto je ranija
+sesija prekopirala kadrove umesto da ih seče iznova.
+
+**Geometrija, da se ne bi ponovo pokušavalo:** iz kadra 16:9 prozor odnosa
+0,4615 po punoj visini je **498 px širine — 26% kadra**, bez obzira na rez.
+Promena formata ne proširuje kadar, nego samo prestaje da baca 18% piksela.
+Kodiranje na 1080×2340 bilo bi dizanje tih 498 px za 2,17× — veći fajl, nijedan
+novi detalj. Zato je izlaz **720×1560** (isti odnos 0,4615).
+
+### Rešenje: Ken Burns iz fotografija
+
+Iz uspravne fotografije 4000×5873 prozor 0,4615 zadržava **58–69% širine kadra**
+umesto 26%, i ne diže se nijedan piksel. Rađeno po skillu `miran-hero-video`,
+struktura mirovanje → dodir → vođen pokret → sloboda:
+
+| Kadar | Izvor | Trajanje | Pokret |
+|---|---|---|---|
+| 1 mirovanje | `L-8` terapijska soba | 4 s | prilaz 1,000 → 1,090 |
+| 2 dodir | `L-60` rad na leđima | 5 s | prilaz 1,000 → 1,100 + klizanje desno |
+| 3 vođen pokret | `L-38` testiranje kolena | 5 s | 1,020 → 1,100 + klizanje levo |
+| 4 sloboda | `L-17` čekaonica | 4 s | povlačenje 1,100 → 1,000 |
+
+Prelivi 0,6 s, ukupno **16,2 s** (bilo 15,6 s).
+
+**Bez `zoompan`**, kako skill i traži. Svaki frejm je zaseban `crop` u punoj
+rezoluciji fotografije, pa `scale` na 720 px — jedan izvorni piksel je ~0,27
+izlaznih, dakle rez je efektivno subpikselski i bez Pythona, koga na ovoj
+mašini nema (WindowsApps stub koji ne radi; ni `sharp` za Node). Provera na
+drhtanje: **0 promena smera** po obe ose, najveći skok 0,53 izlaznih piksela.
+
+Svetlina izjednačena gamom pre spajanja (kadar 1 YAVG 117 → gama 1,180; kadar 2
+141 → 1,026; kadar 3 137 → 1,079; kadar 4 141 → 1,024), pa isti grading kao v8
+(`saturation=0.82:contrast=0.96:brightness=0.01`) uz `gamma=1.059` da ukupan
+YAVG padne na 145,6 — v8 mobilni je bio 143,3, a CSS filter je na njega naštelovan.
+Kadar 1 ostaje najtiši (137), kadar 4 najsvetliji (150), pa petlja ne bode oko.
+
+### Fajlovi i težina
+
+| | Bilo | Sada |
+|---|---|---|
+| mobilni video | 2126 kB, 900×1600, H.264 | **335 kB**, 720×1560, AV1 |
+| fallback | — | 965 kB, 720×1560, H.264 |
+| poster | 900×1600 | 720×1560, 92 kB |
+
+Poster je usklađen sa odnosom videa — inače bi pri zameni skočio kadar.
+
+**AV1 nije sam.** Na iPhone-u AV1 radi tek od 15 Pro, pa bi samostalan AV1
+ostavio većinu iPhone-a na posteru. Mobilni swap sada upisuje **dva izvora**:
+AV1 sa `codecs=av01.0.08M.08` (seq_level_idx 8, Main, 8-bit — pročitano iz
+fajla, ne pretpostavljeno) pa H.264 bez `codecs`. Ko ne ume AV1, pređe na drugi.
+
+Desktop ostaje na `v8` i nije diran. Stari `v8` mobilni fajlovi nisu brisani.
+
+### Provereno
+
+Na 360×800, 390×844 i 430×932, u više vremenskih tačaka — ne samo u prvom
+kadru, jer je baš tu prethodna popravka stala. Od videa se sada vidi **100%
+širine** umesto 82%. U pregledaču potvrđeno: bira se AV1 izvor, video svira,
+720×1560, 16,2 s, bez greške; desktop i dalje učitava `hero-loop-v8.mp4`.
+
+### Zamka za sledeći put
+
+`ffmpeg` u `while read` petlji **guta stdin** i pojede preostale redove ulaza —
+prvi prolaz je tiho preskočio kadrove 2 i 4. Rešenje je `ffmpeg -nostdin`.
+
+### Ostaje otvoreno
+
+`preload="auto"` stoji na zajedničkom `<video>` elementu, dakle važi i za
+desktop, gde je fajl 2233 kB. Za mobilni to više nije skupo (335 kB), ali je za
+desktop i dalje pun fajl pre bilo kakve interakcije. Nije menjano jer izlazi iz
+opsega ovog zadatka.
