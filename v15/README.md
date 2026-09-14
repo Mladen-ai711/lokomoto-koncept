@@ -3542,3 +3542,88 @@ piši jedan regex koji treba da pogodi pravi.
 
 Provereno posle: 2 bloka, `MedicalClinic` i `FAQPage`, oba validan JSON,
 14 učitavanja bez greške.
+
+## Fotografije uslužnih stranica iz originala (14.09.2026)
+
+Prva sesija koja radi **lokalno**, pa je `E:\Lokomoto` konačno dostupan.
+Dotad su isečci rađeni iz već izvezenih `.webp` fajlova — biran je položaj
+isečka, ne kadar. Sada je birano iz originala (4000×5000 do 4000×6000),
+alatom `ffmpeg` (ImageMagick nije na sistemu).
+
+### Šta je bilo pogrešno
+
+Merio sam pojavljivanja, ne utisak:
+
+| Slika | Gde se ponavljala |
+|---|---|
+| `assessment.webp` (test ramena) | hero dijagnostike · koraci fizikalne · koraci kineziterapije · 2× naslovna |
+| `manifesto.webp` | očekivanje fizikalne · očekivanje manualne · hero postoperativne |
+
+Uz to su `assessment.webp`, `manuelno-testiranje.webp` i `panel-dijagnostika.webp`
+bila **tri isečka istog kadra ramena**.
+
+**Ispravka ranije beleške:** NASTAVAK je tvrdio da „slika uz korake na
+dijagnostici ne prikazuje ultrazvuk". Nije tačno — `uz-pregled.webp` je
+isečak `L-32` i prikazuje sondu na kolenu sa nalazom na monitoru. Pogrešan
+je bio **hero** te stranice, koji je nosio test ramena.
+
+### Zamene
+
+| Slot | Bilo | Sada | Izvor |
+|---|---|---|---|
+| dijagnostika / hero | `assessment` | `pregled-koleno.webp` 1280×1600 | `L-40` |
+| fizikalna / koraci | `assessment` | `merenje-koleno.webp` 1280×1600 | `L-38` |
+| fizikalna / očekivanje | `manifesto` | `soba-terapija.webp` 1280×720 | `L-8` |
+| kineziterapija / koraci | `assessment` | `merenje-rame.webp` 1280×1600 | `L-45` |
+| manualna / očekivanje | `manifesto` | `iastm-sirok.webp` 1280×720 | `L-64` |
+| naslovna / panel dijagnostike | isečak ramena | `panel-dijagnostika.webp` 1280×960 | `L-40` |
+
+Posle ovoga se **nijedna fotografija ne ponavlja između stranica usluga**.
+`assessment.webp` ostaje samo na naslovnoj, uz korak „testiramo", gde test
+ramena i jeste tačan prikaz. `manifesto.webp` ostaje samo na herou
+postoperativne.
+
+`L-78`–`L-80` (terapeut i pacijent u sali) razmotreni su za korake
+kineziterapije i **odbačeni**: to je postavljanje elektroda, isti prizor kao
+hero te iste stranice.
+
+### Dve greške nađene usput
+
+**1. Naslov je tvrdio sedam procedura, a ima ih šest.** `v13` je imao karticu
+Magnetoterapija, `v14` ju je uklonio, naslov je ostao. Klijent je potvrdio da
+centar **ne radi magnetoterapiju**, pa je naslov promenjen u
+„**Šest procedura.**" Kartica se ne vraća.
+
+**2. Pregled panela na naslovnoj nije se poklapao sa aktivnom stavkom.**
+`activateService` u `app.js` izlazi odmah ako stavka već ima `is-active`, pa
+se za dijagnostiku `updatePreview` nikad ne pozove pri učitavanju — pregled je
+ostajao na `src` iz HTML-a (`assessment.webp`), a tek posle prelaza mišem na
+drugu stavku i nazad prikazao bi `panel-dijagnostika.webp`. Uz to je `<img>`
+deklarisao `width="1280" height="1600"` (4:5), a **sve** panel slike su 4:3 —
+pa je okvir menjao odnos čim JS zameni sliku. Sada početni `src`, `alt` i
+dimenzije odgovaraju aktivnoj stavci (`panel-dijagnostika.webp`, 1280×960).
+
+### Tri prazne kartice ostaju prazne
+
+Provereno ponovo, sad na originalima: nema kadra sa magnetoterapijom,
+krioterapijom ni limfnom drenažom. Dva aparata koja izdaleka liče su
+identifikovana sa uvećanja: **`L-5` je Triton** (natpis TRITON, Chattanooga
+Group), **`L-16` je Medestec MP 50** („Medical Technology", poruka na ekranu
+„Please connect plate return") — tecar, ne magnet. `L-13`/`L-14` su vakuum
+čaše, a vakuum terapija nije na spisku procedura.
+
+### Provera
+
+Svih 6 mesta renderovano headless Chrome-om na **1440** i **390 px**, isečeno
+na nivou sekcije da se vidi slika **u kartici**, ne kao samostalna fotografija.
+Renderi su u `_backups/render-20260914/`.
+
+Dve zamke pri renderovanju, za sledeći put:
+
+- **Hero je `100vh`.** Sa visokim prozorom (radi snimanja cele strane) hero
+  naraste na visinu prozora i pogura sve ispod — koordinate izmerene u
+  normalnom prozoru više ne važe. Pogađa samo naslovnu.
+- **Headless `--screenshot` snima od vrha dokumenta**, bez obzira na skrol,
+  pa ni sidro (`#usluge`) ni `scrollIntoView` ne pomažu. Rešeno tako što
+  privremeni lokalni server ubaci skript koji sakrije sekcije **iznad** ciljne
+  i ugasi `motion-ready` (bez toga `.reveal` ostaje na `opacity: 0`).

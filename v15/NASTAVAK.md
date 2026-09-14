@@ -41,7 +41,7 @@ https://claude.ai/code/artifact/f1231573-a16f-4397-b4ac-fd47cadac04c
 ## Stanje
 
 **v15 je samostalan.** Ne vuče resurse iz `v8/`, `v11/` ni `v12/` kao v14.
-Sve je u `v15/assets/` — 27 slika, 2 videa, 4 fonta — plus `styles.css`
+Sve je u `v15/assets/` — 32 slike, 2 videa, 4 fonta — plus `styles.css`
 i `favicon.svg`.
 
 **SEO faza 0 je gotova:**
@@ -83,25 +83,26 @@ Ne preispitivati bez novog razloga.
 
 ## Šta je sledeće, po prioritetu
 
-### 1. Fotografije — traži `E:\Lokomoto`
+### 1. Fotografije — URAĐENO 14.09.2026
 
-U v15 se **iste slike ponavljaju preko stranica usluga**, što README vodi
-kao privremeno. Slika uz korake na dijagnostici ne prikazuje ultrazvuk.
-Tri kartice metoda (magnetoterapija, krioterapija, limfna drenaža) su
-prazne jer tih kadrova nema ni na jednom od 104 snimka.
+Rešeno u prvoj lokalnoj sesiji, iz originala u `E:\Lokomoto`. Nijedna
+fotografija se više **ne ponavlja između stranica usluga**. Šest slotova je
+dobilo nove isečke (`L-40`, `L-38`, `L-8`, `L-45`, `L-64`); pun spisak sa
+izvorima je u `README.md`, odeljak „Fotografije uslužnih stranica iz
+originala".
 
-Traže se:
+Usput ispravljeno: naslov „Sedam procedura" → „**Šest procedura**" (klijent
+potvrdio da magnetoterapije nema), i početna slika pregleda panela na
+naslovnoj koja se nije poklapala sa aktivnom stavkom.
 
-| Za šta | Kadar |
-|---|---|
-| Dijagnostika | ultrazvučna sonda na kolenu + monitor |
-| Manualna terapija | manuelno testiranje kolena i ramena; IASTM alati |
-| Kineziterapija | širok kadar sale |
+**Tri kartice i dalje ostaju bez fotografije** — magnetoterapija (više i ne
+postoji kao kartica), krioterapija, limfna drenaža. Provereno i na
+originalima: tih kadrova nema. `L-5` je Triton, `L-16` je Medestec MP 50
+(tecar). Ne popunjavati „sličnom" slikom.
 
-Panel isečci su rađeni iz već izvezenih `.webp` fajlova, dakle biran je
-**položaj isečka, ne kadar**. Sa originalima se to može uraditi kako treba.
-Ciljni odnos za panel je **4:3** — karta menja oblik sa širinom ekrana
-(0,89 na 1440 px, 1,51 na 1000 px), pa 4:3 preživi oba.
+**Ranija tvrdnja da „slika uz korake na dijagnostici ne prikazuje ultrazvuk"
+bila je netačna** — `uz-pregled.webp` (`L-32`) prikazuje sondu na kolenu i
+nalaz na monitoru. Pogrešan je bio hero te stranice; zamenjen je.
 
 ### 2. Faza 1 — objava bez gubitka
 
@@ -143,7 +144,8 @@ Adresa je potvrđena (samo Autokomanda), pa ovo više ništa ne blokira.
 **Odgovoreno:** lokacija (samo Autokomanda), parking (ispred zgrade).
 
 **Poslato, čeka se:** radno vreme · telefon 063 687 460 · godina osnivanja
-(2016 ili 2013) · Facebook stranica · način plaćanja · fotografije ·
+(2016 ili 2013) · Facebook stranica · način plaćanja · fotografije krioterapije
+i limfne drenaže (jedino što još fali) ·
 ultrazvuk (posebno ili uračunat) · trajanje kineziterapije.
 
 **Nije slato:** izjave pacijenata. Traži da Novak lično pita ljude za
