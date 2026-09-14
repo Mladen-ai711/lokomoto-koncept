@@ -3589,10 +3589,16 @@ hero te iste stranice.
 
 ### Dve greške nađene usput
 
-**1. Naslov je tvrdio sedam procedura, a ima ih šest.** `v13` je imao karticu
-Magnetoterapija, `v14` ju je uklonio, naslov je ostao. Klijent je potvrdio da
-centar **ne radi magnetoterapiju**, pa je naslov promenjen u
-„**Šest procedura.**" Kartica se ne vraća.
+**1. Naslov je tvrdio sedam procedura, a ima ih šest.** U mreži zaista stoji
+sedam `<article class="method">`, ali sedma („Ne morate da znate") je **poziv
+na akciju, ne procedura** — stvarnih procedura ima šest. Naslov je napisan dok
+je sedma kartica bila **Magnetoterapija**. Klijent je tražio da se izbaci,
+kartica je uklonjena u `v14`, a naslov nije prepravljen uz nju — pa je netačna
+brojka stajala i u `v14` i u `v15`. Sada je „**Šest procedura.**"
+
+Brojka, dakle, nije pala zato što centar ne radi magnetoterapiju; pala je zato
+što je naslov ostao da broji karticu koje odavno nema, a sedmu karticu koja
+postoji broji kao proceduru iako to nije. Kartica se ne vraća.
 
 **2. Pregled panela na naslovnoj nije se poklapao sa aktivnom stavkom.**
 `activateService` u `app.js` izlazi odmah ako stavka već ima `is-active`, pa
@@ -3602,6 +3608,49 @@ drugu stavku i nazad prikazao bi `panel-dijagnostika.webp`. Uz to je `<img>`
 deklarisao `width="1280" height="1600"` (4:5), a **sve** panel slike su 4:3 —
 pa je okvir menjao odnos čim JS zameni sliku. Sada početni `src`, `alt` i
 dimenzije odgovaraju aktivnoj stavci (`panel-dijagnostika.webp`, 1280×960).
+
+**Odakle pogrešne dimenzije:** `width` i `height` su na taj `<img>` dodati u
+**SEO fazi 0**, zbog CLS-a, i pročitani iz fajla koji je tada stajao u `src`-u
+— bez provere da JS tu sliku menja u letu. Atribut je zato opisivao samo prvu
+sliku, ne i one koje dolaze posle nje. Pouka: pre nego što se `width`/`height`
+prepišu sa diska, proveri da li išta menja `src` u toku rada stranice.
+
+### Kartica panela menja odnos sa širinom — slika mora da to preživi
+
+Izmereno na šest širina. Kartica nije samo manja ili veća: ona se **preokreće
+iz uspravne u položenu**, pa `object-fit: cover` odseca čas bokove, čas vrh i
+dno.
+
+| Širina | Kartica | Odnos | Od slike se vidi |
+|---|---|---|---|
+| 1440 | 669×752 | 0,89 | 67% širine |
+| **1200** | 566×752 | **0,75** | **56% širine** ← najuže |
+| 1000 | 920×608 | 1,51 | 88% visine |
+| **860** | 791×608 | **1,30** | **98% širine** ← najšire |
+| 720 | 680×496 | 1,37 | 97% visine |
+| 390 | 350×432 | 0,81 | 61% širine |
+
+Odnos ide od 0,75 do 1,51 — **duplo**. Zato se slika za ovaj panel ne bira po
+tome kako izgleda na 1440.
+
+**Šta iz toga sledi za sadržaj slike:** `cover` seče **simetrično oko centra**.
+Sve što treba da se vidi na svakoj širini mora da stane u **srednjih 56%**
+širine slike. Predmet uz ivicu kadra nestaje prvi.
+
+Isprobana su četiri isečka iz `L-40`, svaki renderovan u kartici: 3400 px,
+3800 px, 4000 px (pun kadar) i jedan uži kod koga je desna strana odsečena da
+bi se aparat pomerio ka sredini. **Na 1200 sva četiri izgledaju isto** — od
+ultrazvučnog aparata ostaje bleda mrlja gore levo. Razlog je što aparat u
+`L-40` stoji uz samu levu ivicu, pa ga svaki simetričan rez pojede; uži isečak
+ga ne spasava nego samo uveća koleno.
+
+Uzet je **pun kadar (4000 px)**: na 860, 1000 i 720 px aparat se vidi ceo, na
+1440 delimično, a na 1200 i 390 ne vidi se ni kod jedne varijante — pa tu ništa
+i ne gubi u odnosu na uže isečke. Kartica na tim širinama nosi krupan plan
+kolena sa rukama terapeuta, što je i dalje tačan prikaz pregleda.
+
+Ako se ikad bude tražilo da se aparat vidi i na 1200, to se ne rešava isecanjem
+nego **drugim kadrom** — treba snimak na kome aparat stoji bliže sredini.
 
 ### Tri prazne kartice ostaju prazne
 

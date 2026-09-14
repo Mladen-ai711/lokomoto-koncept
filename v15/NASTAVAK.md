@@ -91,9 +91,11 @@ dobilo nove isečke (`L-40`, `L-38`, `L-8`, `L-45`, `L-64`); pun spisak sa
 izvorima je u `README.md`, odeljak „Fotografije uslužnih stranica iz
 originala".
 
-Usput ispravljeno: naslov „Sedam procedura" → „**Šest procedura**" (klijent
-potvrdio da magnetoterapije nema), i početna slika pregleda panela na
-naslovnoj koja se nije poklapala sa aktivnom stavkom.
+Usput ispravljeno: naslov „Sedam procedura" → „**Šest procedura**", i početna
+slika pregleda panela na naslovnoj koja se nije poklapala sa aktivnom stavkom.
+Naslov je brojao magnetoterapiju, koja je izbačena još u `v14`, a sedmu karticu
+(„Ne morate da znate", poziv na akciju) brojao je kao proceduru. Razlog nije
+bio u tome šta centar radi, nego u tome šta na stranici stvarno piše.
 
 **Tri kartice i dalje ostaju bez fotografije** — magnetoterapija (više i ne
 postoji kao kartica), krioterapija, limfna drenaža. Provereno i na
