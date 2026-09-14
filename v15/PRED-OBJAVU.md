@@ -71,7 +71,6 @@ i `<span class="ph-note">`, a tekst ostaje.
 
 | Fajl | Linija | Pitanje |
 |---|---|---|
-| `index.html` | ~998 | **Jedino stvarno prazno.** Kakav je parking — ispred zgrade ili u okolnim ulicama? |
 | `usluge/dijagnostika/` | ~374 | Da li ultrazvučni pregled ulazi u cenu pregleda specijaliste ili se plaća posebno? |
 | `usluge/kineziterapija/` | ~422 | Trajanje termina: cenovnik kaže 60 i 60+ min, panel je govorio 45–60. Šta važi? |
 | `usluge/kineziterapija/` | ~476 | Vežbe za kuću — daju li se, i od kog trenutka? |
@@ -80,16 +79,18 @@ i `<span class="ph-note">`, a tekst ostaje.
 | `usluge/postoperativna-.../` | ~389 | Postoperativna nema svoju grupu u cenovniku. Važe li cene terapijskog dana i REHAB paketa? |
 | `usluge/postoperativna-.../` | ~428 | Potvrditi opis saradnje sa hirurgom. |
 
-> **Parking blokira i strukturirane podatke.** Pitanje „Gde ste i ima li
-> parkinga?" je izostavljeno iz `FAQPage` sheme, jer bi se `[Popuniti: …]`
-> objavilo kao strukturirani podatak. Kad se popuni, vratiti ga — biće
-> 10 pitanja umesto 9.
+> **Parking — REŠENO 13.09.** Novak je potvrdio: parking je ispred zgrade.
+> Tekst je popunjen, a pitanje „Gde ste i ima li parkinga?" vraćeno u
+> `FAQPage` shemu. Shema sada nosi svih 10 pitanja.
+>
+> Naslovna više nema nijedno nepopunjeno mesto. Preostalih **sedam** je na
+> uslužnim stranicama.
 
 ### 6.2 Podaci koji se ne slažu između izvora
 
 | Podatak | Verzije u opticaju | Šta je upisano u shemu |
 |---|---|---|
-| **Adresa** | Tabanovačka 27b (Autokomanda) · Gen. Lj. Milića 3/2 (Stepa Stepanović) | Tabanovačka 27b |
+| **Adresa** | ~~dve adrese~~ — **REŠENO 13.09:** samo Tabanovačka 27b, Autokomanda | Tabanovačka 27b ✓ |
 | **Radno vreme** | 08–20 (sajt) · 09–21 (stari sajt) · 09–20 (portali) | 08–20, Sub 09–14 |
 | **Telefon** | 011/40 95 924 · 063 687 460 (Stetoskop) | samo 011 broj |
 | **Godina osnivanja** | 2016 · 2013 (deo izvora) | 2016 |
@@ -97,9 +98,22 @@ i `<span class="ph-note">`, a tekst ostaje.
 Upisano je ono što v15 sam tvrdi. **Ako je bilo šta od ovoga netačno, ispravlja
 se i u tekstu i u `MedicalClinic` shemi na naslovnoj.**
 
-Najhitnije je pitanje adrese: dve adrese pod istim imenom i telefonom prave
-duplirani Google profil. Ako stari profil postoji, **ne sme se obrisati** —
-ide „Move business" ili spajanje, inače nestaju sve postojeće recenzije.
+### Adresa — potvrđeno, ali posao tek počinje
+
+Novak je potvrdio 13.09. da centar radi **samo na Autokomandi**. Sajt i sheme su
+time tačni i ovo više ne blokira ništa.
+
+Ali stara adresa (Gen. Lj. Milića 3/2, Stepa Stepanović) i dalje stoji na
+najmanje četiri mesta i u samom nazivu Facebook stranice. **To se sada ispravlja,
+i to ovim redom:**
+
+1. **Prvo Google profil.** Ako postoji stari listing na Stepi Stepanoviću, ne sme
+   se obrisati — ide „Move business" ili spajanje, inače nestaju sve recenzije
+   koje je centar zaradio.
+2. Tek kad Google prihvati novu adresu, idu ostali imenici (Hipokratija,
+   PlanPlus, Mirandre, fiz.ioi.rs) — obrnutim redom bi se posao radio dvaput.
+3. Facebook stranica: slug `/lokomotostepastepanovic/` nosi ime stare lokacije.
+   Proveriti da li se može preimenovati.
 
 ### 6.3 Politika privatnosti
 

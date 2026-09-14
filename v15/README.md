@@ -3514,3 +3514,31 @@ bar jedan JSON-LD blok, OG prisutan, `noindex` na mestu, nijedna slika bez
 `width`/`height`, nijedna puknuta, bez horizontalnog pomeranja, bez JS grešaka.
 
 Svih 8 JSON-LD blokova prolazi `json.loads()`.
+
+## Novakovi odgovori, prvi krug (13.09.2026)
+
+**Lokacija:** samo Autokomanda. Stara adresa na Stepi Stepanoviću više nije u
+upotrebi. Sajt i `MedicalClinic` shema su time potvrđeni kao tačni — ništa se
+nije menjalo, samo je nestala sumnja.
+
+**Parking:** ispred zgrade. Popunjeno na `index.html`, i pitanje „Gde ste i ima
+li parkinga?" je vraćeno u `FAQPage` — shema sada nosi svih **10** pitanja
+umesto 9.
+
+**Naslovna više nema nijedno nepopunjeno mesto.** Preostalo je sedam oznaka
+`ZA POTVRDU`, sve na uslužnim stranicama: dijagnostika 1, kineziterapija 2,
+manualna 2, postoperativna 2.
+
+### Greška uhvaćena na proveri, ne u kodu
+
+Prvi pokušaj zamene `FAQPage` bloka koristio je regex `[^\0]*?` koji je zahvatio
+**oba** `ld+json` bloka na naslovnoj i obrisao `MedicalClinic`. Brojanje blokova
+posle izmene javilo je 1 umesto 2. Fajl je vraćen iz gita, a zamena ponovljena
+tako što se blokovi prvo nabroje pojedinačno pa se menja samo onaj koji sadrži
+`"FAQPage"`.
+
+Pouka: kod zamene jednog od više istovrsnih blokova, nabroj ih pa biraj — ne
+piši jedan regex koji treba da pogodi pravi.
+
+Provereno posle: 2 bloka, `MedicalClinic` i `FAQPage`, oba validan JSON,
+14 učitavanja bez greške.
