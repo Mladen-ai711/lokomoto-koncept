@@ -108,18 +108,23 @@ nalaz na monitoru. Pogrešan je bio hero te stranice; zamenjen je.
 
 ### 2. Faza 1 — objava bez gubitka
 
-Stari `lokomoto.rs` ima **36 indeksiranih stranica**, novi sajt ima 7.
-Migracija „kako jeste" gubi većinu onoga što centar danas ima u pretrazi.
+**Mapa migracije je napravljena 15.09**, popisana direktno sa živog `lokomoto.rs`.
+Puna verzija je u `PRED-OBJAVU.md`, odeljak 9. Ukratko:
 
-- 301 mapa (puna verzija u SEO planu)
-- **`/portfolio/*` stranice po tegobama se u fazi 1 NE migriraju** —
-  301 sa stranice o tegobi na opštu uslugu Google tretira kao soft-404.
-  Ostaju žive dok se u fazi 2 ne prepišu.
-- Nedostaju kao URL: `/cenovnik/`, `/kontakt/`, `/o-nama/`, `/tim/`,
-  `/politika-privatnosti/`. Sadržaj za prve četiri već postoji na
-  naslovnoj, zarobljen u sidrima koja ne mogu da rangiraju.
-- **GitHub Pages ne ume 301 redirekcije**, a one su obavezne.
-  Preporuka: Cloudflare Pages.
+- Stari sajt ima **41 adresu** u mapi sajta, plus `/blog/` i tri `/author/…` koje u
+  mapi nisu. Ranija beleška je govorila o 36.
+- **Sedam stranica se poklapa** i migrira bez ijednog preusmerenja — ali samo ako
+  v15 spusti uslužne stranice iz `/usluge/ime/` u `/ime/` i preimenuje
+  `manualna-terapija` u `manuelna-terapija`.
+- **Ispravka:** ranije je pisalo „četiri od pet uslužnih stranica". Provereno na
+  živom sajtu — **svih pet postoji**, uključujući `/fizikalna-terapija/`.
+- **16 stranica po tegobama i 5 članaka ostaju žive i nedirnute.** Preusmerenje sa
+  tegobe na opštu uslugu pretraživač čita kao brisanje.
+- **Četiri stranice nedostaju** novom sajtu: `/o-nama/`, `/cenovnik/`, `/kontakt/`,
+  `/tim/`. Tekst postoji na naslovnoj, zarobljen u sidrima.
+- `/footer/`, `/hvala/` i `/author/…` su smeće u pretrazi — zabraniti indeksiranje.
+- **GitHub Pages ne ume preusmerenja.** Prelazak na drugi hosting je prvi korak,
+  sve ostalo zavisi od njega. Preporuka: Cloudflare Pages.
 
 ### 3. Faza 2 — stranice po tegobama
 

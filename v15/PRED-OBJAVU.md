@@ -150,3 +150,125 @@ imenom. U futeru je ostao samo Instagram.
 - **Hosting.** GitHub Pages ne ume 301 redirekcije, a one su za migraciju
   obavezne. Preporuka: Cloudflare Pages.
 - **Stranice po tegobama** — najveći dugoročni dobitak, cela faza 2.
+
+---
+
+## 9. Mapa migracije — popisano sa živog starog sajta (15.09.2026)
+
+Popis je urađen **direktno sa `lokomoto.rs`**, iz njegove mape sajta, a ne iz
+ranijih beleški. Stari sajt je WordPress sa Yoast dodatkom, mapa je podeljena na
+četiri dela.
+
+### Šta stari sajt stvarno ima
+
+| Deo | Broj adresa |
+|---|---|
+| stranice | 19 |
+| tegobe (`/portfolio/`) | 16 |
+| članci | 5 |
+| kategorija tegoba | 1 |
+| **ukupno u mapi sajta** | **41** |
+
+Uz to postoje i adrese **koje nisu u mapi sajta**: `/blog/` (spisak članaka) i tri
+autorske stranice `/author/…`. Ranija beleška je govorila o 36 stranica; stvarno
+stanje je 41 plus te dodatne.
+
+### A. Sedam stranica koje se poklapaju — nula preusmerenja
+
+Stari i novi sajt imaju istu stranicu; treba samo da budu na **istoj adresi**.
+
+| Stara adresa | Nova stranica |
+|---|---|
+| `/` | naslovna |
+| `/usluge/` | `/usluge/` |
+| `/dijagnostika/` | dijagnostika |
+| `/fizikalna-terapija/` | fizikalna terapija |
+| `/kineziterapija/` | kineziterapija |
+| `/manuelna-terapija/` | manualna terapija |
+| `/postoperativna-rehabilitacija/` | postoperativna |
+
+**Ispravka ranije beleške:** stajalo je „četiri od pet uslužnih stranica". Provereno
+na živom sajtu — **svih pet postoji**, uključujući `/fizikalna-terapija/`.
+
+Da bi ovo prošlo bez ijednog preusmerenja, v15 mora dve stvari:
+
+1. **Spustiti uslužne stranice iz `/usluge/ime/` u `/ime/`.** Sada su na
+   `/usluge/dijagnostika/`, a stari sajt rangira na `/dijagnostika/`.
+2. **Preimenovati `manualna-terapija` u `manuelna-terapija`.** Razlika je jedno
+   slovo, ali za pretraživač je to druga adresa, a stara rangira.
+
+Alternativa je zadržati `/usluge/ime/` i postaviti pet preusmerenja. Radi, ali se
+deo snage gubi na svakom skoku. **Preporuka je spuštanje.**
+
+### B. Stranice koje nemaju svoj par — preusmerenje
+
+| Stara adresa | Kuda | Napomena |
+|---|---|---|
+| `/triton-dts/` | `/fizikalna-terapija/` | aparat je opisan tamo |
+| `/indiba-nov-nacin-rehabilitacije/` | `/fizikalna-terapija/` | isto |
+| `/neubie/` | `/fizikalna-terapija/` | isto |
+| `/neufit-neubie/` | `/fizikalna-terapija/` | isto; dve adrese za isti aparat |
+| `/medicinski-fitnes/` | `/kineziterapija/` | najbliža usluga na novom sajtu |
+| `/o-nama-2/` | `/o-nama/` | **nova stranica se mora napraviti** |
+| `/cenovnik-2/` | `/cenovnik/` | **nova stranica se mora napraviti** |
+| `/kontakt/` | `/kontakt/` | **nova stranica se mora napraviti** |
+| `/besplatan-vodic/` | odluka | vodič za preuzimanje; ostaje ili ide na naslovnu |
+
+### C. Četiri stranice koje nedostaju novom sajtu
+
+`/o-nama/`, `/cenovnik/`, `/kontakt/`, `/tim/`.
+
+Sadržaj za sve četiri **već postoji** u v15, ali je zarobljen unutar naslovne kao
+odeljak sa sidrom. Takav sadržaj pretraživač ne može posebno da rangira, a stari
+sajt te adrese ima i one rangiraju.
+
+**Treba ih izvući u zasebne stranice pre objave.** To je pisanje, ne prepisivanje —
+tekst postoji.
+
+### D. Tegobe i članci — NE dirati u prvom prolazu
+
+16 stranica `/portfolio/…` i 5 članaka. To su **najvrednije adrese** jer nose reči
+kojima ljudi zaista pretražuju: „bol u leđima", „smrznuto rame", „teniski lakat".
+
+Ostaju **žive, nepromenjene**. Preusmerenje sa stranice o konkretnoj tegobi na opštu
+stranicu usluge pretraživač čita kao „ovoga više nema" i izbaci je. Bolje da stoje
+stare nego da se izgube.
+
+Prepisuju se u fazi 2 i tek tada preusmeravaju, jedna na jednu.
+
+Isto važi za `/izlecite-diskus-herniju-bez-operacije/` i
+`/portfolio_category/sta-lecimo/`.
+
+### E. Tri adrese koje uopšte ne bi trebalo da postoje
+
+| Adresa | Šta je | Šta s njom |
+|---|---|---|
+| `/footer/` | ostatak šablona, 965 znakova | skloniti iz mape sajta, zabraniti indeksiranje |
+| `/hvala/` | stranica posle slanja forme | zabraniti indeksiranje, bez preusmerenja |
+| `/author/…` (3) | autorske stranice WordPressa | zabraniti indeksiranje |
+
+Ove se ne preusmeravaju — one su smeće u pretrazi i treba ih samo skloniti.
+
+### F. Hosting
+
+Ovo gde sajt sada stoji **ne ume preusmerenja**. Nije stvar podešavanja — ta usluga
+to nema.
+
+Pre objave se mora preći na hosting koji to ume. Preporuka ostaje **Cloudflare
+Pages**: besplatan, ume preusmerenja, brz. Odluka o tome je prvi korak, jer sve
+ostalo zavisi od nje.
+
+### G. Redosled na dan objave
+
+1. Prebaciti na hosting koji ume preusmerenja
+2. Spustiti uslužne stranice u plitke adrese i preimenovati `manualna` → `manuelna`
+3. Napraviti četiri stranice koje nedostaju
+4. Postaviti spisak preusmerenja iz odeljka B
+5. Zabraniti indeksiranje za `/footer/`, `/hvala/`, `/author/…`
+6. **Tek na kraju skinuti `noindex`** sa svih sedam stranica v15
+7. Prijaviti novu mapu sajta u Search Console i pratiti dve nedelje
+
+### H. Usput, sa starog sajta
+
+Na staroj stranici dijagnostike stoji **2013** kao godina osnivanja, i odatle se
+prepisalo u imenike. Ispraviti na starom sajtu **pre** migracije, pa proći imenike.
