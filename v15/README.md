@@ -3991,3 +3991,97 @@ Traženo izričito. Tri puta:
 2. **Fajlovi** — `_backups/pre-v11-20260915-0005/` (`index.html`, `styles.css` i
    svih sedam stranica).
 3. **Stari mediji nisu brisani** — `hero-loop-v8`, `v9` i `v10` su i dalje u repou.
+
+## Desktop hero v12 — isti postupak kao mobilni (15.09.2026)
+
+Posle mobilnog, isto je urađeno i za desktop: video iz fotografija umesto starog
+snimka. Razlog nije bio izgled nego težina — stari `hero-loop-v8.mp4` je 2236 kB
+i skida se ceo pre nego što posetilac išta uradi.
+
+### Prvo provereno: da li `preload` išta menja
+
+Ne menja. Probano `preload="metadata"` umesto `auto` i **izmereno: skinuo je istih
+2233 kB**. Kad na `<video>` stoji `autoplay`, pregledač mora da povuče fajl bez
+obzira na `preload`. Vraćeno kako je bilo. Ušteda je morala da dođe iz samog fajla.
+
+### Materijal
+
+Tri od četiri fotografije su **iste kao za mobilni** — položeni isečak 16:9 iz
+uspravnih originala 4000×5873 daje 4000×2250, što je dovoljno za izlaz 2560×1440.
+
+**Samo slika 3 je snimljena iznova**, položeno. Na uspravnoj verziji terapeutkinja
+stoji uspravno a pacijent leži nisko; ta razdaljina po visini ne staje u položeni
+kadar, pa se sekla glava. Nova je `Hero slike 3 za desktop.jpg`, 4500×2533.
+
+Prva poslata verzija te slike bila je **1672×941**, dakle manja od gotovog kadra —
+odbijena. Druga je 4500×2533. Provereno da nije razvučena iz prve: isečak 1:1
+pokazuje pojedinačne vlasi kose, dok je prva razvučena mutna. **Merenje energije
+ivica tu nije pomoglo** — dalo je skoro isti broj za obe (1,553 naspram 1,503),
+jer taj način merenja loše radi na mekoj pozadini. Oko je bilo pouzdanije.
+
+### Okvir hera na desktopu
+
+Izmeren na šest veličina. Prati oblik prozora, pa ide u dve grupe:
+
+| ekran | okvir | odnos |
+|---|---|---|
+| 2560×1440 | 2545×1440 | 1,767 |
+| 1920×1080 | 1905×1080 | 1,764 |
+| 1366×768 | 1351×768 | 1,759 |
+| 1680×1050 | 1665×1050 | 1,585 |
+| 1440×900 | 1425×900 | 1,583 |
+| 1280×800 | 1265×800 | 1,581 |
+
+Uzeto **16:9**, jer pokriva širu grupu tačno; kod uže se odseca oko 5% sa strane.
+Sa `transform: scale(1.025)` ukupno oko **8% po ivicama** — tu ne sme ništa bitno.
+Naslov stoji preko **30–56% visine**, centrirano, pa sredina kadra mora da bude mirna.
+
+### Kadrovi
+
+Isti redosled kao na mobilnom. Kretanje je **po visini**, ne po širini — položeni
+isečak iz uspravne fotografije ima viška po visini, a ne sa strane.
+
+| Kadar | Izvor | Trajanje | Pokret |
+|---|---|---|---|
+| 1 | `Hero slike 1 za mobilni.jpg`, isečak sa 1811 | 4 s | prilaz 1,000 → 1,070 |
+| 2 | `Hero slike 2 za mobilni.jpg`, isečak sa 900 | 5 s | prilaz + spuštanje 260 px |
+| 3 | `Hero slike 3 za desktop.jpg` | 5 s | 1,020 → 1,090 + podizanje 120 px |
+| 4 | `Hero slike 4 za mobilni.jpg`, isečak sa 1811 | 4 s | povlačenje 1,080 → 1,000 |
+
+Prelivi 0,6 s, ukupno **16,2 s** (stari je bio 15,6 s).
+
+Kadrovi 2 i 3 ispali su znatno svetliji od 1 i 4 (YAVG 171 i 160 naspram 114 i 123)
+jer položeni isečak hvata prozor a izostavlja tamniji pod. Izjednačeno gamom pre
+spajanja, ukupno **YAVG 144,9** (stari desktop video 136,2).
+
+### Težina
+
+| | staro | v12 |
+|---|---|---|
+| video | 2236 kB | **511 kB** (AV1, 2560×1440) |
+| fallback | — | 996 kB (H.264, 1920×1080, crf 32) |
+| poster | 121 kB | 120 kB |
+| **ukupno se skida** | **2357 kB** | **631 kB** |
+
+Fallback je na 1920 a ne 2560, jer H.264 na 2560 postaje preskup; na 1920 je
+crf 32 dao 996 kB uz pad oštrine od 1,7% u odnosu na crf 28.
+
+AV1 nosi `codecs=av01.0.12M.08` (nivo pročitan iz fajla). Na mobilnom je nivo 8,
+na desktopu 12 — **nije isti broj, i ne sme se prepisati sa jedne grane na drugu.**
+
+### Provereno
+
+| | |
+|---|---|
+| desktop 1440 | `hero-loop-v12-av1.mp4`, 2560×1440, 16,2 s, skida 631 kB |
+| mobilni 390 | `hero-loop-v11-mobile-av1.mp4`, 810×1755, skida 468 kB |
+
+Nijedna strana ne povlači fajl one druge. Konzola bez grešaka.
+
+`styles.css?v=` dignut na **13.3** na svih sedam stranica.
+
+### Povratna tačka
+
+1. **Git** — stanje pre ovoga je `5139596`.
+2. **Fajlovi** — `_backups/pre-desktop-20260915-0945/`.
+3. **Stari mediji nisu brisani** — `hero-loop-v8.mp4` i `hero-poster-v8.jpg` ostaju.
