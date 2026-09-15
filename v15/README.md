@@ -4080,6 +4080,33 @@ Nijedna strana ne povlači fajl one druge. Konzola bez grešaka.
 
 `styles.css?v=` dignut na **13.3** na svih sedam stranica.
 
+### Slika 4 zamenjena namenski snimljenom — v13 (15.09.2026)
+
+Po istom obrascu kao slika 3: klijent je snimio i **`Hero slike 4 za desktop.jpg`**,
+4500×2533, položeno. Zamenjuje isečak iz uspravne verzije.
+
+Isečak je bio pretesan — sekao je pod i deo klupe, pa se hero završavao pritešnjeno.
+Nova pokazuje ceo prostor: pod, klupu, vrata. Poslednji kadar tako završava otvoreno,
+kako skill i traži, i petlja se lepše vraća na prvi kadar.
+
+Nova slika je i **svetlija** (YAVG 157,5 naspram 122,6 kod isečka), pa je gama
+korekcija okrenuta — sada se prigušuje (0,864) umesto da se diže (1,313). Ukupno
+**YAVG 145,8**.
+
+| | v12 | v13 |
+|---|---|---|
+| AV1 (2560×1440) | 511 kB | **492 kB** |
+| H.264 (1920×1080) | 996 kB | **972 kB** |
+| poster | 120 kB | 120 kB |
+| skida se | 631 kB | **610 kB** |
+
+`styles.css?v=` dignut na **13.4**. Fajlovi `v12` ostaju u repou.
+
+**Napomena o brojanju**, jer je zbunilo: `v15` je verzija **sajta**, folder u kom se
+radi. `v11`, `v12`, `v13` su verzije **video fajla** — odvojeno brojanje koje ide još
+od `v2`. Svi ti fajlovi žive unutar `v15/assets/`. Broj u imenu postoji da se stara
+verzija ne prepiše i da pregledač ne servira keširanu.
+
 ### Povratna tačka
 
 1. **Git** — stanje pre ovoga je `5139596`.
