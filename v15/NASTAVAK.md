@@ -132,8 +132,34 @@ Najveći dugoročni dobitak. Na naslovnoj je mapa tela koja **imenuje devet
 tegoba, a nijedna nije link** — sve su običan `<span>`, bez odredišne
 stranice. To su doslovno rečenice kojima ljudi pretražuju.
 
-Prvo prepisati 10 postojećih `/portfolio/` stranica u `/tegobe/`, pa tek
-onda pisati nove.
+Stari sajt ima **16 stranica po tegobama** na `/portfolio/…` (popis u
+`PRED-OBJAVU.md`, odeljak 9). Njih prepisati prve, pa tek onda pisati nove.
+
+**ODLUČENO 04.09 (Nikola) — jedna stranica, ne dve.**
+
+Pitanje je bilo da li stranice po tegobama treba da budu *čiste landing*
+stranice za reklame — bez glavnog menija, samo priča o usluzi i dugme za
+zakazivanje, da posetilac sa reklame ne luta dalje po sajtu.
+
+Nikolin odgovor: ideja nije loša, i uobičajeno rešenje je **duplikat stranice**
+— jedan primerak bez navigacije za reklame, drugi sa navigacijom za posetioce
+sa sajta. Ali **ne komplikovati sada**, razlika je sitna. Ide se sa **jednom
+stranicom koja služi i za reklame i za sajt**, sa normalnom navigacijom.
+
+Rekao je to na primeru diskus hernije, pa dodao da **isto važi za sve ostale
+usluge**.
+
+**Šta to znači za izradu:**
+
+- jedna stranica po tegobi, **sa glavnim menijem** kao i ostatak sajta
+- pošto ista stranica prima i saobraćaj sa reklama, **dugme za zakazivanje mora
+  da bude visoko i jasno**, vidljivo bez skrolovanja — čovek sa reklame ne
+  traži, on ili zakaže ili ode
+- nema duplikata, nema `noindex` verzija, nema dve adrese za isti sadržaj —
+  time otpada i rizik od duplog sadržaja u pretrazi
+
+Ako se kasnije pokaže da reklame slabo konvertuju, duplikat se uvek može
+napraviti. Obrnuto je teže.
 
 ### 4. Lokalni SEO — može odmah
 
