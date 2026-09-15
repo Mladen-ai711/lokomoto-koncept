@@ -4195,3 +4195,63 @@ vidi još manje. Ako su dve osobe razvučene preko cele širine kadra, jedna isp
 **Broj 15 je preskočen** u imenima fajlova (`v14` → `v16`) da se ne meša sa imenom
 foldera `v15`. Podsetnik: `v15` je verzija **sajta**, brojevi u imenima fajlova su
 verzije **medija**, odvojeno brojanje.
+
+### Pravi uzrok „makro" prijave — granica je bila po širini, a trebalo je po obliku (15.09.2026)
+
+Klijent je danima prijavljivao makro plan na heru. Popravljana je **mobilna
+verzija**, a on je nije ni gledao.
+
+**Otkriveno tek sa snimkom ekrana.** Gledao je u prozoru **824×1245** — uzak, ali
+**širi od 720 px**, koliko je iznosila granica za mobilnu verziju. Dakle dobijao je
+**položeni video 16:9 u uspravnom okviru**.
+
+Izmereno na toj veličini:
+
+| | |
+|---|---|
+| oblik okvira | 0,649 |
+| oblik videa | 1,778 |
+| **odsecalo se** | **63,5% širine** |
+
+To je bio makro plan. Ni fajl ni CSS nisu bili krivi — **granica je bila
+postavljena na pogrešnu meru.**
+
+**Zašto je izbor po širini pogrešan.** Okvir hera je visok koliko i prozor, pa
+njegov oblik prati oblik prozora, ne samo širinu. Prozor od 824 px je „dovoljno
+širok" po broju, a po obliku je uspravan kao telefon.
+
+**Popravka: odluka po obliku.** Granica je **0,9** — geometrijska sredina dva
+odnosa koja imamo (uspravni 0,4615 · položeni 1,778 → √(0,4615 × 1,778) = 0,906).
+
+```css
+@media (max-aspect-ratio: 9/10) { … }
+```
+```js
+var mq = window.matchMedia('(max-aspect-ratio: 9/10)');
+```
+
+Uslov je promenjen na **oba mesta** — u CSS-u i u skriptu koja bira izvor. Moraju
+da budu isti, inače CSS podešava jedan video a skript učitava drugi.
+
+**Provereno na sedam oblika prozora:**
+
+| prozor | oblik | video | vidi se širine |
+|---|---|---|---|
+| 824×1245 | 0,65 | uspravni | **100%** *(bilo 36,5%)* |
+| 390×844 | 0,46 | uspravni | 100% |
+| 768×1024 | 0,74 | uspravni | 100% |
+| 900×1000 | 0,89 | uspravni | 100% |
+| 1000×900 | 1,09 | položeni | 62% |
+| 1024×768 | 1,31 | položeni | 74% |
+| 1440×900 | 1,58 | položeni | 89% |
+
+**Pouka.** Kad se bira između dva medija različitog oblika, granica mora da bude
+po **obliku okvira**, ne po širini ekrana. Širina sama ne kaže ništa o tome kako
+će se medij uklopiti.
+
+**I još jedna, o dijagnostici.** Dva dana je popravljano ono što nije bilo u kvaru,
+jer je pretpostavljeno da klijent gleda na telefonu. **Prvo pitanje je trebalo da
+bude „na čemu gledaš i koliko je prozor širok", a ne odmah popravljati.** Snimak
+ekrana je rešio stvar za nekoliko minuta.
+
+`styles.css?v=` dignut na **13.7**.

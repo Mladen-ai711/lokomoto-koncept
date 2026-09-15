@@ -10,7 +10,7 @@
       media="(min-width: 721px)" />
     <link rel="preload" href="assets/images/hero-poster-v16-mobile.jpg" as="image"
       media="(max-width: 720px)" />
-    <link rel="stylesheet" href="styles.css?v=13.6" />
+    <link rel="stylesheet" href="styles.css?v=13.7" />
     <link rel="stylesheet" href="usluga.css?v=19.14" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <title>Fizikalna terapija i rehabilitacija Beograd | Lokomoto</title>
@@ -266,7 +266,11 @@
             (function () {
               var v = document.querySelector('[data-hero-video]');
               if (!v) return;
-              var mq = window.matchMedia('(max-width: 720px)');
+              // Odluka se donosi po OBLIKU prozora, ne po sirini. Uspravni video je
+              // 0,4615, polozeni 1,778; granica 0,9 je geometrijska sredina ta dva.
+              // Sa granicom po sirini, uzak ali visok prozor (npr. 824x1245) dobijao je
+              // polozeni video u uspravnom okviru i gubio 63% sirine kadra.
+              var mq = window.matchMedia('(max-aspect-ratio: 9/10)');
               var desktop = {
                 poster: 'assets/images/hero-poster-v14.jpg',
                 html:

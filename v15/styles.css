@@ -4567,7 +4567,7 @@ button {
    koje sada nemamo zasto da gubimo.
    ============================================================ */
 
-@media (max-width: 720px) {
+@media (max-aspect-ratio: 9/10) {
   .hero-media {
     background: var(--ink);
   }
