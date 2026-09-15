@@ -4150,3 +4150,48 @@ pokretu. Dokaz je merenje, ne render.
 1. **Git** — stanje pre ovoga je `5139596`.
 2. **Fajlovi** — `_backups/pre-desktop-20260915-0945/`.
 3. **Stari mediji nisu brisani** — `hero-loop-v8.mp4` i `hero-poster-v8.jpg` ostaju.
+
+### Makro plan na telefonu — kadar je bio usmeren na pogrešno mesto (15.09.2026)
+
+Klijent je prijavio da je mobilni hero **ponovo makro plan**. Fajl i CSS su bili
+ispravni — živi sajt je servirao pravi video, 810×1755, `cover`, 100% širine, bez
+greške. **Problem je bio u tome gde je prozor usmeren.**
+
+**Izmereno.** Uspravni prozor 0,4615 po punoj visini fotografije 4000×5873 je
+**2710 px — 68% širine**. Prozor je bio **centriran**, a na slikama 2 i 3 terapeut
+stoji **sa strane**. Sredina je pala na pacijenta: gola leđa preko celog ekrana
+pet sekundi, od terapeuta samo ruka. Na slici 3 terapeutkinji odsečena glava.
+
+**Zašto nije uhvaćeno ranije.** Pri prethodnoj proveri uzeta je **po jedna tačka iz
+svakog kadra**, i baš te tačke su ispale pristojne. Tek uzorak od **dvanaest tačaka
+kroz celu petlju** pokazuje šta se stvarno vidi.
+
+**Pravilo za ubuduće: petlju proveravati na najmanje 10–12 tačaka, ne po jednu
+po kadru.** Zumiranje i pomeranje menjaju kadar unutar samog kadra.
+
+**Popravka bez novog snimanja.** Prozor usmeren na deo slike gde su oba čoveka:
+
+| Kadar | Bilo | Sada |
+|---|---|---|
+| 2 | centrirano, pomeranje ±0,6 zalihe | `x` 1150 → 1290, zum 1,000 → 1,050 |
+| 3 | centrirano, pomeranje ±0,6 zalihe | `x` 170 → 0, zum 1,020 → 1,060 |
+
+Zum na ta dva kadra smanjen, da se pred kraj ne stegnu ponovo. Kadrovi 1 i 4
+nedirnuti. Provereno: **0 promena smera, 0 izvan granica**, najveći pomak 0,60
+izlaznih piksela po frejmu.
+
+Težina: AV1 **340 kB**, H.264 800 kB, poster 92 kB — praktično isto kao pre.
+
+### Ispravka uputstva koje je dato klijentu
+
+Kad su tražene fotografije, rečeno je „ništa važno u spoljnih 8%". **To važi za
+miran poster, ne za video koji se kreće.** Za uspravni video pravilo je strože:
+
+> **Sve što je važno mora da stane u srednje dve trećine širine fotografije.**
+
+Uspravni prozor pokazuje 68% širine; kad se doda pomeranje, u svakom trenutku se
+vidi još manje. Ako su dve osobe razvučene preko cele širine kadra, jedna ispada.
+
+**Broj 15 je preskočen** u imenima fajlova (`v14` → `v16`) da se ne meša sa imenom
+foldera `v15`. Podsetnik: `v15` je verzija **sajta**, brojevi u imenima fajlova su
+verzije **medija**, odvojeno brojanje.
