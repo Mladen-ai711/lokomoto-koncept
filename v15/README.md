@@ -4107,6 +4107,44 @@ radi. `v11`, `v12`, `v13` su verzije **video fajla** — odvojeno brojanje koje 
 od `v2`. Svi ti fajlovi žive unutar `v15/assets/`. Broj u imenu postoji da se stara
 verzija ne prepiše i da pregledač ne servira keširanu.
 
+### Trzaj u kadru 3 — v14 (15.09.2026)
+
+Klijent je prijavio „trzanje ili promenu smera" u trećem kadru na desktopu. Tačno.
+
+**Izmereno:** kadar 3 je imao **jednu promenu smera** po visini. Kadrovi 1, 2 i 4
+nula.
+
+**Uzrok.** Kadru 3 je bio zadat pomak od **120 piksela** po visini, a ta fotografija
+je viša od isečka 16:9 svega **2 piksela** (2533 naspram 2531). Isečak je odmah
+udario u donju ivicu, stajao tamo dok zum ne otvori prostor, pa krenuo nazad — tu je
+preokret. Prvih ~15% kadra crta se uz samu ivicu i ne pomera se onako kako je zadato.
+
+**Zašto nije uhvaćeno ranije.** Za mobilni je provera na drhtanje rađena i zapisana;
+**za desktop je preskočena.** Kadrovi 1 i 2 se sekli iz uspravnih fotografija gde
+ima 3623 px zaliha po visini, pa kod njih fiksni pomak u pikselima radi. Kadrovi 3 i
+4 dolaze iz položenih fotografija gde zalihe nema — ista formula tu ne važi.
+
+**Popravka.** Pomak se više ne zadaje u pikselima nego kao **deo raspoloživog
+prostora**, koji raste sa zumom:
+
+```
+zaliha = visina_slike − visina_isecka
+cy = zaliha/2 + 0,5 × zaliha × (p − 0,5)
+```
+
+Tako isečak nikad ne dođe do ivice. Provereno: **0 promena smera, 0 frejmova izvan
+granica, najveći pomak 1,71 izlaznih piksela po frejmu.**
+
+**Pravilo za ubuduće:** pomak zadavati kao deo zalihe, ne u pikselima — i **proveru
+na promenu smera raditi za svaki kadar, na obe verzije.** Fiksan broj piksela radi
+samo kad je izvor mnogo veći od isečka.
+
+Težina nepromenjena: AV1 492 kB, H.264 972 kB, poster 120 kB. `styles.css?v=` na
+**13.5**. Fajlovi `v13` ostaju u repou.
+
+Napomena: **statične slike ovo ne mogu da pokažu** — promena smera se vidi samo u
+pokretu. Dokaz je merenje, ne render.
+
 ### Povratna tačka
 
 1. **Git** — stanje pre ovoga je `5139596`.
