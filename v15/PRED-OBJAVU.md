@@ -91,9 +91,9 @@ i `<span class="ph-note">`, a tekst ostaje.
 | Podatak | Verzije u opticaju | Šta je upisano u shemu |
 |---|---|---|
 | **Adresa** | ~~dve adrese~~ — **REŠENO 13.09:** samo Tabanovačka 27b, Autokomanda | Tabanovačka 27b ✓ |
-| **Radno vreme** | 08–20 (sajt) · 09–21 (stari sajt) · 09–20 (portali) | 08–20, Sub 09–14 |
-| **Telefon** | 011/40 95 924 · 063 687 460 (Stetoskop) | samo 011 broj |
-| **Godina osnivanja** | 2016 · 2013 (deo izvora) | 2016 |
+| **Radno vreme** | ~~tri verzije~~ — **REŠENO 15.09:** Pon–Pet 08–20, Sub 09–**15** | 08–20, Sub 09–15 ✓ |
+| **Telefon** | ~~dva broja~~ — **REŠENO 15.09:** 063 nije njihov, skinut | samo 011/40 95 924 ✓ |
+| **Godina osnivanja** | ~~2016 · 2013~~ — **REŠENO 15.09:** 2016. v15 je čist; 2013 je greška **na starom sajtu, stranica dijagnostike**, odatle prepisana u imenike | 2016 ✓ |
 
 Upisano je ono što v15 sam tvrdi. **Ako je bilo šta od ovoga netačno, ispravlja
 se i u tekstu i u `MedicalClinic` shemi na naslovnoj.**
@@ -121,11 +121,17 @@ Link u futeru je i dalje `href="#"`. Kod zdravstvene ustanove taj tekst opisuje
 obradu podataka pacijenata i podleže ZZPL-u — mora ga napisati neko ko odgovara
 za to, ne dizajner ni alat. Do tada link ostaje mrtav.
 
-### 6.4 Facebook profil
+### 6.4 Facebook profil — REŠENO 15.09
 
-Sheme i futer vode `facebook.com/lokomotostepastepanovic/`. Slug nosi ime
-**stare lokacije**. Proveriti da li je to i dalje aktivan profil centra i da li
-je preimenovan.
+Novak je potvrdio: stranica **jeste njihova**, ali **nije aktivna dugo**, a sa
+Stepe Stepanovića su se odselili pre tri godine. Slug i dalje nosi ime te lokacije.
+
+**Link je skinut sa sajta** — sa svih 7 stranica iz futera i iz `sameAs` u
+`MedicalClinic` shemi. Razlog: posetilac bi stigao na stranicu koja godinama ćuti
+i u adresi nosi mesto gde centra više nema. To šteti više nego što ikonica vredi.
+
+Stranica ostaje njihova. Link se vraća čim je ožive, ili se pravi nova sa pravim
+imenom. U futeru je ostao samo Instagram.
 
 ---
 

@@ -145,10 +145,25 @@ Adresa je potvrđena (samo Autokomanda), pa ovo više ništa ne blokira.
 
 **Odgovoreno:** lokacija (samo Autokomanda), parking (ispred zgrade).
 
-**Poslato, čeka se:** radno vreme · telefon 063 687 460 · godina osnivanja
-(2016 ili 2013) · Facebook stranica · način plaćanja · fotografije krioterapije
-i limfne drenaže (jedino što još fali) ·
-ultrazvuk (posebno ili uračunat) · trajanje kineziterapije.
+**Odgovoreno 15.09 (Novak):**
+
+- **radno vreme** — Pon–Pet 08–20 potvrđeno, subota do **15h** (bilo 14h). Ispravljeno
+  na svih 7 stranica i u `MedicalClinic` shemi.
+- **telefon** — 063 687 460 **nije njihov broj**. Ostaje samo **011 / 40 95 924**.
+  Sajt ga je već koristio, 063 nije bio nigde.
+- **godina osnivanja** — **2016**. U v15 reč „2013" se **ne pojavljuje nijednom**,
+  sajt je čist. Greška je na **starom sajtu, na stranici dijagnostike**, i odatle se
+  prepisala u imenike. To je posao za fazu objave i lokalni SEO: ispraviti na starom
+  sajtu pre migracije, pa proći imenike koji su prepisali 2013.
+- **Facebook** — stranica jeste njihova, ali **nije aktivna dugo**; sa Stepe
+  Stepanovića su se odselili pre tri godine, a adresa stranice i dalje nosi ime te
+  lokacije. **Link je skinut sa sajta** (7 stranica plus `sameAs` u shemi). Posetilac
+  bi inače stigao na stranicu koja godinama ćuti i u adresi nosi mesto gde ih nema.
+  Stranica ostaje njihova — link se vraća čim je ožive, ili se pravi nova sa pravim
+  imenom. U futeru je ostao samo Instagram.
+
+**Poslato, još se čeka:** način plaćanja · fotografije krioterapije i limfne drenaže
+· ultrazvuk (posebno ili uračunat) · trajanje kineziterapije.
 
 **Nije slato:** izjave pacijenata. Traži da Novak lično pita ljude za
 dozvolu — bolje uživo nego pisano.
