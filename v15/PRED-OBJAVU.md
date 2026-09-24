@@ -19,7 +19,11 @@ bi indeksiralo koncept na pogrešnom domenu i napravilo duplikat `lokomoto.rs`-u
 Briše se tek kad sajt bude na produkcionom domenu, i to kao poslednja izmena,
 pa se odmah proveri kroz Search Console → Provera URL-a uživo.
 
-## 2. `robots.txt` — u koren sajta
+## 2. `robots.txt` — NAPRAVLJEN 24.09.2026, stoji u `v15/robots.txt`
+
+Dok je sajt na GitHub Pages-u fajl je **neaktivan** — pretraživači ga čitaju
+samo iz korena domena, a tamo je `/lokomoto-koncept/v15/robots.txt`. Radi tek
+kad sajt sedne na `lokomoto.rs`.
 
 ```
 User-agent: *
@@ -28,7 +32,7 @@ Allow: /
 Sitemap: https://lokomoto.rs/sitemap.xml
 ```
 
-## 3. `sitemap.xml` — u koren sajta
+## 3. `sitemap.xml` — NAPRAVLJEN 24.09.2026, stoji u `v15/sitemap.xml`
 
 URL-ovi ispod prate **sadašnju** strukturu v15. Ako se u fazi 1 pređe na
 plitke slugove, menjaju se i ovde i u `BreadcrumbList` blokovima.
@@ -52,12 +56,18 @@ Nije propust. Stranice su `noindex`, pa je canonical bespredmetan, a odluka o
 URL-ovima pripada fazi 1. Dodaje se **tek pošto struktura bude zaključana**,
 jer canonical na URL koji će se menjati je gore nego da ga nema.
 
-## 5. `og:image` — relativna putanja
+## 5. `og:image` i `og:url` — adrese se menjaju na dan objave
 
 Sada stoji kao `assets/images/og-lokomoto.jpg`, da bi pregled radio i na
 konceptu i u produkciji. Većina skrejpera to razreši, ali specifikacija traži
 apsolutnu adresu. Na dan objave prebaciti na
 `https://lokomoto.rs/assets/images/og-lokomoto.jpg` u svih 7 fajlova.
+
+`og:url` je dodat 24.09.2026 i pokazuje na **koncept** adresu
+(`https://mladen-ai711.github.io/lokomoto-koncept/v15/...`), zato što se link
+sada šalje klijentu — da pregled u WhatsApp-u i Viberu ne pokazuje tuđ domen.
+Na dan objave prebaciti na `https://lokomoto.rs/...`, u svih 7 fajlova,
+zajedno sa `og:image`.
 
 ---
 

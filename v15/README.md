@@ -4255,3 +4255,80 @@ bude „na čemu gledaš i koliko je prozor širok", a ne odmah popravljati.** S
 ekrana je rešio stvar za nekoliko minuta.
 
 `styles.css?v=` dignut na **13.7**.
+
+---
+
+# SEO osnova — provera po spisku od 9 tačaka (24.09.2026)
+
+Klijentski spisak od 9 tačaka je provučen kroz svih 7 stranica. **Sedam tačaka
+je već bilo urađeno** u SEO fazi 0; opisano je ovde da se sledeći put ne kreće
+iz početka.
+
+## Zatečeno stanje — izmereno, ne procenjeno
+
+| Tačka | Stanje | Mera |
+|---|---|---|
+| Tekst u HTML-u | ✅ | 1786 reči na naslovnoj, 1085–1120 na uslugama; `app.js` i `stranica.js` ne upisuju nijedno slovo |
+| Naslov i opis | ✅ | svih 7: naslov 54–57 znakova, opis 152–156 |
+| Open Graph | delimično | 9 polja, slika izmerena na tačno 1200×630; **`og:url` je falio** |
+| JSON-LD | ✅ | 8 blokova, svi se čitaju bez greške: `MedicalClinic`+`Physiotherapy`, `FAQPage`, 5× `Service`+`BreadcrumbList`, `CollectionPage`+`ItemList` |
+| Izmišljene ocene | ✅ | `aggregateRating` i lažne recenzije — **nema ih nigde**, što spisak izričito traži |
+| Naslovi | ✅ | tačno jedan `<h1>` po stranici, sa ključnom reči |
+| Širina i visina slika | ✅ | svih 42 — zato sadržaj ne poskakuje pri učitavanju |
+| Odloženo učitavanje | ✗ | bilo 7 od 42 |
+| `robots.txt`, `sitemap.xml` | ✗ | postojali samo kao nacrt u `PRED-OBJAVU.md` |
+
+## Šta je izmenjeno
+
+1. **`og:url`** dodat na svih 7 stranica. Pokazuje na koncept adresu, ne na
+   `lokomoto.rs` — vidi `PRED-OBJAVU.md`, sekcija 5, zajedno sa `og:image`.
+2. **`lang="sr"` → `lang="sr-Latn"`** na svih 7. Sajt je pisan latinicom, a
+   `sr` sam po sebi ne kaže kojim pismom.
+3. **`loading="lazy"`** — sa 7 na 28 od 42 slike. Pravilo: logotip u zaglavlju
+   i **prva sadržajna slika** ostaju bez odlaganja, sve posle njih se odlaže.
+   Prva sadržajna je ostavljena namerno, kao zaštita od praznine pri prvom
+   pomeranju. Raspored se ne pomera jer sve slike već nose širinu i visinu.
+4. **`robots.txt` i `sitemap.xml`** napravljeni kao fajlovi.
+5. **Granica za sliku naslova usklađena sa granicom za video** — vidi dole.
+
+## Greška nađena usput: dva pravila za istu sliku
+
+Naslovna slika se skidala unapred po **širini prozora** (granica 720 px), a
+video i poster su se birali po **obliku prozora** (odnos 9/10). Dva različita
+pravila za istu stvar.
+
+Posledica, izmereno u prozoru **824×1245**:
+
+| | pre | posle |
+|---|---|---|
+| skinuto | 120 kB *(za računar)* + 89 kB *(za telefon)* = **209 kB** | **89 kB** |
+| iskorišćeno | 89 kB | 89 kB |
+| bačeno | **120 kB** | 0 |
+
+To je isti prozor u kom je ranije nađena greška sa položenim videom u uspravnom
+okviru — ista granica od 720 px, druga posledica.
+
+Ispravka: obe linije za rano skidanje slike sada koriste odnos stranica, a ne
+širinu. Pravilo za računar je napisano kao **tačna suprotnost** pravilu za
+telefon (`not all and (max-aspect-ratio: 9/10)`), da se na tačno 0,9 ne bi
+uhvatila oba.
+
+**Oba stanja izmerena u pregledaču, ne izračunata.** Backup pre izmene je pušten
+kroz server i na 824×1245 je zaista skinuo **obe** slike; posle izmene, na istom
+prozoru, skida se samo slika za telefon, na
+1440×900 samo ona za računar, i to **jednom** — rano skidanje se zaista
+iskoristi za poster, ne skida se dvaput. Bez grešaka u konzoli.
+
+## Šta namerno NIJE dirano
+
+- **`canonical`** — ostaje odložen dok se ne zaključa kako će adrese izgledati
+  posle seobe sa starog sajta. Canonical na adresu koja će se menjati je gore
+  nego da ga nema. Odluka #4 u `NASTAVAK.md`.
+- **`noindex`** — ostaje na svih 7 do dana objave.
+- **Nijedan CSS nije diran**, pa `styles.css?v=` ostaje na **13.7**.
+
+## Šta spisak od 9 tačaka uopšte ne pokriva
+
+Koje reči ljudi zaista kucaju kad traže fizijatra na Autokomandi, i koliko su
+jaki konkurenti za te reči. To se ne vidi iz koda — traži Search Console i
+nekoliko nedelja podataka **pošto** sajt proradi.
