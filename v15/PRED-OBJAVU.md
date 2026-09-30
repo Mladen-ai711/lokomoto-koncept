@@ -73,28 +73,30 @@ zajedno sa `og:image`.
 
 ## 6. Čeka odgovor klijenta — blokira objavu
 
-### 6.1 Osam označenih mesta u tekstu
+### 6.1 Označena mesta u tekstu — SVA REŠENA 30.09.2026
 
-Ovo **nisu rupe** — tekst je napisan. Označen je žutom i značkom `ZA POTVRDU`
-jer traži potvrdu činjenice. Kad klijent potvrdi, skida se `<mark class="ph">`
-i `<span class="ph-note">`, a tekst ostaje.
+Novak je odgovorio na svih sedam preostalih pitanja. Žute oznake
+(`<mark class="ph">` i `<span class="ph-note">`) **više ne postoje nigde u v15.**
 
-| Fajl | Linija | Pitanje |
+| Gde | Pitanje | Odgovor |
 |---|---|---|
-| `usluge/dijagnostika/` | ~374 | Da li ultrazvučni pregled ulazi u cenu pregleda specijaliste ili se plaća posebno? |
-| `usluge/kineziterapija/` | ~422 | Trajanje termina: cenovnik kaže 60 i 60+ min, panel je govorio 45–60. Šta važi? |
-| `usluge/kineziterapija/` | ~476 | Vežbe za kuću — daju li se, i od kog trenutka? |
-| `usluge/manualna-terapija/` | ~288 | Da li se razlika u pokretu zaista oseti posle prvog tretmana? |
-| `usluge/manualna-terapija/` | ~389 | Masaže su u cenovniku pod „Oporavak i masaža" — prikazati ih uz manualnu ili odvojeno? |
-| `usluge/postoperativna-.../` | ~389 | Postoperativna nema svoju grupu u cenovniku. Važe li cene terapijskog dana i REHAB paketa? |
-| `usluge/postoperativna-.../` | ~428 | Potvrditi opis saradnje sa hirurgom. |
+| dijagnostika | Da li ultrazvuk ulazi u cenu pregleda specijaliste? | **Ultrazvuk se izbacuje iz usluga u potpunosti** |
+| kineziterapija | Trajanje termina — 60/60+ ili 45–60? | do 60 minuta ili 60+ minuta |
+| kineziterapija | Vežbe za kuću? | „Da, ukoliko vaše stanje to zahteva." |
+| manualna terapija | Oseti li se razlika posle prvog tretmana? | Da — tekst ostaje kakav je bio |
+| manualna terapija | Gde stoje masaže? | u grupi „Oporavak i masaža", ne uz manualnu |
+| postoperativna | Važe li cene terapijskog dana i REHAB paketa? | REHAB paket = rehabilitacija bilo kog tipa, sa operacijom ili bez; obuhvata fizikalnu terapiju i kineziterapiju |
+| postoperativna | Opis saradnje sa hirurgom | Novakov tekst preuzet doslovno |
 
 > **Parking — REŠENO 13.09.** Novak je potvrdio: parking je ispred zgrade.
 > Tekst je popunjen, a pitanje „Gde ste i ima li parkinga?" vraćeno u
-> `FAQPage` shemu. Shema sada nosi svih 10 pitanja.
->
-> Naslovna više nema nijedno nepopunjeno mesto. Preostalih **sedam** je na
-> uslužnim stranicama.
+> `FAQPage` shemu.
+
+> **RFZO — SKINUT 30.09.** Na zahtev klijenta uklonjeno je svako pominjanje
+> RFZO-a: pitanje iz `FAQPage` sheme i sa naslovne, i po jedno pitanje sa
+> stranica dijagnostike, fizikalne i manualne terapije. **Shema sada nosi 9
+> pitanja**, koliko ih je i vidljivo. Način plaćanja je ostao opisan u
+> cenovniku, samo bez pomena RFZO-a.
 
 ### 6.2 Podaci koji se ne slažu između izvora
 

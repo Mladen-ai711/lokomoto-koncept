@@ -193,8 +193,24 @@ Adresa je potvrđena (samo Autokomanda), pa ovo više ništa ne blokira.
   Stranica ostaje njihova — link se vraća čim je ožive, ili se pravi nova sa pravim
   imenom. U futeru je ostao samo Instagram.
 
-**Poslato, još se čeka:** način plaćanja · fotografije krioterapije i limfne drenaže
-· ultrazvuk (posebno ili uračunat) · trajanje kineziterapije.
+**Odgovoreno 30.09 (Novak) — sve žute oznake `ZA POTVRDU` su time skinute:**
+
+- **RFZO** — izbaciti svako pominjanje. Urađeno na 5 mesta; `FAQPage` shema i
+  vidljivi FAQ sada oba nose **9 pitanja**, ne 10.
+- **ultrazvuk** — **izbacuje se iz usluga u potpunosti.** Nikad nije ni bio stavka
+  u cenovniku, pa cene nisu dirane. Stranica dijagnostike je prepravljena: naslov,
+  meta opis, shema, korak 03, sekcija metoda (četiri → tri) i fotografija.
+- **kineziterapija** — termin traje do 60 ili 60+ minuta; vežbe za kuću „ukoliko
+  vaše stanje to zahteva".
+- **masaže** — idu u grupu „Oporavak i masaža", skinute sa stranice manualne terapije.
+- **REHAB paket** — rehabilitacija bilo kog tipa, sa operacijom ili bez; obuhvata
+  fizikalnu terapiju i kineziterapiju.
+- **hirurg** — Novakov tekst preuzet doslovno.
+- **prvi tretman** — rečenica ostaje kakva je bila.
+
+**Poslato, još se čeka:** način plaćanja · fotografije za **NeuFit, Normatec i
+GameReady** (Novak ih šalje) · dodatne informacije o vizuelnom delu i prerađeni
+tekstovi, koje Mladen čeka da Nikola potvrdi.
 
 **Nije slato:** izjave pacijenata. Traži da Novak lično pita ljude za
 dozvolu — bolje uživo nego pisano.

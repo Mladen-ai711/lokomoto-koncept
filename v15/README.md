@@ -4332,3 +4332,110 @@ iskoristi za poster, ne skida se dvaput. Bez grešaka u konzoli.
 Koje reči ljudi zaista kucaju kad traže fizijatra na Autokomandi, i koliko su
 jaki konkurenti za te reči. To se ne vidi iz koda — traži Search Console i
 nekoliko nedelja podataka **pošto** sajt proradi.
+
+---
+
+# Novakovi odgovori ugrađeni (30.09.2026)
+
+Stiglo je šest odgovora i jedan opšti zahtev. Time su **skinute sve žute oznake
+`ZA POTVRDU`** — u v15 ih više nema nijedne.
+
+## 1. RFZO — skinut svuda
+
+Zahtev je bio da se izbaci svako mesto gde piše RFZO. Uklonjeno je na **pet
+mesta**:
+
+| Gde | Šta |
+|---|---|
+| naslovna, `FAQPage` shema | pitanje „Radite li preko RFZO?" |
+| naslovna, vidljivi FAQ | isto pitanje |
+| dijagnostika, FAQ | „Da li se pregled plaća preko RFZO?" |
+| fizikalna terapija, FAQ | „Da li se terapija plaća preko RFZO?" |
+| manualna terapija, FAQ | „Da li se tretman plaća preko RFZO?" |
+
+Shema i vidljivi deo su **usklađeni: oba sada nose 9 pitanja**, ne 10. To je
+bitno — Google kažnjava kad se `FAQPage` shema razlikuje od onoga što je na
+stranici.
+
+U cenovniku na naslovnoj rečenica je skraćena, ne obrisana. Bilo je „Ne radimo
+preko RFZO. Terapije se plaćaju direktno, a uz račun…", ostalo je „Terapije se
+plaćaju direktno, a uz račun…". Način plaćanja je korisna informacija; samo ime
+fonda je sporno.
+
+## 2. Ultrazvuk — izbačen iz usluga
+
+Ovo je bio najveći zahvat, jer je ultrazvuk držao naslov cele stranice.
+
+**Nije bilo izmene cena** — ultrazvučni pregled nikada nije bio stavka ni u
+jednom cenovniku. Upravo je to i bilo pitanje pod žutom oznakom. Odgovor ga je
+zatvorio: nema ga u cenovniku jer se ne radi.
+
+Izmenjeno na stranici dijagnostike:
+
+| Šta | Bilo | Sada |
+|---|---|---|
+| Naslov stranice | Ultrazvučna dijagnostika i pregled, Beograd | Dijagnostika i klinički pregled Beograd |
+| Meta opis, `og:` opis, shema | „ultrazvuk mekih tkiva" u sva tri | skinuto iz sva tri |
+| Korak 03 | „Ultrazvuk ili specijalista, ako treba" | „Specijalista, ako treba" |
+| Sekcija metoda | **Četiri** načina, jedan od njih ULTRAZVUK | **Tri** načina |
+| Fotografija uz korake | `uz-pregled.webp` — sonda, gel, nalaz na monitoru | `pregled-rame.webp` |
+
+**O fotografiji.** `uz-pregled.webp` je nedvosmisleno ultrazvučni pregled i
+nikakav novi natpis je ne bi spasao. Ali njeno prosto brisanje je **pokvarilo
+raspored**: `.steps-layout` je mreža od dve kolone (474 px + 764 px), pa je
+ostala jedna kolona popunjena a druga prazna. Izmereno u pregledaču, ne
+procenjeno.
+
+Zamena je izabrana iz `E:\Lokomoto` (original `lokomoto-46.jpg`, 4000×5000),
+isečena na 1280×1600 — odnos 0,80, tačno kako traži `MERE-ZA-FOTOGRAFIJE.txt`
+za slot „Slika uz korake". Prikazuje pregled **ramena**, namerno: vodeća
+fotografija te stranice je već koleno.
+
+Vodeća fotografija `pregled-koleno.webp` je **zadržana**. Na njoj se ultrazvučni
+aparat vidi mutno u pozadini, ali predmet snimka su ruke na zglobu — to je
+klinički pregled. Skinut je samo pomen aparata iz opisa slike, na tri mesta.
+
+**Zadržano namerno:** pitanje „Šta da ponesem" i dalje kaže da treba doneti
+postojeće snimke — rendgen, magnetnu rezonancu, ultrazvuk. To su **tuđi nalazi
+koje pacijent donosi sa strane**, ne usluga Lokomota.
+
+## 3–6. Ostala četiri odgovora
+
+| Gde | Sada piše |
+|---|---|
+| kineziterapija, cene | „Termin traje do 60 minuta ili 60+ minuta." Kartica na naslovnoj dignuta sa „60 min" na „60 i 60+ min". |
+| kineziterapija, FAQ | „Da, ukoliko vaše stanje to zahteva." |
+| manualna terapija | Rečenica o prvom tretmanu ostala **nepromenjena**, skinuta je samo žuta oznaka. |
+| postoperativna, cene | REHAB paket = rehabilitacija bilo kog tipa, sa operacijom ili bez; obuhvata fizikalnu terapiju i kineziterapiju. |
+| postoperativna, FAQ | Novakov tekst o hirurgu preuzet doslovno. |
+
+Jedna jedina izmena u Novakovom tekstu: „prije nastavka" → **„pre nastavka"**,
+jer je ceo sajt pisan ekavicom.
+
+## Masaže — premeštene, ne obrisane
+
+Odgovor je bio da masaža ide u grupu „Oporavak i masaža". Tri reda sa cenama
+(30, 45 i 60 min) **skinuta su sa stranice manualne terapije**; u cenovniku na
+naslovnoj su i dalje tamo gde i treba, u svojoj grupi. Napomena sada upućuje na
+ceo cenovnik.
+
+**Ostavljeno namerno, vredi presuditi:** masaža se i dalje pominje kao jedna od
+metoda manualne terapije — u meta opisu, u shemi, kao kartica metode, i u
+pitanju „Mogu li da dođem samo na masažu?". To je i dalje tačno (masaža se radi,
+i zakazuje se zasebno), ali ako treba da nestane i odatle, to je zaseban potez.
+
+## Šta ostaje da stigne
+
+Fotografije koje je Novak najavio: **bolja slika za NeuFit, slika za Normatec,
+slika za GameReady**. Provereno gde bi ušle:
+
+| Aparat | Pominje se u v15 | Gde bi slika išla |
+|---|---|---|
+| NeuFit | da — 3 puta na naslovnoj, 9 na fizikalnoj terapiji | zamena za `metoda-neufit.webp` |
+| Normatec | **nigde** | uz limfnu drenažu, koja se pominje 2× na naslovnoj i 1× na fizikalnoj |
+| GameReady | **nigde** | uz krioterapiju, koja se pominje 2× na naslovnoj i 5× na fizikalnoj |
+
+Za NeuFit je slot gotov — samo zamena fajla. Za Normatec i GameReady **ne
+postoji kartica metode**, pa kad slike stignu treba prvo napisati tekst, a onda
+ih ubaciti. Obe usluge u koje se uklapaju već postoje, samo se aparati ne
+imenuju.
