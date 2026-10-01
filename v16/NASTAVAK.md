@@ -1,14 +1,9 @@
 # Nastavak rada
 
-> **ZAMRZNUTO 1. 10. 2026.** Rad je prešao u `v16/`, koja je doslovna kopija
-> ove verzije. Ovaj folder se ne dira, stoji kao povratna tačka.
-> Za tekuće stanje čitaj `v16/NASTAVAK.md`.
-
-
 Ovaj fajl postoji da bi nova sesija — naročito ona koja radi lokalno na
 Mladenovom računaru — mogla da nastavi bez ponovnog objašnjavanja.
 
-**Prva poruka nove sesije može biti samo:** *„Pročitaj `v15/NASTAVAK.md`
+**Prva poruka nove sesije može biti samo:** *„Pročitaj `v16/NASTAVAK.md`
 i nastavi odatle."*
 
 ---
@@ -25,28 +20,32 @@ Osnivači: **Novak Ilić** i **Strahinja Marković**.
 |---|---|
 | Repo (lokalno) | `Mladen\source\repos\lokomoto-koncept` |
 | Fotografije sa snimanja | `E:\Lokomoto` — 104 kadra, **nisu u repou** |
-| Aktuelna verzija | folder `v15/` |
-| Pregled uživo | https://mladen-ai711.github.io/lokomoto-koncept/v15/ |
+| Aktuelna verzija | folder `v16/` |
+| Pregled uživo | https://mladen-ai711.github.io/lokomoto-koncept/v16/ |
 | Produkcioni domen (budući) | `lokomoto.rs` — sada stari WordPress |
 | Zakazivanje | `lokomotocentar.alpinbook.com` (eksterno) |
 | Kviz | `kviz.lokomoto.rs` |
 
-**`v14` i sve starije verzije su zamrznute. Ne dirati ih.**
+**`v15` i sve starije verzije su zamrznute. Ne dirati ih.**
+
+`v16` je nastao 1. 10. 2026. kao doslovna kopija `v15`, pre runde boja i
+strukture koju je tražio klijent. `v15` ostaje na svojoj adresi kao povratna
+tačka, isto kao što je `v13` bila za `v14`.
 
 ## Šta pročitati pre rada
 
 | Fajl | Šta nosi |
 |---|---|
-| `v15/PRED-OBJAVU.md` | pitanja za klijenta, gotov `robots.txt` i `sitemap.xml`, postupak za dan objave |
-| `v15/README.md` | ceo istorijat izmena, uključujući i greške napravljene usput |
+| `v16/PRED-OBJAVU.md` | pitanja za klijenta, gotov `robots.txt` i `sitemap.xml`, postupak za dan objave |
+| `v16/README.md` | ceo istorijat izmena, uključujući i greške napravljene usput |
 
 SEO plan nije u repou — on je artefakt:
 https://claude.ai/code/artifact/f1231573-a16f-4397-b4ac-fd47cadac04c
 
 ## Stanje
 
-**v15 je samostalan.** Ne vuče resurse iz `v8/`, `v11/` ni `v12/` kao v14.
-Sve je u `v15/assets/` — 32 slike, 2 videa, 4 fonta — plus `styles.css`
+**v16 je samostalan.** Ne vuče resurse iz `v8/`, `v11/` ni `v12/` kao v14.
+Sve je u `v16/assets/` — 32 slike, 2 videa, 4 fonta — plus `styles.css`
 i `favicon.svg`.
 
 **SEO faza 0 je gotova:**
