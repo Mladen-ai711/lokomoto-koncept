@@ -3345,3 +3345,132 @@ Provereno na 1440 i 390 px, na svih 7 stranica: 0 padova kontrasta, bez JS
 grešaka, bez horizontalnog pomeranja. Vizuelno potvrđeno snimkom prelaza
 cene → pitanja → poziv → footer, i otvorenim FAQ pitanjem (tekst odgovora
 čitljiv na tamnoj podlozi).
+
+---
+
+# Runda 01.10.2026 — druga runda od klijenta
+
+Stiglo je troje: četiri Looma po 5 min, nov Google dokument sa **kompletnim
+tekstom sajta** (101.920 znakova), i WhatsApp poruka sa sedam konkretnih
+ispravki. Ceo nalaz, sa vremenskim oznakama i sa onim što je u transkriptu
+nepouzdano, je u projektnom dokumentu `claude/17-loom-klijent-2.md`.
+
+**Ova runda rešava samo WhatsApp dopune** — to su podaci, ne odluke, i jedino
+što je na sajtu stajalo netačno. Boje, harmonika i prepis tekstova čekaju.
+
+## Šta je urađeno
+
+| # | Zahtev klijenta | Šta je promenjeno |
+|---|---|---|
+| 1 | Ultrazvučni pregled izbaciti iz cenovnika i usluga | **6 mesta na `usluge/dijagnostika/`**: `meta description`, fotografija i njen potpis, korak `03`, kartica metode `ULTRAZVUK`, naslov sekcije, placeholder o ceni |
+| 2 | Kineziterapija „do 60" / „60+" | `60 min` → `do 60 min` na **6 mesta** (cenovnik naslovne, panel usluge, 5 mesta na stranici kineziterapije) |
+| 3 | Vežbe za kuću | odgovor zamenjen klijentovom formulacijom, značka skinuta |
+| 4 | Masaža u „Oporavak i masaža" | **već je bilo tako**; skinuta je samo nedoumica sa stranice manualne terapije |
+| 5 | Šta je REHAB paket | objašnjenje dodato na **3 mesta**: cenovnik naslovne, fizikalna, postoperativna |
+| 6 | „Razlika u pokretu… posle prvog tretmana" ostaje | značka `ZA POTVRDU` skinuta, tekst nepromenjen |
+| 7 | Izbaciti RFZO svuda | **5 mesta**: napomena uz cenovnik, FAQ naslovne, FAQ dijagnostike, fizikalne i manualne |
+
+**Svi placeholderi su skinuti sa svih 7 stranica: 6 → 0.** Četiri poslednja
+(`mark.ph`) rešena su materijalom iz ove isporuke:
+
+| Placeholder | Čime je rešen |
+|---|---|
+| „Razlika u pokretu…" (manualna) | WhatsApp 13:22, doslovno „nek ostane" |
+| Gde stoje masaže (manualna) | WhatsApp 13:22 + klijentov dokument: „Masaže se naplaćuju prema posebnom cenovniku za oporavak i masažu" |
+| Kako se naplaćuje postoperativna | WhatsApp 13:22, definicija REHAB paketa |
+| Saradnja sa hirurgom (postoperativna) | FAQ iz klijentovog dokumenta, preuzet |
+
+## Zamena fotografije
+
+Uz ultrazvuk je morala da ode i fotografija ultrazvučnog pregleda
+(`uz-pregled.webp`, kadar `L-32`). Po pravilu 8 projekta, prikazan aparat je
+tvrdnja, a ne dekoracija — ako se usluga ne radi, slika je ne sme najavljivati.
+
+Okvir `.steps-photo` traži **4:5 uspravno**. Mereno je svih 16 kadrova iz
+opsega „pregled" (31–46), koji je i klijent naveo u dokumentu:
+
+| Kadar | Odnos | Oštrina (var. Laplasa) | Napomena |
+|---|---|---|---|
+| **L-38** | **0,80** | **221** | izabran — pregled kolena, cela scena, bez aparata |
+| L-39 | 0,80 | 162 | isti kadar, uži |
+| L-40 | 0,80 | 39 | **u pozadini se vidi ultrazvučni aparat** |
+| L-41 | 0,80 | 23 | mrak, 106 prosečne svetline |
+| L-46 | 0,80 | 22 | makro rame, mekano |
+
+Devet kadrova iz opsega je 0,67 i ne ulazi u okvir bez sečenja. **Nov fajl:**
+`v8/assets/images/pregled-kolena.webp`, 1280×1600, 107 KB.
+
+`uz-pregled.webp` ostaje u repou, ali ga više ništa ne poziva.
+
+## Sekcija 42 u `usluga.css` — rupa u mreži metoda
+
+Izbacivanje kartice „Ultrazvuk" ostavilo je dijagnostiku sa 4 kartice u mreži
+od 3 kolone, pa je poslednji red imao **dve prazne ćelije od po 441 px**. Mreža
+nema razmak — kartice dele ivicu — pa prazno mesto izgleda kao nacrtana rupa.
+
+Mereno na 1440 px: rupa je **postojala i pre ove runde**, na tri od pet
+stranica (fizikalna 3+3+1, manualna 3+2, postoperativna 3+2). Zato je rešenje
+opšte, a ne za dijagnostiku: poslednja kartica se razvlači preko kolona koje su
+ostale prazne, posebno računato za 3, 2 i 1 kolonu.
+
+Provereno u browseru da `grid-column: auto / -1` **ne radi** — po specifikaciji
+raspon tada ostaje 1, kartica samo odskoči u desnu kolonu, a na 1100 px se
+raspored raspadne na 2+1+1+1.
+
+Posle izmene, mereno na 1440 px sa isključenim prelazima:
+
+    dijagnostika     441+441+441 / 1324      manjak 1 px
+    fizikalna        441×3 / 441×3 / 1324    manjak 1 px
+    manualna         441×3 / 441+883         manjak 1 px
+    postoperativna   441×3 / 441+883         manjak 1 px
+    kineziterapija   441×3 / 441×3           nije dirana
+
+`usluga.css`, nova sekcija 42, **`?v=19.15`** u svih 7 fajlova.
+
+### Greška u merenju, da se ne ponovi
+
+Prva dva merenja mreže pokazala su rasuto `[441],[441],[441]` umesto redova i
+bila su **netačna**. Uzrok: elementi sa klasom `.reveal` nose `transform`
+dok ih IntersectionObserver ne otkrije, pa im se `getBoundingClientRect().y`
+razlikuje i grupisanje po `y` vidi lažne redove. Nije pomoglo ni da se
+`transform` nadjača sa `!important` — prelaz je još trajao u trenutku merenja.
+**Ispravno je dodati pravu klasu `is-visible` i ugasiti sve prelaze** pre
+čitanja geometrije.
+
+## Provera
+
+Svih 7 stranica, na 1440 i na 390 px, sa triggerovanim `reveal` i ugašenim
+prelazima: **HTTP 200, bez JS grešaka, bez 4xx, nijedna puknuta slika,
+`scrollWidth == clientWidth`, nijedna rupa u mreži, 0 placeholdera, 0 pomena
+RFZO, 0 pomena ultrazvuka.** Reference provereno uključujući `data-image`,
+`poster` i `url()` — 38 referenci, nijedna ne pokazuje u prazno.
+
+## Izmenjeni fajlovi
+
+**Nov fajl — mora da se čekira u GitHub Desktopu:**
+
+    v8/assets/images/pregled-kolena.webp
+
+**Izmenjeni:**
+
+    v14/index.html
+    v14/usluga.css
+    v14/README.md
+    v14/usluge/dijagnostika/index.html
+    v14/usluge/fizikalna-terapija/index.html
+    v14/usluge/kineziterapija/index.html
+    v14/usluge/manualna-terapija/index.html
+    v14/usluge/postoperativna-rehabilitacija/index.html
+    v14/usluge/index.html            (samo oznaka verzije)
+
+## Zatečeno uz put, nije dirano
+
+- **`usluga.css` je bio na `?v=19.14`**, a uputstva projekta i dalje navode
+  `?v=15.0`. Tabela u uputstvima je zastarela.
+- **Kartica „Ne znate kome prvo" ima ugrađenu boju u `style` atributu**:
+  `rgba(201, 242, 95, 0.07)`. To je **stari lajm `#c9f25f`**, a ne `var(--lime)`,
+  koji je u v14 spušten na `#84c350`. Ista zamka opisana u pravilu 6. Kad dođe
+  runda boja, ovo mesto se ne vidi kroz `grep var(--lime)`.
+- **`.founders-note` je obrisan iz `index.html`** (klijent: „Ovo izbaci"), ali
+  pravilo `.founders-note` ostaje u `usluga.css` kao mrtvo — brisanje bi tražilo
+  još jedno podizanje verzije bez vidljive koristi.

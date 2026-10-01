@@ -3933,3 +3933,56 @@ a.step-tag:focus-visible {
 .contact-form-spacer {
   flex: 1 0 auto;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   42. Metode — poslednja kartica popunjava red do kraja — 01.10.2026
+
+   Mreža `.method-grid` nema razmak: kartice se slažu rub uz rub i
+   dele ivicu. Kad poslednji red ne bude pun, prazno mesto ostane kao
+   tamna rupa sa nacrtanom ivicom, pa izgleda kao da nešto nedostaje.
+
+   Izmereno na 1440 px pre izmene:
+     dijagnostika     4 kartice  3 + 1   dve prazne ćelije (882 px)
+     fizikalna        7 kartica  3+3+1   dve prazne ćelije (882 px)
+     manualna         5 kartica  3 + 2   jedna prazna ćelija (441 px)
+     postoperativna   5 kartica  3 + 2   jedna prazna ćelija (441 px)
+     kineziterapija   6 kartica  3 + 3   puno, nema šta da se ispravi
+
+   Rupa je postojala i ranije na tri stranice. Na dijagnostici je
+   nastala sada, izbacivanjem kartice „Ultrazvuk" po zahtevu klijenta.
+   Rešenje je opšte, ne po stranici: poslednja kartica se razvuče
+   preko kolona koje su ostale prazne. Broj kolona je različit po
+   širinama, pa se računa posebno za svaku.
+
+   Ne koristi se `grid-column: auto / -1` — provereno u browseru, po
+   specifikaciji tada raspon ostaje 1 i kartica samo odskoči u desnu
+   kolonu, a na 1100 px raspored se raspadne na 2+1+1+1.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* tri kolone (preko 1080 px) */
+.method-grid > .method:last-child:nth-child(3n + 1) {
+  grid-column: span 3;
+}
+
+.method-grid > .method:last-child:nth-child(3n + 2) {
+  grid-column: span 2;
+}
+
+/* dve kolone */
+@media (max-width: 1080px) {
+  .method-grid > .method:last-child:nth-child(3n + 1),
+  .method-grid > .method:last-child:nth-child(3n + 2) {
+    grid-column: auto;
+  }
+
+  .method-grid > .method:last-child:nth-child(2n + 1) {
+    grid-column: span 2;
+  }
+}
+
+/* jedna kolona */
+@media (max-width: 680px) {
+  .method-grid > .method:last-child:nth-child(2n + 1) {
+    grid-column: auto;
+  }
+}
