@@ -4333,3 +4333,117 @@ a.step-tag:focus-visible {
   display: inline;
   margin: 0 0 0 0.4em;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   45. CENE NA STRANICAMA USLUGA KAO TABELA — 02.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Novak (Loom V3 ~2:19): „pa bi ovako bilo terapijski dan, pa možda se
+   napravi tabela 10-12-16". Na naslovnoj cene već jesu tabela (sekcija
+   28); na stranicama usluga su bile spisak gde je svaka kombinacija
+   usluga × trajanje poseban red. Isti oblik kao naslovna, ista pravila
+   iz sekcije 44: zaglavlje na dnu, kolone cena fiksne širine.
+
+     stranica          redova pre → posle
+     dijagnostika        3 → 3   (jedna cena; opisi ostaju)
+     fizikalna           7 → 5
+     kineziterapija      8 → 4
+     manualna            2 → 1
+     postoperativna      6 → 5
+
+   Uštede ostaju, ispod svake cene. Provereno ponovo iz pojedinačnih cena
+   (npr. 12 × 7.000 − 72.000 = 12.000) — sve se slažu.
+
+   Iznosi su provereni skriptom pre/posle: na četiri stranice isti skup.
+   Na POSTOPERATIVNOJ je DODAT „REHAB paket, 10 terapija — samo terapija,
+   45.000 (ušteda 5.000)". Do sada tamo nije stajao. Osnov: Novak 30.09 —
+   REHAB paket je rehabilitacija bilo kog tipa, sa operacijom ili bez, dakle
+   isti paket kao na fizikalnoj. Prazna ćelija bi značila „ne nudi se", a
+   to bi bila tvrdnja bez osnova. Zapisano u README za potvrdu. */
+
+.service-price-table {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  table-layout: fixed;
+}
+
+.service-price-table thead th,
+.service-price-table thead td {
+  height: 2.6rem;
+  padding-top: 0;
+  padding-bottom: 0.55rem;
+  vertical-align: bottom;
+}
+
+.service-price-table thead th {
+  width: 10rem;
+}
+
+.service-price-table thead td {
+  width: calc(100% - 10rem);
+}
+
+.service-price-table.price-table-duo thead td {
+  width: calc(100% - 20rem);
+}
+
+.service-price-table th,
+.service-price-table td {
+  padding: 1.1rem 0;
+  vertical-align: top;
+}
+
+.service-price-table tbody th {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+}
+
+.service-price-table td {
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+}
+
+.service-price-table tbody th span {
+  margin-top: 0.35rem;
+}
+
+.price-usteda {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--teal-deep);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 720px) {
+  .service-price-table {
+    table-layout: auto;
+  }
+
+  .service-price-table thead th,
+  .service-price-table thead td {
+    width: auto;
+  }
+
+  .service-price-table:not(.price-table-duo) thead {
+    display: none;
+  }
+
+  /* blok raspored iz sekcije 28: oznaka levo, cena desno, ušteda ispod.
+     Razmak ćelija iz ove sekcije (1,1rem) bi ga pregazio — vraća se 0. */
+  .service-price-table.price-table-duo tbody th,
+  .service-price-table.price-table-duo td {
+    padding: 0;
+  }
+
+  /* `gap: 1rem` iz sekcije 28 važi i vertikalno kad se red prelomi, pa je
+     ušteda stajala ~25 px ispod svoje cene. */
+  .service-price-table.price-table-duo td {
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
+
+  .service-price-table.price-table-duo .price-usteda {
+    flex-basis: 100%;
+    margin-top: 0.15rem;
+    text-align: right;
+  }
+}

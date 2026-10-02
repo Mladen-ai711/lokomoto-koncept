@@ -12,6 +12,49 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 02.10.2026 — Cene na stranicama usluga kao tabela
+
+Zahtev V3-4 iz `claude/18-spisak-zahteva.md` — „pa možda se napravi tabela
+10-12-16". Kod: `usluga.css` sekcija **45**; HTML na 5 stranica usluga.
+
+Na naslovnoj su cene već bile tabela; na stranicama usluga svaka kombinacija
+usluga × trajanje bila je poseban red. Sada je isti oblik kao naslovna, sa
+pravilima iz sekcije 44 (zaglavlje na dnu, cene fiksne širine, naziv u jednom
+redu). Uštede ostaju, ispod svake cene. Opisi stavki ostaju ispod naziva.
+
+| Stranica | Redova pre → posle | Sekcija cena, 1440 | Sekcija cena, 390 |
+|---|---|---|---|
+| dijagnostika | 3 → 3 | 837 → 837 px | 727 → 597 px |
+| fizikalna | 7 → 5 | 1.236 → 1.019 px | 1.301 → 1.027 px |
+| kineziterapija | 8 → 4 | 1.345 → 910 px | 1.531 → 1.029 px |
+| manualna | 2 → 1 | 735 → 641 px | 673 → 526 px |
+| postoperativna | 6 → 5 | 1.132 → 1.019 px | 1.190 → 1.088 px |
+
+**Iznosi provereni skriptom, pre i posle:** na četiri stranice isti skup cena i
+ušteda. Sve uštede ponovo izračunate iz pojedinačnih cena — slažu se (npr.
+12 × 7.000 − 72.000 = 12.000; 16 × 3.500 − 45.000 = 11.000).
+
+**⚠ Na postoperativnoj je dodata jedna cena: „REHAB paket, 10 terapija — samo
+terapija, 45.000 RSD (ušteda 5.000)".** Do sada tamo nije stajala, iako postoji
+na fizikalnoj i u cenovniku na naslovnoj. Osnov: Novak 30.09 — REHAB paket je
+rehabilitacija bilo kog tipa, sa operacijom ili bez, dakle isti paket. Tabela
+traži da se ćelija popuni ili označi crticom, a crtica znači „ne nudi se" — to
+bi bila tvrdnja bez osnova. **Za potvrdu kod Novaka** ako je izostavljanje bilo
+namerno (npr. da posle operacije uvek idu i vežbe).
+
+Na telefonu (ispod 720 px) tabela sa dve cene se raspada u blokove iz sekcije
+28; ušteda stoji odmah ispod svoje cene (`row-gap: 0` — `gap: 1rem` iz sekcije
+28 ju je bio odvojio ~25 px). Jednokolonska tabela (dijagnostika) gubi
+zaglavlje „Cena".
+
+Provereno: 7 stranica na 1440 i 390 — HTTP 200, 0 JS grešaka, bez prelivanja,
+0 puknutih slika, 0 padova kontrasta, nijedna ćelija se ne prepunjava.
+Cenovnik na naslovnoj i dalje 10/11 linija na 0 px.
+
+Oznaka: `usluga.css?v=19.18` na svih 7.
+
+---
+
 ## 02.10.2026 — Cenovnik: simetrija levo/desno
 
 Zahtev V4-3 iz `claude/18-spisak-zahteva.md` — „voleo bih da imam neku

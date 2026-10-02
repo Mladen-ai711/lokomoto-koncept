@@ -121,7 +121,9 @@ Sve sa WhatsAppa je već ugrađeno u `v15` 30. 9. **Sitnica `60 min` → `do 60 
    od pet stranica usluga.
    ✅ **Usput urađeno 02.10:** simetrija u cenovniku na naslovnoj (V4-3 — Mladen
    potvrdio da Novak misli na cenovnik) i `do 60 min` (W-2). `usluga.css` sekcija 44.
-3. **Cene u tabelu na podstranicama**, po uzoru na naslovnu, gde to već jeste
+3. ✅ **Cene u tabelu — URAĐENO 02.10.2026**, `usluga.css` sekcija 45. Na postoperativnoj
+   dodat REHAB 10 samo terapija (45.000) — za potvrdu, vidi README. Stari opis:
+   **Cene u tabelu na podstranicama**, po uzoru na naslovnu, gde to već jeste
    tabela sa kolonama.
 4. **FAQ da poraste.** Mereno: odgovor je **14,88 px na 1440** i **14,08 px na
    390**, a telo teksta je 16 px. Pitanje je 15,68 px na 390, dakle i ono padne
