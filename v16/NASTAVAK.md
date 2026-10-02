@@ -103,11 +103,14 @@ stranici usluge piše `do 60 min`.
 
 **Naš posao, po redu:**
 
-1. **Boje.** Klijent kaže da zelena nije boja ordinacije i da je sajt
+1. ✅ **Boje — URAĐENO 02.10.2026**, `usluga.css` sekcije 42/42a/42b, zapis u
+   `README.md`. Tamne sekcije `#0e4766`, papir `#f1f5f8`, akcenat `#8fd6f4`,
+   sepija skinuta sa fotografija. Ostaje za pokazati klijentu. Stari opis:
+   Klijent kaže da zelena nije boja ordinacije i da je sajt
    „muljav"; hoće „čisto", i tamne sekcije su mu pretamne. Plava nije sporna.
    Izmereno u `v16`: `var(--lime)` na **71 mesto** (50 u `styles.css`, 21 u
    `usluga.css`) **plus 17 mesta sa ručno upisanom starom vrednošću**
-   `#c9f25f` / `rgba(201,242,95,…)`, od čega jedno u `style` atributu u HTML-u.
+   `#c9f25f` / `rgba(201,242,95,…)`, od čega pet u `style` atributu u HTML-u (svih pet stranica usluga).
    `--lime` je definisan dvaput: `#c9f25f` u `styles.css`, prebrisan na
    `#84c350` u `usluga.css`. **Limeta i tamne podloge se menjaju zajedno** —
    limeta nosi akcenat tamo gde plava nema kontrast.

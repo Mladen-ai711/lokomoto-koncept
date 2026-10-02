@@ -12,6 +12,79 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 02.10.2026 — Boje, runda 2: bez zelene, svetlije tamne sekcije
+
+Zahtevi V1-1, V1-2, V1-3, V3-2, V4-8 iz `claude/18-spisak-zahteva.md`. Klijent:
+zelena nije boja ordinacije, utisak je „muljav", hoće „čisto", tamne sekcije su
+pretamne. Kod: `usluga.css`, sekcije **42, 42a, 42b** (na kraju fajla).
+
+**„Muljavo" nije bila samo zelena.** Izmereno, četiri izvora zajedno:
+
+| Izvor | Bilo | Sada |
+|---|---|---|
+| Tamne sekcije | `#1f2927`, ton 168° (zelenkasto-siva), L* 15,6 | `--deep` `#0e4766`, ton 201° (brend plava), L* 28,3 |
+| Papir | `#f1f0e9`, ton 52° (žućkast krem) | `#f1f5f8`, hladno belo |
+| Akcenat | zelena `#84c350`, i kao pune površine | nebo `#8fd6f4` (ime `--lime` ostaje) |
+| Fotografije | `sepia()` na **svih 9** filtera + braon zavesa preko hero videa | skinuto |
+
+Tekst je razdvojen od podloge: `--ink` je bio i boja teksta i boja tamnih
+sekcija. Sada je `--ink` `#16252f` samo tekst, a podloge su `--deep / -2 / -3`.
+
+**Kontrast — sve što se menjalo, izmereno:**
+
+| | pre | posle |
+|---|---|---|
+| mastilo na papiru | 13,08:1 | 14,30:1 |
+| prigušeni tekst na papiru | 5,25:1 | 5,47:1 |
+| `--teal-deep` na papiru | 4,71:1 | 4,91:1 |
+| bela na tamnoj sekciji | ~14,5:1 | 9,94:1 |
+| akcenat na tamnoj sekciji | 6,35:1 (zelena) | 6,20:1 (nebo) |
+
+**Provera preko svih 7 stranica, na 1440 i 390** (svaki vidljiv tekst, stvarna
+boja prema stvarnoj podlozi, alfa složena kroz roditelje): HTTP 200, 0 JS
+grešaka, bez prelivanja, 0 puknutih slika, **0 padova kontrasta**. Pre ove runde
+bilo je 5 padova na 390 (neaktivne stavke u panelu Usluge, 4,36:1) — rešeni usput.
+
+Prva verzija zamene je pala na **106 mesta**: providna bela 0,50–0,62 i sitne
+etikete u `--teal` (3,85:1) prolazile su samo zato što je stara tamna bila skoro
+crna. Rešeno u 42a — u tamnim sekcijama `--teal` pokazuje na akcenat, a deset
+prigušenih belih je podignuto na 0,64–0,78. Jedno mesto (`.oprema-uredjaji-note`)
+ima `!important` iz sekcije 18, pa ga i zamena nosi.
+
+**Hero.** Bez sepije se prozor iza naslova posvetli (kicker na 1440 padne sa
+2,88 na 2,29:1). Nadoknađeno svetlinom filtera, ne zavesom. Mereno iza teksta,
+90. percentil svetline, sada je **svuda bolje ili jednako** nego pre: naslov
+3,08 → 3,41, kicker 2,88 → 2,97, podnaslov 5,43 → 6,06; na 390 naslov
+3,89 → 3,95. Kicker na 1440 je i pre i posle ispod 3:1 u najsvetlijem delu —
+otvoreno, nije nastalo ovde.
+
+**Pravilo 6 — upisane vrednosti, menjano skriptom, samo van komentara:**
+
+- 24 × zelena u `rgba` (stara i nova)
+- **14 × zaostali tirkiz iz v13** (`19,201,179` i `7,139,125`) — preživeo je
+  prelaz v13 → v14, isto kao 25 mesta tada
+- 63 × `rgba(31,41,39,…)`: 21 u zavesama koje stapaju fotografiju sa tamnom
+  sekcijom → `--deep`, 42 linije/okviri/senke/natpisi → mastilo
+- 16 × ostale zelenkasto-crne i prigušene `rgba`
+- 26 × pozadina `var(--ink*)` i `#25312f` → `var(--deep*)`
+- 9 × `sepia()`, 5 × braon zavesa
+- HTML: **5** inline `style` sa starom limetom — na svih pet stranica usluga, ne
+  na jednoj kako je pisalo u `claude/17` i `claude/18`; 7 × `theme-color`
+
+Posle zamene, van komentara stare vrednosti ostaju samo u definicijama u
+`:root` (`styles.css` 42–51, `usluga.css` 2671), koje sekcija 42 prebrisuje.
+
+**Favicon** je prebojen u plave (bio je tirkiz + limeta na zelenocrnom), uz
+`?v=2`. **Napomena: favicon i dalje nije Lokomoto znak** — to su tri štapića iz
+koncepta. Pravi favicon iz logoa ostaje za posao.
+
+**Vraćanje zelene** je jedan red: `--lime` u sekciji 42. Zelena iz logoa ostaje
+u logou, logo nije diran.
+
+Oznake: `styles.css?v=13.8`, `usluga.css?v=19.15`, `favicon.svg?v=2`, na svih 7.
+
+---
+
 Sve ispod je istorijat nasleđen iz `v14` i `v15`, neizmenjen. Naslov koji
 sledi odnosi se na `v14` i ostavljen je kakav jeste, da se zapisi ne pomeraju.
 
