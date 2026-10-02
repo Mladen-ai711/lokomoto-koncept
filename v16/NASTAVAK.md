@@ -135,7 +135,11 @@ Sve sa WhatsAppa je već ugrađeno u `v15` 30. 9. **Sitnica `60 min` → `do 60 
    **Prazne ćelije u mreži metoda**, jednim opštim pravilom (dijagnostika 3+1,
    fizikalna 3+3+1, manualna i postoperativna 3+2). Mreža nema razmak, pa
    prazna ćelija izgleda kao nacrtana rupa.
-6. **Kviz na naslovnu** — iz prve runde, traže ga i Novak i Nikola, a na sajtu
+6. ✅ **Kviz — već urađeno 01.09.2026** (README, „Kviz: adresa nađena, ulaz postavljen"):
+   kartica ispod mape tela na naslovnoj + `Kviz ↗` u futeru svih 7 stranica, oba na
+   `https://kviz.lokomoto.rs/`. Spisak iz `claude/18` ga je pogrešno vodio kao otvoren —
+   pravljen je iz Loom-a, ne iz koda. Provereno u kodu 02.10. Stari opis:
+   **Kviz na naslovnu** — iz prve runde, traže ga i Novak i Nikola, a na sajtu
    ga nema. Adresa je `kviz.lokomoto.rs`.
 7. **Video ili slike** — pita može li video iz Drive foldera umesto panela.
    Odgovor je merljiv: broj rezova u minutu i težina fajla.
