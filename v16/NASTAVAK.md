@@ -38,6 +38,8 @@ tačka, isto kao što je `v13` bila za `v14`.
 |---|---|
 | `v16/PRED-OBJAVU.md` | pitanja za klijenta, gotov `robots.txt` i `sitemap.xml`, postupak za dan objave |
 | `v16/README.md` | ceo istorijat izmena, uključujući i greške napravljene usput |
+| `claude/18-spisak-zahteva.md` | **svaki zahtev klijenta sa statusom** — otvori ovo da bi znao šta je na redu |
+| `claude/17-loom-klijent-2.md` | nalaz iz druge runde pregleda: boje, harmonika, ceo tekst sajta |
 
 SEO plan nije u repou — on je artefakt:
 https://claude.ai/code/artifact/f1231573-a16f-4397-b4ac-fd47cadac04c
@@ -86,6 +88,53 @@ Ne preispitivati bez novog razloga.
    podatak ne postoji, stoji oznaka i pita se klijent.
 
 ## Šta je sledeće, po prioritetu
+
+### 0. Runda boja i strukture — NA REDU, 01.10.2026
+
+Druga runda pregleda od klijenta: **četiri Looma** po 5 minuta, **nov Google
+dokument sa kompletnim tekstom sajta** (101.920 znakova) i dopune na WhatsAppu.
+Nalaz je u `claude/17-loom-klijent-2.md`, a spisak svih 36 zahteva sa statusom u
+`claude/18-spisak-zahteva.md`. **`v16` je i napravljen zbog ove runde**, kao
+kopija `v15`, da bi `v15` ostala povratna tačka.
+
+Sve sa WhatsAppa je već ugrađeno u `v15` 30. 9. **Ostaje jedna sitnica:** u
+cenovniku na naslovnoj kolona kineziterapije i dalje nosi `60 min`, a na
+stranici usluge piše `do 60 min`.
+
+**Naš posao, po redu:**
+
+1. **Boje.** Klijent kaže da zelena nije boja ordinacije i da je sajt
+   „muljav"; hoće „čisto", i tamne sekcije su mu pretamne. Plava nije sporna.
+   Izmereno u `v16`: `var(--lime)` na **71 mesto** (50 u `styles.css`, 21 u
+   `usluga.css`) **plus 17 mesta sa ručno upisanom starom vrednošću**
+   `#c9f25f` / `rgba(201,242,95,…)`, od čega jedno u `style` atributu u HTML-u.
+   `--lime` je definisan dvaput: `#c9f25f` u `styles.css`, prebrisan na
+   `#84c350` u `usluga.css`. **Limeta i tamne podloge se menjaju zajedno** —
+   limeta nosi akcenat tamo gde plava nema kontrast.
+2. **Harmonika i brojevi `01 02 03`.** Žali se na skrol u sva četiri snimka i
+   sam nudi rešenje: sklopljene sekcije. To je jedino što miri njegov zahtev i
+   Nikolin („kratki blokovi"), jer je njegov novi tekst po usluzi tri do četiri
+   puta duži od sadašnjeg. Brojeva ima **32**: 12 na naslovnoj, po 4 na svakoj
+   od pet stranica usluga.
+3. **Cene u tabelu na podstranicama**, po uzoru na naslovnu, gde to već jeste
+   tabela sa kolonama.
+4. **FAQ da poraste.** Mereno: odgovor je **14,88 px na 1440** i **14,08 px na
+   390**, a telo teksta je 16 px. Pitanje je 15,68 px na 390, dakle i ono padne
+   ispod tela na telefonu.
+5. **Prazne ćelije u mreži metoda**, jednim opštim pravilom (dijagnostika 3+1,
+   fizikalna 3+3+1, manualna i postoperativna 3+2). Mreža nema razmak, pa
+   prazna ćelija izgleda kao nacrtana rupa.
+6. **Kviz na naslovnu** — iz prve runde, traže ga i Novak i Nikola, a na sajtu
+   ga nema. Adresa je `kviz.lokomoto.rs`.
+7. **Video ili slike** — pita može li video iz Drive foldera umesto panela.
+   Odgovor je merljiv: broj rezova u minutu i težina fajla.
+8. **Prepis tekstova iz dokumenta** — tek kad struktura stoji i kad se zna lice.
+
+**Pet stavki je nejasno i ne sme da se dira dok ne kaže šta je mislio:** koja
+slika je nepotrebna, koja stranica mu se ne sviđa, gde tačno hoće simetriju,
+koja fotografija mu deluje kao AI (nijedna nije), i koji je kadar sa
+narandžastom mašinom. Na snimku se čuje šta govori, ali se ne vidi gde pokazuje
+mišem.
 
 ### 1. Fotografije — URAĐENO 14.09.2026
 
@@ -212,7 +261,23 @@ Adresa je potvrđena (samo Autokomanda), pa ovo više ništa ne blokira.
 - **hirurg** — Novakov tekst preuzet doslovno.
 - **prvi tretman** — rečenica ostaje kakva je bila.
 
-**Poslato, još se čeka:** način plaćanja · fotografije za **NeuFit, Normatec i
+**Poslato 01.10, čeka se odgovor (druga runda):**
+
+- **Lice teksta, „ti" ili „vi"** — **blokira prepis svih tekstova.** Novakov
+  dokument je mereno 99% na „ti" (433 oblika prema 5), sajt je na „vi". Za
+  biografije osnivača izričito traži svoj tekst, pa doslovan prepis bi na istoj
+  stranici pomešao dva lica. Dok ne odgovori, biografije se ne ubacuju.
+- **Koja fotografija mu deluje kao AI** — nijedna nije.
+- **Gde tačno hoće simetriju**, koja slika je nepotrebna, koja stranica mu se ne
+  sviđa.
+- **Kupice (`L-13`, `L-14`) i perkusioni pištolj (`L-15`)** — pitano treći put.
+
+**Čeka se od Nikole:** da li se oznaka **Tx3** koristi (Novak ga je izričito
+pitao; na sajtu je sada nema nigde, iako sekcija „Naš pristup" postoji sa
+koracima Testiramo / Tretiramo / Treniramo) · da li tihe etikete ispod naslova
+ostaju · da li cenovnik ide zbijenije.
+
+**Poslato ranije, još se čeka:** način plaćanja · fotografije za **NeuFit, Normatec i
 GameReady** (Novak ih šalje) · dodatne informacije o vizuelnom delu i prerađeni
 tekstovi, koje Mladen čeka da Nikola potvrdi.
 
