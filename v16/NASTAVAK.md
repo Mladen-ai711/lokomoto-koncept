@@ -141,7 +141,10 @@ Sve sa WhatsAppa je već ugrađeno u `v15` 30. 9. **Sitnica `60 min` → `do 60 
    pravljen je iz Loom-a, ne iz koda. Provereno u kodu 02.10. Stari opis:
    **Kviz na naslovnu** — iz prve runde, traže ga i Novak i Nikola, a na sajtu
    ga nema. Adresa je `kviz.lokomoto.rs`.
-7. **Video ili slike** — pita može li video iz Drive foldera umesto panela.
+7. ⏳ **Video ili slike — proba napravljena 02.10.2026:** `v16/hero-test/` sa Novakovim
+   videom isečenim u petlju (32 s), prekidač prema sadašnjem. Čeka Novakov izbor.
+   Detalji u README i `claude/19`. Stari opis:
+   **Video ili slike** — pita može li video iz Drive foldera umesto panela.
    Odgovor je merljiv: broj rezova u minutu i težina fajla.
 8. **Prepis tekstova iz dokumenta** — tek kad struktura stoji i kad se zna lice.
 

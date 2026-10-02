@@ -12,6 +12,53 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 02.10.2026 — Proba heroja sa Novakovim videom: `hero-test/`
+
+Zahtevi V1-10 i V4-10 — „video ili slike". Nalaz sa merenjem i Loom titlovima je u
+projektu, `claude/19-runda-2-izvrsenje.md`.
+
+**Adresa za Novaka:** `…/v16/hero-test/` (njegov video) i
+`…/v16/hero-test/?hero=sadasnji` (sadašnji hero). Prekidač je i na samoj stranici,
+dole u sredini. Stranica je kopija naslovne sa `noindex`, nije u `sitemap.xml`,
+i niko na nju ne linkuje.
+
+**Šta je Novak rekao** (titlovi iz Loom plejera): u V1 nije označio nijedan deo
+videa — „ako je previše brzo… onda slike; ja bi ga sjekao… minus 30 sekundi, pa
+loop". U V4 pokazuje fiziogroup hero sa brzom montažom („tap tap tap… i vraća ga u
+neki loop") kao uzor. Brza montaža mu, dakle, ne smeta — zato ova proba ide
+**njegovim tempom**, ne usporena.
+
+**Rez** (`_backups/lokomoto 1.3 2.mp4`, 1920×1080, 62 s, 2023): samo celi kadrovi,
+sečeno na postojećim rezovima.
+
+| Zadržano | Šta je |
+|---|---|
+| 8,36 – 19,52 s | prostor, sobe, aparati |
+| 21,16 – 38,60 s | pregled, terapija, vežba sa trakom |
+| 45,64 – 49,16 s | vođena vežba |
+
+Izbačeno: razmazani whip-pan prelazi na početku (0:02, 0:07), čekaonica i tuš
+(19,5–21,2 s — „čekaonica nikog ne zanima", V1 3:16), teretana sa satom (39–45 s),
+EMS na torzu i logo na kraju (49–62 s). Ukupno **32,12 s**, prosečan kadar ~1 s
+kao u originalu. Bez zvuka.
+
+**Fajlovi:** WebM/VP9 3,2 MB (učitava se prvi), MP4/H.264 3,7 MB, 1280 px. Teže od
+sadašnjeg heroja (~1 MB) jer brza montaža sa pokretom slabo se sažima; ako Novak
+izabere video, konačna težina se rešava tada (AV1 kao kod sadašnjeg). Kvalitet
+proveren na isečku kadra pored originala — razlika se ne vidi.
+
+**Na telefonu** ide isti 16:9 fajl sa `cover` — uspravna verzija bi se pravila tek
+ako izbor padne na video.
+
+Provereno: 1440 i 390 — HTTP 200, 0 JS grešaka, bez prelivanja, 0 puknutih slika,
+34/34 reference postoje (uključujući `data-image`, `poster`), video kreće sam,
+prekidač menja izvor na obe širine, link `?hero=sadasnji` radi.
+
+**Novi fajlovi:** `hero-test/index.html`, `assets/media/hero-novak-test.webm`,
+`assets/media/hero-novak-test.mp4`, `assets/images/hero-novak-test-poster.jpg`.
+
+---
+
 ## 02.10.2026 — Mreža metoda: bez praznih ćelija, kraća na telefonu
 
 Zahtev V3-1 (prazan prostor) i ostatak V2-2 (skrol na telefonu). Kod:
