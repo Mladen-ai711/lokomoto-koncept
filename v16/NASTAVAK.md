@@ -125,7 +125,9 @@ Sve sa WhatsAppa je već ugrađeno u `v15` 30. 9. **Sitnica `60 min` → `do 60 
    dodat REHAB 10 samo terapija (45.000) — za potvrdu, vidi README. Stari opis:
    **Cene u tabelu na podstranicama**, po uzoru na naslovnu, gde to već jeste
    tabela sa kolonama.
-4. **FAQ da poraste.** Mereno: odgovor je **14,88 px na 1440** i **14,08 px na
+4. ✅ **FAQ — URAĐENO 02.10.2026**, `usluga.css` sekcija 46: odgovor 16 px, pitanje
+   21,6 / 17,6 px. Stari opis:
+   **FAQ da poraste.** Mereno: odgovor je **14,88 px na 1440** i **14,08 px na
    390**, a telo teksta je 16 px. Pitanje je 15,68 px na 390, dakle i ono padne
    ispod tela na telefonu.
 5. **Prazne ćelije u mreži metoda**, jednim opštim pravilom (dijagnostika 3+1,

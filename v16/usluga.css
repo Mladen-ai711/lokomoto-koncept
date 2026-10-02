@@ -4447,3 +4447,46 @@ a.step-tag:focus-visible {
     text-align: right;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   46. ČESTA PITANJA — VEĆI TEKST — 02.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Novak (Loom V4 1:34): „ovo često je pitanje koliko je malo".
+   Izmereno pre, osnovni tekst stranice je 16 px:
+
+                         1440 px     390 px
+     pitanje ........... 19,44       15,68   ← ispod osnovnog na telefonu
+     odgovor ........... 14,88       14,08   ← ispod osnovnog svuda
+
+   Odgovor je bio najsitniji tekst koji se čita na stranici, a to je
+   upravo tekst zbog kog je posetilac otvorio pitanje. Na stranicama
+   usluga je uz to bio bela 0,62 na plavoj — i manji i bleđi.
+
+   Sada: odgovor = osnovni tekst (16 px) na svim širinama; pitanje
+   ostaje jasno veće od odgovora (21,6 na 1440, 17,6 na telefonu).
+   Širina reda ostaje 52ch — `ch` raste sa slovom, pa se broj znakova
+   u redu ne menja, samo red postaje širi. */
+
+.faq-item summary span {
+  font-size: clamp(1.12rem, 1.5vw, 1.35rem);
+}
+
+.faq-answer p {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.service-faq .faq-answer p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@media (max-width: 560px) {
+  .faq-item summary span {
+    font-size: 1.1rem;
+  }
+
+  .faq-answer p {
+    font-size: 1rem;
+  }
+}

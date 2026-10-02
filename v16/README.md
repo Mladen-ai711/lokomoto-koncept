@@ -12,6 +12,30 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 02.10.2026 — Česta pitanja: veći tekst
+
+Zahtev V4-4 — „ovo često je pitanje koliko je malo". Kod: `usluga.css` sekcija
+**46**. Važi za naslovnu i svih pet stranica usluga (isti `.faq-item`).
+
+| | pre, 1440 | posle, 1440 | pre, 390 | posle, 390 |
+|---|---|---|---|---|
+| pitanje | 19,44 px | 21,6 px | **15,68 px** | 17,6 px |
+| odgovor | **14,88 px** | 16 px | **14,08 px** | 16 px |
+
+Osnovni tekst stranice je 16 px. Odgovor je bio najsitniji tekst koji se čita
+na stranici — a to je baš tekst zbog kog je posetilac kliknuo. Sada je jednak
+osnovnom, a pitanje ostaje jasno veće od odgovora. Na stranicama usluga odgovor
+je bio i bleđi (bela 0,62 na plavoj) — podignut na 0,78, isto kao kartice metoda.
+
+Sklopljena sekcija je porasla za 8–25 px; dužina reda ostaje 52ch.
+
+Provereno: 7 stranica, 1440 i 390 — HTTP 200, 0 JS grešaka, bez prelivanja,
+0 puknutih slika, 0 padova kontrasta.
+
+Oznaka: `usluga.css?v=19.19` na svih 7.
+
+---
+
 ## 02.10.2026 — Cene na stranicama usluga kao tabela
 
 Zahtev V3-4 iz `claude/18-spisak-zahteva.md` — „pa možda se napravi tabela
