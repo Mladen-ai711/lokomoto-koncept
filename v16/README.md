@@ -12,6 +12,50 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 02.10.2026 — Cenovnik: simetrija levo/desno
+
+Zahtev V4-3 iz `claude/18-spisak-zahteva.md` — „voleo bih da imam neku
+simetriju". Bio je označen ❓ jer se nije znalo na šta misli. Mladen je 02.10.
+potvrdio: **cenovnik na naslovnoj**, linije levo i desno se ne poklapaju. Usput
+W-2. Kod: `usluga.css` sekcija **44**; HTML samo `index.html`.
+
+**Izmereno pre** (donja ivica svakog reda): na 1280 i 1440 px **0–1 od 10**
+desnih linija na istoj visini kao neka leva, odstupanja 18–74 px. Naslovi drugog
+para razmaknuti 73 px.
+
+Četiri uzroka, svaki gura sve linije ispod sebe:
+
+| Uzrok | Rešenje |
+|---|---|
+| `columns` — leva i desna kolona teku nezavisno | mreža 2 × 2, par naslova kreće sa iste visine |
+| Rehab i Fizikalna imaju red zaglavlja, Dijagnostika i Oporavak ne | svaka tabela ima zaglavlje iste visine; jednokolonske dobile „Cena" |
+| „Masaža / 30 min" i sastav Oporavka u drugom redu | „Masaža 30 min" u istom redu; sastav Oporavka prešao ispod naslova grupe, kao oprema kod Fizikalne |
+| „Manualna terapija, osteopatija" se lomila | `table-layout: fixed`, naziv dobija ostatak širine |
+
+**Izmereno posle:** na 1200, 1280, 1366, 1440, 1600 i 1920 px **10 od 11**
+linija na **0 px**. Jedanaesta je četvrti red Rehaba — Dijagnostika ima tri
+reda, pa levo nema para. To je jedina rupa i ona je cena poravnanja (sekcija 26
+je `columns` izabrala baš da je sakrije, ali je time razvukla sve ostalo).
+
+Dve kolone se drže od **1200 px**; ispod je jedna kolona (do sada od 900), jer
+na užem naziv ne staje u red. Ispod 1200 zaglavlje „Cena" je skriveno — služi
+samo za par. Ni na jednoj širini (390–1920) nijedna ćelija se ne prepunjava.
+
+Usput: prva verzija je merila sa animacijom pojavljivanja u toku i pokazala 2 px
+odstupanja na 1280 — svaka grupa je bila na drugom mestu svoje putanje. Sa
+ugašenim animacijama odstupanje je 0.
+
+**W-2:** zaglavlje kineziterapije `60 min` → **`do 60 min`**, kao na stranici
+usluge (i u `data-kolona` za telefon).
+
+**Tekst nije menjan**, samo premešten: „masaža 30 min, limfna drenaža, istezanje,
+krioterapija" je sada podnaslov grupe („Oporavak: …"), zarezi su postali tačke
+kao u podnaslovu Fizikalne.
+
+Oznaka: `usluga.css?v=19.17` na svih 7.
+
+---
+
 ## 02.10.2026 — Bez brojeva 01 02 03, koraci kao harmonika
 
 Zahtevi V2-1, V2-2, V2-3 iz `claude/18-spisak-zahteva.md`. Kod: `usluga.css`

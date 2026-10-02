@@ -97,9 +97,7 @@ Nalaz je u `claude/17-loom-klijent-2.md`, a spisak svih 36 zahteva sa statusom u
 `claude/18-spisak-zahteva.md`. **`v16` je i napravljen zbog ove runde**, kao
 kopija `v15`, da bi `v15` ostala povratna tačka.
 
-Sve sa WhatsAppa je već ugrađeno u `v15` 30. 9. **Ostaje jedna sitnica:** u
-cenovniku na naslovnoj kolona kineziterapije i dalje nosi `60 min`, a na
-stranici usluge piše `do 60 min`.
+Sve sa WhatsAppa je već ugrađeno u `v15` 30. 9. **Sitnica `60 min` → `do 60 min` na naslovnoj urađena je 02.10.**
 
 **Naš posao, po redu:**
 
@@ -121,6 +119,8 @@ stranici usluge piše `do 60 min`.
    Nikolin („kratki blokovi"), jer je njegov novi tekst po usluzi tri do četiri
    puta duži od sadašnjeg. Brojeva ima **32**: 12 na naslovnoj, po 4 na svakoj
    od pet stranica usluga.
+   ✅ **Usput urađeno 02.10:** simetrija u cenovniku na naslovnoj (V4-3 — Mladen
+   potvrdio da Novak misli na cenovnik) i `do 60 min` (W-2). `usluga.css` sekcija 44.
 3. **Cene u tabelu na podstranicama**, po uzoru na naslovnu, gde to već jeste
    tabela sa kolonama.
 4. **FAQ da poraste.** Mereno: odgovor je **14,88 px na 1440** i **14,08 px na

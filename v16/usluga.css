@@ -4230,3 +4230,106 @@ a.step-tag:focus-visible {
     animation: none;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   44. CENOVNIK — SIMETRIJA LEVO/DESNO — 02.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Novak (Loom V4 1:07): „pregled ovde, pa piše ovo ovde, pa ova crtica
+   ovuda, pa ova ovuda… voleo bih da imam neku simetriju". Mladen je
+   02.10. potvrdio da misli na cenovnik: linije levo i desno se ne
+   poklapaju.
+
+   IZMERENO PRE (donja ivica svakog reda, levo prema desno):
+     na 1000, 1280, 1440 i 1920 px — 0 od 10 desnih linija na istoj
+     visini kao neka leva; odstupanja 19–74 px. Naslovi drugog para
+     (Fizikalna / Oporavak) razmaknuti 74 px na 1440.
+
+   Četiri uzroka, svaki gura sve linije ispod sebe:
+     1. `columns` — leva i desna kolona teku nezavisno (sekcija 26)
+     2. Rehab i Fizikalna imaju red zaglavlja, Dijagnostika i Oporavak ne
+     3. „Masaža / 30 min" i sastav Oporavka u drugom redu — viši redovi
+     4. „Manualna terapija, osteopatija" se lomi u dva reda
+
+   Rešenje:
+     1. mreža 2 × 2: Dijagnostika | Rehab, Fizikalna | Oporavak — par
+        naslova uvek kreće sa iste visine
+     2. svaka tabela ima zaglavlje iste visine (Dijagnostika i Oporavak
+        dobijaju „Cena"), tekst poravnat na dno
+     3. „30 min" u istom redu; sastav Oporavka prešao ispod naslova grupe,
+        isto kao spisak opreme kod Fizikalne — pa i drugi par ima isti oblik
+     4. tabela `fixed`, nazivi u jednom redu; dve kolone samo od 1200 px,
+        ispod toga jedna kolona (do sada od 900), jer na užem naziv ne staje
+
+   Sekcija 26 je izabrala `columns` da ispod Dijagnostike ne ostane rupa.
+   Rupa sada postoji — jedan red, jer Rehab ima 4 reda a Dijagnostika 3.
+   To je cena poravnanja i manja je od onoga što je `columns` krio.
+
+   Usput W-2: zaglavlje kineziterapije „60 min" → „do 60 min", kao na
+   stranici usluge. */
+
+@media (min-width: 1200px) {
+  .pricing-groups {
+    display: grid;
+    columns: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: start;
+  }
+
+  .pricing-groups > .price-group:nth-child(1) { grid-column: 1; grid-row: 1; }
+  .pricing-groups > .price-group:nth-child(2) { grid-column: 1; grid-row: 2; }
+  .pricing-groups > .price-group:nth-child(3) { grid-column: 2; grid-row: 1; }
+  .pricing-groups > .price-group:nth-child(4) { grid-column: 2; grid-row: 2; }
+
+  .pricing .price-group h3,
+  .pricing .price-group-sub,
+  .pricing .price-table tbody th {
+    white-space: nowrap;
+  }
+
+  .pricing .price-table {
+    table-layout: fixed;
+  }
+
+  .pricing .price-table thead th {
+    width: 8rem;
+  }
+
+  /* `fixed` deli višak svim kolonama, pa su cene dobijale 172–209 px a
+     naziv se prepunjavao. Nazivu se zato daje ostatak eksplicitno. */
+  .pricing .price-table thead td {
+    width: calc(100% - 8rem);
+  }
+
+  .pricing .price-table-duo thead td {
+    width: calc(100% - 16rem);
+  }
+}
+
+@media (max-width: 1199px) {
+  .pricing-groups {
+    columns: 1;
+  }
+
+  /* „Cena" postoji samo da bi zaglavlja bila iste visine u paru; u jednoj
+     koloni nema para, pa je samo višak. */
+  .pricing .price-table:not(.price-table-duo) thead {
+    display: none;
+  }
+}
+
+/* Zaglavlje iste visine u sve četiri tabele, tekst na dnu */
+.pricing .price-table thead th,
+.pricing .price-table thead td {
+  height: 2.6rem;
+  padding-top: 0;
+  padding-bottom: 0.55rem;
+  vertical-align: bottom;
+}
+
+/* Podnaslov stavke u istom redu sa nazivom („Masaža 30 min") */
+.pricing .price-table tbody th span {
+  display: inline;
+  margin: 0 0 0 0.4em;
+}
