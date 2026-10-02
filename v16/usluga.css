@@ -4088,3 +4088,145 @@ a.step-tag:focus-visible {
     filter: saturate(0.76) contrast(1.02) brightness(0.7);
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   43. BEZ BROJEVA 01 02 03, KORACI KAO HARMONIKA — 02.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Novak (Loom V2 0:25, 3:09): brojevi „onako bezveze". V2 0:32, 4:34:
+   previše skrola za jednu informaciju. V2 2:13 sam predlaže harmoniku —
+   „piše testiranje, ti spustiš i cap, sve ti to tu piše" — što je tačno
+   ono što „Naš pristup" na naslovnoj već radi (sekcija 35).
+
+   BROJEVI — prebrojano u HTML-u, ne 32 kako je pisalo u claude/17:
+     mobilni meni (6 × 7 stranica) ...... 42   uklonjeno
+     etikete sekcija, naslovna ........... 6   uklonjeno
+     panel Usluge, naslovna .............. 5   uklonjeno, kolona za broj
+                                               sklonjena na sva 3 preloma
+     spisak usluga (usluge/index.html) ... 5   uklonjeno, kolona sklonjena
+     koraci na stranicama usluga ......... 20  uklonjeno (postali harmonika)
+     natpis „01–03" na fotografiji ....... 1   uklonjeno
+     krugovi u „Naš pristup" ............. 3   CIFRA uklonjena, krug ostaje
+                                               kao marker na liniji: prazan
+                                               kad je korak sklopljen, pun
+                                               kad je otvoren
+   Posle izmene: 0 dvocifrenih brojeva-oznaka na svih 7 stranica.
+
+   KORACI („Kako izgleda") — mereno na fizikalnoj pre izmene:
+     1440 px: 1.418 px visine za 779 znakova, 1,6 ekrana
+   Tekst nije dug, razmak je redak. Isti `<details name="koraci">` obrazac
+   kao na naslovnoj: brauzer drži jedan otvoren, bez JS-a. Prvi je otvoren
+   da sekcija nikad ne izgleda prazno. */
+
+.service-item {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+@media (max-width: 720px) {
+  .service-item {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+@media (max-width: 430px) {
+  .service-item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.svc-row > a,
+.svc-row > div {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr) 2rem;
+}
+
+@media (max-width: 1080px) {
+  .svc-row > a,
+  .svc-row > div {
+    grid-template-columns: minmax(0, 1fr) 1.5rem;
+  }
+
+  .svc-row p {
+    grid-column: 1;
+  }
+}
+
+/* Koraci kao harmonika */
+.step-grid .step-row.step-acc {
+  display: block;
+  padding: 0;
+}
+
+.step-acc summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: clamp(1.35rem, 2.2vw, 1.9rem) 0;
+  cursor: pointer;
+  list-style: none;
+  transition: transform 260ms var(--ease);
+}
+
+.step-acc summary::-webkit-details-marker {
+  display: none;
+}
+
+.step-row.step-acc:hover {
+  transform: none;
+}
+
+.step-acc:hover summary {
+  transform: translateX(0.4rem);
+}
+
+.step-acc summary h3 {
+  font-size: clamp(1.4rem, 2.2vw, 2.15rem);
+}
+
+.step-acc summary i {
+  position: relative;
+  width: 0.95rem;
+  height: 0.95rem;
+  flex: none;
+}
+
+.step-acc summary i::before,
+.step-acc summary i::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--teal-deep);
+  content: "";
+  transition: transform 280ms var(--ease);
+}
+
+.step-acc summary i::after {
+  transform: rotate(90deg);
+}
+
+.step-acc[open] summary i::after {
+  transform: rotate(0deg);
+}
+
+.step-acc-body {
+  padding: 0 2.5rem clamp(1.5rem, 2.4vw, 2.1rem) 0;
+  animation: faq-open 320ms var(--ease);
+}
+
+.step-grid .step-acc-body p {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step-acc summary,
+  .step-acc summary i::before,
+  .step-acc summary i::after {
+    transition: none;
+  }
+
+  .step-acc-body {
+    animation: none;
+  }
+}

@@ -12,6 +12,57 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 02.10.2026 — Bez brojeva 01 02 03, koraci kao harmonika
+
+Zahtevi V2-1, V2-2, V2-3 iz `claude/18-spisak-zahteva.md`. Kod: `usluga.css`
+sekcija **43**; HTML na svih 7 stranica.
+
+**Brojevi — prebrojano u HTML-u.** Nalaz iz `claude/17` je govorio o 32; stvarno
+ih je bilo **85**, jer nalaz nije brojao mobilni meni, panel Usluge, spisak usluga
+ni krugove u „Naš pristup":
+
+| Gde | Komada | Šta je urađeno |
+|---|---|---|
+| mobilni meni (6 × 7 stranica) | 42 | uklonjeno |
+| etikete sekcija, naslovna | 6 | uklonjeno |
+| panel Usluge, naslovna | 5 | uklonjeno, kolona za broj sklonjena na sva 3 preloma |
+| spisak usluga, `usluge/index.html` | 5 | uklonjeno, kolona sklonjena |
+| koraci na stranicama usluga | 20 | uklonjeno, koraci postali harmonika |
+| natpis `01–03` na fotografiji | 1 | uklonjeno |
+| krugovi u „Naš pristup" | 3 | **cifra** uklonjena, krug ostaje kao marker na liniji |
+
+Krugovi su zadržani jer nisu ukras nego marker na vremenskoj liniji: prazan kad je
+korak sklopljen, pun kad je otvoren. Bez njih linija nema za šta da se veže.
+
+**Koraci „Kako izgleda" kao harmonika**, na svih pet stranica usluga. Isti
+`<details name>` obrazac kao „Naš pristup" na naslovnoj (sekcija 35) — tačno ono
+što Novak opisuje u V2 2:13. Brauzer sam drži jedan korak otvoren, bez JS-a.
+Prvi je otvoren da sekcija nikad ne izgleda prazno.
+
+Mereno na fizikalnoj terapiji:
+
+| | pre | posle |
+|---|---|---|
+| sekcija koraka, 1440 | 1.418 px | 1.139 px |
+| sekcija koraka, 390 | 1.466 px | 1.038 px |
+| cela stranica, 390 | 12.068 px (14,3 ekrana) | 11.640 px (13,8) |
+
+Na 1440 visinu sekcije sada drži fotografija pored koraka (zaključana na 4:5),
+ne tekst. Kad stigne Novakov duži tekst, ide u telo koraka i sekcija ne raste
+dok je korak sklopljen — zbog toga je harmonika uvedena **pre** prepisa.
+
+Provereno: klik otvara jedan i zatvara drugi, drugi klik zatvara, radi i
+tastaturom (Enter), na svih 5 stranica, na 1440 i 390. Svih 7 stranica: HTTP 200,
+0 JS grešaka, bez prelivanja, 0 puknutih slika, 0 padova kontrasta.
+
+**Šta nije dirano:** kartice metoda (Novak: „ove kocke su mi okej", V2 4:46).
+One su na telefonu i dalje najduža sekcija (3,4 ekrana na fizikalnoj); dolaze na
+red sa praznim ćelijama u mreži (tačka 5).
+
+Oznaka: `usluga.css?v=19.16` na svih 7.
+
+---
+
 ## 02.10.2026 — Boje, runda 2: bez zelene, svetlije tamne sekcije
 
 Zahtevi V1-1, V1-2, V1-3, V3-2, V4-8 iz `claude/18-spisak-zahteva.md`. Klijent:

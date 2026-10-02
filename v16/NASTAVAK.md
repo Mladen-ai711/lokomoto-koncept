@@ -114,7 +114,9 @@ stranici usluge piše `do 60 min`.
    `--lime` je definisan dvaput: `#c9f25f` u `styles.css`, prebrisan na
    `#84c350` u `usluga.css`. **Limeta i tamne podloge se menjaju zajedno** —
    limeta nosi akcenat tamo gde plava nema kontrast.
-2. **Harmonika i brojevi `01 02 03`.** Žali se na skrol u sva četiri snimka i
+2. ✅ **Harmonika i brojevi — URAĐENO 02.10.2026**, `usluga.css` sekcija 43.
+   Brojeva je bilo 85, ne 32; koraci na stranicama usluga su harmonika. Stari opis:
+   **Harmonika i brojevi `01 02 03`.** Žali se na skrol u sva četiri snimka i
    sam nudi rešenje: sklopljene sekcije. To je jedino što miri njegov zahtev i
    Nikolin („kratki blokovi"), jer je njegov novi tekst po usluzi tri do četiri
    puta duži od sadašnjeg. Brojeva ima **32**: 12 na naslovnoj, po 4 na svakoj
