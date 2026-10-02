@@ -12,6 +12,49 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 02.10.2026 — Mreža metoda: bez praznih ćelija, kraća na telefonu
+
+Zahtev V3-1 (prazan prostor) i ostatak V2-2 (skrol na telefonu). Kod:
+`usluga.css` sekcija **47**; HTML na 5 stranica usluga.
+
+**Prazne ćelije.** Mreža nema razmak, kartice dele ivicu, pa nepopunjen
+poslednji red izgleda kao nacrtana rupa. Na svih pet stranica poslednja kartica
+je poziv na akciju bez fotografije („Počnite odavde", „Ne morate da znate"…) —
+ona se razvlači preko praznih ćelija i postaje završna traka sekcije. Pravilo je
+opšte, po broju kartica (`:last-child:nth-child(3n+1)` i sl.), posebno za 3 i 2
+kolone.
+
+Izmereno: **0 praznih ćelija na svih 5 stranica**, na 1440, 1100, 1081, 1080,
+900, 681, 680 i 390 px (pre: do 2 na 3 kolone, 1 na 2 kolone).
+
+Ta kartica je boju nosila kroz inline `style` na 5 stranica — sada je klasa
+`.method-cta`, ista vrednost.
+
+**Telefon** — sekcija metoda:
+
+| stranica | 390 pre → posle | 680 pre → posle |
+|---|---|---|
+| fizikalna | 2.864 → 2.500 px | 3.765 → 2.387 px |
+| kineziterapija | 1.747 → 1.525 px | — |
+| manualna | 1.507 → 1.366 px | — |
+
+Tri uzroka: `min-height: 15rem` je u jednoj koloni držao svaku karticu na
+240 px i kad tekst traje dva reda; dva prazna mesta za fotografiju (krioterapija,
+limfna drenaža) bila su visoka kao prava fotografija — sada uska traka sa istom
+oznakom „Fotografija nedostaje"; fotografija 16:10 je u jednoj koloni rasla sa
+širinom ekrana (na 680 px ~390 px visine) — sada najviše 13rem. Na 680 to seče
+vrh i dno kadra; aparati ostaju prepoznatljivi.
+
+Fizikalna je i dalje najduža (2,8 ekrana na 390): sedam procedura, četiri sa
+fotografijom. To je sadržaj, ne raspored.
+
+Provereno: 7 stranica, 1440 i 390 — HTTP 200, 0 JS grešaka, bez prelivanja,
+0 puknutih slika, 0 padova kontrasta.
+
+Oznaka: `usluga.css?v=19.20` na svih 7.
+
+---
+
 ## 02.10.2026 — Česta pitanja: veći tekst
 
 Zahtev V4-4 — „ovo često je pitanje koliko je malo". Kod: `usluga.css` sekcija

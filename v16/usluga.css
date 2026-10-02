@@ -4490,3 +4490,78 @@ a.step-tag:focus-visible {
     font-size: 1rem;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   47. MREŽA METODA — BEZ PRAZNIH ĆELIJA, KRAĆA NA TELEFONU — 02.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Novak (Loom V3 ~0:27): prazan prostor bode oči. Mreža nema razmak,
+   kartice dele ivicu, pa nepopunjen poslednji red izgleda kao nacrtana
+   rupa. Izmereno pre:
+
+     stranica          kartica   3 kolone (>1080)   2 kolone (681–1080)
+     dijagnostika         4      2 prazne ćelije    0
+     fizikalna            7      2                  1
+     kineziterapija       6      0                  0
+     manualna             5      1                  1
+     postoperativna       5      1                  1
+
+   Na svih pet stranica poslednja kartica je poziv na akciju („Počnite
+   odavde", „Ne morate da znate"…), bez fotografije. Ona se razvlači preko
+   praznih ćelija — postaje završna traka sekcije, ne razvučena slika.
+   Pravilo je opšte, po broju kartica, ne po stranici. Ta kartica je do
+   sada boju nosila kroz inline `style` na 5 stranica; sada je klasa
+   `.method-cta`, ista vrednost.
+
+   NA TELEFONU (jedna kolona) — izmereno pre, sekcija metoda:
+     fizikalna 2.864 px (3,2 ekrana), kineziterapija 1.747, manualna 1.507
+   Svaka kartica je bila tačno 240 px — `min-height: 15rem` je pravljen da
+   izjednači visine u redu od tri; u jednoj koloni nema šta da izjednači,
+   pa je bio prazan prostor ispod teksta. Na fizikalnoj su i dva prazna
+   mesta za fotografiju (krioterapija, limfna drenaža) iste visine kao
+   prava fotografija. Na telefonu postaju uska traka sa istom oznakom —
+   klijent i dalje vidi šta fali, posetilac ne skroluje kroz prazninu.
+   Fotografija u jednoj koloni ograničena na 13rem visine — vidi ispod. */
+
+.method-cta {
+  background: rgba(143, 214, 244, 0.07);
+}
+
+.method-cta p {
+  max-width: 60ch;
+}
+
+@media (min-width: 1081px) {
+  .method-grid > .method:last-child:nth-child(3n + 1) {
+    grid-column: 1 / -1;
+  }
+
+  .method-grid > .method:last-child:nth-child(3n + 2) {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 681px) and (max-width: 1080px) {
+  .method-grid > .method:last-child:nth-child(2n + 1) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 680px) {
+  .method {
+    min-height: 0;
+  }
+
+  .method-photo-prazna {
+    aspect-ratio: auto;
+    padding: 0.85rem;
+  }
+
+  /* U jednoj koloni 16:10 raste sa širinom ekrana: na 680 px fotografija
+     je bila ~340 px visoka i fizikalna je ispala DUŽA nego pre (3.038 px).
+     Visina se zato zaključava na najviše 13rem; na 390 se ništa ne menja
+     (16:10 od ~306 px je 191 px, ispod granice). */
+  .method-photo img {
+    max-height: 13rem;
+  }
+}

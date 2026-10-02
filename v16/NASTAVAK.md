@@ -130,7 +130,9 @@ Sve sa WhatsAppa je već ugrađeno u `v15` 30. 9. **Sitnica `60 min` → `do 60 
    **FAQ da poraste.** Mereno: odgovor je **14,88 px na 1440** i **14,08 px na
    390**, a telo teksta je 16 px. Pitanje je 15,68 px na 390, dakle i ono padne
    ispod tela na telefonu.
-5. **Prazne ćelije u mreži metoda**, jednim opštim pravilom (dijagnostika 3+1,
+5. ✅ **Mreža metoda — URAĐENO 02.10.2026**, `usluga.css` sekcija 47: 0 praznih ćelija
+   na svim širinama; fizikalna na telefonu 2.864 → 2.500 px. Stari opis:
+   **Prazne ćelije u mreži metoda**, jednim opštim pravilom (dijagnostika 3+1,
    fizikalna 3+3+1, manualna i postoperativna 3+2). Mreža nema razmak, pa
    prazna ćelija izgleda kao nacrtana rupa.
 6. **Kviz na naslovnu** — iz prve runde, traže ga i Novak i Nikola, a na sajtu
