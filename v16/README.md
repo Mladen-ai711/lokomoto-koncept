@@ -17,9 +17,8 @@ pa dve verzije mogu da se pokažu jedna do druge.
 Zahtevi V1-10 i V4-10 — „video ili slike". Nalaz sa merenjem i Loom titlovima je u
 projektu, `claude/19-runda-2-izvrsenje.md`.
 
-**Adresa za Novaka:** `…/v16/hero-test/` (njegov video) i
-`…/v16/hero-test/?hero=sadasnji` (sadašnji hero). Prekidač je i na samoj stranici,
-dole u sredini. Stranica je kopija naslovne sa `noindex`, nije u `sitemap.xml`,
+**Adresa za Novaka:** `…/v16/hero-test/` (njegov video). Za poređenje:
+`…/v16/hero-test/?proba` (prekidač dole u sredini) ili `?hero=sadasnji`. Stranica je kopija naslovne sa `noindex`, nije u `sitemap.xml`,
 i niko na nju ne linkuje.
 
 **Šta je Novak rekao** (titlovi iz Loom plejera): u V1 nije označio nijedan deo
@@ -53,6 +52,12 @@ ako izbor padne na video.
 Provereno: 1440 i 390 — HTTP 200, 0 JS grešaka, bez prelivanja, 0 puknutih slika,
 34/34 reference postoje (uključujući `data-image`, `poster`), video kreće sam,
 prekidač menja izvor na obe širine, link `?hero=sadasnji` radi.
+
+**Dopuna 02.10, isti dan:** Novaku ide samo verzija sa videom, sa Mladenovim
+mišljenjem — ne izbor između dve. Traka „Proba heroja" je zato **skrivena
+podrazumevano** i pojavljuje se samo uz `?proba` ili `?hero=sadasnji` u adresi.
+Provereno na 1440 i 390: bez dodatka traka ne postoji (`display: none`), uz
+`?proba` je vidljiva i prekidač menja izvor.
 
 **Novi fajlovi:** `hero-test/index.html`, `assets/media/hero-novak-test.webm`,
 `assets/media/hero-novak-test.mp4`, `assets/images/hero-novak-test-poster.jpg`.

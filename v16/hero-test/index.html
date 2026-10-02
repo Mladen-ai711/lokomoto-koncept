@@ -1434,13 +1434,15 @@
 
     <script src="../app.js?v=14.2" defer></script>
   
-    <!-- PROBA heroja: prekidac. Nije deo sajta. -->
-    <div class="proba-hero" role="group" aria-label="Izbor videa u heroju">
+    <!-- PROBA heroja: prekidac. Nije deo sajta. Skriven podrazumevano (02.10:
+         Novaku ide samo verzija sa videom); pojavljuje se uz ?proba ili ?hero=… -->
+    <div class="proba-hero" role="group" aria-label="Izbor videa u heroju" hidden>
       <span class="proba-hero-oznaka">Proba heroja</span>
       <button type="button" data-izbor="novak">Novakov video</button>
       <button type="button" data-izbor="sadasnji">Sadašnji</button>
     </div>
     <style>
+      .proba-hero[hidden]{display:none}
       .proba-hero{position:fixed;left:50%;bottom:1.1rem;z-index:200;display:flex;gap:.35rem;align-items:center;padding:.4rem;border-radius:999px;background:rgba(22,37,47,.92);box-shadow:0 8px 28px rgba(0,0,0,.25);transform:translateX(-50%);font-family:inherit}
       .proba-hero-oznaka{padding:0 .6rem 0 .7rem;color:rgba(255,255,255,.78);font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
       .proba-hero button{padding:.55rem .95rem;border:1px solid rgba(255,255,255,.28);border-radius:999px;color:#fff;background:transparent;font:inherit;font-size:.8rem;font-weight:650;cursor:pointer;white-space:nowrap}
@@ -1449,6 +1451,8 @@
     </style>
     <script>
       (function () {
+        var traka = document.querySelector('.proba-hero');
+        if (/[?&](proba|hero=)/.test(location.search)) traka.hidden = false;
         var dugmad = document.querySelectorAll('.proba-hero [data-izbor]');
         function oznaci(x) {
           dugmad.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.izbor === x ? 'true' : 'false'); });
