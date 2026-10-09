@@ -12,6 +12,32 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 09.10.2026 — ACL landing: struktura i naslovi iz Nikolinog copyja
+
+Stiglo od Nikole: naslov, podnaslov, dugme „Zakaži ACL pregled" sa tekstom
+ispod i redosled sekcija. To je upisano kao pravi tekst. Telo sekcija nije
+stiglo — ostaje `<mark class="ph">` sa „COPY STIŽE".
+
+Redosled (`usluge/acl/index.html`): zaglavlje sa videom → kome je namenjeno
+→ zašto operacija nije kraj → šta se dešava tokom rehabilitacije (harmonika,
+4 faze ph) → zašto nije dovoljno „više me ne boli" → kako Lokomoto prati
+napredak → ACL proof → UGC fudbalera → prvi pregled → završni poziv.
+
+- **Naslovi sekcija** su Nikolini radni nazivi teme, upisani doslovno. Ako
+  copy donese drugačije naslove, menjaju se.
+- **Izbačeno iz kostura:** Ko vodi oporavak, Cena, Česta pitanja — nisu u
+  Nikolinoj strukturi.
+- **Placeholder, MATERIJAL OD KLIJENTA:** ACL proof (stvaran slučaj, uz
+  pristanak pacijenta) i UGC fudbalera (3 uspravna mesta 9:16). Ništa se ne
+  izmišlja — pravilo 8.
+- **Lice „ti"** na ovoj stranici, po copyju; ostatak sajta je na „vi".
+  Dugme u zaglavlju sajta i dalje kaže „Zakažite pregled".
+- **Mobilni hero:** redosled naslov → video → dugme. Sa pravim naslovom
+  video je na 390×844 počinjao na 812 px (ispod preloma); sada 413–610,
+  dugme do 705. Na 1440 sve iznad 800 px.
+- CSS: `usluga.css` sekcija 48a. `usluga.css?v=19.22` na svih 9 stranica.
+- Fotografija uz faze i dalje privremena (`guided-training.webp`).
+
 ## 09.10.2026 — ACL landing: kostur, pre copyja
 
 Nikola 09.10: posebna ACL stranica za Meta i Google reklame, mesto za Novakov VSL,

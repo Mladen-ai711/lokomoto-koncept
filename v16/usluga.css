@@ -4610,3 +4610,148 @@ a.step-tag:focus-visible {
   border-color: rgba(255, 255, 255, 0.4);
   color: rgba(255, 255, 255, 0.85);
 }
+
+/* ══════════════════════════════════════════════════════════════
+   48a. ACL LANDING — SEKCIJE PO NIKOLINOJ STRUKTURI — 09.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Nikolin copy daje deset koraka; pet su tekstualne sekcije bez sopstvenog
+   obrasca na sajtu. .acl-tekst je najtanji mogući okvir (naslov + pasus),
+   a .acl-tamna ih naizmenično boji da tri tekstualne sekcije zaredom ne
+   stope u jedan svetao zid.
+
+   .acl-cta-note nosi Nikolin tekst ispod dugmeta („…i saznaj u kakvom je
+   stanju tvoje koleno") — mora da stoji odmah uz dugme, zato je sitan i
+   bez gornjeg razmaka od sekcije.
+
+   UGC fudbalera: tri uspravna 9:16 mesta (snimci sa telefona su uspravni);
+   na ≤680px dva u redu, treći prelazi — klijent šalje koliko ima. */
+
+.acl-cta-note {
+  max-width: 38ch;
+  margin: 0.9rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.acl-tekst .for-whom-lead {
+  max-width: 60ch;
+}
+
+.acl-tamna {
+  color: var(--white);
+  background: var(--deep);
+}
+
+.acl-tamna h2,
+.acl-tamna .for-whom-lead {
+  color: inherit;
+}
+
+.acl-tamna .for-whom-lead {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.acl-tamna mark.ph {
+  color: var(--ink);
+}
+
+.acl-ugc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.8rem, 2vw, 1.5rem);
+  max-width: 54rem;
+}
+
+.acl-ugc-okvir {
+  display: grid;
+  aspect-ratio: 9 / 16;
+  margin: 0;
+  padding: 1rem;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--paper-dark);
+  place-content: center;
+  justify-items: center;
+  gap: 0.6rem;
+  text-align: center;
+}
+
+.acl-ugc-okvir p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 680px) {
+  .acl-ugc-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Tekstualne ACL sekcije koriste isti tihi naslov kao koraci i cene
+   (sekcija 13): bez toga .section-intro ostaje trokolonski iz styles.css
+   i naslov od 6 reči sedne u kolonu za etiketu — izmereno 846 px visine za
+   jedan pasus na 1440, reč po red. */
+.acl-tekst .section-intro,
+.acl-ugc .section-intro {
+  display: block;
+}
+
+.acl-tekst .section-intro h2,
+.acl-ugc .section-intro h2 {
+  max-width: 26ch;
+  margin: 0;
+  font-size: clamp(1.9rem, 3.4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+}
+
+.acl-ugc .section-intro {
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* Završni poziv je svetao (sekcija 33), pa beli tekst ispod dugmeta nestaje. */
+.service-cta .acl-cta-note {
+  color: var(--muted);
+}
+
+/* Mobilni ACL hero: video odmah ispod podnaslova, pa dugme.
+   Izmereno na 390×844 sa pravim naslovom (4 reda po 54 px): video je
+   počinjao na 812 px i bio ceo ispod preloma — posetilac sa reklame ne
+   bi ni video da postoji. Na landingu za VSL video je glavni sadržaj,
+   pa redosled postaje naslov → video → dugme (obrazac VSL stranica).
+   display:contents pušta decu leve kolone u mrežu da bi `order` radio;
+   desktop raspored se ne menja. */
+@media (max-width: 1080px) {
+  .acl-hero {
+    padding-top: 7.25rem;
+  }
+
+  .acl-hero .service-hero-grid {
+    row-gap: 0;
+  }
+
+  .acl-hero .service-hero-grid > div {
+    display: contents;
+  }
+
+  .acl-hero h1 {
+    font-size: clamp(2.4rem, 9.5vw, 3.6rem);
+  }
+
+  .acl-hero .acl-vsl {
+    order: 2;
+    margin-top: 1.5rem;
+  }
+
+  .acl-hero .service-actions {
+    order: 3;
+  }
+
+  .acl-hero .acl-cta-note {
+    order: 4;
+  }
+}
