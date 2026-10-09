@@ -4755,3 +4755,155 @@ a.step-tag:focus-visible {
     order: 4;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   49. PADAJUĆI MENI „USLUGE" + ULAZI KA ACL — 09.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Nikola 09.10: ACL ide pod „Usluge" u padajućem meniju i vezuje se
+   preko čovečuljka. Meni nije postojao — „Usluge" je bio samo skok na
+   sekciju naslovne. Sada je to i dalje link (klik vodi na sekciju), a
+   prelaz mišem ili Tab otvara spisak svih šest stranica.
+
+   Otvaranje je odmah, jer je to element pod mišem (pravilo „lokalni
+   odziv odmah"); zatvaranje kasni 200 ms da kursor stigne od reči do
+   panela bez gašenja. Most između njih je padding-top panela, ne razmak.
+
+   Mobilni: šest stranica sitnije, odmah ispod „Usluge" — puna veličina
+   (28–48 px po redu) bi meni produžila za šest ekranskih redova. */
+
+.nav-drop {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-drop-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.nav-drop-btn i {
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-top: -0.2rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 200ms var(--ease);
+}
+
+.nav-drop:is(:hover, :focus-within) .nav-drop-btn i {
+  transform: translateY(0.15rem) rotate(225deg);
+}
+
+.nav-drop-panel {
+  position: absolute;
+  z-index: 5;
+  top: 100%;
+  left: -1rem;
+  display: grid;
+  min-width: 17.5rem;
+  padding: 0.9rem 0 0;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-0.35rem);
+  transition:
+    opacity 180ms ease 200ms,
+    transform 180ms ease 200ms,
+    visibility 0s linear 380ms;
+}
+
+.nav-drop-panel::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0.9rem 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius);
+  background: var(--deep);
+  box-shadow: 0 1.2rem 2.5rem rgba(10, 30, 45, 0.35);
+  content: "";
+}
+
+.nav-drop:is(:hover, :focus-within) .nav-drop-panel {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.desktop-nav .nav-drop-panel a {
+  display: block;
+  margin: 0 0.45rem;
+  padding: 0.62rem 0.75rem;
+  border-radius: calc(var(--radius) * 0.6);
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.desktop-nav .nav-drop-panel a:first-child {
+  margin-top: 0.45rem;
+}
+
+.desktop-nav .nav-drop-panel a::after {
+  display: none;
+}
+
+.desktop-nav .nav-drop-panel a:is(:hover, :focus-visible) {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.desktop-nav .nav-drop-panel a[aria-current="page"] {
+  color: var(--lime);
+}
+
+.desktop-nav .nav-drop-panel .nav-drop-sve {
+  margin-top: 0.35rem;
+  margin-bottom: 0.45rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0;
+  padding-top: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mobile-sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 1.1rem;
+  padding: 0.9rem 0 1.1rem;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.mobile-sub a {
+  padding-block: 0.3rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.mobile-sub a[aria-current="page"] {
+  color: var(--lime);
+}
+
+/* ── PREKIDAČ ACL ───────────────────────────────────────────────
+   Svi ulazi ka ACL stranici (stavka u meniju desktop i mobilni, red na
+   usluge/, tačka 8 na čovečuljku) postoje u HTML-u, ali su skriveni dok
+   ne stigne copy — da posetilac sa naslovne ne upadne u placeholdere.
+   UKLJUČIVANJE: obrisati prvo pravilo, a drugo otkomentarisati
+   (stara tačka 8 „Posle operacije kolena ili ramena" se tada gasi, jer
+   ACL zauzima njeno mesto — tačka je ionako na kolenu, ne na ramenu).
+   Pa podići ?v= na svih 9 stranica. */
+.acl-ulaz {
+  display: none !important;
+}
+/* .acl-ulaz-staro { display: none !important; } */

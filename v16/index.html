@@ -11,7 +11,7 @@
     <link rel="preload" href="assets/images/hero-poster-v16-mobile.jpg" as="image"
       media="(max-aspect-ratio: 9/10)" />
     <link rel="stylesheet" href="styles.css?v=13.8" />
-    <link rel="stylesheet" href="usluga.css?v=19.22" />
+    <link rel="stylesheet" href="usluga.css?v=19.23" />
     <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml" />
     <title>Fizikalna terapija i rehabilitacija Beograd | Lokomoto</title>
     <meta property="og:type" content="website" />
@@ -208,7 +208,18 @@
         </a>
 
         <nav class="desktop-nav" aria-label="Glavna navigacija">
-          <a href="#usluge">Usluge</a>
+          <div class="nav-drop">
+            <a class="nav-drop-btn" href="#usluge">Usluge<i aria-hidden="true"></i></a>
+            <div class="nav-drop-panel">
+              <a href="usluge/dijagnostika/">Dijagnostika</a>
+              <a href="usluge/fizikalna-terapija/">Fizikalna terapija</a>
+              <a href="usluge/kineziterapija/">Kineziterapija</a>
+              <a href="usluge/manualna-terapija/">Manualna terapija</a>
+              <a href="usluge/postoperativna-rehabilitacija/">Postoperativna rehabilitacija</a>
+              <a class="acl-ulaz" href="usluge/acl/">ACL rehabilitacija</a>
+              <a class="nav-drop-sve" href="usluge/">Sve usluge →</a>
+            </div>
+          </div>
           <a href="#pristup">Naš pristup</a>
           <a href="#centar">O centru</a>
           <a href="#oprema">Oprema</a>
@@ -234,6 +245,14 @@
 
       <nav class="mobile-nav" id="mobile-menu" aria-label="Mobilna navigacija" data-mobile-nav>
         <a href="#usluge">Usluge</a>
+        <div class="mobile-sub">
+          <a href="usluge/dijagnostika/">Dijagnostika</a>
+          <a href="usluge/fizikalna-terapija/">Fizikalna terapija</a>
+          <a href="usluge/kineziterapija/">Kineziterapija</a>
+          <a href="usluge/manualna-terapija/">Manualna terapija</a>
+          <a href="usluge/postoperativna-rehabilitacija/">Postoperativna rehabilitacija</a>
+          <a class="acl-ulaz" href="usluge/acl/">ACL rehabilitacija</a>
+        </div>
         <a href="#pristup">Naš pristup</a>
         <a href="#centar">O centru</a>
         <a href="#oprema">Oprema</a>
@@ -718,8 +737,12 @@
             <a data-spot="7" class="bm bm-r" style="--y: 60.5%" href="usluge/kineziterapija/">
               <span>Bol u kolenu pri hodu i čučnju</span>
             </a>
-            <a data-spot="8" class="bm bm-r" style="--y: 78.8%" href="usluge/postoperativna-rehabilitacija/">
+            <a data-spot="8" class="bm bm-r acl-ulaz-staro" style="--y: 78.8%" href="usluge/postoperativna-rehabilitacija/">
               <span>Posle operacije kolena ili ramena</span>
+            </a>
+            <!-- ACL: zamenjuje tačku 8 kad se uključi (usluga.css §49, prekidač) -->
+            <a data-spot="8" class="bm bm-r acl-ulaz" style="--y: 78.8%" href="usluge/acl/">
+              <span>Pokidan prednji ukršteni ligament (ACL)</span>
             </a>
             </figure>
 

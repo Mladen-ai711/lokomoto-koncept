@@ -12,6 +12,23 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 09.10.2026 — Padajući meni „Usluge" i skriveni ulazi ka ACL
+
+- **Meni „Usluge"** na svih 9 stranica: prelaz mišem ili Tab otvara spisak
+  šest stranica + „Sve usluge"; klik na reč i dalje vodi na sekciju naslovne.
+  Zatvaranje kasni 200 ms (kursor stigne do panela). Mobilni: šest stranica
+  sitnije ispod „Usluge"; meni ostaje u ekranu na 390×844 (dugme do 756 px).
+- **Ulazi ka ACL postoje, ali su skriveni** (`.acl-ulaz`): stavka u meniju
+  (desktop i mobilni), red na `usluge/`, tačka 8 na čovečuljku
+  („Pokidan prednji ukršteni ligament (ACL)" umesto „Posle operacije kolena
+  ili ramena" — tačka je na kolenu). Razlog: stranica je još puna
+  placeholdera.
+- **Uključivanje:** `usluga.css` §49, blok PREKIDAČ ACL — obrisati prvo
+  pravilo, otkomentarisati drugo, podići `?v=` na svih 9 stranica.
+- Opis na `usluge/` („Put od ACL povrede do povratka na teren.") je skraćen
+  Nikolin podnaslov.
+- `usluga.css?v=19.23` na svih 9 stranica.
+
 ## 09.10.2026 — ACL landing: struktura i naslovi iz Nikolinog copyja
 
 Stiglo od Nikole: naslov, podnaslov, dugme „Zakaži ACL pregled" sa tekstom
