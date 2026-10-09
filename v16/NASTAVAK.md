@@ -89,6 +89,15 @@ Ne preispitivati bez novog razloga.
 
 ## Šta je sledeće, po prioritetu
 
+### ⚡ PRVI PRIORITET od 09.10.2026 — ACL landing, kampanja live do 12.10.
+
+Nikolin zahtev i sve što nedostaje: projekat, `claude/20-acl-kampanja.md`.
+**Kostur je gotov** (`usluge/acl/`, README „ACL landing: kostur"), čeka copy.
+Posle copyja: tekst, VSL, ACL u meniju Usluge (padajući meni, nov), link sa
+čovečuljka, domen (poddomen, npr. `novi.lokomoto.rs`), pikseli + baner za kolačiće,
+Alpin. Tačke 2–6 Nikoline poruke (Naš pristup, tekstovi, skrol, slike, paleta) idu
+**posle** kampanje.
+
 ### 0. Runda boja i strukture — NA REDU, 01.10.2026
 
 Druga runda pregleda od klijenta: **četiri Looma** po 5 minuta, **nov Google

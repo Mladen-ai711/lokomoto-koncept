@@ -12,6 +12,56 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 09.10.2026 — ACL landing: kostur, pre copyja
+
+Nikola 09.10: posebna ACL stranica za Meta i Google reklame, mesto za Novakov VSL,
+zakazivanje preko Alpina; kampanja live do **ponedeljka 12.10.** Copy još nije
+stigao — ovo je **kostur**: struktura gotova, tekst nije. Zahtev i spisak onoga što
+nedostaje (domen, merenje, Alpin, video): projekat, `claude/20-acl-kampanja.md`.
+
+**Adresa:** `usluge/acl/` (u konceptu pod uslugama; produkcijski URL se bira sa
+domenom). Kopija postoperativne — isti meni, futer, skripte. Strukturirani podaci
+postoperativne su izbačeni; ACL dobija svoje sa copyjem.
+
+**Raspored**, po odluci od 04.09 (jedna stranica sa menijem, dugme visoko):
+
+| # | Sekcija | Šta stoji |
+|---|---|---|
+| 1 | Zaglavlje | naslov, podnaslov, **Zakažite pregled** (Alpin) i telefon; desno **mesto za video** 16:9 |
+| 2 | Za koga je | 4 stavke |
+| 3 | Faze oporavka | harmonika sa 4 faze, isti obrazac kao ostale usluge |
+| 4 | Ko vodi oporavak | tekst o Novaku i Strahinji — njihova verzija |
+| 5 | Cena | koja stavka cenovnika važi za ACL — **za potvrdu** |
+| 6 | Česta pitanja | 3 pitanja |
+| 7 | Poziv na akciju | Alpin + telefon |
+
+**Iznad preloma, izmereno:** na 1440×900 naslov (275–368 px), video (227–514) i
+dugme (464–521) su svi u prvom ekranu; na 390×844 naslov 227–334, dugme 451–507,
+video 619–815 — takođe u prvom ekranu.
+
+**Placeholderi:** 31 `<mark class="ph">`, uz značke „COPY STIŽE", „VIDEO U PRIPREMI"
+i „ZA POTVRDU" (cena). Ništa od toga nije sadržaj i stranica **ne sme na reklamu**
+dok se svi ne zamene. Nema nijedne medicinske tvrdnje ni broja.
+
+**Privremena fotografija** uz faze: `guided-training.webp` (ista kao na
+postoperativnoj). Kadar specifičan za ACL ne postoji među 104 sa snimanja;
+kadar kolena (`manifesto.webp`) je položen, a okvir uz korake traži 4:5. Označeno
+u potpisu fotografije.
+
+**Još nije urađeno** (čeka copy ili odluku): ACL u meniju „Usluge" (padajući meni
+ne postoji — pravi se novi), link sa čovečuljka, stavka na `usluge/index.html`,
+VSL plejer, strukturirani podaci, merenje (pikseli).
+
+Stil: `usluga.css` sekcija **48** (okvir za video). Oznaka `usluga.css?v=19.21` na
+svih 8 stranica (7 + `hero-test/`).
+
+Provereno: 1440 i 390 — HTTP 200, 0 JS grešaka, bez prelivanja, 0 puknutih slika,
+13/13 referenci postoje.
+
+**Novi fajl:** `usluge/acl/index.html`.
+
+---
+
 ## 02.10.2026 — Proba heroja sa Novakovim videom: `hero-test/`
 
 Zahtevi V1-10 i V4-10 — „video ili slike". Nalaz sa merenjem i Loom titlovima je u

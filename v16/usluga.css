@@ -4565,3 +4565,48 @@ a.step-tag:focus-visible {
     max-height: 13rem;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   48. ACL LANDING — MESTO ZA VIDEO — 09.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Nikola 09.10: posebna ACL stranica za Meta i Google reklame, sa mestom
+   za Novakov VSL i zakazivanjem preko Alpina; kampanja live do 12.10.
+   Kostur je napravljen pre copyja (v16/usluge/acl/).
+
+   Video stoji u zaglavlju, desno od naslova, umesto fotografije — posetilac
+   sa reklame vidi naslov, video i dugme za zakazivanje bez skrolovanja
+   (odluka 04.09, NASTAVAK §3: „dugme visoko i jasno"). Okvir je zaključan
+   na 16:9 da plejer kasnije sedne bez pomeranja rasporeda; ako VSL bude
+   uspravan, menja se samo aspect-ratio ovde. */
+
+.acl-vsl {
+  margin: 0;
+}
+
+.acl-vsl-okvir {
+  display: grid;
+  aspect-ratio: 16 / 9;
+  padding: 1.5rem;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.05);
+  place-content: center;
+  justify-items: center;
+  gap: 0.8rem;
+  text-align: center;
+}
+
+.acl-vsl-okvir p {
+  max-width: 28ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.acl-vsl-okvir .ph-note {
+  margin: 0;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.85);
+}
