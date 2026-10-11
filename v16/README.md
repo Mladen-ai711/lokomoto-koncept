@@ -12,6 +12,33 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 11.10.2026 — ACL: nacrt teksta sekcija (Claude, za Nikolin pregled)
+
+Nikola 11.10: tekst sekcija „uradi placeholder sa Claude, pa ću ja proći";
+ACL slučaj, UGC snimci i video traže se od Novaka.
+
+- **Upisan nacrt** za: kome je namenjeno (4 stavke), zašto operacija nije
+  kraj, faze rehabilitacije (4), zašto nije dovoljno „više me ne boli",
+  kako Lokomoto prati napredak, prvi pregled (3 koraka), završni naslov
+  „Ne prepuštaj oporavak slučaju.".
+- **Izvor:** postojeći, već pregledani tekstovi sa stranica Postoperativna
+  i Dijagnostika (kriterijumi umesto kalendara, merenje u odnosu na zdravu
+  stranu, saradnja sa hirurgom, šta poneti na pregled), prepisani na „ti" i
+  suženi na ACL. Bez brojeva, rokova i opreme koju ne znamo da postoji.
+- **Medicinske tvrdnje za Novakovu potvrdu** (pravilo 8): slabljenje
+  prednje strane buta posle povrede; novom ligamentu treba vreme da preuzme
+  opterećenje; prerani povratak kao jedan od najčešćih razloga za novu
+  povredu; sadržaj četiri faze.
+- **Oznaka:** `<mark class="ph nacrt">` (isprekidana linija, ne plava
+  podloga — usluga.css §50) + značka NACRT u naslovu svake sekcije. Kad
+  Nikola potvrdi, briše se `class="ph nacrt"` i značka.
+- Ostaje `ph` (MATERIJAL OD KLIJENTA): ACL slučaj, UGC, VSL, fotografija uz
+  faze.
+- **Ispravka usput (sve stranice usluga):** „Za koga je" je na mobilnom bio
+  u dve kolone od 135 i 183 px — sekcija 21 je pregazila mobilni upit iz
+  sekcije 20. Sada jedna kolona (350 px) ispod 900 px.
+- `usluga.css?v=19.24` na svih 9 stranica.
+
 ## 09.10.2026 — Padajući meni „Usluge" i skriveni ulazi ka ACL
 
 - **Meni „Usluge"** na svih 9 stranica: prelaz mišem ili Tab otvara spisak

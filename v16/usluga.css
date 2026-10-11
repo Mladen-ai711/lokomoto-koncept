@@ -2445,7 +2445,12 @@ h1 .name-alt {
   padding-left: 1.7rem;
 }
 
+/* 11.10.2026: .for-whom-layout dodat ovde. Pravilo iznad (sekcija 21) ga
+   ponovo proglašava dvokolonskim posle mobilnog upita iz sekcije 20, pa je
+   „Za koga je" na 390 px bio u dve kolone od 135 i 183 px — na svih pet
+   stranica usluga, ne samo na ACL. Izmereno, pa ispravljeno. */
 @media (max-width: 900px) {
+  .for-whom-layout,
   .complaint-layout {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -4907,3 +4912,46 @@ a.step-tag:focus-visible {
   display: none !important;
 }
 /* .acl-ulaz-staro { display: none !important; } */
+
+/* ══════════════════════════════════════════════════════════════
+   50. NACRT TEKSTA — 11.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Nikola 11.10: tekst ACL sekcija neka napiše Claude, on ga prolazi.
+   Takav tekst nije potvrđen (pravilo 8 — medicinske tvrdnje potvrđuje
+   Novak), pa mora da ostane označen. Ali puna plava podloga `.ph` na
+   35 mesta čini stranicu nečitljivom baš onome ko treba da je čita.
+   Zato nacrt dobija isprekidanu liniju umesto podloge: tekst se čita
+   normalno, a oznaka je i dalje na svakoj rečenici, uz značku NACRT
+   u naslovu sekcije. Kad Nikola potvrdi, briše se samo `class`. */
+
+mark.ph.nacrt {
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  background: none;
+  box-shadow: none;
+  text-decoration: underline dashed rgba(5, 126, 182, 0.55);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+.acl-tamna mark.ph.nacrt,
+.acl-hero mark.ph.nacrt,
+.service-faq mark.ph.nacrt {
+  color: inherit;
+  text-decoration-color: rgba(143, 214, 244, 0.6);
+}
+
+.acl-tamna .ph-note {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.acl-tekst .for-whom-lead + .for-whom-lead {
+  margin-top: 0.9rem;
+}
+
+h2 > .ph-note {
+  vertical-align: middle;
+}
