@@ -5042,3 +5042,20 @@ h2 > .ph-note {
 .acl-vsl-plejer.is-pusten .acl-vsl-play {
   display: none;
 }
+
+/* ── 51a. Veći VSL na desktopu — 12.10.2026 ─────────────────────
+   Mladen: video premali. Izmereno na 1440: video 510 px širok (35% ekrana),
+   a naslov od 3 reda po ~115 px zauzima levu stranu. Na VSL stranici video
+   je glavni sadržaj, pa kolone menjaju odnos: tekst uži, video širi, a
+   naslov manji da stane u 2–3 reda. Ispod 1081 px važi mobilni raspored
+   (sekcija 49/mobilni hero), ovo ga ne dira. */
+@media (min-width: 1081px) {
+  .acl-hero .service-hero-grid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: center;
+  }
+
+  .acl-hero h1 {
+    font-size: clamp(3rem, 4.4vw, 4.6rem);
+  }
+}

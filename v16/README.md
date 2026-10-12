@@ -12,6 +12,14 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 12.10.2026 — ACL: veći video na desktopu
+
+- Mladen: video premali. Na 1440 bio 510 px širok; sada **752 px** (površina
+  2,2×). Kolone tekst/video 0,8 : 1,2, naslov manji (clamp 3–4,6 rem), sve i
+  dalje iznad preloma: na 1440×900 video do 694 px, dugme do 679, tekst ispod
+  dugmeta do 739. Na 1100/1280/1920: video 574/668/754 px. Mobilni nepromenjen.
+- usluga.css §51a, `?v=19.26` na svih 9 stranica.
+
 ## 12.10.2026 — ACL: Novakov VSL na stranici
 
 - **Izvor:** `final .mp4` sa Drive-a (HEVC 1920×1080, 30 fps, 7:32, 870 MB).
