@@ -12,6 +12,24 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 12.10.2026 — ACL: Novakov VSL na stranici
+
+- **Izvor:** `final .mp4` sa Drive-a (HEVC 1920×1080, 30 fps, 7:32, 870 MB).
+  Original čuvan van commita: `lokomoto-koncept/_backups/vsl-novak.mp4`
+  (`_backups/` je u .gitignore).
+- **Za sajt:** `assets/media/acl-vsl.mp4` — H.264 1280×720, CRF 26, AAC 96k,
+  faststart, **36 MB**. Kodirano u tri dela (0–151, 151–302, 302–kraj s) +
+  zvuk jednom, pa spojeno; spojevi provereni na kadrovima 150/151,5 i
+  300/302,5 s. Titl je upisan u video.
+- **Poster:** `assets/images/acl-vsl-poster.jpg`, kadar iz 20. s.
+- `preload="none"` + dugme „Pogledaj video · 7:32 · sa titlom" preko postera
+  (usluga.css §51). Kontrole se uključuju tek posle pokretanja.
+- Test-Chromium nema H.264, pa reprodukcija nije proverena lokalno —
+  proveriti na živoj stranici posle pusha.
+- `usluga.css?v=19.25` na svih 9 stranica.
+- **NOVI FAJLOVI za commit:** `v16/assets/media/acl-vsl.mp4`,
+  `v16/assets/images/acl-vsl-poster.jpg`.
+
 ## 12.10.2026 — ACL: Novakovi komentari na nacrt (dva Loom snimka)
 
 - **Stručno potvrđeno** (Novak, Loom 12.10): sadržaj nacrta je tačan, uklj.

@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta name="description" content="Put od ACL povrede do povratka na teren: šta moraš da uradiš da ne prepustiš oporavak slučaju. Lokomoto centar, Beograd, Autokomanda." />
     <link rel="stylesheet" href="../../styles.css?v=13.8" />
-    <link rel="stylesheet" href="../../usluga.css?v=19.24" />
+    <link rel="stylesheet" href="../../usluga.css?v=19.25" />
     <link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml" />
     <title>ACL rehabilitacija Beograd | Lokomoto centar</title>
     <meta property="og:type" content="website" />
@@ -113,10 +113,18 @@
               <p class="acl-cta-note">…i saznaj u kakvom je stanju tvoje koleno i kako treba da izgleda sledeći korak rehabilitacije.</p>
             </div>
 
-            <figure class="acl-vsl reveal" id="video" aria-label="Mesto za video">
-              <div class="acl-vsl-okvir">
-                <span class="ph-note">VIDEO U PRIPREMI</span>
-                <p>Novakov video (VSL). Ovde ide plejer kad video stigne.</p>
+            <figure class="acl-vsl reveal" id="video">
+              <div class="acl-vsl-plejer">
+                <video
+                  src="../../assets/media/acl-vsl.mp4"
+                  poster="../../assets/images/acl-vsl-poster.jpg"
+                  width="1280" height="720"
+                  controls playsinline preload="none"
+                  aria-label="Novak o oporavku posle povrede prednjeg ukrštenog ligamenta, 7 min 32 s, sa titlom"></video>
+                <button class="acl-vsl-play" type="button" aria-label="Pusti video">
+                  <span aria-hidden="true"></span>
+                  <b>Pogledaj video</b> <small>7:32 · sa titlom</small>
+                </button>
               </div>
             </figure>
           </div>
@@ -378,5 +386,19 @@
     </footer>
 
     <script src="../../stranica.js?v=14.0" defer></script>
+    <script>
+      /* ACL VSL: dugme preko postera pokreće video i nestaje (usluga.css §51). */
+      (function () {
+        var w = document.querySelector(".acl-vsl-plejer");
+        if (!w) return;
+        var v = w.querySelector("video"), b = w.querySelector(".acl-vsl-play");
+        /* kontrole se skidaju dok je poster: inače traka viri ispod dugmeta;
+           bez JS-a ostaju, pa video i dalje radi */
+        v.controls = false;
+        function pusti() { w.classList.add("is-pusten"); v.controls = true; }
+        b.addEventListener("click", function () { pusti(); v.play(); });
+        v.addEventListener("play", pusti);
+      })();
+    </script>
   </body>
 </html>

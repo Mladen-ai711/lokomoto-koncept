@@ -4955,3 +4955,90 @@ mark.ph.nacrt {
 h2 > .ph-note {
   vertical-align: middle;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   51. ACL VSL — NOVAKOV VIDEO — 12.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Izvor: final.mp4 sa Drive-a, HEVC 1920×1080, 7:32, 870 MB. Za sajt:
+   H.264 1280×720, CRF 26, AAC 96k, faststart — 36 MB (24× manje), jer
+   GitHub ne prima >100 MB, a posetilac dolazi sa reklame, najčešće sa
+   telefona. Titl je već upisan u sliku, pa video radi i bez zvuka.
+
+   preload="none": 36 MB se ne skida dok posetilac ne pritisne — stranica
+   se otvara jednako brzo kao bez videa. Poster je kadar iz 20. sekunde
+   (Novak u kadru, bez titla preko lica).
+
+   Dugme preko postera postoji zato što desktop Chrome na <video controls>
+   ne crta veliko dugme za pokretanje — samo tanku traku na dnu, koju
+   posetilac sa reklame ne primeti. Klik pokreće video i dugme nestaje. */
+
+.acl-vsl-plejer {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: #0a1a24;
+  box-shadow: 0 1.5rem 3rem rgba(5, 20, 30, 0.35);
+}
+
+.acl-vsl-plejer video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #0a1a24;
+}
+
+.acl-vsl-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.35rem;
+  border: 0;
+  color: var(--white);
+  background: linear-gradient(0deg, rgba(10, 26, 36, 0.55), rgba(10, 26, 36, 0.15));
+  cursor: pointer;
+  font: inherit;
+}
+
+.acl-vsl-play span {
+  display: grid;
+  width: 4.6rem;
+  height: 4.6rem;
+  margin-bottom: 0.4rem;
+  border-radius: 50%;
+  background: var(--white);
+  place-items: center;
+  transition: transform 200ms var(--ease);
+}
+
+.acl-vsl-play span::after {
+  width: 0;
+  height: 0;
+  margin-left: 0.3rem;
+  border-top: 0.75rem solid transparent;
+  border-bottom: 0.75rem solid transparent;
+  border-left: 1.2rem solid var(--deep);
+  content: "";
+}
+
+.acl-vsl-play:hover span,
+.acl-vsl-play:focus-visible span {
+  transform: scale(1.08);
+}
+
+.acl-vsl-play b {
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.acl-vsl-play small {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.82rem;
+}
+
+.acl-vsl-plejer.is-pusten .acl-vsl-play {
+  display: none;
+}
