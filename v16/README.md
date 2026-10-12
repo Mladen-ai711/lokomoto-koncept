@@ -12,6 +12,21 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 12.10.2026 — ACL: Novakovi komentari na nacrt (dva Loom snimka)
+
+- **Stručno potvrđeno** (Novak, Loom 12.10): sadržaj nacrta je tačan, uklj.
+  četiri tvrdnje i četiri faze. Zamerke su na formulaciji, ne na sadržaju.
+- **Ispravljeno po njegovim rečima:** obraćanje čoveku, ne kolenu („ne
+  veruješ mu" i „koleno koje uđe u operaciju" izbačeni); „operacija vraća
+  ligament na mesto" je netačno → „ligament se rekonstruiše: dobijaš novi";
+  „nezatvorena faza" → „faza nije završena do kraja"; „zaokret" → „nagla
+  promena pravca"; pasus o mišićima prepisan prirodnije.
+- Oznaka NACRT ostaje dok Nikola ne prođe stil.
+- **VSL stigao** (Google Drive, „final .mp4", položen 16:9) — čeka preuzimanje
+  u repo; Drive je iz oblaka i sa uređaja blokiran za direktno skidanje.
+- **Otvoreno pitanje od Novaka:** ACL slučaj kao tekst ili video od
+  operacije do terena; UGC — šta tačno; uz faze slika ili video.
+
 ## 11.10.2026 — ACL: nacrt teksta sekcija (Claude, za Nikolin pregled)
 
 Nikola 11.10: tekst sekcija „uradi placeholder sa Claude, pa ću ja proći";
