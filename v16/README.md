@@ -12,6 +12,17 @@ pa dve verzije mogu da se pokažu jedna do druge.
 **Radna adresa:** `mladen-ai711.github.io/lokomoto-koncept/v16/`
 **Povratna tačka:** `mladen-ai711.github.io/lokomoto-koncept/v15/`
 
+## 13.10.2026 — ACL: „300+ oporavljenih ACL povreda" u zaglavlju
+
+- **Izvor broja:** Nikola, poruka 13.10 („Dodaj u hero 300+ oporavljenih ACL
+  povreda"). Klijentov podatak, ne izračunat. Ako Novak ima tačniji broj,
+  menja se samo tekst u `usluge/acl/index.html` (`.acl-broj`).
+- Mesto: iznad dugmeta „Zakaži ACL pregled" (dokaz uz odluku). Na mobilnom
+  između videa i dugmeta.
+- Izmereno: 1440×900 broj 606–648, dugme do 743; 390×844 broj 632–666,
+  dugme do 762 (iznad preloma), tekst ispod dugmeta sada pada ispod preloma.
+- usluga.css §51b, `?v=19.27` na svih 9 stranica.
+
 ## 12.10.2026 — ACL: veći video na desktopu
 
 - Mladen: video premali. Na 1440 bio 510 px širok; sada **752 px** (površina
