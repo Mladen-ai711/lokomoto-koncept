@@ -5047,3 +5047,20 @@ onako — ista stranica, samo drugi redosled.
 
 Rezerva nije dirana: ako pregledač odbije puštanje, `v.paused` ostaje tačno,
 dugme se ne sklanja i radi kao i pre.
+
+## Dugme za zvuk: 80% bele (19.10.2026)
+
+Mladen: puna bela deluje zalepljeno preko videa, neka bude providnija.
+
+Probane su tri varijante na **istom pauziranom kadru**, pa upoređene slikom, ne
+opisom: puna bela, bela 80%, i bela 80% sa zamućenjem pozadine.
+
+**Zamućenje je predloženo pa odbačeno** — na poređenju se B i C ne razlikuju.
+Efekat se vidi samo kad je iza dugmeta šarena pozadina, a Novak kroz ceo video
+stoji ispred ravnog svetlog zida. Uz to ga slabiji telefoni crtaju teško, a baš
+oni i dolaze sa reklame.
+
+Uzeto: **`rgba(255, 255, 255, 0.8)`**, bez zamućenja. Senka ispod ostaje — na
+80% bela ume da se izgubi ako naiđe svetliji kadar.
+
+`usluga.css?v=` dignut na **19.29**, na svih 9 stranica.

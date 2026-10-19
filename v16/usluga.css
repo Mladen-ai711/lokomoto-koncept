@@ -5062,7 +5062,12 @@ h2 > .ph-note {
   border: 0;
   border-radius: 999px;
   color: var(--deep);
-  background: var(--white);
+  /* 80% bele: dugme stoji preko videa, pa puna bela deluje zalepljeno.
+     Mladen, 19.10. Zamucenje pozadine je probano i odbaceno — iza dugmeta je
+     kroz ceo video ravan svetao zid, pa se efekat ne bi ni video, a slabiji
+     telefoni ga crtaju teško. Senka ispod ostaje: na 80% bela ume da se
+     izgubi ako naidje svetliji kadar. */
+  background: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0.5rem 1.25rem rgba(5, 20, 30, 0.32);
   cursor: pointer;
   font: inherit;
