@@ -5022,3 +5022,28 @@ preko slike i sve radi kao ranije. Posetilac ne vidi pokvarenu stranicu.
 | Klik na „Uključi zvuk" | zvuk se uključi, video se ne prekida, dugme nestane | — |
 
 `usluga.css?v=` dignut na **19.28**, na svih 9 stranica.
+
+## Popravka istog dana: dugme je ostajalo preko videa
+
+Mladen, odmah po objavi: *„Prvi put kada sam pogledao video, krenuo je, a bilo je
+veliko dugme Play na sredini videa. Kada sam ponovo otvorio stranicu, nije ga
+bilo."* I dopuna: video je u pozadini išao, dugme je samo stajalo preko njega.
+
+**Uzrok — trka, ne nasumičnost.** Skripta je čekala događaj „video je krenuo" da
+bi sklonila dugme. Ali sa `autoplay` video sme da krene **pre nego što se skripta
+uopšte izvrši**. Tada je taj događaj već prošao, skripta ga nikad ne čuje, i
+dugme ostaje da stoji preko slike koja se vrti. Zato je ispadalo čas ovako čas
+onako — ista stranica, samo drugi redosled.
+
+**Popravljeno na dva mesta:**
+
+1. Skripta više ne čeka događaj nego **odmah pročita stanje** — ako video već
+   ide, dugme se sklanja istog trena.
+2. I uspešno samostalno puštanje sada sklanja dugme; ranije je samo prikazivalo
+   „Uključi zvuk", a sklanjanje je prepuštalo događaju koji je mogao da promaši.
+
+**Provereno:** tri uzastopna otvaranja, od toga jedno mereno **bez ikakvog
+čekanja**, odmah po učitavanju — dugme sakriveno u sva tri slučaja.
+
+Rezerva nije dirana: ako pregledač odbije puštanje, `v.paused` ostaje tačno,
+dugme se ne sklanja i radi kao i pre.

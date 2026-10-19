@@ -411,13 +411,20 @@
         b.addEventListener("click", function () { v.muted = false; pusti(); v.play(); });
         v.addEventListener("play", pusti);
 
+        /* Video sme da krene PRE nego što se ova skripta izvrši — tada je događaj
+           "play" već prošao i gornji slušalac ga nikad neće čuti, pa bi veliko
+           dugme ostalo da stoji preko slike koja se vrti. Zato se stanje čita
+           odmah, umesto da se čeka događaj. (Mladen, 19.10: prvi put dugme je
+           stajalo preko videa, drugi put ne — ista stranica, drugi redosled.) */
+        if (!v.paused) pusti();
+
         /* Nikola, 19.10: VSL da krene sam. Zvuk mora da ostane isključen jer
            nijedan pregledač ne pušta video sa zvukom bez dodira. Titl je upisan
            u sliku, pa se prati i nem. Ako pregledač odbije i nemo puštanje
            (iPhone u štednji baterije, Data Saver), ostaje dugme preko postera. */
         var obecanje = v.play();
         if (obecanje && obecanje.then) {
-          obecanje.then(function () { if (v.muted) z.hidden = false; })
+          obecanje.then(function () { pusti(); if (v.muted) z.hidden = false; })
                   .catch(function () { /* odbijeno — dugme preuzima posao */ });
         }
         z.addEventListener("click", function () { v.muted = false; });
