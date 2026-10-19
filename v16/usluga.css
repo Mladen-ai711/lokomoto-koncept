@@ -4965,9 +4965,17 @@ h2 > .ph-note {
    GitHub ne prima >100 MB, a posetilac dolazi sa reklame, najčešće sa
    telefona. Titl je već upisan u sliku, pa video radi i bez zvuka.
 
-   preload="none": 36 MB se ne skida dok posetilac ne pritisne — stranica
-   se otvara jednako brzo kao bez videa. Poster je kadar iz 20. sekunde
-   (Novak u kadru, bez titla preko lica).
+   Poster je kadar iz 20. sekunde (Novak u kadru, bez titla preko lica).
+
+   IZMENA 19.10.2026 — Nikola traži da VSL krene sam čim se uđe na stranicu.
+   Time pada preload="none": pregledač ga ignoriše kad stoji autoplay. Mereno:
+   640 kb/s ukupno, oko 0,7 MB na svakih 10 sekundi gledanja — ne skida se
+   svih 36 MB odjednom, nego teče koliko se gleda. Posetilac koji odmah ode
+   plati oko 0,7 MB.
+
+   Zvuk mora da ostane isključen: nijedan pregledač ne pušta video sa zvukom
+   bez dodira. Titl je upisan u sliku pa video radi i nem, ali ko hoće zvuk
+   ne sme da ga traži — zato dugme „Uključi zvuk" preko slike dok je nemo.
 
    Dugme preko postera postoji zato što desktop Chrome na <video controls>
    ne crta veliko dugme za pokretanje — samo tanku traku na dnu, koju
@@ -5041,6 +5049,35 @@ h2 > .ph-note {
 
 .acl-vsl-plejer.is-pusten .acl-vsl-play {
   display: none;
+}
+
+.acl-vsl-zvuk {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.95rem;
+  border: 0;
+  border-radius: 999px;
+  color: var(--deep);
+  background: var(--white);
+  box-shadow: 0 0.5rem 1.25rem rgba(5, 20, 30, 0.32);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 650;
+  transition: transform 200ms var(--ease);
+}
+
+.acl-vsl-zvuk[hidden] {
+  display: none;
+}
+
+.acl-vsl-zvuk:hover,
+.acl-vsl-zvuk:focus-visible {
+  transform: scale(1.05);
 }
 
 /* ── 51a. Veći VSL na desktopu — 12.10.2026 ─────────────────────

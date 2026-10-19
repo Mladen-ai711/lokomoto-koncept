@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta name="description" content="Put od ACL povrede do povratka na teren: šta moraš da uradiš da ne prepustiš oporavak slučaju. Lokomoto centar, Beograd, Autokomanda." />
     <link rel="stylesheet" href="../../styles.css?v=13.8" />
-    <link rel="stylesheet" href="../../usluga.css?v=19.27" />
+    <link rel="stylesheet" href="../../usluga.css?v=19.28" />
     <link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml" />
     <title>ACL rehabilitacija Beograd | Lokomoto centar</title>
     <meta property="og:type" content="website" />
@@ -121,11 +121,18 @@
                   src="../../assets/media/acl-vsl.mp4"
                   poster="../../assets/images/acl-vsl-poster.jpg"
                   width="1280" height="720"
-                  controls playsinline preload="none"
+                  autoplay muted playsinline controls
                   aria-label="Novak o oporavku posle povrede prednjeg ukrštenog ligamenta, 7 min 32 s, sa titlom"></video>
                 <button class="acl-vsl-play" type="button" aria-label="Pusti video">
                   <span aria-hidden="true"></span>
                   <b>Pogledaj video</b> <small>7:32 · sa titlom</small>
+                </button>
+                <button class="acl-vsl-zvuk" type="button" hidden>
+                  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">
+                    <path d="M4 9v6h4l5 4V5L8 9H4z"/>
+                    <path d="M16.5 8.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                  </svg>
+                  Uključi zvuk
                 </button>
               </div>
             </figure>
@@ -389,17 +396,32 @@
 
     <script src="../../stranica.js?v=14.0" defer></script>
     <script>
-      /* ACL VSL: dugme preko postera pokreće video i nestaje (usluga.css §51). */
+      /* ACL VSL: kreće sam, bez zvuka, čim se uđe na stranicu (usluga.css §51). */
       (function () {
         var w = document.querySelector(".acl-vsl-plejer");
         if (!w) return;
-        var v = w.querySelector("video"), b = w.querySelector(".acl-vsl-play");
+        var v = w.querySelector("video"),
+          b = w.querySelector(".acl-vsl-play"),
+          z = w.querySelector(".acl-vsl-zvuk");
         /* kontrole se skidaju dok je poster: inače traka viri ispod dugmeta;
            bez JS-a ostaju, pa video i dalje radi */
         v.controls = false;
         function pusti() { w.classList.add("is-pusten"); v.controls = true; }
-        b.addEventListener("click", function () { pusti(); v.play(); });
+        /* dugme preko postera: puno iskustvo odmah, sa zvukom */
+        b.addEventListener("click", function () { v.muted = false; pusti(); v.play(); });
         v.addEventListener("play", pusti);
+
+        /* Nikola, 19.10: VSL da krene sam. Zvuk mora da ostane isključen jer
+           nijedan pregledač ne pušta video sa zvukom bez dodira. Titl je upisan
+           u sliku, pa se prati i nem. Ako pregledač odbije i nemo puštanje
+           (iPhone u štednji baterije, Data Saver), ostaje dugme preko postera. */
+        var obecanje = v.play();
+        if (obecanje && obecanje.then) {
+          obecanje.then(function () { if (v.muted) z.hidden = false; })
+                  .catch(function () { /* odbijeno — dugme preuzima posao */ });
+        }
+        z.addEventListener("click", function () { v.muted = false; });
+        v.addEventListener("volumechange", function () { if (!v.muted) z.hidden = true; });
       })();
     </script>
   </body>

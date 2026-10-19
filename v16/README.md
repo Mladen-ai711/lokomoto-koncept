@@ -4960,3 +4960,65 @@ Za NeuFit je slot gotov — samo zamena fajla. Za Normatec i GameReady **ne
 postoji kartica metode**, pa kad slike stignu treba prvo napisati tekst, a onda
 ih ubaciti. Obe usluge u koje se uklapaju već postoje, samo se aparati ne
 imenuju.
+
+---
+
+# ACL VSL: kreće sam, bez zvuka (19.10.2026)
+
+Nikola, poruka od 13:31–13:33: *„Muted + autoplay. Stavi da je VSL autoplay
+kada se uđe na stranicu."*
+
+## Šta je promenjeno
+
+| | Bilo | Sada |
+|---|---|---|
+| Puštanje | tek na klik | kreće samo, čim se otvori stranica |
+| Zvuk | uključen od klika | **isključen**, dok posetilac ne traži |
+| `preload` | `none` | skinuto — pregledač ga ignoriše kad stoji `autoplay` |
+| Dugme preko slike | „Pogledaj video" | ostaje, ali samo kao rezerva |
+| Novo | — | dugme **„Uključi zvuk"** u uglu, dok je nemo |
+
+## Zašto zvuk mora da ostane isključen
+
+Nijedan pregledač ne pušta video sa zvukom dok ga posetilac ne dodirne. To nije
+podešavanje koje se može zaobići — tako je svuda od 2018. Zato Nikolina poruka i
+glasi „muted + autoplay": to je jedini oblik koji radi.
+
+Srećom, **titl je upisan u samu sliku** (zapisano u `usluga.css` §51 još
+12.10.), pa video nije nem govornik — prati se i bez zvuka. Ali ko hoće zvuk ne
+sme da ga traži, zato je dodato dugme „Uključi zvuk" preko gornjeg desnog ugla.
+Nestane čim se zvuk uključi, bilo preko njega bilo preko kontrola.
+
+## Šta ovo košta u podacima
+
+Ovo je prava posledica, jer `preload="none"` više ne važi — ranije se **ništa**
+nije skidalo dok posetilac ne pritisne.
+
+Izmereno iz samog fajla: 1280×720, H.264, ukupno **640 kb/s**.
+
+| Koliko gleda | Skine otprilike |
+|---|---|
+| 10 sekundi pa ode | 0,7 MB |
+| 1 minut | 4,8 MB |
+| ceo video, 7:32 | 36 MB |
+
+**Ne skida se svih 36 MB odjednom** — teče koliko se gleda. Posetilac koji
+odmah ode plati oko 0,7 MB, što je manje od jedne krupnije fotografije.
+
+## Rezerva ako pregledač odbije
+
+I nemo puštanje ume da bude blokirano — iPhone u štednji baterije, Android sa
+uključenim Data Saverom. Tada se `play()` odbije, dugme „Pogledaj video" ostaje
+preko slike i sve radi kao ranije. Posetilac ne vidi pokvarenu stranicu.
+
+## Provereno u pregledaču
+
+| | 1440×900 | 390×844 |
+|---|---|---|
+| Kreće sam | ✓ (2,6 s posle otvaranja) | ✓ (3,1 s) |
+| Bez zvuka | ✓ | ✓ |
+| Dugme „Pogledaj video" sakriveno | ✓ | ✓ |
+| Dugme „Uključi zvuk" vidljivo | ✓ | ✓ |
+| Klik na „Uključi zvuk" | zvuk se uključi, video se ne prekida, dugme nestane | — |
+
+`usluga.css?v=` dignut na **19.28**, na svih 9 stranica.
