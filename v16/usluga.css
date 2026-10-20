@@ -4695,6 +4695,106 @@ a.step-tag:focus-visible {
   }
 }
 
+/* ══════════════════════════════════════════════════════════════
+   52. UGC PLOČICA SA PRAVIM SNIMKOM — 20.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Prva stigla: Nađa Tešić, taekwondo reprezentativka. Original 1080×1920
+   HEVC, 34 MB — za sajt H.264 720×1280, CRF 26, AAC 96k, faststart: 3,0 MB,
+   jedanaest puta manje. Pločica se prikazuje na najviše 272 px širine
+   (mreža od tri kolone, max 54rem), pa je 720 dvostruka rezerva za guste
+   ekrane. Proba na 540 px izgledala je isto, ali bi na dvostrukoj gustini
+   bila tačno na granici, a razlika je svega 1 MB.
+
+   Titl je upisan u sliku, kao kod VSL-a.
+
+   Za razliku od VSL-a, ove NE kreću same: tri snimka odjednom bila bi i
+   teška (9 MB) i nemirna za oko. Zato poster i dugme, a preload="none" da
+   se ništa ne skida dok posetilac ne pritisne.
+
+   Naziv sekcije promenjen sa „fudbalera" na „sportista" — Nađa je
+   taekwondo reprezentativka, a šire je i jače jer pokazuje više sportova. */
+
+.acl-ugc-pun {
+  position: relative;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: #0a1a24;
+}
+
+.acl-ugc-pun video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+}
+
+.acl-ugc-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  border: 0;
+  background: linear-gradient(0deg, rgba(10, 26, 36, 0.45), rgba(10, 26, 36, 0.05));
+  cursor: pointer;
+  place-content: center;
+}
+
+.acl-ugc-play span {
+  display: grid;
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  place-items: center;
+  transition: transform 200ms var(--ease);
+}
+
+.acl-ugc-play span::after {
+  width: 0;
+  height: 0;
+  margin-left: 0.2rem;
+  border-top: 0.5rem solid transparent;
+  border-bottom: 0.5rem solid transparent;
+  border-left: 0.8rem solid var(--deep);
+  content: "";
+}
+
+.acl-ugc-play:hover span,
+.acl-ugc-play:focus-visible span {
+  transform: scale(1.09);
+}
+
+.acl-ugc-pun.is-pusten .acl-ugc-play {
+  display: none;
+}
+
+.acl-ugc-pun figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1.6rem 0.7rem 0.6rem;
+  background: linear-gradient(0deg, rgba(10, 26, 36, 0.85), transparent);
+  color: var(--white);
+  font-size: 0.82rem;
+  font-weight: 650;
+  pointer-events: none;
+}
+
+.acl-ugc-pun figcaption small {
+  display: block;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.74rem;
+  font-weight: 450;
+}
+
+.acl-ugc-pun.is-pusten figcaption {
+  display: none;
+}
+
 /* Tekstualne ACL sekcije koriste isti tihi naslov kao koraci i cene
    (sekcija 13): bez toga .section-intro ostaje trokolonski iz styles.css
    i naslov od 6 reči sedne u kolonu za etiketu — izmereno 846 px visine za

@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta name="description" content="Put od ACL povrede do povratka na teren: šta moraš da uradiš da ne prepustiš oporavak slučaju. Lokomoto centar, Beograd, Autokomanda." />
     <link rel="stylesheet" href="../../styles.css?v=13.8" />
-    <link rel="stylesheet" href="../../usluga.css?v=19.29" />
+    <link rel="stylesheet" href="../../usluga.css?v=19.30" />
     <link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml" />
     <title>ACL rehabilitacija Beograd | Lokomoto centar</title>
     <meta property="og:type" content="website" />
@@ -269,12 +269,23 @@
         <div class="shell">
           <div class="section-intro">
             <h2><mark class="ph">Naslov iz copyja</mark></h2>
-            <p><mark class="ph">Snimci fudbalera koji su prošli ACL oporavak u Lokomotu.</mark> <span class="ph-note">MATERIJAL OD KLIJENTA</span></p>
+            <p><mark class="ph">Snimci sportista koji su prošli ACL oporavak u Lokomotu.</mark> <span class="ph-note">MATERIJAL OD KLIJENTA</span></p>
           </div>
           <div class="acl-ugc-grid reveal">
-            <figure class="acl-ugc-okvir"><span class="ph-note">VIDEO 1</span><p>Uspravni snimak igrača.</p></figure>
-            <figure class="acl-ugc-okvir"><span class="ph-note">VIDEO 2</span><p>Uspravni snimak igrača.</p></figure>
-            <figure class="acl-ugc-okvir"><span class="ph-note">VIDEO 3</span><p>Uspravni snimak igrača.</p></figure>
+            <figure class="acl-ugc-okvir acl-ugc-pun">
+              <video
+                src="../../assets/media/acl-ugc-nadja.mp4"
+                poster="../../assets/images/acl-ugc-nadja-poster.jpg"
+                width="720" height="1280"
+                controls playsinline preload="none"
+                aria-label="Nađa Tešić, taekwondo reprezentativka, o oporavku posle povrede prednjeg ukrštenog ligamenta, 26 sekundi, sa titlom"></video>
+              <button class="acl-ugc-play" type="button" aria-label="Pusti snimak">
+                <span aria-hidden="true"></span>
+              </button>
+              <figcaption>Nađa Tešić <small>taekwondo</small></figcaption>
+            </figure>
+            <figure class="acl-ugc-okvir"><span class="ph-note">VIDEO 2</span><p>Uspravni snimak sportiste.</p></figure>
+            <figure class="acl-ugc-okvir"><span class="ph-note">VIDEO 3</span><p>Uspravni snimak sportiste.</p></figure>
           </div>
         </div>
       </section>
@@ -396,6 +407,23 @@
 
     <script src="../../stranica.js?v=14.0" defer></script>
     <script>
+      /* UGC pločice: isti razlog kao kod VSL-a — Chrome na <video controls> ne
+         crta veliko dugme, pa se na posteru ne vidi da je to uopšte video.
+         Ove ne kreću same: tri snimka odjednom bi bila i teška i bučna za oko. */
+      (function () {
+        document.querySelectorAll(".acl-ugc-pun").forEach(function (o) {
+          var v = o.querySelector("video"), d = o.querySelector(".acl-ugc-play");
+          if (!v || !d) return;
+          /* kontrole se skidaju dok stoji poster: inače fabrička traka viri
+             ispod dugmeta i gužva se sa potpisom. Bez JS-a ostaju, pa snimak
+             i dalje može da se pusti. */
+          v.controls = false;
+          d.addEventListener("click", function () { v.play(); });
+          v.addEventListener("play", function () { o.classList.add("is-pusten"); v.controls = true; });
+          v.addEventListener("pause", function () { o.classList.remove("is-pusten"); v.controls = false; });
+        });
+      })();
+
       /* ACL VSL: kreće sam, bez zvuka, čim se uđe na stranicu (usluga.css §51). */
       (function () {
         var w = document.querySelector(".acl-vsl-plejer");
@@ -422,13 +450,25 @@
            nijedan pregledač ne pušta video sa zvukom bez dodira. Titl je upisan
            u sliku, pa se prati i nem. Ako pregledač odbije i nemo puštanje
            (iPhone u štednji baterije, Data Saver), ostaje dugme preko postera. */
+        /* Dugme za zvuk se vodi po STANJU, ne po tome kako je puštanje prošlo.
+           Ranije je zavisilo od obećanja koje v.play() vrati, pa ako bi se video
+           u međuvremenu pauzirao, to obećanje propadne i dugme se nikad ne
+           pojavi — iako video ide i nem je. Sada se prikazuje kad god je snimak
+           krenuo i još je bez zvuka, bez obzira kojim putem je krenuo. */
+        function osvezi() {
+          z.hidden = !(w.classList.contains("is-pusten") && v.muted);
+        }
+        v.addEventListener("play", osvezi);
+        v.addEventListener("pause", osvezi);
+        v.addEventListener("volumechange", osvezi);
+        z.addEventListener("click", function () { v.muted = false; });
+
         var obecanje = v.play();
         if (obecanje && obecanje.then) {
-          obecanje.then(function () { pusti(); if (v.muted) z.hidden = false; })
-                  .catch(function () { /* odbijeno — dugme preuzima posao */ });
+          obecanje.then(function () { pusti(); osvezi(); })
+                  .catch(function () { /* odbijeno — dugme preko postera preuzima posao */ });
         }
-        z.addEventListener("click", function () { v.muted = false; });
-        v.addEventListener("volumechange", function () { if (!v.muted) z.hidden = true; });
+        osvezi();
       })();
     </script>
   </body>

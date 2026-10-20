@@ -5064,3 +5064,64 @@ Uzeto: **`rgba(255, 255, 255, 0.8)`**, bez zamućenja. Senka ispod ostaje — na
 80% bela ume da se izgubi ako naiđe svetliji kadar.
 
 `usluga.css?v=` dignut na **19.29**, na svih 9 stranica.
+
+---
+
+# Prvi UGC snimak ugrađen — Nađa Tešić (20.10.2026)
+
+Novak poslao dva testimonijala; preuzet je samo Nađin (Drive link). Majin MOV
+od 66 MB nije stigao do diska — pretraženi su ceo korisnički profil i disk E.
+
+## Snimak
+
+| | Original | Na sajtu |
+|---|---|---|
+| Zapis | **HEVC** — mnogi pregledači ga ne puštaju | H.264 |
+| Veličina slike | 1080×1920 | 720×1280 |
+| Težina | **34 MB** | **3,0 MB** — jedanaest puta manje |
+| Trajanje | 26 s | isto |
+| Titl | upisan u sliku | isto |
+
+Pločica se prikazuje na najviše **272 px** širine (mreža od tri kolone, max
+54rem), pa je 720 dvostruka rezerva za guste ekrane. Proba na 540 px (2,0 MB)
+izgledala je isto na stvarnoj veličini, ali bi na dvostrukoj gustini bila tačno
+na granici — razlika je svega 1 MB, pa je uzeto 720.
+
+Poster je kadar iz 24. sekunde, bez titla preko lica, 32 kB.
+
+## „Fudbaleri" → „sportisti"
+
+Nađa je taekwondo reprezentativka, a sekcija je govorila *„Snimci fudbalera"*.
+Promenjeno u *„sportista"* — tačno je, i jače, jer pokazuje više od jednog
+sporta. Preostala dva prazna mesta sada kažu „Uspravni snimak sportiste".
+
+## UGC pločice NE kreću same
+
+Za razliku od VSL-a. Tri snimka odjednom bila bi i teška (9 MB) i nemirna za
+oko. Zato poster i dugme, uz `preload="none"`. **Provereno: pločica ne skine
+ni bajt dok se ne pritisne.**
+
+## Dve greške nađene u proveri
+
+**1. Fabrička traka plejera virila je ispod dugmeta** i gužvala se sa potpisom.
+Isti problem je kod VSL-a rešen još 12.10, ali je ovde propušten. Kontrole se
+sada skidaju dok stoji poster i vraćaju kad snimak krene.
+
+**2. Dugme „Uključi zvuk" zavisilo je od obećanja koje `v.play()` vrati.** Ako
+se video u međuvremenu pauzira, to obećanje propadne i dugme se nikad ne pojavi
+— iako video ide i nem je. Sada se vodi po **stanju**: prikazuje se kad god je
+snimak krenuo i još je bez zvuka, bez obzira kojim putem je krenuo.
+
+## Napomena o proveri
+
+Puštanje nije moglo da se potvrdi u panelu jer je `document.visibilityState`
+bio `hidden` — Chrome tada koči video (napredovao 0,6 s za 2 s). To je stanje
+panela, ne sajta. Sve ostalo je provereno: raspored pločice 169×300 na telefonu,
+odnos 0,56, potpis, novi tekst sekcije, skinute kontrole i nulto preuzimanje.
+**Puštanje se potvrđuje na živom sajtu posle objave.**
+
+Uz ovo je i **test-server dobio podršku za delimično preuzimanje** (`Range`).
+Bez toga se video nije mogao premotavati i davio se na 3 s bafera, pa je pregled
+izgledao gore nego što jeste. Sada bafer ide na 39 s.
+
+`usluga.css?v=` dignut na **19.30**, na svih 9 stranica. Nova sekcija 52.
