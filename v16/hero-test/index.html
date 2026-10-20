@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#0e4766" />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="description" content="Ordinacija fizikalne medicine i rehabilitacije na Autokomandi, od 2016. Dijagnostika, terapija i vođene vežbe na jednom mestu. Zakažite pregled online." />
-    <link rel="preload" href="../assets/images/hero-novak-test-poster.jpg" as="image" />
+    <link rel="preload" href="../assets/images/hero-poster-v17.jpg" as="image" />
     <link rel="stylesheet" href="../styles.css?v=13.8" />
     <link rel="stylesheet" href="../usluga.css?v=19.30" />
     <link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml" />
@@ -280,13 +280,16 @@
               // Sa granicom po sirini, uzak ali visok prozor (npr. 824x1245) dobijao je
               // polozeni video u uspravnom okviru i gubio 63% sirine kadra.
               var mq = window.matchMedia('(max-aspect-ratio: 9/10)');
-              // PROBA: Novakov video (lokomoto 1.3 2.mp4, 2023) isecen u petlju od 32 s,
-              // samo celi kadrovi, bez zvuka. Isti fajl i na telefonu (16:9, cover).
+              // NAS REZ od 14,7 s iz istog snimka (lokomoto 1.3 2.mp4, 2023), samo celi
+              // kadrovi: soba -> nalaz -> rad rukama -> pokret. Izbacen hodnik na pocetku
+              // (prazan i zamucen od pokreta, a prvi kadar je i slicica), dva ekrana
+              // aparata na 29 i 36 s, cekaonica, teretana, EMS prsluk i posude za kupice.
+              // Vazi SAMO za polozene prozore; telefon ostaje na sadasnjem uspravnom.
               var novak = {
-                poster: '../assets/images/hero-novak-test-poster.jpg',
+                poster: '../assets/images/hero-poster-v17.jpg',
                 html:
-                  '<' + 'source src="../assets/media/hero-novak-test.webm" type="video/webm">' +
-                  '<' + 'source src="../assets/media/hero-novak-test.mp4" type="video/mp4">'
+                  '<' + 'source src="../assets/media/hero-loop-v17-av1.mp4" type="video/mp4; codecs=av01.0.08M.08">' +
+                  '<' + 'source src="../assets/media/hero-loop-v17.mp4" type="video/mp4">'
               };
               var desktop = {
                 poster: '../assets/images/hero-poster-v14.jpg',
@@ -306,7 +309,11 @@
               // Izvor upisuje skript, na obe strane.
               var tekuci = null;
               function primeni() {
-                var zeljeni = izbor === 'novak' ? 'novak' : (mq.matches ? 'mobilni' : 'desktop');
+                // Oblik prozora odlucuje PRVI: na telefonu uvek ide uspravni, bez obzira
+                // sta je izabrano. Ranije je izbor "novak" zaobilazio ovu granicu i slao
+                // polozeni snimak i na telefon - a od 16:9 u uspravnom okviru vidi se 26%
+                // sirine. Prekidac sada pokazuje tacno ono sto bi bilo na sajtu.
+                var zeljeni = mq.matches ? 'mobilni' : (izbor === 'novak' ? 'novak' : 'desktop');
                 if (zeljeni === tekuci) return;
                 tekuci = zeljeni;
                 var c = zeljeni === 'novak' ? novak : (zeljeni === 'mobilni' ? mobilni : desktop);
@@ -1461,7 +1468,7 @@
          Novaku ide samo verzija sa videom); pojavljuje se uz ?proba ili ?hero=… -->
     <div class="proba-hero" role="group" aria-label="Izbor videa u heroju" hidden>
       <span class="proba-hero-oznaka">Proba heroja</span>
-      <button type="button" data-izbor="novak">Novakov video</button>
+      <button type="button" data-izbor="novak">Nov rez, 14,7 s</button>
       <button type="button" data-izbor="sadasnji">Sadašnji</button>
     </div>
     <style>

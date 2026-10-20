@@ -5125,3 +5125,92 @@ Bez toga se video nije mogao premotavati i davio se na 3 s bafera, pa je pregled
 izgledao gore nego što jeste. Sada bafer ide na 39 s.
 
 `usluga.css?v=` dignut na **19.30**, na svih 9 stranica. Nova sekcija 52.
+
+---
+
+# Naš rez za hero na računaru — v17 (20.10.2026)
+
+Mladen: *„Hajde da napravimo svoju verziju od šesnaest sekundi za desktop hero
+sekciju. Za telefon ćemo ostaviti onu koja jeste, pa ćemo to da ponudimo
+Novaku."*
+
+## Zašto proba od 32 s nije mogla da ide kakva jeste
+
+| | Proba | Sada na sajtu |
+|---|---|---|
+| Format | 1280×720 | 2560×1440 |
+| Težina | 3,6 MB | 492 kB |
+| Verzija za telefon | **nema** — isti položeni fajl svuda | postoji, uspravna |
+
+Izmereno je i koliko ovaj materijal uopšte može da se sabije. Nije stvar
+podešavanja nego prirode snimka: sadašnji hero je **mirno klizanje po
+nepokretnim fotografijama**, što se sabija gotovo besplatno; Novakov je
+**snimak iz ruke sa rezom na svaku sekundu**, gde svaki rez traži novu punu
+sliku.
+
+| 1920×1080, isti sadržaj | AV1 | H.264 |
+|---|---|---|
+| ceo rez, 32 s | 4,1 MB | 5,0 MB |
+| kraći rez, 16 s | 2,3 MB | 2,6 MB |
+| **naš rez, 14,7 s** | **1,6 MB** | **3,0 MB** |
+
+Na istoj dužini i **manjoj slici** i dalje je oko tri puta teže od sadašnjeg.
+To je cena tempa i pravog snimka rada.
+
+## Kako je rez napravljen
+
+Rezovi u originalu su nađeni merenjem (`select='gt(scene,0.25)'`), pa je sečeno
+**samo na postojećim rezovima** — nijedan kadar nije presečen po sredini.
+
+Pet celina, ukupno **14,68 s**:
+
+| Original | Šta je |
+|---|---|
+| 9,85 – 10,88 | terapijska soba, mirno |
+| 21,36 – 25,72 | rad na nozi, rame, nalaz i snimak, ultrazvuk |
+| 26,60 – 29,08 | krupno: rukavice, gel, aparat na nozi |
+| 30,04 – 35,24 | vakuum, koleno, ustajanje, leđa, stopalo |
+| 36,96 – 38,60 | noga u traci, pokret |
+
+Redosled: **prostor → nalaz → rad rukama → pokret.**
+
+### Šta je izbačeno i zašto
+
+| Izbačeno | Razlog |
+|---|---|
+| Hodnik, 8,36–9,85 | prazan **i zamućen od pokreta** — a prvi kadar je ujedno i sličica koja stoji dok video ne krene |
+| Ekran aparata, 29,10–29,95 | na naslovnoj se čita kao šum, ne kao rad |
+| Ekran aparata, 35,24–36,08 | isto; oba su promakla u prvom pokušaju i uhvaćena tek na pregledu kadar-po-kadar |
+| Posude za kupice, 11,68–12,56 | izdvaja se iz ostatka, deluje kao druga priča |
+| Čekaonica, teretana, EMS prsluk | Novak ih je i sam izbacio iz svoje verzije |
+
+**Početak je dva puta pomeran.** Prvo 8,36 (hodnik), pa 9,60 — ali je i tamo
+prvi kadar bio zamućen hodnik. Tek merenje kadar-po-kadar na 8 sličica u
+sekundi pokazalo je da se soba smiruje na **9,85**.
+
+## Prekidač sada pokazuje tačno ono što bi bilo na sajtu
+
+Ranije je izbor „Novakov video" **zaobilazio granicu po obliku prozora** i slao
+položeni snimak i na telefon — a od 16:9 u uspravnom okviru vidi se **26%
+širine**. To je ista ona greška zbog koje je u septembru izgubljeno dva dana.
+
+Sada oblik prozora odlučuje **prvi**: na telefonu uvek ide sadašnji uspravni,
+bez obzira šta je izabrano.
+
+**Provereno:** na 1440×900 i 1280×800 ide `hero-loop-v17`, 14,68 s; na 390×844
+ide `hero-loop-v16-mobile`, odnos videa 0,46 jednak odnosu okvira — puna širina,
+ništa se ne seče. Prebacivanje prekidačem na telefonu ostaje uspravno.
+
+## Zašto uspravna verzija novog reza nije rađena
+
+Uspravni okvir hvata **26% širine** položenog kadra. Na šest od šesnaest
+proverenih mesta centar promašuje ono što je važno: dvojica kod monitora bila bi
+presečena po sredini, čovek sa EMS prslukom ostaje bez glave, prazna soba hvata
+samo zid. Kadrovi traju oko sekunde, pa bi **svakom od tridesetak trebalo
+posebno nameštanje** — sadašnja uspravna verzija ima samo četiri kadra, zato je
+i bila izvodljiva.
+
+## Šta sada čeka
+
+Novak da pogleda prekidač i presudi. **Naslovna nije dirana** — `index.html` i
+dalje nosi `hero-loop-v14`.
