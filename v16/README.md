@@ -5214,3 +5214,47 @@ i bila izvodljiva.
 
 Novak da pogleda prekidač i presudi. **Naslovna nije dirana** — `index.html` i
 dalje nosi `hero-loop-v14`.
+
+## Drugi UGC snimak — Maja Gajić (21.10.2026)
+
+Stigao preko Drive-a, pošto preko WhatsAppa nije prošao.
+
+| | Original | Na sajtu |
+|---|---|---|
+| Zapis | HEVC | H.264 |
+| Veličina | 1080×1920 | 720×1280 |
+| Sličica/s | **60** | 30 |
+| Trajanje | 35,8 s | isto |
+| Težina | **69 MB** | **4,3 MB** |
+
+**60 sličica u sekundi spušteno na 30.** Za govor pred kamerom 60 ne donosi
+ništa, a bitno diže težinu.
+
+**Jače je sabijen nego Nađin** (CRF 31 prema 26), jer je materijal drugačiji:
+Majin ima mnogo pokreta i šarenu pozadinu teretane, pa je po sekundi dvostruko
+teži. Poređeno na stvarnoj veličini prikaza (272 px): 7,3 MB, 5,2 MB i 4,3 MB
+izgledaju **isto**, titl se čita jednako. Uzeto 4,3 MB.
+
+Merilo nije isti broj nego isti izgled na veličini na kojoj se gleda.
+
+### Logo preko slike — pročitan kao kvar
+
+Prvi poster je izašao sa plavo-zelenom mrljom preko lica. Pomislio sam da je
+slika oštećena i potrošio nekoliko pokušaja tražeći kvar u prekodiranju.
+**Nije bio kvar nego animacija logotipa Lokomoto centra**, koja u snimku ide
+preko slike na **30. i 31. sekundi**.
+
+Pogoršalo ga je i to što sam dvaput pogrešno pročitao traku sličica — brojevi
+koje je `drawtext` ispisivao nisu odgovarali stvarnom vremenu, pa sam zaključio
+da je logo na 26–28 s. Tek vađenje **pojedinačnih sličica u zasebne fajlove**,
+bez ikakvog računanja vremena u filteru, pokazalo je tačno gde je.
+
+Poster je na kraju uzet sa **34. sekunde**: Maja se smeje, bez logotipa i bez
+titla preko lica.
+
+### Potpis nije dopunjen
+
+Nađin potpis nosi sport („taekwondo"). Za Maju **ne znamo sport**, pa stoji
+oznaka `sport ZA POTVRDU` umesto da se izmisli. Pitati Novaka.
+
+Treće mesto ostaje prazno — Novak je najavio još dva snimka.
