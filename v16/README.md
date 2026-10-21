@@ -5252,9 +5252,13 @@ bez ikakvog računanja vremena u filteru, pokazalo je tačno gde je.
 Poster je na kraju uzet sa **34. sekunde**: Maja se smeje, bez logotipa i bez
 titla preko lica.
 
-### Potpis nije dopunjen
+### Potpis — dopunjen istog dana
 
-Nađin potpis nosi sport („taekwondo"). Za Maju **ne znamo sport**, pa stoji
-oznaka `sport ZA POTVRDU` umesto da se izmisli. Pitati Novaka.
+Nađin potpis nosi sport („taekwondo"). Za Maju se nije znao, pa je stajala
+oznaka `sport ZA POTVRDU` umesto da se izmisli. Mladen je isti dan javio:
+**atletika, trčanje na 400 m.** Upisano, oznake više nema.
+
+Na stranici sada nema nijedne oznake `ZA POTVRDU`; ostaju samo `NACRT`
+(tekst koji čeka copy) i `MATERIJAL OD KLIJENTA`.
 
 Treće mesto ostaje prazno — Novak je najavio još dva snimka.
