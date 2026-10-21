@@ -5262,3 +5262,20 @@ Na stranici sada nema nijedne oznake `ZA POTVRDU`; ostaju samo `NACRT`
 (tekst koji čeka copy) i `MATERIJAL OD KLIJENTA`.
 
 Treće mesto ostaje prazno — Novak je najavio još dva snimka.
+
+### Nađin poster ujednačen sa Majinim
+
+Na starom posteru (24. s) titl „Svima bih preporučila" stajao je u dva reda
+tačno ispod dugmeta za puštanje, pa je pločica delovala zgužvano — dok je
+Majina čista, jer joj je kadar tražen van titla.
+
+**Kod Nađe čist kadar ne postoji** — ona govori bez prekida, pa titl ima na
+svih 26 sličica. Provereno vađenjem svake sekunde u zaseban fajl.
+
+Zato je biran **najmanje sudarljiv**, i to sa nacrtanim dugmetom preko slike,
+da se vidi stvaran odnos. Izabrana **1. sekunda**: titl je sitan, u jednom redu,
+i stoji **ispod** dugmeta umesto pod njim. Uz to piše „Ja sam Nađa Tešić", što
+i koristi.
+
+Odbačeni: 8. s („ACL-a." — krupno pod dugmetom, usta otvorena), 23. s (kadar iz
+teretane, lice se ne vidi), 24. s (dotadašnji).
