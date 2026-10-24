@@ -5490,3 +5490,18 @@ reklame."* Ali stranica je i dalje na konceptu i `noindex` — **reklame nemaju
 gde da vode.** Pitanje o domenu iz poruke za Nikolu time postaje hitno.
 
 `usluga.css?v=` dignut na **19.34**.
+
+## Dve sitnice posle Nikolinog prelaza
+
+**Naslov poziva na akciju bio je prevelik.** Nikolin novi naslov je duži od
+onih na ostalim stranicama, pa je na `5.4rem` lomio u tri reda i delovao
+ogromno. Smanjen **samo na ACL stranici** (`.acl-cta`), sa 64 na **44 px** na
+1280; ostalih pet stranica ima kratke naslove i ostaje nedirnuto — provereno
+na dijagnostici, i dalje 64 px.
+
+**Naslov iznad case study-ja nije se čitao.** Oznaka `.ph` bez klase `.nacrt`
+crta punu svetloplavu podlogu sa tamnim slovima, što na tamnoj sekciji ne
+valja. Sada na tamnoj podlozi ide **belim slovima**, uz tanku podlogu i liniju
+da se i dalje vidi da tekst nije potvrđen.
+
+`usluga.css?v=` dignut na **19.35**.

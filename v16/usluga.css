@@ -779,6 +779,15 @@
   font-weight: 420;
 }
 
+/* ACL-ov poziv na akciju nosi duzi naslov od ostalih stranica, pa na 5.4rem
+   ispadne ogroman i lomi se u tri reda. Mladen, 24.10: „Smanji malo ovaj
+   naslov, djeluje mi prevelik." Smanjeno SAMO ovde; ostalih pet stranica
+   ima kratke naslove i ostaje kako jeste. */
+.acl-cta h2 {
+  max-width: 20ch;
+  font-size: clamp(2rem, 3.4vw, 3.4rem);
+}
+
 .service-cta-actions {
   display: grid;
   gap: 0.9rem;
@@ -5174,6 +5183,16 @@ mark.ph.nacrt {
 .acl-tamna .ph-note {
   border-color: rgba(255, 255, 255, 0.35);
   color: rgba(255, 255, 255, 0.75);
+}
+
+/* Oznaka bez klase .nacrt na TAMNOJ podlozi: puna svetloplava podloga sa
+   tamnim slovima tu se ne cita. Mladen, 24.10: „Stavi bijeli tekst iznad
+   ovog videa." Slova idu u belo, a oznaka ostaje kao tanka podloga i linija,
+   da se i dalje vidi da tekst nije potvrdjen. */
+.acl-tamna mark.ph:not(.nacrt) {
+  color: var(--white);
+  background: rgba(143, 214, 244, 0.16);
+  box-shadow: inset 0 -1px rgba(143, 214, 244, 0.55);
 }
 
 .acl-tekst .for-whom-lead + .for-whom-lead {
