@@ -5440,3 +5440,53 @@ kontrola. I, važnije, pregled ovde je Chrome, a Mladen gleda u Firefoxu.
 Dakle 316 px je dovoljno za pun set kontrola **u Firefoxu**. Pojas u kom se seče krajnja
 dugmad ostaje negde između 240 i 316 px — ako se mreža ikad bude sužavala, to
 treba imati u vidu.
+
+---
+
+# Nikolin final prelaz — ugrađeno (24.10.2026)
+
+Loom, 4:26, „Final pass ACL landinga". Transkript je automatski i mestimično
+izlomljen, pa su navodi dole oni gde je smisao nedvosmislen.
+
+## Urađeno
+
+| Gde | Šta je Nikola rekao | Sada |
+|---|---|---|
+| Kome je namenjeno | ne pominjati reč „stranica" | „Evo u kojim fazama pregled ima smisla za tebe:" — njegova formulacija sa 0:27 |
+| Faze rehabilitacije | *„Ovo bi izbacio. Tekst je premali i samo sklanja fokus."* | sitni opisi skinuti, ostala četiri naslova faza |
+| Prvi pregled | *„Ovo nije bitno. I ove detalje ne bih prenaglašavao."* | skinut uvod i tri sitna opisa; ostali Razgovor, Testiranje, Plan |
+| Case study | izdiktirao naslov | „Kako se Luka vratio na teren posle povrede ACL-a?" + „Pogledaj kako je izgledao kompletan put od povrede do oporavka." |
+| Testimonijali | izdiktirao naslov i brojku | „Pogledaj još zadovoljnih pacijenata" + „Ovo su neki od preko 300 sportista koje smo uspešno oporavili od povreda." |
+| Poziv na akciju | *„Ovi tekstovi premali"* — hoće jači završetak | „Dođi da vidimo u kom je stadijumu tvoje koleno." |
+
+## Harmonika je nestala, i to je posledica a ne odluka
+
+Sitni opisi u fazama bili su **telo harmonike**. Kad su skinuti, harmonika
+nema šta da otvara, pa je i ona otpala — ostala su četiri reda sa linijom.
+
+**Naslovi su posle toga ispali ogromni**, jer su veličinu dobijali iz
+`.step-acc summary h3`, a tog selektora više nema. Dodata je sekcija 54 u
+`usluga.css` koja faze vraća na istu veličinu i isti red sa linijom ispod.
+Izmereno posle: 22 px na telefonu, 28 px na 1280, redovi po ~87 px, naslovi
+u jednom redu.
+
+Vredi zapisati: harmonika je u projekat ušla ranije **na klijentov zahtev**,
+da se skrati skrol. Sada je skinuta na Nikolin zahtev. Ako se ikad vraća,
+tekstovi faza su u istoriji.
+
+## Nije urađeno — dogovoreno da ide posle
+
+Nikolina najveća stavka: spojiti **„Zašto nije dovoljno da koleno više ne
+boli"** i **„Kako Lokomoto prati napredak"** u jednu **vizuelnu vremensku
+liniju**, koja pokazuje razmak između „ne boli me" i „oporavljen sam".
+*„Ovde moramo da unesemo neku dinamiku… da bude vizuelno, a ne samo tekst."*
+
+To je nov deo koji treba osmisliti, pa je odvojen da ne kasni ostalo.
+
+## I dalje blokira
+
+Nikola na 4:17: *„danas moramo da ih imamo gotove i da na jedan klik pustimo
+reklame."* Ali stranica je i dalje na konceptu i `noindex` — **reklame nemaju
+gde da vode.** Pitanje o domenu iz poruke za Nikolu time postaje hitno.
+
+`usluga.css?v=` dignut na **19.34**.

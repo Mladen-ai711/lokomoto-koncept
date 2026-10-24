@@ -4188,6 +4188,32 @@ a.step-tag:focus-visible {
   font-size: clamp(1.4rem, 2.2vw, 2.15rem);
 }
 
+/* ══════════════════════════════════════════════════════════════
+   54. FAZE BEZ HARMONIKE — 24.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Nikola, final prelaz na 1:27, gledajuci otvorenu Fazu 4: „Ovo bi izbacio.
+   Tekst je premali i samo sklanja fokus." Sitni opisi u harmonici su skinuti,
+   ostala su cetiri naslova faza.
+
+   Time je nestala i harmonika — bez tela nema sta da se otvara. Naslovi su
+   zato ispali ogromni, jer su velicinu dobijali iz .step-acc summary h3.
+   Ovde dobijaju istu velicinu i isti red sa linijom ispod. */
+
+.step-grid .step-row.step-faza {
+  display: block;
+  padding: clamp(1.35rem, 2.2vw, 1.9rem) 0;
+}
+
+.step-faza h3 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.2vw, 2.15rem);
+}
+
+.step-row.step-faza:hover {
+  transform: none;
+}
+
 .step-acc summary i {
   position: relative;
   width: 0.95rem;
