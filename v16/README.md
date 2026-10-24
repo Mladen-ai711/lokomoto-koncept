@@ -5406,13 +5406,16 @@ okvira seče dugmad, pa je video uvučen 5 px od ivice. To je **pogoršanje** �
 uvlačenje pločicu čini još užom, a baš širina je ono što nedostaje. Izmena je
 poništena pre nego što je komitovana.
 
-**Pravi uzrok.** Chrome bira raspored kontrola prema širini plejera. Na
+**Pravi uzrok.** Pregledač bira raspored kontrola prema širini plejera. Na
 pločici od 262 px pokušava da nacrta **pun set** — puštanje, skala, vreme,
 zvuk, klizač i proširenje — koji na toj širini ne staje, pa krajnja dugmad
 ispadnu van okvira i budu odsečena sa `overflow: hidden`.
 
-Ispod otprilike 240 px Chrome prelazi na **kratku traku** (puštanje i tri
-tačke), koja uvek staje. Problem je, dakle, u srednjem pojasu.
+**Mladen gleda u Firefoxu, a sva merenja ovde su rađena u pregledaču koji je
+Chrome.** To je bitno: svaki pregledač ima svoju traku i svoje pragove. Prag
+od oko 240 px, ispod kog se prelazi na kratku traku (puštanje i tri tačke),
+izmeren je **u Chrome-u**. Za Firefox tačan prag nije poznat — zna se samo da
+na 262 px seče, a na 316 px ne.
 
 **Izmena:** skinuto ograničenje širine mreže (bilo 70rem). Izmereno:
 
@@ -5429,7 +5432,11 @@ i dalje seče, ostaje izbor: ili pločice spustiti ispod 240 px (kratka traka,
 nikad ne seče, ali proširenje se krije u meniju sa tri tačke), ili ih na
 užim ekranima prebaciti na tri kolone.
 
-**Ovo se nije moglo proveriti odavde.** Da bi se traka videla oštro, prozor
-mora da bude uzak, a tada Chrome prelazi na mobilni raspored kontrola, koji
-je drugačiji od onoga na Mladenovom snimku. Potvrda mora iz njegovog
-pregledača.
+**Ovo se nije moglo proveriti odavde**, iz dva razloga. Da bi se traka videla
+oštro, prozor mora da bude uzak, a tada se prelazi na mobilni raspored
+kontrola. I, važnije, pregled ovde je Chrome, a Mladen gleda u Firefoxu.
+
+**POTVRĐENO 24.10.** Mladen je proverio u svom pregledaču: „Sada je dobro.“
+Dakle 316 px je dovoljno za pun set kontrola **u Firefoxu**. Pojas u kom se seče krajnja
+dugmad ostaje negde između 240 i 316 px — ako se mreža ikad bude sužavala, to
+treba imati u vidu.
