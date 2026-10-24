@@ -5332,18 +5332,30 @@ Jeste položena (2582×1450), a mesto traži uspravnu (1100×1400). Isečak po
 sredini zadržava i terapeuta i pacijenta i operisano koleno, i ispao je zbijeniji
 od originala. Napomena o privremenoj fotografiji **uklonjena**.
 
-## Potpisi — dve oznake vraćene
+## Potpisi — dopunjeni istog dana
 
 | Pločica | Potpis |
 |---|---|
 | Nađa Tešić | taekwondo |
 | Maja Gajić | atletika · 400 m |
-| Stranjinja | **ime i sport ZA POTVRDU** |
-| Luka Sekulić | **sport ZA POTVRDU** |
+| Strahinja | fudbal |
+| Luka Sekulić | fudbal |
 
 Sekulićevo puno ime je iz samog snimka — prvi titl kaže „Moje ime je Luka
-Sekulić". Stranjinja ne izgovara ime, pa se iz naziva fajla zna samo prezime.
-Sport se kod obojice **ne izmišlja**, iako se na snimcima vidi fudbal.
+Sekulić".
+
+**Ime iz naziva fajla bilo je pogrešno otkucano.** Fajl se zvao
+`testimonial stranjinja.mp4`, a Mladen je presudio: *„Strahinja bi trebalo da
+bude sa h, jer za Stranjinu nisam čuo."* Tačno — „Stranjinja" nije ime.
+Ispravljeno i u potpisu i u nazivima fajlova (`acl-ugc-strahinja.mp4` i njegov
+poster), da se greška ne vuče dalje.
+
+**Strahinja je samo ime, bez prezimena** — ostalo troje ima i jedno i drugo.
+Prezime se iz snimka ne zna jer ga ne izgovara. Ako treba ujednačiti, pitati
+Novaka.
+
+Sportove je potvrdio Mladen: oba nova su fudbaleri. Time na stranici **nema
+nijedne oznake `ZA POTVRDU`**.
 
 Sekulićev snimak od **74 s** ostaje nesečen, po dogovoru — da se prvo vidi kako
 izgleda u pločici.
