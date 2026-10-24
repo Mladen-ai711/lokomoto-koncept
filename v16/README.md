@@ -5395,3 +5395,41 @@ kontrole i bez dugmeta; **na pauzu nepromenjeno**; posle premotavanja na 18. i
 VSL nije imao ovu grešku — njegov slušalac na pauzu dira samo dugme za zvuk.
 
 Nijedan CSS nije diran, `usluga.css?v=` ostaje **19.32**.
+
+## Odsečena dugmad na traci plejera
+
+Mladen, 24.10, sa tri snimka ekrana: *„Na prvom i poslednjem videu treba malo
+uvući da se vide dugme za reprodukciju i dugme za proširenje."*
+
+**Prva dijagnoza je bila pogrešna.** Pretpostavka je bila da zaobljeni ugao
+okvira seče dugmad, pa je video uvučen 5 px od ivice. To je **pogoršanje** —
+uvlačenje pločicu čini još užom, a baš širina je ono što nedostaje. Izmena je
+poništena pre nego što je komitovana.
+
+**Pravi uzrok.** Chrome bira raspored kontrola prema širini plejera. Na
+pločici od 262 px pokušava da nacrta **pun set** — puštanje, skala, vreme,
+zvuk, klizač i proširenje — koji na toj širini ne staje, pa krajnja dugmad
+ispadnu van okvira i budu odsečena sa `overflow: hidden`.
+
+Ispod otprilike 240 px Chrome prelazi na **kratku traku** (puštanje i tri
+tačke), koja uvek staje. Problem je, dakle, u srednjem pojasu.
+
+**Izmena:** skinuto ograničenje širine mreže (bilo 70rem). Izmereno:
+
+| Prozor | Pločica pre | Pločica posle |
+|---|---|---|
+| 1900 px | 262 | **316** |
+| 1280 px | 262 | **273** |
+| 1024 px | 216 | 216 |
+| 390 px | 169 | 169 |
+
+**Domet popravke je ograničen i to treba znati.** Na širokom ekranu 316 px
+verovatno dovoljno; na 1280 px je 273 px, i dalje u lošem pojasu. Ako tamo
+i dalje seče, ostaje izbor: ili pločice spustiti ispod 240 px (kratka traka,
+nikad ne seče, ali proširenje se krije u meniju sa tri tačke), ili ih na
+užim ekranima prebaciti na tri kolone.
+
+**Ovo se nije moglo proveriti odavde.** Da bi se traka videla oštro, prozor
+mora da bude uzak, a tada Chrome prelazi na mobilni raspored kontrola, koji
+je drugačiji od onoga na Mladenovom snimku. Potvrda mora iz njegovog
+pregledača.

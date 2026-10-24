@@ -4662,15 +4662,20 @@ a.step-tag:focus-visible {
   color: var(--ink);
 }
 
-/* Cetvrta plocica dodata 24.10.2026 — stigla su jos dva snimka, pa ih je
-   cetiri. Sirina dignuta sa 54rem na 70rem da plocica ostane citljiva:
-   na 54rem bi cetiri kolone dale 198 px po plocici, a na 70rem daju 256 px,
-   blizu dotadasnjih 272 px kod tri kolone. */
+/* Cetvrta plocica dodata 24.10.2026 — stigla su jos dva snimka, pa ih je cetiri.
+
+   IZMENA istog dana: ogranicenje sirine (70rem) skinuto, plocica ide sa 262 na
+   316 px koliko ljuska dozvoljava. Razlog nije izgled nego kontrole. Chrome na
+   262 px pokusava da nacrta pun set — pustanje, skala, vreme, zvuk, klizac i
+   prosirenje — koji na toj sirini ne staje, pa krajnja dugmad ispadnu van okvira
+   i budu odsecena. Mladen je poslao snimak ekrana sa upravo tim.
+
+   Prvo je probano uvlacenje videa 5 px od ivice i to je POGRESNO: plocicu cini
+   jos uzom, dakle pogorsava. Toj traci treba sirina, nista drugo. */
 .acl-ugc-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(0.8rem, 2vw, 1.5rem);
-  max-width: 70rem;
 }
 
 .acl-ugc-okvir {
