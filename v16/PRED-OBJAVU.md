@@ -129,9 +129,17 @@ i to ovim redom:**
 
 ### 6.3 Politika privatnosti
 
-Link u futeru je i dalje `href="#"`. Kod zdravstvene ustanove taj tekst opisuje
-obradu podataka pacijenata i podleže ZZPL-u — mora ga napisati neko ko odgovara
-za to, ne dizajner ni alat. Do tada link ostaje mrtav.
+Link u futeru je `href="#"` na **svih 9 stranica**. Kod zdravstvene ustanove taj
+tekst opisuje obradu podataka pacijenata i podleže ZZPL-u — mora ga napisati neko
+ko odgovara za to, ne dizajner ni alat. Do tada link ostaje mrtav.
+
+**Ispravljeno 24.10.** Odluka je bila zapisana, ali se nije sprovodila: na **šest
+stranica usluga** veza je vodila na **naslovnu**, ne u prazno. Čovek klikne
+očekujući politiku privatnosti, a dobije početnu stranicu — gore nego mrtva veza.
+Verovatno je nastalo kad su stranice usluga pravljene po istom kalupu.
+
+**Sa pikselom i banerom za kolačiće ovo prestaje da bude formalnost.** Politika
+privatnosti tada postaje uslov, ne ukras.
 
 ### 6.4 Facebook profil — REŠENO 15.09
 
