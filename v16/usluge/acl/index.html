@@ -464,13 +464,19 @@
           var v = o.querySelector("video"),
             d = o.querySelector(".acl-ugc-play, .acl-slucaj-play");
           if (!v || !d) return;
-          /* kontrole se skidaju dok stoji poster: inače fabrička traka viri
+          /* kontrole se skidaju SAMO dok stoji poster: inače fabrička traka viri
              ispod dugmeta i gužva se sa potpisom. Bez JS-a ostaju, pa snimak
              i dalje može da se pusti. */
           v.controls = false;
+          function pusti() { o.classList.add("is-pusten"); v.controls = true; }
           d.addEventListener("click", function () { v.play(); });
-          v.addEventListener("play", function () { o.classList.add("is-pusten"); v.controls = true; });
-          v.addEventListener("pause", function () { o.classList.remove("is-pusten"); v.controls = false; });
+          v.addEventListener("play", pusti);
+
+          /* NE skidati kontrole na pauzu. Pregledač pauzira snimak čim uhvatiš
+             vremensku skalu, pa bi se skala gubila ispod prsta, premotavanje se
+             prekidalo, a veliko dugme se vraćalo preko slike — Mladen, 24.10:
+             „ne mogu da premotavam snimak gde ja hoću, resetuje ih".
+             Jednom kad je krenuo, kontrole ostaju. */
         });
       })();
 

@@ -5349,3 +5349,37 @@ Sekulićev snimak od **74 s** ostaje nesečen, po dogovoru — da se prvo vidi k
 izgleda u pločici.
 
 `usluga.css?v=` dignut na **19.32**, na svih 9 stranica.
+
+## Popravka: snimci se nisu dali premotavati
+
+Mladen, 24.10: *„Ne mogu da vratim unazad. Kada kliknem na onu vremensku skalu,
+on ih resetuje. Ne mogu da premotavam snimak gde ja hoću."*
+
+**Uzrok je bila skripta, ne snimci ni server.** Prvo je provereno ono što bi se
+očekivalo — GitHub servira delove fajla (`Range`) za svih šest snimaka,
+odgovor 206. Dakle premotavanje je sa strane servera moguće.
+
+Greška je u obrascu koji je napisan uz UGC pločice i prepisan na plejer slučaja:
+
+```js
+v.addEventListener("pause", function () { o.classList.remove("is-pusten"); v.controls = false; });
+```
+
+**Pregledač pauzira snimak čim uhvatiš vremensku skalu.** Time se okidao ovaj
+slušalac, kontrole su nestajale — zajedno sa skalom koju korisnik u tom trenutku
+vuče — a veliko dugme se vraćalo preko slike. Premotavanje se prekidalo na pola,
+i sa strane je izgledalo kao da se snimak resetovao.
+
+Izmereno pre popravke, na pauzu: `kontrole=false`, `is-pusten` skinut, veliko
+dugme ponovo `grid`.
+
+**Popravka:** kontrole se skidaju **samo dok stoji poster**, pre prvog puštanja.
+Jednom kad snimak krene, ostaju — pauza ih više ne dira.
+
+Provereno na pločici i na plejeru slučaja: pre puštanja poster i dugme; dok ide
+kontrole i bez dugmeta; **na pauzu nepromenjeno**; posle premotavanja na 18. i
+90. sekundu nastavlja odatle.
+
+VSL nije imao ovu grešku — njegov slušalac na pauzu dira samo dugme za zvuk.
+
+Nijedan CSS nije diran, `usluga.css?v=` ostaje **19.32**.
