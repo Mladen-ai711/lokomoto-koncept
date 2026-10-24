@@ -4223,6 +4223,161 @@ a.step-tag:focus-visible {
   transform: none;
 }
 
+/* ══════════════════════════════════════════════════════════════
+   55. RAZMAK IZMEĐU „NE BOLI ME“ I „OPORAVLJEN SAM“ — 24.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Nikolin prelaz, 1:54–2:29: dve sekcije spojiti u jednu i prikazati
+   vizuelno razmak između trenutka kad bol prestane i trenutka kad je
+   covek zaista spreman. „Treba se prikaze gap.“
+
+   Linija je obican flex red: tacke su fiksne sirine, veze rastu. Veza
+   posle „Bol prestaje“ ima flex 3.4 prema 1 kod ostalih — razmak se
+   time VIDI kao duzina, ne samo kao recenica. Isprekidana je, da se
+   razlikuje od predjenog dela puta.
+
+   Ispod 860 px red postaje kolona: linija ide nadole, razmak je visok
+   umesto sirok. Isti smisao, drugi pravac. */
+
+.razmak {
+  display: flex;
+  align-items: flex-start;
+  margin: clamp(2.2rem, 5vw, 3.6rem) 0 clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.rz-tacka {
+  display: grid;
+  width: clamp(5.5rem, 9vw, 8.5rem);
+  flex: none;
+  gap: 0.45rem;
+  justify-items: center;
+  text-align: center;
+}
+
+.rz-tacka i {
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 2px solid rgba(143, 214, 244, 0.5);
+  border-radius: 50%;
+}
+
+.rz-tacka b {
+  font-size: clamp(0.88rem, 1.1vw, 1rem);
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.rz-tacka small {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+.rz-bol i,
+.rz-kraj i {
+  border-color: var(--lime);
+  background: var(--lime);
+}
+
+.rz-veza {
+  height: 2px;
+  flex: 1;
+  margin-top: 0.42rem;
+  background: rgba(143, 214, 244, 0.28);
+}
+
+.rz-jaz {
+  position: relative;
+  flex: 3.4;
+  background: none;
+  background-image: repeating-linear-gradient(90deg, var(--lime) 0 7px, transparent 7px 15px);
+}
+
+.rz-jaz span {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  display: grid;
+  width: min(24rem, 80%);
+  gap: 0.3rem;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.rz-jaz b {
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  font-weight: 650;
+}
+
+.rz-jaz em {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.82rem;
+  font-style: normal;
+}
+
+@media (max-width: 860px) {
+  .razmak {
+    flex-direction: column;
+    align-items: stretch;
+    padding-left: 0.1rem;
+  }
+
+  .rz-tacka {
+    width: auto;
+    grid-template-columns: 0.85rem 1fr;
+    gap: 0.1rem 0.9rem;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .rz-tacka i {
+    grid-row: span 2;
+    margin-top: 0.3rem;
+  }
+
+  .rz-tacka:not(:has(small)) i {
+    grid-row: span 1;
+  }
+
+  .rz-veza {
+    width: 2px;
+    height: 1.8rem;
+    flex: none;
+    margin: 0 0 0 0.37rem;
+  }
+
+  /* Razmak na telefonu NIJE samo linija: linija ide kao ::before uz levu
+     ivicu, a natpis stoji pored nje u normalnom toku. Prvi pokušaj je
+     natpis vezao za samu vezu, koja je ovde široka 2 px — tekst se tada
+     slomio u uzan stub i prešao preko tačaka. */
+  .rz-jaz {
+    position: relative;
+    width: auto;
+    height: auto;
+    margin: 0 0 0 0.37rem;
+    padding: 0.9rem 0 0.9rem 1.5rem;
+    background-image: none;
+  }
+
+  .rz-jaz::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    background-image: repeating-linear-gradient(180deg, var(--lime) 0 7px, transparent 7px 15px);
+    content: "";
+  }
+
+  .rz-jaz span {
+    position: static;
+    width: auto;
+    justify-items: start;
+    text-align: left;
+    transform: none;
+  }
+}
+
 .step-acc summary i {
   position: relative;
   width: 0.95rem;

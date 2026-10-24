@@ -5518,3 +5518,50 @@ opet žmirka. Uzeta **5. sekunda**: gleda pravo u kameru, oči otvorene.
 
 Titl kod njega stoji više u kadru nego kod ostalih, pa dugme sedne tik iznad
 prvog reda — isto kao kod Nađe. Provereno da se ne preklapa.
+
+---
+
+# Vremenska linija: razmak između „ne boli me" i „oporavljen sam" (24.10.2026)
+
+Nikolin prelaz, 1:54–2:29: *„ove dve sekcije mogu da se spoje… da to bude
+onako vizuelno, a ne samo tekst… treba se prikaže gap između ne boli me koleno
+i oporavljen sam."*
+
+## Šta je urađeno
+
+Sekcije 5 (**Zašto nije dovoljno „više me ne boli"**) i 6 (**Kako Lokomoto
+prati napredak**) spojene su u jednu, sa novim naslovom **„Bol prestane mnogo
+pre nego što si spreman"**. Tekst je zadržan, samo preraspoređen: tvrdnja ide
+iznad linije, merenje ispod nje.
+
+Linija ima četiri tačke:
+
+| | |
+|---|---|
+| ○ Povreda | prazna tačka |
+| ○ Operacija | prazna tačka |
+| ● **Bol prestaje** | puna, uz navod „Više me ne boli." |
+| ● **Spreman za teren** | puna, uz navod „Oporavljen sam." |
+
+## Razmak se VIDI, ne samo čita
+
+Veze između tačaka su `flex` elementi. Prve dve imaju `flex: 1`, a ona posle
+„Bol prestaje" ima **`flex: 3.4`** — i isprekidana je. Izmereno na 1280: veze
+su **130, 130 i 442 px**.
+
+To je cela poenta: čovek vidi da je put posle prestanka bola **duži nego sve
+pre toga zajedno**. U razmaku stoji šta se tu radi — snaga, kontrola, trčanje,
+testovi.
+
+## Telefon: ista stvar, drugi pravac
+
+Ispod 860 px red postaje kolona, linija ide nadole, razmak je visok umesto
+širok.
+
+**Prvi pokušaj je tu bio pokvaren.** Natpis razmaka bio je vezan za samu vezu,
+a ona je na telefonu široka **2 px** — tekst se slomio u uzan stub i prešao
+preko tačaka. Popravljeno tako što linija ide kao `::before` uz levu ivicu, a
+natpis stoji pored nje u normalnom toku. Provereno merenjem da se više ne
+preklapa ni sa jednom tačkom.
+
+`usluga.css?v=` dignut na **19.37**, nova sekcija 55.
