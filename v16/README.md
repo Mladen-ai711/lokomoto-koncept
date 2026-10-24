@@ -5505,3 +5505,16 @@ valja. Sada na tamnoj podlozi ide **belim slovima**, uz tanku podlogu i liniju
 da se i dalje vidi da tekst nije potvrđen.
 
 `usluga.css?v=` dignut na **19.35**.
+
+### Lukin poster — oči
+
+Mladen: *„Da li bi Lukin poster mogao da bude da ne žmuri?"* Tačno — poster je
+bio sa **10. sekunde**, biran zato što je jedini bio bez titla, ali on tamo
+gleda nadole i deluje kao da žmuri.
+
+Pregledano dvadeset sličica od 4. do 23. sekunde, pa tri izbliza (5, 13 i 21 s)
+sa **nacrtanim dugmetom preko slike**, da se vidi i odnos prema titlu. Na 9 s
+opet žmirka. Uzeta **5. sekunda**: gleda pravo u kameru, oči otvorene.
+
+Titl kod njega stoji više u kadru nego kod ostalih, pa dugme sedne tik iznad
+prvog reda — isto kao kod Nađe. Provereno da se ne preklapa.
