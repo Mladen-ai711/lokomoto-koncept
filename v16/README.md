@@ -5279,3 +5279,73 @@ i koristi.
 
 Odbačeni: 8. s („ACL-a." — krupno pod dugmetom, usta otvorena), 23. s (kadar iz
 teretane, lice se ne vidi), 24. s (dotadašnji).
+
+---
+
+# Četvrto mesto, case study i prava slika za faze (24.10.2026)
+
+Novak je poslao folder sa svim materijalom. Preuzeta su četiri fajla; tri
+`vsl` snimka i deset slika iz podfoldera „Reklame" **nisu dirana** — to su
+reklame za Metu, idu u reklamni nalog, ne na sajt.
+
+## Šta je ugrađeno
+
+| Fajl | Original | Na sajtu |
+|---|---|---|
+| `testimonial stranjinja.mp4` | HEVC 1080×1920, 24 s, 55 MB | H.264 720×1280, **2,1 MB** |
+| `v2 sekula testimonial.mp4` | HEVC 1080×1920, 74 s, 206 MB | H.264 720×1280, **6,8 MB** |
+| `case study sekula v2.mp4` | HEVC 1920×1080, 2:46, 418 MB | H.264 1280×720, **17 MB** |
+| `Slika za deo sa fazama.png` | 2582×1450 | WebP 1100×1400, **56 kB** |
+
+Ukupno 697 MB svedeno na 26 MB. Ništa se ne skida dok posetilac ne pritisne —
+`preload="none"` na svih pet snimaka, provereno.
+
+## Mreža na četiri kolone
+
+Sa dva nova snimka ima ih četiri, a mesta su bila tri. Širina mreže dignuta sa
+54rem na **70rem**, da pločica ostane čitljiva: na 54rem bi četiri kolone dale
+198 px, na 70rem daju **262 px** — blizu dotadašnjih 272 px kod tri kolone. Na
+telefonu je i dalje dve kolone, 169 px, nepromenjeno.
+
+## Case study: najavljen uspravan, stigao položen
+
+Novak je najavio *„1 vertikalni case study"*, a poslao **1920×1080**. To na
+kraju nije smetalo: sekcija „Konkretan ACL slučaj" do tada je imala **samo
+tekst, bez ijedne slike**, pa položen snimak tu staje preko cele širine — bolje
+nego što bi u uspravnu pločicu.
+
+Dodat plejer po uzoru na VSL (nova sekcija 53 u `usluga.css`), sa posterom i
+dugmetom, bez samostalnog puštanja.
+
+**Natpis na dugmetu stoji IZNAD kruga, ne ispod.** Prvi put je bio ispod i
+sudarao se sa titlom koji je upisan u sliku i ide kroz ceo snimak, u donjoj
+trećini kadra. Traženje kadra bez titla nije imalo smisla — narator govori
+praktično bez prekida. Gore titla nikad nema, pa je natpis premešten tamo.
+
+## Slika za faze — zamenjena privremena
+
+Na sekciji sa fazama stajala je privremena fotografija, sa napomenom iz ranijeg
+rada: *„kadar specifičan za ACL ne postoji među 104 sa snimanja."* Nova slika je
+**baš taj kadar** — pregled operisanog kolena nekoliko dana posle zahvata.
+
+Jeste položena (2582×1450), a mesto traži uspravnu (1100×1400). Isečak po
+sredini zadržava i terapeuta i pacijenta i operisano koleno, i ispao je zbijeniji
+od originala. Napomena o privremenoj fotografiji **uklonjena**.
+
+## Potpisi — dve oznake vraćene
+
+| Pločica | Potpis |
+|---|---|
+| Nađa Tešić | taekwondo |
+| Maja Gajić | atletika · 400 m |
+| Stranjinja | **ime i sport ZA POTVRDU** |
+| Luka Sekulić | **sport ZA POTVRDU** |
+
+Sekulićevo puno ime je iz samog snimka — prvi titl kaže „Moje ime je Luka
+Sekulić". Stranjinja ne izgovara ime, pa se iz naziva fajla zna samo prezime.
+Sport se kod obojice **ne izmišlja**, iako se na snimcima vidi fudbal.
+
+Sekulićev snimak od **74 s** ostaje nesečen, po dogovoru — da se prvo vidi kako
+izgleda u pločici.
+
+`usluga.css?v=` dignut na **19.32**, na svih 9 stranica.

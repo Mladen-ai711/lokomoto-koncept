@@ -4662,11 +4662,15 @@ a.step-tag:focus-visible {
   color: var(--ink);
 }
 
+/* Cetvrta plocica dodata 24.10.2026 — stigla su jos dva snimka, pa ih je
+   cetiri. Sirina dignuta sa 54rem na 70rem da plocica ostane citljiva:
+   na 54rem bi cetiri kolone dale 198 px po plocici, a na 70rem daju 256 px,
+   blizu dotadasnjih 272 px kod tri kolone. */
 .acl-ugc-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(0.8rem, 2vw, 1.5rem);
-  max-width: 54rem;
+  max-width: 70rem;
 }
 
 .acl-ugc-okvir {
@@ -4792,6 +4796,99 @@ a.step-tag:focus-visible {
 }
 
 .acl-ugc-pun.is-pusten figcaption {
+  display: none;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   53. PLEJER ZA KONKRETAN SLUCAJ — 24.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Novak je najavio uspravan case study, a poslao polozen: 1920×1080,
+   2:46. To nije ispalo lose — sekcija „Konkretan ACL slucaj" do sada je
+   imala samo tekst, bez ijedne slike, a polozen snimak tu staje preko
+   cele sirine, bolje nego sto bi u uspravnu plocicu.
+
+   Za sajt: H.264 1280×720, CRF 28, 17 MB iz 418 MB. Kao i VSL i plocice,
+   preload="none" — nista se ne skida dok posetilac ne pritisne.
+
+   Dugme preko postera postoji iz istog razloga kao kod VSL-a (sekcija 51):
+   Chrome na <video controls> ne crta veliko dugme, nego tanku traku. */
+
+.acl-slucaj {
+  max-width: 54rem;
+  margin: clamp(1.5rem, 4vw, 2.5rem) 0 0;
+}
+
+.acl-slucaj-plejer {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: #0a1a24;
+  box-shadow: 0 1.5rem 3rem rgba(5, 20, 30, 0.35);
+}
+
+.acl-slucaj-plejer video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #0a1a24;
+}
+
+.acl-slucaj-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: 0.35rem;
+  border: 0;
+  color: var(--white);
+  background: linear-gradient(0deg, rgba(10, 26, 36, 0.55), rgba(10, 26, 36, 0.15));
+  cursor: pointer;
+  font: inherit;
+  place-content: center;
+  justify-items: center;
+}
+
+/* Natpis stoji IZNAD kruga, ne ispod: titl je upisan u sliku i ide kroz ceo
+   snimak, u donjoj trecini kadra. Kad je natpis bio ispod, sudarao se s njim.
+   Gore titla nikad nema. */
+.acl-slucaj-play span {
+  display: grid;
+  width: 4.2rem;
+  height: 4.2rem;
+  margin-top: 0.5rem;
+  border-radius: 50%;
+  background: var(--white);
+  place-items: center;
+  transition: transform 200ms var(--ease);
+}
+
+.acl-slucaj-play span::after {
+  width: 0;
+  height: 0;
+  margin-left: 0.28rem;
+  border-top: 0.68rem solid transparent;
+  border-bottom: 0.68rem solid transparent;
+  border-left: 1.1rem solid var(--deep);
+  content: "";
+}
+
+.acl-slucaj-play:hover span,
+.acl-slucaj-play:focus-visible span {
+  transform: scale(1.08);
+}
+
+.acl-slucaj-play b {
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.acl-slucaj-play small {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.82rem;
+}
+
+.acl-slucaj-plejer.is-pusten .acl-slucaj-play {
   display: none;
 }
 

@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta name="description" content="Put od ACL povrede do povratka na teren: šta moraš da uradiš da ne prepustiš oporavak slučaju. Lokomoto centar, Beograd, Autokomanda." />
     <link rel="stylesheet" href="../../styles.css?v=13.8" />
-    <link rel="stylesheet" href="../../usluga.css?v=19.30" />
+    <link rel="stylesheet" href="../../usluga.css?v=19.32" />
     <link rel="icon" href="../../favicon.svg?v=2" type="image/svg+xml" />
     <title>ACL rehabilitacija Beograd | Lokomoto centar</title>
     <meta property="og:type" content="website" />
@@ -180,9 +180,9 @@
           <div class="steps-layout">
             <figure class="steps-photo reveal">
               <img
-                src="../../assets/images/guided-training.webp"
-                alt="Vođena vežba sa opterećenjem u sali Lokomoto centra" width="1100" height="1400" loading="lazy" />
-              <figcaption><mark class="ph">Fotografija privremena — kadar specifičan za ACL ne postoji među 104 sa snimanja.</mark></figcaption>
+                src="../../assets/images/acl-faza-koleno.webp"
+                alt="Terapeut pregleda operisano koleno nekoliko dana posle zahvata" width="1100" height="1400" loading="lazy" />
+              <figcaption>Prva faza počinje danima posle operacije, ne nedeljama.</figcaption>
             </figure>
 
             <div class="step-grid">
@@ -261,6 +261,21 @@
             <h2><mark class="ph">Naslov dokaza iz copyja</mark></h2>
           </div>
           <p class="for-whom-lead"><mark class="ph">Konkretan ACL slučaj: ko, šta, kada se vratio na teren — samo stvaran slučaj, uz pristanak pacijenta.</mark> <span class="ph-note">MATERIJAL OD KLIJENTA</span></p>
+
+          <figure class="acl-slucaj">
+            <div class="acl-slucaj-plejer">
+              <video
+                src="../../assets/media/acl-case-study.mp4"
+                poster="../../assets/images/acl-case-study-poster.jpg"
+                width="1280" height="720"
+                controls playsinline preload="none"
+                aria-label="Ceo put oporavka jednog ACL slučaja, od operacije do povratka na teren, 2 minuta i 46 sekundi, sa titlom"></video>
+              <button class="acl-slucaj-play" type="button" aria-label="Pusti snimak slučaja">
+                <b>Ceo put oporavka</b> <small>2:46 · sa titlom</small>
+                <span aria-hidden="true"></span>
+              </button>
+            </div>
+          </figure>
         </div>
       </section>
 
@@ -296,7 +311,30 @@
               </button>
               <figcaption>Maja Gajić <small>atletika · 400 m</small></figcaption>
             </figure>
-            <figure class="acl-ugc-okvir"><span class="ph-note">VIDEO 3</span><p>Uspravni snimak sportiste.</p></figure>
+            <figure class="acl-ugc-okvir acl-ugc-pun">
+              <video
+                src="../../assets/media/acl-ugc-stranjinja.mp4"
+                poster="../../assets/images/acl-ugc-stranjinja-poster.jpg"
+                width="720" height="1280"
+                controls playsinline preload="none"
+                aria-label="Stranjinja o oporavku posle povrede prednjeg ukrštenog ligamenta, 24 sekunde, sa titlom"></video>
+              <button class="acl-ugc-play" type="button" aria-label="Pusti snimak">
+                <span aria-hidden="true"></span>
+              </button>
+              <figcaption><mark class="ph">Stranjinja</mark> <small><mark class="ph">ime i sport ZA POTVRDU</mark></small></figcaption>
+            </figure>
+            <figure class="acl-ugc-okvir acl-ugc-pun">
+              <video
+                src="../../assets/media/acl-ugc-sekulic.mp4"
+                poster="../../assets/images/acl-ugc-sekulic-poster.jpg"
+                width="720" height="1280"
+                controls playsinline preload="none"
+                aria-label="Luka Sekulić o oporavku posle povrede prednjeg ukrštenog ligamenta, 74 sekunde, sa titlom"></video>
+              <button class="acl-ugc-play" type="button" aria-label="Pusti snimak">
+                <span aria-hidden="true"></span>
+              </button>
+              <figcaption>Luka Sekulić <small><mark class="ph">sport ZA POTVRDU</mark></small></figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -422,8 +460,9 @@
          crta veliko dugme, pa se na posteru ne vidi da je to uopšte video.
          Ove ne kreću same: tri snimka odjednom bi bila i teška i bučna za oko. */
       (function () {
-        document.querySelectorAll(".acl-ugc-pun").forEach(function (o) {
-          var v = o.querySelector("video"), d = o.querySelector(".acl-ugc-play");
+        document.querySelectorAll(".acl-ugc-pun, .acl-slucaj-plejer").forEach(function (o) {
+          var v = o.querySelector("video"),
+            d = o.querySelector(".acl-ugc-play, .acl-slucaj-play");
           if (!v || !d) return;
           /* kontrole se skidaju dok stoji poster: inače fabrička traka viri
              ispod dugmeta i gužva se sa potpisom. Bez JS-a ostaju, pa snimak
