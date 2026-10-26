@@ -136,3 +136,34 @@ Ovo su činjenice iz koda. Sledeće zna samo ordinacija i **mora da dođe od nji
 
 Bez ovih šest stavki politika privatnosti ne može da bude tačna, a netačna je
 gora od nikakve — jer tvrdi nešto u ime ordinacije.
+
+---
+
+## Odluka o saglasnostima — 26.10.2026
+
+Mladen: *„Pismenu saglasnost za testimonial nećemo tražiti. Sve ćemo svesti na
+minimum, samo ono najpotrebnije."*
+
+**Odluka je njegova i upisana je ovde da se zna da nije propust nego izbor.**
+
+Stanje na koje se odnosi: četiri imenovane osobe sa licem i podatkom o lečenju
+na javnoj adresi, plus peti slučaj koji se pominje imenom u naslovu case
+study-ja. Snimke je poslao sam klijent, preko Novaka.
+
+Rizik koji ostaje, rečeno jednom i bez vraćanja na temu: ako se neko od njih
+četvoro kasnije predomisli, nema papira koji pokazuje da je pristao. Teret je
+tada na ordinaciji, ne na sajtu.
+
+## Pitanja svedena na minimum
+
+Od prvobitnih šest ostaju **dva**. Ostalo se izvodi iz onoga što sajt već
+tvrdi:
+
+| Bilo pitanje | Sada |
+|---|---|
+| Kontakt za zahteve pacijenata | **ne pita se** — sajt već navodi `lokomoto.centar@gmail.com` i `011 / 40 95 924` |
+| Ko ima pristup sanducetu | **ne pita se** — ne mora da stoji u politici |
+| Ugovor sa Alpinom | **ne pita se** — politika samo navodi da se zakazivanje obavlja kod njih |
+| Lice za zaštitu podataka | **ne pita se** — navodi se samo ako postoji |
+| **Pun pravni naziv i matični broj** | **ostaje** — politika mora da imenuje ko je odgovoran, a „Lokomoto centar" je ime u opticaju, ne pravno lice |
+| **Koliko se čuvaju upiti** | **ostaje**, ali kao potvrda predloga, ne kao otvoreno pitanje |
