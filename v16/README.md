@@ -5565,3 +5565,51 @@ natpis stoji pored nje u normalnom toku. Provereno merenjem da se više ne
 preklapa ni sa jednom tačkom.
 
 `usluga.css?v=` dignut na **19.37**, nova sekcija 55.
+
+---
+
+# Skinute oznake, traka i provera linkova (26.10.2026)
+
+Nikola: *„proveri linkove, izbaci ovo sa slike i izbaci nacrt gde god piše."*
+Uz to: *„Kada to uradimo manje-više smo spremni, onda Dule treba da prespoji
+domen ali nas to ne koči."* — **domen je dakle na Duletu i ne blokira.**
+
+## Traka iz futera
+
+U futeru je stajalo *„Stranica usluge · demo za dogovor sa klijentom · žuto
+označeni podaci čekaju potvrdu"*. Bila je na **svih 9 stranica**, ne samo na
+ACL-u. Skinuta je sa svih — pošto oznaka više nema, traka koja ih objašnjava
+nema šta da objasni.
+
+## Oznake nacrta
+
+Bile su **samo na ACL stranici**: 5 značaka `NACRT`, 28 podvučenih mesta i 4
+obojena. Sve je skinuto, tekst je ostao. To je Nikolin copy koji je on sam i
+odobrio na prelazu, pa oznaka više nije tačna.
+
+**Jedna greška usput.** Prvi obrazac je na jednom mestu progutao zatvarajući
+tag, pa je ostao `<mark>` bez para. Nađeno proverom ravnoteže tagova i
+očišćeno; sada u celom v16 nema nijednog `<mark>`.
+
+**Ostavljeno namerno:** četiri značke na drugim stranicama — `TEKST ZA POTVRDU`
+na naslovnoj i dve `FOTOGRAFIJA NEDOSTAJE` na fizikalnoj terapiji. To nisu
+nacrti nego stvarne rupe koje čekaju Novaka.
+
+## Provera linkova
+
+| | |
+|---|---|
+| Unutrašnjih veza | **510**, pokvarenih **0** |
+| Sidara na stranici | 71, bez cilja **0** *(posle popravke)* |
+| Spoljnih adresa | 4, sve odgovaraju **200** |
+
+**Nađena i popravljena prava greška.** Dugme „Na vrh ↑" u futeru vodi na
+`#top`, a to mesto je postojalo **samo na naslovnoj**. Na **sedam stranica**,
+uključujući ACL, dugme nije radilo ništa. Prvoj sekciji na tim stranicama
+dodat je `id="top"`.
+
+Spoljne adrese proverene: Alpin, kviz.lokomoto.rs, Instagram i Google mape —
+sve 200.
+
+Mrtva veza `href="#"` kod politike privatnosti **ostaje namerno**, dok tekst
+ne bude napisan.
