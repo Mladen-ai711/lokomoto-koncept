@@ -5532,3 +5532,85 @@ h2 > .ph-note {
     margin-top: 1.4rem;
   }
 }
+
+
+/* ══════════════════════════════════════════════════════════════
+   56. POLITIKA PRIVATNOSTI — 28.10.2026
+   ══════════════════════════════════════════════════════════════
+
+   Obicna stranica sa tekstom, bez ukrasa. Jedini posao je da se dugacak
+   pravni tekst cita bez napora: uza mera reda, veci razmak izmedju redova
+   i jasna razlika izmedju naslova i pasusa. */
+
+.pp-uvod {
+  padding-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.pp-uvod h1 {
+  max-width: 18ch;
+  margin: 0.8rem 0 0;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 620;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+}
+
+.pp-lead {
+  max-width: 46ch;
+  margin: 1.4rem 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.pp-datum {
+  margin: 1.6rem 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.pp-odeljak {
+  padding-top: clamp(1.8rem, 3.5vw, 2.8rem);
+  padding-bottom: 0;
+}
+
+.pp-odeljak h2 {
+  max-width: 30ch;
+  margin: 0 0 1rem;
+  font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.pp-odeljak p {
+  max-width: 62ch;
+  margin: 0 0 0.9rem;
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  line-height: 1.65;
+}
+
+.pp-blok {
+  padding: 1rem 1.2rem;
+  border-left: 3px solid var(--lime);
+  background: var(--paper-dark);
+  line-height: 1.5;
+}
+
+.pp-spisak {
+  max-width: 62ch;
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+  font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+  line-height: 1.65;
+}
+
+.pp-spisak li {
+  margin-bottom: 0.35rem;
+}
+
+.pp-odeljak a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}

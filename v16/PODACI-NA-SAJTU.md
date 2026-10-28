@@ -167,3 +167,71 @@ tvrdi:
 | Lice za zaštitu podataka | **ne pita se** — navodi se samo ako postoji |
 | **Pun pravni naziv i matični broj** | **ostaje** — politika mora da imenuje ko je odgovoran, a „Lokomoto centar" je ime u opticaju, ne pravno lice |
 | **Koliko se čuvaju upiti** | **ostaje**, ali kao potvrda predloga, ne kao otvoreno pitanje |
+
+---
+
+## Oba odgovora stigla — 28.10.2026
+
+**Novak** (pravni podaci):
+
+```
+PR Novak Ilić LOKOMOTO CENTAR BEOGRAD
+Trišе Kaclerovića 27B
+Mat. br. 65966409
+PIB 112231127
+```
+
+**Nikola** (rok čuvanja upita): *„Ostaju do daljnjeg."*
+
+### Dve razlike u odnosu na sajt, obe namerne
+
+**Adresa.** Novak je dao `Trišе Kaclerovića 27B`, a sajt na četiri mesta tvrdi
+`Tabanovačka 27b`. To nisu iste ulice. Nije greška: prva je **sedište firme po
+registraciji**, druga je **mesto gde se radi sa pacijentima**. Politika navodi
+obe i objašnjava razliku; sajt ostaje nepromenjen.
+
+Vredi zapamtiti da je adresa već jednom bila sporna — `PRED-OBJAVU.md`,
+rešeno 13.09. Ovo nije povratak tog problema.
+
+**Mejl.** Novak je naveo `smarkovic1991@gmail.com`. U politiku ide
+`lokomoto.centar@gmail.com`, jer je taj već javan na sajtu i na njega stižu
+upiti iz formulara. Lična adresa se ne objavljuje.
+
+---
+
+# Stranica politike privatnosti — napravljena 28.10.2026
+
+`politika-privatnosti/index.html`, devet odeljaka. Zaglavlje i podnožje
+preuzeti **doslovno** sa `usluge/index.html`, da ništa ne odstupa od ostatka
+sajta.
+
+**Usput nađena i popravljena greška.** Pošto je kostur uzet sa stranice koja
+je *unutar* foldera `usluge`, njene veze su pokazivale na susede
+(`dijagnostika/`, `acl/`…). Na novoj stranici, koja je jedan nivo drugde, svih
+**17 tih veza bilo je pokvareno**. Prevedene su u `../usluge/…`. Provera posle:
+565 veza, 0 pokvarenih.
+
+**Veza u podnožju više nije mrtva** — na svih 10 stranica vodi na ovu, sa
+tačnom dubinom putanje.
+
+## Šta tekst tvrdi, i odakle to zna
+
+Svaka tvrdnja u tekstu dolazi iz popisa iznad, ne iz šablona:
+
+| Odeljak | Osnov |
+|---|---|
+| Ko je odgovoran | Novakovi pravni podaci |
+| Šta prikupljamo | stvarna polja formulara, pročitana iz koda |
+| Formular ne šalje na sajt | `action="mailto:"`, `enctype="text/plain"` |
+| Koliko čuvamo | Nikolino „ostaju do daljnjeg" |
+| Zakazivanje | Alpin, 35 veza na sajtu |
+| Google mapa | jedini `iframe`, učitava se bez klika |
+| Nema kolačića ni praćenja | pretraga kroz sav HTML i JavaScript |
+| Snimci pacijenata | četiri imenovane osobe na ACL stranici |
+
+## Ostaje jedno
+
+**Tekst treba da pročita i odobri neko iz ordinacije pre nego što domen bude
+prespojen.** Napisan je po činjenicama sa sajta i po onome što su Novak i
+Nikola javili, ali tvrdi stvari u ime ordinacije — i to je jedini deo koji ne
+može da se provери iz koda.
