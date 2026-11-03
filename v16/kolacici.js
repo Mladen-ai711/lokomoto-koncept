@@ -88,10 +88,13 @@
 
     var tekst = document.createElement("p");
     tekst.className = "kolacici-tekst";
+    /* Tekst je Nikolin, 03.11. — kraći i uobičajeniji od pređašnjeg.
+       Šta se tačno beleži i kome odlazi piše u politici privatnosti,
+       na koju vodi veza u istoj rečenici. */
     tekst.innerHTML =
-      "Koristimo Meta piksel da bismo videli koje reklame dovode ljude na sajt. " +
-      "On postavlja kolačiće i beleži koje stranice gledate. " +
-      'Više u <a href="' + putPolitike() + '">politici privatnosti</a>.';
+      "Ovaj sajt koristi kolačiće kako bi unapredio vaše iskustvo. " +
+      "Prihvatite ili odbijte. " +
+      'Detaljnije u <a href="' + putPolitike() + '">politici privatnosti</a>.';
 
     var dugmad = document.createElement("div");
     dugmad.className = "kolacici-dugmad";
@@ -104,7 +107,7 @@
     var ne = document.createElement("button");
     ne.type = "button";
     ne.className = "kolacici-ne";
-    ne.textContent = "Ne, hvala";
+    ne.textContent = "Odbijam";
 
     da.addEventListener("click", function () {
       zapisi("da");
