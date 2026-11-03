@@ -5614,3 +5614,17 @@ h2 > .ph-note {
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
+
+
+/* Dugme u tekstu politike kojim posetilac menja svoj izbor o kolacicima.
+   Izgleda kao veza, a jeste dugme jer ne vodi nikuda nego vraca baner. */
+.pp-ponovo {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}

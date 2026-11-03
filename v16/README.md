@@ -5613,3 +5613,69 @@ sve 200.
 
 Mrtva veza `href="#"` kod politike privatnosti **ostaje namerno**, dok tekst
 ne bude napisan.
+
+---
+
+# Baner za kolačiće i Meta piksel (03.11.2026)
+
+Nikola je poslao piksel `1428426252619099` i tražio Lead događaj na klik ka
+Alpinu. Mladen je odlučio: **prvo baner, pa tek onda piksel.**
+
+## Zašto nisu mogli odvojeno
+
+Politika privatnosti, objavljena pet dana ranije, doslovno je tvrdila:
+
+> • ne postavljamo kolačiće
+> • ne pratimo vaše kretanje po sajtu
+> • *„Ako ovo ikad promenimo, promenićemo i ovaj tekst **pre nego što se išta
+>   uvede**."*
+
+Piksel postavlja kolačiće, prati kretanje i učitava se sa Facebook-ovog
+servera. **Sve tri tvrdnje bi postale netačne istog trena**, a poslednja je
+obećanje koje bi se prekršilo. Zato piksel, baner i izmena teksta idu u istom
+potezu.
+
+## Kako je rešeno
+
+Sve stoji u **jednom fajlu**, `kolacici.js`, dodatom na svih 10 stranica:
+
+- odluka se pamti u `localStorage`, **ne u kolačiću** — kolačić bi bio upravo
+  ono što pitamo smemo li da postavimo
+- `try/catch` svuda: u privatnom režimu `localStorage` ume da baci grešku, pa
+  se tada baner vraća a piksel se **ne** učitava — bezbedniji ishod
+- Lead slušalac stoji uvek, ali ne radi ništa dok `window.fbq` ne postoji,
+  znači ni on ne prati bez pristanka
+- put do politike se **čita iz podnožja**, ne upisuje ručno, jer dubina nije
+  ista na svim stranicama
+
+**Odsečeni deo Nikolinog skripta („if (a.ta…") nije bio potreban.** On rešava
+slučaj kad se veza otvara u istom prozoru; sve veze ka Alpinu imaju
+`target="_blank"`, pa stranica ostaje i događaj stigne da ode.
+
+## Izmereno, ne pretpostavljeno
+
+| Stanje | `fbq` | Zahtevi ka Facebook-u |
+|---|---|---|
+| pre izbora | **ne postoji** | **0** |
+| posle „Ne, hvala" | **ne postoji** | **0** |
+| posle „Prihvatam" | postoji | `fbevents.js` + `PageView` sa ID `1428426252619099` |
+
+Lead je proveren posebno, bez stvarnog odlaska na Alpin: privremena veza,
+klik poništen, **jedan `ev=Lead` zahtev poslat**.
+
+Dugme za promenu izbora na stranici politike briše zapamćeno i vraća baner —
+provereno.
+
+## Politika dopunjena
+
+Dodat odeljak **„Meta piksel i kolačići"**; stranica sada ima 10 odeljaka
+umesto 9. Odeljak „Šta sajt ne radi" prepisan je tako da više ne tvrdi ono što
+nije tačno. Provereno da niz „ne postavljamo kolačiće" više ne postoji u
+tekstu.
+
+`styles.css?v=` dignut na **13.9**, `usluga.css?v=` na **19.39**.
+
+## Ostaje
+
+Tekst politike i dalje čeka da ga pročita neko iz ordinacije. Sada je utoliko
+važnije što opisuje i praćenje, ne samo formular.

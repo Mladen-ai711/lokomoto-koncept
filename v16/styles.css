@@ -4578,3 +4578,87 @@ button {
     transform: none;
   }
 }
+
+
+/* ══════════════════════════════════════════════════════════════
+   BANER ZA KOLACICE — 03.11.2026
+   ══════════════════════════════════════════════════════════════
+
+   Stoji u styles.css, ne u usluga.css, jer ide na SVE stranice —
+   i na naslovnu, koja usluga.css ne ucitava.
+
+   Ne pokriva ceo ekran i ne zamracuje stranicu: posetilac moze da je
+   cita i dok ne odluci. Dugme „Prihvatam" je istaknuto, ali „Ne, hvala"
+   nije sakriveno ni sivo — izbor mora da bude stvaran. */
+
+.kolacici {
+  position: fixed;
+  right: clamp(0.75rem, 2vw, 1.5rem);
+  bottom: clamp(0.75rem, 2vw, 1.5rem);
+  left: clamp(0.75rem, 2vw, 1.5rem);
+  z-index: 80;
+  display: flex;
+  max-width: 46rem;
+  margin-inline: auto;
+  padding: clamp(1rem, 2vw, 1.4rem);
+  border-radius: var(--radius);
+  background: var(--ink);
+  box-shadow: 0 1.2rem 3rem rgba(5, 20, 30, 0.35);
+  color: var(--white);
+  gap: clamp(0.9rem, 2vw, 1.6rem);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.kolacici-tekst {
+  flex: 1 1 18rem;
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.kolacici-tekst a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.kolacici-dugmad {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.6rem;
+}
+
+.kolacici button {
+  padding: 0.6rem 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--white);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 620;
+  transition: transform 180ms var(--ease);
+}
+
+.kolacici button:hover,
+.kolacici button:focus-visible {
+  transform: translateY(-1px);
+}
+
+.kolacici-da {
+  border-color: transparent;
+  background: var(--white);
+  color: var(--ink);
+}
+
+@media (max-width: 560px) {
+  .kolacici-dugmad {
+    width: 100%;
+  }
+
+  .kolacici button {
+    flex: 1;
+  }
+}
