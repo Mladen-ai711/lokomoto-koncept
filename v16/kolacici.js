@@ -2,8 +2,14 @@
    BANER ZA KOLAČIĆE I META PIKSEL — 03.11.2026
    ══════════════════════════════════════════════════════════════
 
-   Nikola je poslao piksel 1428426252619099 i tražio Lead događaj na klik
-   ka Alpinu. Mladen je odlučio: prvo baner, pa tek onda piksel.
+   Nikola je poslao piksel 1428426252619099. Mladen je odlučio: prvo baner,
+   pa tek onda piksel.
+
+   LEAD DOGAĐAJ NIJE OVDE, i to namerno. Nikola je u jednoj poruci tražio da
+   ga ugradimo u kod, ali je u poslednjoj rekao da će ga sam napraviti preko
+   Ads Managera. Dva Lead-a istovremeno — jedan iz koda, jedan sa Metine
+   strane — brojala bi svaki klik dvaput, pa bi ispalo duplo više zakazivanja
+   nego što ih ima. Zato ga ovde nema.
 
    Zato piksel NE postoji dok posetilac ne pritisne „Prihvatam". Dok god
    nije pritisnuo, na sajtu nema nijednog kolačića ni zahteva ka Facebook-u.
@@ -14,9 +20,7 @@
    localStorage ume da baci grešku, pa je sve u try/catch: ako ne radi,
    baner se pojavi ponovo, a piksel se ne učitava. To je bezbedniji ishod.
 
-   Odsečeni deo Nikolinog skripta („if (a.ta…") nije potreban: sve veze ka
-   Alpinu imaju target="_blank", pa se stranica ne zatvara i događaj stigne
-   da ode pre nego što se bilo šta promeni. */
+   (Odsečeni deo njegovog skripta za Lead time je postao nepotreban.) */
 
 (function () {
   "use strict";
@@ -64,22 +68,6 @@
     window.fbq("init", PIKSEL);
     window.fbq("track", "PageView");
   }
-
-  /* Lead na klik ka Alpinu. Slušalac stoji uvek, ali ne radi ništa dok
-     piksel ne postoji — znači ni ovde nema praćenja bez pristanka. */
-  document.addEventListener(
-    "click",
-    function (e) {
-      if (!window.fbq || !e.target || !e.target.closest) return;
-      var a = e.target.closest('a[href*="alpinbook.com"]');
-      if (!a) return;
-      window.fbq("track", "Lead", {
-        content_name: "Zakazi pregled",
-        content_category: window.location.pathname,
-      });
-    },
-    true
-  );
 
   /* Put do politike privatnosti se ne upisuje ručno nego čita iz podnožja,
      jer dubina nije ista na svim stranicama. */

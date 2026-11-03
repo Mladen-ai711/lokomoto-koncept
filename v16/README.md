@@ -5660,8 +5660,22 @@ slučaj kad se veza otvara u istom prozoru; sve veze ka Alpinu imaju
 | posle „Ne, hvala" | **ne postoji** | **0** |
 | posle „Prihvatam" | postoji | `fbevents.js` + `PageView` sa ID `1428426252619099` |
 
-Lead je proveren posebno, bez stvarnog odlaska na Alpin: privremena veza,
-klik poništen, **jedan `ev=Lead` zahtev poslat**.
+## Lead je izbačen — namerno
+
+Lead je prvo bio ugrađen i proveren (privremena veza, klik poništen, jedan
+`ev=Lead` poslat). Onda je stigla glasovna poruka u kojoj Nikola kaže da on
+sam pravi Lead preko **Ads Managera**.
+
+Poruke su stizale ovim redom: glasovna u **08:40**, nalepljen kod u **10:05**,
+pa pisana poruka u **12:05** koja traži Lead u kodu. Mladen je presudio da
+važi ono što je rekao za Ads Manager, pa je Lead **izbačen iz koda**.
+
+**Razlog zašto oba ne smeju istovremeno:** jedan Lead iz koda i jedan sa
+Metine strane brojali bi svaki klik **dvaput**. Sajt bi radio, ali bi brojke
+pokazivale duplo više zakazivanja nego što ih ima — a po njima se odlučuje
+gde ide novac za reklame.
+
+Provereno posle izbacivanja: piksel se učitava, **PageView ide, Lead nula**.
 
 Dugme za promenu izbora na stranici politike briše zapamćeno i vraća baner —
 provereno.
