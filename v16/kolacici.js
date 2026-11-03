@@ -5,11 +5,13 @@
    Nikola je poslao piksel 1428426252619099. Mladen je odlučio: prvo baner,
    pa tek onda piksel.
 
-   LEAD DOGAĐAJ NIJE OVDE, i to namerno. Nikola je u jednoj poruci tražio da
-   ga ugradimo u kod, ali je u poslednjoj rekao da će ga sam napraviti preko
-   Ads Managera. Dva Lead-a istovremeno — jedan iz koda, jedan sa Metine
-   strane — brojala bi svaki klik dvaput, pa bi ispalo duplo više zakazivanja
-   nego što ih ima. Zato ga ovde nema.
+   LEAD DOGAĐAJ NIJE OVDE, nego u samoj acl/index.html, odmah ispod ove
+   skripte. Nikola je 03.11. javio da mu Ads Manager ne radi i tražio da ipak
+   ide u kod. Pravi ga, dakle, samo jedna strana — ako se ikad doda i u Ads
+   Manageru, isti klik će se brojati dvaput.
+
+   Redosled nije slučajan: Lead skripta se oslanja na fbq, koji nastaje tek
+   ovde i tek po pristanku.
 
    Zato piksel NE postoji dok posetilac ne pritisne „Prihvatam". Dok god
    nije pritisnuo, na sajtu nema nijednog kolačića ni zahteva ka Facebook-u.

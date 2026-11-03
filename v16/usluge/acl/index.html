@@ -452,6 +452,44 @@
     <script src="../../stranica.js?v=14.0" defer></script>
     <script src="../../kolacici.js?v=1.1" defer></script>
     <script>
+      /* ══════════════════════════════════════════════════════════════
+         META LEAD — 03.11.2026, samo na ovoj stranici
+         ══════════════════════════════════════════════════════════════
+
+         Nikola je prvo rekao da će Lead sam napraviti u Ads Manageru, pa je
+         javio da mu tamo ne radi i tražio da ipak ide u kod. Pošto ga sada
+         pravi samo jedna strana, isti klik ne može da se izbroji dvaput.
+
+         Stoji ISPOD kolacici.js namerno: fbq postoji tek kad posetilac
+         prihvati kolačiće. Ako nije prihvatio, klik tiho prođe i Meti se ne
+         šalje ništa — isto ono što politika privatnosti obećava.
+
+         Šta se broji, po Nikolinom spisku:
+           • klik na „Zakaži ACL pregled“ — ispod naslova i na dnu stranice
+           • klik na broj telefona (tel:) — u sekciji sa dugmadima i u podnožju
+
+         Dugme u zaglavlju piše „Zakažite pregled“ i NE ulazi u ovo, jer ga
+         njegov uslov ne hvata. Ako zatreba, dodaje se jednom rečju. */
+      document.addEventListener("click", function (e) {
+        var c = e.target;
+        if (!c || !c.closest || !window.fbq) return;
+
+        var a = c.closest("a");
+        if (!a) return;
+
+        var href = a.getAttribute("href") || "";
+        var tekst = a.textContent.trim().toLowerCase();
+
+        if (
+          (href.indexOf("alpinbook.com") !== -1 &&
+            tekst.indexOf("zakaži acl pregled") !== -1) ||
+          href.indexOf("tel:") === 0
+        ) {
+          window.fbq("track", "Lead");
+        }
+      });
+    </script>
+    <script>
       /* UGC pločice: isti razlog kao kod VSL-a — Chrome na <video controls> ne
          crta veliko dugme, pa se na posteru ne vidi da je to uopšte video.
          Ove ne kreću same: tri snimka odjednom bi bila i teška i bučna za oko. */
