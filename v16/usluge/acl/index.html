@@ -450,7 +450,7 @@
     </footer>
 
     <script src="../../stranica.js?v=14.0" defer></script>
-    <script src="../../kolacici.js?v=1.2" defer></script>
+    <script src="../../kolacici.js?v=1.3" defer></script>
     <script>
       /* ══════════════════════════════════════════════════════════════
          META LEAD — 03.11.2026, samo na ovoj stranici
@@ -460,9 +460,10 @@
          javio da mu tamo ne radi i tražio da ipak ide u kod. Pošto ga sada
          pravi samo jedna strana, isti klik ne može da se izbroji dvaput.
 
-         Stoji ISPOD kolacici.js namerno: fbq postoji tek kad posetilac
-         prihvati kolačiće. Ako nije prihvatio, klik tiho prođe i Meti se ne
-         šalje ništa — isto ono što politika privatnosti obećava.
+         Stoji ISPOD kolacici.js namerno: fbq nastaje tamo. Od 03.11. merenje
+         kreće odmah, pa Lead radi i pre nego što posetilac odgovori na baner.
+         Ko je odbio, tome je fbq povučen ili ga uopšte nema, pa klik tiho
+         prođe.
 
          Šta se broji, po Nikolinom spisku:
            • klik na „Zakaži ACL pregled“ — ispod naslova i na dnu stranice

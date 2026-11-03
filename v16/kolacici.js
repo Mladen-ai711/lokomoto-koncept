@@ -1,28 +1,29 @@
-/* ══════════════════════════════════════════════════════════════
-   BANER ZA KOLAČIĆE I META PIKSEL — 03.11.2026
-   ══════════════════════════════════════════════════════════════
+/* ═════════════════════════════════════════════════════════════
+   BANER ZA KOLAČIĆE I MERENJE — 03.11.2026
+   ═════════════════════════════════════════════════════════════
 
-   Nikola je poslao piksel 1428426252619099. Mladen je odlučio: prvo baner,
-   pa tek onda piksel.
+   MERENJE KREĆE ČIM SE STRANICA OTVORI, ne čeka odgovor na baner.
 
-   LEAD DOGAĐAJ NIJE OVDE, nego u samoj acl/index.html, odmah ispod ove
-   skripte. Nikola je 03.11. javio da mu Ads Manager ne radi i tražio da ipak
-   ide u kod. Pravi ga, dakle, samo jedna strana — ako se ikad doda i u Ads
-   Manageru, isti klik će se brojati dvaput.
+   Tražio Nikola, uz obrazloženje da Srbija nije u Evropskoj uniji. Rečeno mu
+   je da je naš zakon iz 2018. pisan po ugledu na evropski i traži isti osnov,
+   i da je ovo ordinacija — ko gleda ACL stranicu najverovatnije ima problem
+   s kolenom, a to je podatak o zdravlju. Mladen je posle toga potvrdio da se
+   ide tako. Upisano da se zna da nije previd nego odluka.
 
-   Redosled nije slučajan: Lead skripta se oslanja na fbq, koji nastaje tek
-   ovde i tek po pristanku.
+   „Odbijam" zato ne sprečava slanje unapred nego ga zaustavlja od tog
+   trenutka, preko fbq("consent", "revoke") — Metin zvaničan način. Ko je
+   jednom odbio, pri sledećoj poseti ne dobija merenje uopšte. Ono što je
+   otišlo pre odgovora ne može da se povuče, i politika privatnosti to kaže
+   izričito.
 
-   Zato piksel NE postoji dok posetilac ne pritisne „Prihvatam". Dok god
-   nije pritisnuo, na sajtu nema nijednog kolačića ni zahteva ka Facebook-u.
-   To je i ono što politika privatnosti obećava.
+   LEAD DOGAĐAJ NIJE OVDE nego u acl/index.html, odmah ispod ove skripte,
+   jer se oslanja na fbq koji nastaje ovde. Pravi ga samo kod — ako se ikad
+   doda i u Ads Manageru, isti klik će se brojati dvaput.
 
-   Odluka se pamti u localStorage, ne u kolačiću — kolačić bi bio sam po
-   sebi ono što pitamo da li smemo da postavimo. U privatnom režimu
-   localStorage ume da baci grešku, pa je sve u try/catch: ako ne radi,
-   baner se pojavi ponovo, a piksel se ne učitava. To je bezbedniji ishod.
-
-   (Odsečeni deo njegovog skripta za Lead time je postao nepotreban.) */
+   Odluka se pamti u localStorage, ne u kolačiću — kolačić bi bio sam po sebi
+   ono o čemu pitamo. U privatnom režimu localStorage ume da baci grešku, pa
+   je sve u try/catch: tada se odluka ne pamti i baner se pojavi ponovo.
+ */
 
 (function () {
   "use strict";
@@ -111,12 +112,17 @@
 
     da.addEventListener("click", function () {
       zapisi("da");
+      /* obično je već učitan; ovo hvata onoga ko je ranije odbio pa se
+         predomislio preko stranice sa politikom privatnosti */
       ucitajPiksel();
+      if (window.fbq) window.fbq("consent", "grant");
       okvir.remove();
     });
 
     ne.addEventListener("click", function () {
       zapisi("ne");
+      /* zaustavlja slanje od ovog trenutka; ono pre toga je već otišlo */
+      if (window.fbq) window.fbq("consent", "revoke");
       okvir.remove();
     });
 
@@ -142,8 +148,11 @@
 
   function kreni() {
     var odluka = procitaj();
-    if (odluka === "da") ucitajPiksel();
-    else if (odluka !== "ne") prikaziBaner();
+
+    /* jedini koji ne dobija merenje je onaj ko je već rekao ne */
+    if (odluka !== "ne") ucitajPiksel();
+    if (!odluka) prikaziBaner();
+
     vezaZaPromenu();
   }
 

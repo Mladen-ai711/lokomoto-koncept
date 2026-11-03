@@ -235,3 +235,37 @@ Svaka tvrdnja u tekstu dolazi iz popisa iznad, ne iz šablona:
 prespojen.** Napisan je po činjenicama sa sajta i po onome što su Novak i
 Nikola javili, ali tvrdi stvari u ime ordinacije — i to je jedini deo koji ne
 može da se provери iz koda.
+
+---
+
+## Merenje kreće odmah — odluka od 03.11.2026
+
+Nikola je glasovnom porukom tražio dve stvari: kraći, uobičajen tekst banera
+(„Ovaj sajt koristi kolačiće kako bi unapredio vaše iskustvo. Prihvatite ili
+odbijte."), bez stručnih naziva, i da merenje **ne čeka** klik na baner, jer
+*„nismo u Evropskoj uniji"*.
+
+**Prigovor je izrečen jednom, pre odluke, i glasi ovako:**
+
+1. Srpski Zakon o zaštiti podataka o ličnosti iz 2018. pisan je po ugledu na
+   evropski i traži isti osnov — „nismo u EU" ne zatvara pitanje.
+2. Ako reklame ciljaju ikoga u EU, na njih se primenjuje i evropsko pravilo,
+   bez obzira gde sajt stoji.
+3. Ovo je ordinacija. Ko gleda ACL stranicu najverovatnije ima problem s
+   kolenom — to je podatak o zdravlju, ne podatak o tome koje patike gleda.
+
+**Mladen je posle toga rekao: „Idemo na B."** Odluka je njegova i upisana je
+ovde da se zna da nije previd.
+
+### Šta je zbog toga promenjeno
+
+| Gde | Pre | Posle |
+|---|---|---|
+| `kolacici.js` | merenje tek po „Prihvatam" | kreće čim se stranica otvori |
+| dugme „Odbijam" | sprečavalo pokretanje | `fbq("consent","revoke")` — gasi od tog trenutka |
+| ponovna poseta posle „Odbijam" | — | merenje se uopšte ne pokreće |
+| politika privatnosti | *„Dok ne pritisnete Prihvatam, nema nijednog zahteva ka Meti"* | *„Pokreće se čim otvorite sajt… ono što je poslato pre vašeg odgovora ne može da se povuče"* |
+| reč „piksel" | u baneru i u politici | nigde na sajtu — ostalo „alat kompanije Meta" |
+
+Politika je morala da se prepravi, inače bi tvrdila suprotno od onoga što se
+stvarno dešava. To je jedini deo ovog posla koji nije bio stvar izbora.
