@@ -15,8 +15,10 @@ prepisano iz ranijih beleški. Gde je nešto nepoznato, tako i piše.
 | Hosting | GitHub Pages |
 | Veličina | 102 fajla, 97 MB (od toga 96 MB video i slike) |
 
-**Radna verzija je `v16/`.** Folderi `v10`–`v15` su starije verzije i ne diraju
-se — stoje samo zbog istorije.
+**Radna verzija je `v16/`.** Pored nje stoji samo `v15/`, prethodna verzija,
+i ona se ne dira — ostaje dok novi sajt ne proradi na pravom domenu.
+Potrošene verzije `v5`–`v14` sklonjene su 11.11.2026; sve stoji u istoriji
+gita i vraća se ako zatreba. Korenska adresa repozitorijuma vodi na `v16/`.
 
 Pošto je repozitorijum javan, ne mora ništa da se šalje: dovoljan je link, pa
 „Code → Download ZIP". Uz ovo ide i ZIP samo foldera `v16`, ako je lakše.
